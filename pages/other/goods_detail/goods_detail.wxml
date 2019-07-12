@@ -50,7 +50,6 @@
           </view>
         </view>
         <view class='sm_text' wx:if="{{miaoshaFlag}}">
-          <!--  -->
           <view class=''>{{overFlag ? list_data.flashSale[0].progress>=98?'即将售罄':'已抢'+list_data.flashSale[0].progress+"%" :'已抢完'}}</view>
           <progress percent="{{list_data.flashSale[0].progress}}" border-radius="8" stroke-width="10" activeColor="#ffffff" backgroundColor="#ebb599" class='progress_lsz'></progress>
         </view>
@@ -99,41 +98,12 @@
       <view class='ziti_3 color_gray txt_dot'>{{list_data.goods_remark}}</view>
       <view class='yishou_ls ziti_3 color_gray'>
         <view>包邮</view>
-        <view>已售{{list_data.virtual_sales_sum}}件</view>
+        <view><text style='margin-right:16rpx;'>已售</text>{{list_data.virtual_sales_sum}}件</view>
       </view>
     </view>
 
 
     <view class='goods_detail_container'>
-      <!-- <view class='goods_detail mar_center'>
-        <view class='goods_detail_price'>
-          <view class='goods_detail_'>
-            <view>
-              <text class='ziti_3 color_price'>￥</text>
-              <text class='color_price font_w' style='font-size:40rpx;'>{{list_data.shop_price}}</text>
-              <text style='padding: 7rpx 7rpx 7rpx 7rpx;background-color:#FBDEE0;margin-left:20rpx;border-radius:8rpx;position: absolute;margin-top:-6rpx;' class='color_price ziti_3'>促销价</text>
-            </view>
-            <view style='text-decoration: line-through solid;' class='ziti_3 color_gray'>
-              <text>  ￥{{list_data.market_price}}</text>
-              <text wx:if="{{is_vip == 1}}" class='zhuan_btn'>
-<text class='ziti_3'>赚</text>
-              <text class='ziti_3'>￥{{filters.toFix(list_data.member_first*list_data.shop_price*0.01)}}</text>
-              </text>
-            </view>
-          </view>
-          <view bindtap='bijiaClick' class='bijia_btn active_'></view>
-        </view>
-        <view class='goods_detail_info'>
-          <view style='padding-bottom:20rpx;' class='goods_detail_title ziti_1 txt_dot'>{{list_data.goods_name}}</view>
-          <view class='goods_detail_title ziti_3 color_gray'>
-            <text>{{list_data.goods_remark}}</text>
-          </view>
-          <view class='goods_detail_pro ziti_3 color_gray'>
-            <text></text>
-            <text>已售{{list_data.virtual_sales_sum}}件</text>
-          </view>
-        </view>
-      </view> -->
       <view style='height:20rpx;background:#f5f5f5;'></view>
       <view bindtap='{{!overFlag?"":"showModal"}}' data-flag="0" class='goods_detail_check_guige ziti_2'>
         <view class='check_guige_txt'>
@@ -144,7 +114,6 @@
         </view>
         <image class='chakanpinglun' src='../../../images/detail/chakanpinglun.png'></image>
       </view>
-      <!-- wx:if="{{list_data.promise}}"  {{list_data.promise}}  -->
       <view class='laji_dx  ziti_2'>
         <view class=' chengruo color_gray'>服务承诺：</view>
         <view class='check_guige_n txt_dot '>48小时发货</view>
@@ -165,8 +134,6 @@
       </view>
 
       <!-- 评价内容 -->
-
-      <!-- 这一块没确定显示几条数据， -->
       <block wx:for='{{list_data.commentList.length>2?2:list_data.commentList.length}}' wx:key="{{index}}">
         <view class='goods_eval_content' style='background:#ffffff;'>
           <view class='goods_eval_content_header'>
@@ -187,7 +154,7 @@
           </view>
           <view class='goods_eval_footer ziti_3 color_gray'>
             <text>{{list_data.commentList[index].spec_name}}</text>
-            <text>购买时间：{{filters.dateFormat(list_data.commentList[index].buy_time,'yyyy/MM/dd')}}</text>
+            <text>{{filters.dateFormat(list_data.commentList[index].buy_time,'yyyy/MM/dd')}}</text>
           </view>
         </view>
       </block>
@@ -195,8 +162,6 @@
 
 
     <view class='shangpin_detail ziti_2 color_gray'>商品详情</view>
-
-    <!-- 这一块做个更改 -->
     <view wx:if="{{is_dw}}" class='tab_detail_box'>
       <view catchtap='changeOseleted1' data-index="0" class='ziti_2 tab_detail_item_ls  {{pj_seleted == 0?"tab_detail_check  ":" "}}'>
         商品详情
@@ -205,8 +170,6 @@
         客服说明
       </view>
     </view>
-
-
     <view class='{{is_dw?"alpha1":"alpha2"}}'>
       <view catchtap='changeOseleted1' data-index="0" class='ziti_2 tab_detail_item_ls  {{pj_seleted == 0?"tab_detail_check  ":" "}}'>
         商品详情
@@ -215,26 +178,11 @@
         客服说明
       </view>
     </view>
-
-
-
-
-
-
-
     <image wx:for="{{list_data.goods_content}}" wx:key="{{index}}" class='ls_xiangqing {{pj_seleted == 1?"alpha1":"alpha2"}}' mode='widthFix' src='{{item}}'>
     </image>
     <image class='ls_xiangqing {{pj_seleted == 0?"alpha1":"alpha2"}}' mode='widthFix' src="{{img_path2}}{{kf_img}}"></image>
-
-
-
-
-
-
-    <!-- 空白 -->
     <view style='height:125rpx;background:#f5f5f5;'></view>
   </view>
-  <!-- 详情tab内容 -->
   <view class='tab_detail_box' wx:if='{{seleted ==1}}'>
     <view class='tab_detail_box'>
       <view bindtap='changeOseleted' data-index="0" class='{{otherSeleted == 0?"tab_detail_check tab_detail_item ziti_2":"tab_detail_item ziti_2"}}'>
@@ -249,12 +197,7 @@
       </image>
       <image wx:if="{{otherSeleted == 1}}" class='tab_detail_img' mode='widthFix' src="{{img_path2}}{{kf_img}}"></image>
     </scroll-view>
-    <!-- <view style='height:125rpx;background:#f5f5f5;'></view> -->
   </view>
-  <!-- 评价tab内容 -->
-
-
-
   <view class='tab_detail_box' wx:if='{{seleted==2}}'>
     <view class='tab_detail_box'>
       <view bindtap='changeOseleted' data-index="0" class='{{otherSeleted == 0?"tab_detail_item tab_detail_check ziti_2":"tab_detail_item ziti_2"}} '>
@@ -272,143 +215,94 @@
               <image class='goods_eval_user_img' src="{{item.wx_header}}"></image>
               <view class='goods_eval_user_name ziti_2 txt_dot'>{{item.username}}</view>
             </view>
-            <!-- 星星 -->
             <view class='goods_eval_star_group'>
               <image wx:for="{{item.goods_rank}}" wx:key="{{index}}" class='goods_eval_star' src='../../../images/detail/goods_star_color.png'></image>
               <image wx:for="{{5-item.goods_rank}}" wx:key="{{index}}" class='goods_eval_star' src='../../../images/detail/goods_star.png'></image>
             </view>
           </view>
-          <!-- 评论文本 -->
           <view class='goods_eval_txt mar_center'>
             <text class='ziti_3'>{{item.content}}</text>
           </view>
-          <!-- 图片 -->
           <view class='goods_eval_img mar_center'>
             <block wx:for="{{filters.getImages(item.img)}}" wx:key="{{index}}" wx:for-item="i">
               <image mode="aspectFill" class='goods_eval_img_item' bindtap='prveImage' data-imgs="{{item.img}}" data-image="{{i}}" src="{{img_path}}{{i}}"></image>
             </block>
           </view>
 
-          <!-- 注脚 -->
           <view class='goods_eval_footer ziti_3 color_gray'>
             <text>{{item.spec_name}}</text>
             <text>购买时间：{{filters.dateFormat(item.buy_time)}}</text>
           </view>
         </view>
       </block>
-      <!-- 空白 -->
       <view style='height:125rpx;background:#f5f5f5;'></view>
-
     </scroll-view>
-    <!-- 无评价的状态 -->
     <view class='no_shuju' wx:else>
       <image style='display:block; width:160rpx;height:127rpx;margin:0 auto;' src='../../../images/image/person_order.png'></image>
       <view style='text-align: center;' class='ziti_2 color_gray'>暂无数据</view>
     </view>
-
   </view>
-
-  <!-- 选择商品数量的底部弹窗 -->
   <view catchtouchmove='true' class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}">
   </view>
-  <!-- 内容区 -->
   <view catchtouchmove='true' animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
-    <!-- 弹出的商品详情 -->
     <view class='commodity_attr_con'>
-      <!--关闭网页按钮-->
       <view bindtap='hideModal' class='shut_box'>
         <image class='close_logo' src='../../../images/detail/close.png'></image>
       </view>
-      <!-- 弹框头部图片和内容 -->
       <view class='commodity_attr_title'>
+        
+        <view class='viewattr_img'>
         <image class='commodity_attr_img' src="{{img_path}}{{list_data.specGoodsPrice[gg_seleted].spec_img}}"></image>
+        </view>
         <view class='attr_goods_info ziti_3 color_gray'>
 
-          <view class='goods_detail_' style='margin-top:20rpx;width:300rpx;'>
-            <view>
-              <text class='ziti_3 color_price'></text>
-              <text class='ziti_1 color_price font_w'>{{list_data.specGoodsPrice[gg_seleted].price}}</text>
-              <text style='padding: 7rpx 7rpx 7rpx 7rpx;background-color:#FBDEE0;margin-left:20rpx;border-radius:8rpx;position: absolute;' class='ziti_3 color_price'>促销价</text>
+          <view class='goods_detail_' style='width:300rpx;'>
+            <view class='ls_pric_mode'>
+              <view class='jiage'><text style='margin:0 10rpx 0  0; '>¥</text>{{list_data.specGoodsPrice[gg_seleted].price}}</view>
+              <image class='image_ms' src='../../../images/detail/miaoshs_img.png' mode='aspectFit'>
+               <view class='lll_ms' wx:if="{{is_miaosha && miaoshaFlag}}">秒杀价</view>
+               <view class='lll_ms' wx:if="{{!is_miaosha}}">促销价</view>
+              </image>
             </view>
-            <view style='text-decoration: line-through solid;' class='ziti_3 color_gray'>
-              <text></text>
-
+            <view class='kucun'>
+              库存{{list_data.specGoodsPrice[gg_seleted].store_count}}件
             </view>
-            <view>请选择规格:</view>
+            <view class='guizge'>已选择{{list_data.specGoodsPrice[gg_seleted].key_name}}</view>
           </view>
         </view>
       </view>
-      <!-- 规格 -->
       <view class='item_group'>
-        <view class='ziti_3' style='padding-bottom:20rpx;'>规格：</view>
-        <scroll-view scroll-y='true' style='height:300rpx;'>
+        <view class='tetxt' style='padding-bottom:20rpx;font-size:28rpx;'>规格：</view>
+        <scroll-view scroll-y='true' style='max-height:150rpx;'>
           <block wx:for='{{list_data.specGoodsPrice}}' wx:key="{{index}}">
-            <view bindtap='changeggSeleted' data-index="{{index}}" class='{{index == gg_seleted?"guige_item2 bgcolor ziti_3":"guige_item ziti_3"}}'>{{item.key_name}}</view>
+            <view bindtap='changeggSeleted' data-index="{{index}}" class='{{index == gg_seleted?"guige_item2  ":"guige_item "}}'>{{item.key_name}}</view>
           </block>
         </scroll-view>
       </view>
-      <!-- 数量 -->
-      <view class='item_group' style='margin-top:20rpx;'>
-        <view class='ziti_3'>数量：</view>
+      <view class='flex' style='margin-top:20rpx;'>
+        <view class='tetxt' style='font-size:28rpx;'>数量：</view>
         <view class='yes_goods_add_item'>
-          <image bindtap='changeNum' data-flag="0" class='yes_goods_reduce_logo' src='../../../images/cart/reduce_hei.png'>
-            <!-- 变灰 -->
-          </image>
-          <text class='yes_goods_add_number ziti_3'>{{num}}</text>
-          <image bindtap='changeNum' data-flag="1" class='yes_goods_add_logo' src='../../../images/cart/add_logo.png'>
-          </image>
-        </view>
-      </view>
-      <!-- 优惠券 -->
-      <!-- <view class='item_group' style='margin-top:80rpx;'>
-        <view class='ziti_3'>优惠券：</view>
-        <view> -->
-      <!-- 待领取优惠券状态 -->
-      <!-- <view wx:if="{{!l_quan}}" bindtap='changequan' class='t_goods_detail_quan' style='color:#fff;'>
-            <image class='t_goods_detail_quan_img' src='../../../images/detail/detail_quan.png'></image>
-            <view class='t_goods_detail_quan_n'>
-              <text class='ziti_3'>￥</text>
-              <text class='ziti_1'>{{filters.toFix(list_data.market_price - list_data.shop_price)}}</text>
-              <text class='ziti_3' style='padding-left:30rpx;'>点击领取</text>
-            </view>
-            <view class='t_goods_detail_quan_t ziti_3'>有效期24小时</view>
-          </view> -->
-      <!-- 已领取优惠券状态 -->
-      <!-- <view wx:if="{{l_quan}}" class='t_goods_detail_no_quan' style='color:#fff;'>
-            <image class='t_goods_detail_no_quan_img' src='../../../images/detail/detail_no_quan.png'>
-            </image>
-            <text class='t_goods_detail_no_quan_n ziti_3'>已领取</text>
-            <text class='t_goods_detail_no_quan_t ziti_3'>优惠</text>
+          <view class='red_ls {{num > 1 ? "bc-F5" :"bc-F"}}'  bindtap='changeNum' data-flag="0">
+            <image class='yes_goods_reduce_logo' src='../../../images/cart/{{num > 1 ? "reduce_hei":"reduce_hui"}}.png' />
+          </view>
+          <view class='yes_goods_add_number ziti_3'>{{num}}</view>
+          <view class='red_ls bc-F5' bindtap='changeNum' data-flag="1">
+            <image  class='yes_goods_add_logo' src='../../../images/cart/add_logo.png' />
           </view>
         </view>
-      </view> -->
+      </view>
     </view>
-    <!-- 底部选项栏 -->
-    <view wx:if="{{gg_flag == '1'}}" class='btn_wrop ziti_1'>
-      <view bindtap='toCar'>加入购物车</view>
+    <view wx:if="{{gg_flag == '1'}}" class='btn_wrop  fonw'>
+      <view bindtap='toCar'>加车</view>
     </view>
-    <view wx:elif="{{gg_flag == '3'}}" class='btn_wrop ziti_1'>
+    <view wx:elif="{{gg_flag == '3'}}" class='btn_wrop  fonw'>
       <view bindtap='goumai'>立即购买</view>
     </view>
-    <block wx:else class="ziti_1">
-      <view bindtap='toCar' class='btn_wrop2 pz'>加入购物车</view>
-      <view bindtap='goumai' class='btn_wrop2 pz2'>立即购买</view>
+    <block wx:else class="">
+      <view bindtap='toCar ' class='btn_wrop2 pz fonw'>加入购物车</view>
+      <view bindtap='goumai ' class='btn_wrop2 pz2 fonw'>立即购买</view>
     </block>
   </view>
-  <!-- 底部栏 -->
-  <!-- <view class='footer_box'>
-    <button open-type="contact" session-from="7moor|7|9" class='footer_con_box btn_active' style='padding:0px;width:17.5%;position: relative;border-radius: 0rpx;'>
-      <image class='footer_box_img' src='../../../images/detail/detail_kefu_logo.png'></image>
-      <view class='footer_box_txt ziti_3'>客服</view>
-    </button>
-    <button bindtap='navgwc' class='footer_con_box btn_active' style='padding:0px;width:17.5%;position: relative;border-radius: 0rpx;'>
-      <image class='footer_box_img' src='../../../images/detail/detail_cart_logo.png'></image>
-      <view class='footer_box_txt ziti_3'>购物车</view>
-      <view wx:if="{{list_data.cart_number > 0}}" class='footer_jiaobiao jiaobiao_font'>{{list_data.cart_number}}</view>
-    </button>
-    <view class='footer_add_btn' bindtap='showModal' data-flag="1">加入购物车</view>
-    <view bindtap='showModal' data-flag="3" class='footer_buy_btn'>立即购买</view>
-  </view> -->
   <view class='footer_box'>
     <button open-type='contact' class='footer_btn'>
       <image class='footer_ls_img' src='../../../images/detail/detail_kefu_logo.png'></image>
@@ -418,16 +312,13 @@
       <view wx:if="{{list_data.cart_number > 0}}" class='footer_jiaobiao jiaobiao_font'>{{list_data.cart_number}}</view>
       <image class='footer_ls_img' src='../../../images/detail/detail_cart_logo.png'>
       </image>
-      <view class='footer_ls_txt ziti_3'>购物车</view>
+      <view class='footer_ls_txt ziti_3 '>购物车</view>
     </view>
-    <!-- youFlag -->
     <view class='bot_ls_foot' wx:if="{{overFlag}}">
-      <view class="jiaru_ls {{is_vip == 1 ? 'wp-40' :'wp-50'}}" catchtap='showModal' data-flag="1">加入购物车</view>
-      <view class="now_buy_ls {{is_vip == 1 ? 'wp-40' :'wp-50'}}" catchtap='showModal' data-flag="3">立即购买</view>
-      <!-- 如果是会员，有推广按钮。否则，没有 -->
-      <button open-type='share' class='tuiguang' wx:if="{{is_vip == 1}}">推广</button>
+      <view class="jiaru_ls fonw {{is_vip == 1 ? 'wp-40' :'wp-50'}}" catchtap='showModal' data-flag="1">加入购物车</view>
+      <view class="now_buy_ls fonw {{is_vip == 1 ? 'wp-40' :'wp-50'}}" catchtap='showModal' data-flag="3">立即购买</view>
+      <button open-type='share' class='tuiguang fonw' wx:if="{{is_vip == 1}}">推广</button>
     </view>
-    <!-- youFlag -->
     <view class='yishouqing' wx:if="{{!overFlag && is_miaosha }}">已售罄</view>
   </view>
 

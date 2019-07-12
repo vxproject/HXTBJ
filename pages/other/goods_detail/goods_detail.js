@@ -127,7 +127,8 @@ Page({
         this.setData({
           shop_price: res.data.shop_price.split('.'),
           list_data: res.data,
-          hidden: 1
+          hidden: 1,
+          is_loading:true
         })
         if (res.data.flashSale[0]){
           that.countDown1(res.data.flashSale[0])
@@ -152,15 +153,15 @@ Page({
             this.data.setInter = ''
           }
         }
-        if(that.data.is_loading == false)
+        if(that.data.is_loading == true)
         setTimeout(()=>{
           that.setData({
-            is_loading:true
+            is_loading:false
           })
           wx.createSelectorQuery().select('.tab_detail_item_ls').boundingClientRect(res => {
             console.log(res)
             that.setData({
-              dw_top: res.top
+              dw_top: res.top-50
             })
           }).exec()
         },500)

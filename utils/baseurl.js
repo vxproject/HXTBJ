@@ -1,7 +1,7 @@
 // let baseURL = "http://hxt.9das3.cn"   https://hxt.9das3.cn
 let imgPath = "https://cdn.hxtapp.com"
 let baseURL = "https://www.hxtapp.com"
-// baseURL = "https://test.hxtapp.com"
+baseURL = "https://test.hxtapp.com"
 let version = "/v1"
 // 个人信息
 let login = baseURL + version + "/wx_login"   //微信登录授权
