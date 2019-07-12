@@ -1,0 +1,46 @@
+/* pages/person/shezhi/shezhi.wxss */
+page{
+  background-color: #f5f5f5;
+}
+.navtop{
+  padding: 30rpx  40rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.navtop_img{
+  width: 170rpx;
+  height: 170rpx;
+  display: flex;
+  flex-shrink: 0;
+  margin-right: 50rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.content{
+  padding: 0  40rpx;
+  background-color: #ffffff;
+}
+.content_list{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.content_list:last-child{
+  border: none;
+}
+.content_txt{
+  display: flex;
+  flex-flow: row  nowrap;
+}
+.content_img{
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  flex-shrink: 0;
+  margin-left: 15rpx;
+}

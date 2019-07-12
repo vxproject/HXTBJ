@@ -1,0 +1,35 @@
+<!--pages/person/collection_list/collection_list.wxml-->
+<wxs module="filters" src="../../home/store/filter.wxs"></wxs>
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view class='head'>
+  <image src="{{list_data.store_info.head_pic}}"></image>
+  <view class='ziti_2'>{{list_data.store_info.store_name}}</view>
+</view>
+<block wx:for="{{list_data.collect_goods.data}}">
+<view bindtap='goodsDetail' data-id="{{item.goodsInfo.goods_id}}" class='home_shiling_item'>
+  <image class='home_shiling_item_img' src='{{img_path}}{{item.goodsInfo.specGoodsPrice[0].spec_img}}'></image>
+  <view class='home_shiling_item_info'>
+    <view class='miaosha_item_info_title ziti_2 txt_dot '>{{item.goodsInfo.goods_name}}</view>
+    <view class='miaosha_item_info_text ziti_3 color_gray txt_dot'>{{item.goodsInfo.goods_remark}}</view>
+    <view style='padding:0;' class='miaosha_item_info_price'>
+      <text class='miaosha_item_info_class ziti_3 color_price'>促销价</text>
+      <text class='ziti_3 color_price'>￥{{item.goodsInfo.shop_price}}</text>
+      <text wx:if="{{is_vip == 1}}" class='zhuan_btn'>
+<text class='ziti_3'>赚</text>
+      <text wx:if="{{is_vip == 1}}" class='ziti_3'>￥{{filters.toFix(item.goodsInfo.member_first*item.goodsInfo.shop_price*0.01)}}</text>
+      </text>
+    </view>
+    <view class='home_shiling_item_info_bottom'>
+      <!-- <image wx:if="{{is_vip == 1}}" src='../../../images/home/tui_logo.png' class='miaosha_item_cart_logo'>
+      </image> -->
+      <!-- <text wx:if="{{is_vip == 1}}" class=' ziti_3' style='margin:0 10rpx;'>已推{{item.goodsInfo.sales_sum}}次</text> -->
+      <image src='../../../images/home/miaosha_goods_cart.png' class='miaosha_item_cart_logo'>
+      </image>
+      <text class='ziti_3' style='margin:0 10rpx;'>已售{{item.goodsInfo.virtual_sales_sum}}件</text>
+    </view>
+    <view  catchtap='addgwc' data-id="{{item.goodsInfo.goods_id}}" class='add_goods_btn1 ziti_2 color_price' style='width:140rpx;'>加车</view>
+    <view  catchtap='addgwc' data-id="{{item.goodsInfo.goods_id}}" class='add_goods_btn1 ziti_2 color_price' style='right:20rpx;width:140rpx;'>加车</view>
+  </view>
+</view>
+</block>

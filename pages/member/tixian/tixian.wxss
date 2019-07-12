@@ -1,0 +1,205 @@
+
+/* 实名资料 */
+
+.user_data {
+    box-sizing: border-box;
+    width: 680rpx;
+    margin: 0 auto;
+    padding: 15rpx;
+    background: #fff;
+    border-radius: 10rpx;
+}
+
+.user_data_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15rpx 0;
+}
+
+.name_ipt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input_ {
+    text-align: right;
+}
+
+/* 开户银行选择 */
+
+.check_tiaojian {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.check_tiaojian_left {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.check_tiaojian_right {
+    position: relative;
+}
+
+.check_tiaojian_txt {
+    display: block;
+    width: 430rpx;
+    text-align: right;
+    position: absolute;
+    top: 2rpx;
+    right: 30rpx;
+    padding-right: 20rpx;
+}
+
+.back_logo {
+    padding-top: 5rpx;
+    width: 35rpx;
+    height: 35rpx;
+}
+
+/* 手机和验证码 */
+
+.huoqu_btn {
+    padding: 15rpx;
+    border: solid 3rpx currentColor;
+    border-radius: 10rpx;
+}
+
+/* btn */
+.next_btn{
+    color: white;
+    width: 710rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    background-color: #ddc98d;
+    border-radius: 10rpx;
+    margin: 0 auto;
+}
+/* 注意事项 */
+.zhuyi_box{
+    padding: 70rpx 40rpx 0rpx 40rpx;
+}
+.zhuyi_box_header{
+    padding-bottom: 15rpx;
+}
+.zhuyi_box_txt{
+    display: flex;
+    flex-direction: column;
+}
+.zhuyi_box_txt text{
+    padding-bottom: 15rpx;
+}
+
+
+
+
+page{
+    background-color: #f5f5f5;
+}
+.container{
+    border-top: solid 3rpx #e3e3e3;
+}
+.dao_box{
+    background-color: #e3e3e3;
+    width: 670rpx;
+    height: 85rpx;
+    margin: 40rpx auto 20rpx auto;
+    display: flex;
+    align-items: center;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    padding-left: 30rpx;
+}
+.bank_img{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 15rpx;
+}
+/* 金额填写 */
+.ipt_price{
+    width: 670rpx;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10rpx;
+}
+.ipt_price_ipt{
+    width: 640rpx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 85rpx;
+    border-bottom: solid 3rpx #f5f5f5;
+}
+.ipt_price_ipt input{
+    width: 100%;
+}
+.ipt_price_ts{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rpx 15rpx;
+    align-items: center;
+}
+/* 手机和验证码 */
+.phone_box{
+    width: 670rpx;
+    margin: 40rpx auto 0rpx auto;
+    background-color: #ffffff;
+    border-radius: 10rpx;
+}
+.phone_box>view{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40rpx;
+}
+.phone_box>view:first-child{
+    height: 85rpx;
+    background-color: #e3e3e3;
+}
+.phone_box>view:last-child{
+    height: 100rpx;
+}
+/* 手机和验证码 */
+
+.huoqu_btn {
+    padding: 15rpx;
+    border: solid 3rpx currentColor;
+    border-radius: 10rpx;
+}
+/* btn */
+.next_btn{
+    color: white;
+    width: 670rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    background-color: #ddc98d;
+    border-radius: 10rpx;
+    margin: 70rpx auto;
+}
+/* 注意事项 */
+.zhuyi_box{
+    padding: 0rpx 40rpx;
+}
+.line_{
+    width: 670rpx;
+    height: 5rpx;
+    border: solid 3rpx #ccc;
+    border-radius: 10rpx;
+    margin-bottom: 35rpx;
+    margin-top: 35rpx;
+}
+.zhuyi_box_txt{
+    display: flex;
+    flex-direction: column;
+}
+.zhuyi_box_txt text{
+    padding-bottom: 15rpx;
+}

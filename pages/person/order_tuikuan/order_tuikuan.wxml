@@ -1,0 +1,158 @@
+<!-- 退款导航 -->
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view class='tuikuan_dh' wx:if='{{pid==1}}'>
+    <!-- 退款商品列表 -->
+    <view class='goods_list tuikuan_dh_goods'>
+        <view class='goods_item' style='border-bottom:hidden;'>
+            <image class='goods_img' src='{{img_path}}{{list_data.spec_img}}'></image>
+            <view class='goods_info'>
+                <view class='goods_info_title ziti_2 yichu_dot'>
+                    {{list_data.goods_name}}
+                </view>
+
+                <view class='goods_info_price ziti_3 color_gray'>
+                    <view class='ziti_3 color_gray'>实付金额：￥{{list_data.goods_price}}</view>
+              
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 退款点击通道 -->
+    <view bindtap='tuikuan' class='tuikuan_road_box'>
+            <image class='tuikuan_road_logo' src='../../../images/image/qiandai.png'></image>
+            <view class='tuikuan_road_info color_gray'>
+                    <view class='ziti_1'>仅退款</view>
+                    <view class='ziti_3'>未收到货（包括未签收），或在卖家同意的前提下。</view>
+            </view>
+            <image class='tuikuan_road_go' src='../../../images/image/person_dizhi_back.png'></image>
+    </view>
+    <!-- 售后说明 -->
+    <!-- <view class='shuoming_box'>
+            <view class='shuoming_btn ziti_2 color_price btn_active'>售后说明</view>
+    </view> -->
+</view>
+
+
+<!-- 退款填写 -->
+<view class='container' wx:else>
+    <!-- 退款商品列表 -->
+    <view class='goods_list'>
+        <view class='goods_item'>
+            <image class='goods_img' src="{{img_path}}{{list_data.spec_img}}"></image>
+            <view class='goods_info'>
+                <view class='goods_info_title ziti_2 yichu_dot'>
+                    {{list_data.goods_name}}
+                </view>
+
+                <view class='goods_info_price ziti_3 color_gray'>
+                    <view class='ziti_3 color_gray'>实付金额：￥{{list_data.goods_price}}</view>
+                    <!-- <view class='ziti_3 color_gray'>剩余可退金额：￥45555</view> -->
+                </view>
+            </view>
+        </view>
+    </view>
+
+
+    <!-- 退款原因 -->
+    <view class='check_tiaojian'>
+        <view class='check_tiaojian_left'>
+            <image class='bixuan_logo' src='../../../images/image/bixuan.png'></image>
+            <text style='padding-left:20rpx;' class='ziti_2 color_gray'>退款原因:</text>
+            <text style='padding-left:10rpx;' class='ziti_2 color_gray'>   {{tuikuan_list[index]}}</text>
+        </view>
+        <picker class='check_tiaojian_right' bindchange="bindPickerChange" mode='selector' range='{{tuikuan_list}}' value="{{index}}">
+            <text class='check_tiaojian_txt ziti_2 color_gray'>请选择</text>
+            <image class='back_logo' src='../../../images/image/person_dizhi_back.png'></image>
+        </picker>
+    </view>
+
+    <!-- 商品损坏数量 -->
+    <view class='check_tiaojian'>
+        <view class='check_tiaojian_left'>
+            <image class='bixuan_logo' src='../../../images/image/bixuan.png'></image>
+            <text style='padding-left:20rpx;' class='ziti_2 color_gray'>商品损坏数量:</text>
+             <text style='padding-left:10rpx;' class='ziti_2 color_gray'>   {{sunhuai_list[index1]}}</text>
+        </view>
+        <picker class='check_tiaojian_right' bindchange="bindPickerChange2" mode='selector' range='{{sunhuai_list}}'>
+            <text class='check_tiaojian_txt ziti_2 color_gray'>请选择</text>
+            <image class='back_logo' src='../../../images/image/person_dizhi_back.png'></image>
+        </picker>
+    </view>
+
+
+    <!-- 商品问题描述 -->
+    <view class='question_ms ziti_2 color_gray'>
+        <view class='question_ms_header'>商品问题描述：</view>
+        <textarea class='question_ms_ipt ziti_3' maxlength='200' placeholder='最多可以输入200字'></textarea>
+    </view>
+
+    <!-- 三条 -->
+    <view class='cai_line_box'>
+        <view class='cai_line_item'></view>
+        <view style='background:#fe7b60;' class='cai_line_item'></view>
+        <view class='cai_line_item'></view>
+    </view>
+
+
+    <!-- 上传商品图片 -->
+    <view class='upload_img ziti_2 color_gray'>
+        <view class='question_ms_header'>上传商品图片：(最多6张)</view>
+
+
+        <!-- 上传图片 -->
+
+    <!-- 上传图片 -->
+    <view class='show_img clearfix'>
+        <!-- 图片 -->
+        <block wx:for='{{file_imgs}}'>
+            <view bindtap='preview' data-index="{{index}}" class='show_img_item'>
+                <image class='show_img_item_photo' mode="aspectFill" src="{{item}}"></image>
+                <image catchtap='deleteImage'  data-index="{{index}}"  class='jingting_logo_img' src='../../../images/home/jinting_logo.png'></image>
+            </view>
+            
+        </block>
+        <!-- 添加图片的按钮 -->
+        <view wx:if="{{is_add == false}}" bindtap='addImage' class='show_img_add'></view>
+    </view>
+
+
+        <!-- <view class='show_img'>
+        
+            <block wx:for='{{file_imgs}}'>
+                <view class='show_img_item'>
+                    <image class='show_img_item_photo' src='{{item}}'></image>
+                </view>
+            </block>
+   
+            <view bindtap='addImage' class='show_img_add'></view>
+        </view> -->
+    </view>
+
+
+    <!-- 客服提示 -->
+    <view class='kefu_txt_box round_shadow'>
+        <view class='kefu_txt_header ziti_2'>客服提示</view>
+        <view class='kefu_txt_con ziti_3 color_gray'>
+            1.生鲜、水果、食品、鲜花、绿植等商品发货后不支持 无理甶退货，若因您个人原因未及时签收,损失将甶您个 人承担，平台不支持退款；
+        </view>
+        <view class='kefu_txt_con ziti_3 color_gray'>
+            2.生鲜、水果、食品、鲜花、绿植等商品发货后不支持修改地址和拒收，若因为您个人原因导致的发错地址或拒收,损失将由您个人承担，平台不支持退款；
+        </view>
+        <view class='kefu_txt_con ziti_3 color_gray'>
+            3.如果收到的商品有质量问题，请在收到货物的48小时内 联系客服在APP-我的订单页面提出退货申请并上传图片 (请将全部的变质/受损的商品+清晰的快递面单拍在一张 图片上),签收超过48小时平台不受理退换货需求。收到 您的退款申请后，客服会在24小时内完成审核并安排退 款，退款会在1-5个工作日内退还到您的原始支付方式中；
+        </view>
+        <view class='kefu_txt_con ziti_3 color_gray'>
+            4.生鲜、水果、食品、鲜花、绿植等商品图片仅供参考， 商品请以实物为准，生鲜类商品受季节、气候、存储条件 等因素影响，不同批次略有差异属正常现象，不可作为售 后理甶。
+        </view>
+    </view>
+
+
+
+    <!-- 底部按钮 -->
+    <view bindtap='tijiao' class='footer_btn ziti_2 btn_active'>提交</view>
+
+
+
+
+</view>

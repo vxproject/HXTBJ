@@ -1,0 +1,25 @@
+<!-- 消息列表 -->
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{hidden == 1}}" class='list_group'>
+  <block wx:for='{{list_data}}' wx:key="{{index}}">
+    <view class='list_item'>
+      <image class='list_item_logo' src='../../../images/home/tongzhi_logo.png'></image>
+      <view class='list_item_info'>
+        <view class='list_item_info1'>
+          <text style='width:400rpx;' class='ziti_1 txt_dot'>{{item.message_title}}</text>
+          <text class='ziti_3 color_gray'>{{item.send_time}}</text>
+        </view>
+        <view class='list_item_info2 ziti_2 color_gray txt_dot'>
+          <text>{{item.message_content}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view wx:if="{{!list_data}}" class='ziti_2 color1' style='width:100%;text-align:center;margin-top:400rpx;'>
+   <image class='no_order_img' style='padding-bottom:20rpx;' src='../../../images/image/person_order.png'></image>
+  暂无数据
+  <view>下拉刷新</view>
+  </view>
+</view>
+

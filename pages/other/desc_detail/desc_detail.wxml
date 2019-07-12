@@ -1,0 +1,44 @@
+
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view hidden='{{flag}}'>
+  <view class='px-20  ziti_1'>
+    <image wx:if="{{vipGoods[index].original_img}}" mode='aspectFill' src='{{img_path}}{{vipGoods[index].original_img}}' class='h-750 w-all ' />
+    <view class='color_price px-20 mb-10'>¥{{vipGoods[index].shop_price}}</view>
+    <view class=''>{{vipGoods[index].goods_name}}</view>
+    <view class='ziti_3 color_gray py-20'>{{vipGoods[index].goods_remark}}</view>
+    <view class='  end ' bindtap='buynow'>
+      <view catchtap='buyGoods' data-goods_id="{{vipGoods[index].goods_id}}" class='pxy-8-25 b-red mb-10 ziti_2 color_price center middle '>立即购买</view>
+    </view>
+  </view>
+  <view class='py-40  ziti_2  px-30'>
+    <view class=' fs-48 mb-40 middle'>如何成为好享淘会员？</view>
+    <view class='p-20 bc-white color_gray'>
+      <view class='py-10'>1、终身店主</view>
+      <view>选购任意一款礼包，399注册VIP会员一次性费用，绝无后续其他费用。赠送400元优惠券和超值实物商品，终身拥有店铺商品代理权，返利最高25%，一经售出，概不退换！</view>
+      <view class='py-10'>2、无需囤货</view>
+      <view>不需要你囤货，不需要你发货，只要你动动手指把商品分享给身边的朋友，只要他觉得合适下单，那你就可以轻松赚钱了。</view>
+      <view class='py-10'>3、无销售压力</view>
+      <view>好享淘绝无任何形式销售压力，你可以自用省钱，也可以分享赚钱，都是你说了算。</view>
+      <view class='py-10'>4、高频刚需</view>
+      <view>好享淘所有商品都是家庭必须品，至少涵盖我们生活中80%的美食需求，自买省钱，分享赚钱。</view>
+    </view>
+  </view>
+
+  <view wx:for="{{vipGoods}}" wx:key="" class='px-30 ziti_2'>
+    <view bindtap='detailClick' data-index="{{index}}" class='bb   py-20  between  center'>
+      <image wx:if="{{item.original_img}}" mode='aspectFill' src='{{img_path}}{{item.original_img}}' class=' w-146 h-137 shrink' />
+      <view class='ml-20  column  between h-137 w-all'>
+        <view class='line-1 '> {{item.goods_name}}</view>
+        <view class='between center'>
+          <view class='color_price'>¥{{item.shop_price}}</view>
+          <view class='w-120 h-50 b-red ' bindtap='payClick' >
+            <view catchtap='buyGoods' data-goods_id="{{item.goods_id}}"  class='w-120 h-50 ziti_2 color_price center middle '>购买</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+

@@ -1,0 +1,147 @@
+/* pages/desc_detail/desc_detail.wxss */
+.fs-48{
+  font-size: 48rpx;
+}
+button::after {
+  border: none;
+}
+.w-all{
+  width: 100%;
+}
+.h-133{
+  height: 133rpx;
+}
+.h-116{
+  height: 116rpx;
+}
+.w-374{
+  width: 374rpx;
+}
+.relative{
+  position: relative;
+}
+.absolute{
+  position: absolute;
+}
+.fc-white{
+  color: white;
+}
+.fs-30{
+  font-size: 30rpx;
+}
+.fs-35{
+  font-size: 35rpx;
+}
+.pxy-15-25{
+  padding:12rpx  25rpx;
+}
+.pxy-8-25{
+  padding:8rpx  25rpx;
+}
+.bc-7b{
+  background: #7b542c;
+}
+.radius-20{
+  border-radius: 40rpx;
+}
+.radius-6{
+  border-radius: 6rpx;
+}
+.mx-30{
+  margin: 0 30rpx;
+}
+.mb-10{
+  margin-bottom: 10rpx;
+}
+.mb-40{
+  margin-bottom: 40rpx;
+}
+.my-40{
+  margin-bottom: 40rpx;
+  margin-top: 40rpx;
+}
+.p-20{
+  padding: 20rpx;
+}
+
+.px-20{
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+}
+.px-30{
+  padding-right: 30rpx;
+  padding-left: 30rpx;
+}
+.py-40{
+  padding-top: 40rpx;
+  padding-bottom: 40rpx;
+  background-color: #f5f5f5;
+}
+.py-20{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.py-10{
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+.bb{
+  border-bottom: 1rpx solid  #efeff4;
+}
+.w-120 {
+  width: 120rpx;
+}
+.h-50{
+  height: 50rpx;
+}
+.w-146{
+  width: 146rpx;
+}
+.h-137{
+  height: 137rpx;
+}
+.h-750{
+  height: 750rpx;
+}
+.shrink{
+  flex-shrink: 0;
+}
+.between{
+  display: flex;
+  justify-content: space-between;
+}
+.ml-20{
+  margin-left: 20rpx;
+}
+.column{
+  display: flex;
+  flex-flow: column nowrap;
+}
+.b-red{
+  border: 1rpx solid #ff5000;
+  border-radius: 6rpx;
+}
+.center{
+  display: flex;
+  align-items: center;
+}
+.middle{
+  display: flex;
+  justify-content: center;
+}
+.end{
+  display: flex;
+  justify-content:flex-end;
+}
+
+/* 超出部分使用省略号 */
+.line-1{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.bc-white{
+  background-color: #fff;
+}

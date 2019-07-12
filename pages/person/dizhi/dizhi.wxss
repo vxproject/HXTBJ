@@ -1,0 +1,104 @@
+.search_container{
+    height: 90rpx;
+}
+.search_box{
+    position: relative;
+    width: 690rpx;
+    height: 70rpx;
+    margin: 10rpx auto;
+    background-color: #f5f5f5;
+}
+.search_box>image{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 22rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+.search_box>input{
+    position: absolute;
+    top: 50%;
+    left: 100rpx;
+    transform: translateY(-50%);
+    width: 596rpx;
+    height: 70rpx;
+    display: inline-block;
+}
+/* 无地址的内容 */
+.no_address{
+    position: absolute;
+    top: 240rpx;
+    left: 0;
+    right: 0;
+}
+.no_address image{
+    display: block;
+    margin: 0 auto;
+    width: 127rpx;
+    height: 150rpx;
+}
+.no_address view{
+    text-align: center;
+    padding-top: 70rpx;
+    color: #535353;
+}
+/* 有地址的状态 */
+.yes_address{
+    width: 690rpx;
+    margin: 0 auto;
+    padding: 30rpx 0 130rpx 0;
+}
+.yes_address_item{
+    position: relative;
+    padding-bottom: 50rpx;
+    /* background-color: wheat; */
+}
+.name_tel text:first-child{
+    padding-right: 15rpx;
+}
+.xiangxi_address{
+    width: 580rpx;
+}
+.bianji{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-55%);
+    /* border-left: solid 2rpx currentColor; */
+    /* padding:4rpx 0 4rpx 25rpx; */
+    padding: 60rpx 25rpx;
+ }
+ .xian{
+    position: absolute;
+    right: 90rpx;
+    top: 50%;
+    transform: translateY(-55%);
+    border-left: solid 2rpx currentColor;
+    padding:25rpx 4rpx;
+ }
+/* 底部按钮 */
+.btn_container{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 130rpx;
+    background-color: #ffffff;
+}
+.btn_container button{
+    position: absolute;
+    top: 20rpx;
+    left: 30rpx;
+    width: 690rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    margin: 0 auto;
+    background-color: #ff5000;
+    color: #ffffff;
+}
+.sanji_address{
+  width: 530rpx;
+  padding-bottom: 10rpx;
+}

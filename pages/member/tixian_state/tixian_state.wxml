@@ -1,0 +1,8 @@
+<!--pages/member/tixian_state/tixian_state.wxml-->
+<!-- 提现成功 -->
+<view class='container'>
+<image class='header_img' src='{{state == 1?"../../../images/image/sq_success.png":"../../../images/image/sq_fail.png"}}'></image>
+<view class='title_ ziti_1'>{{state == 1?"提现申请成功":"提现申请失败"}}</view>
+<view class='tishi_ ziti_3 color_gray'>{{state == 1?"请等待银行审核,预计1-3个小时到帐":"当前无法提现，如有疑问请联系客服人员"}}</view>
+<view bindtap='close' class='guanbi_btn ziti_2 round_shadow btn_active'>关闭</view>
+</view>

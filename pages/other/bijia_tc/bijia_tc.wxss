@@ -1,0 +1,184 @@
+#tc_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999; 
+}
+.yc{
+  opacity: 0;
+}
+.xs{
+  opacity: 1;
+}
+
+
+.tc_content {
+    z-index: 999;
+    position: absolute;
+    top:54%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    width: 713rpx;
+    margin: 0 auto 0 auto;
+    min-height: 560rpx;
+    background: url(https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/index_tc_img/tc_bg_1.png?sign=09ded3628dfc17da7a4ce8d7e6376082&t=1557222517) no-repeat;
+    background-size: 713rpx 560rpx;
+}
+
+/* 关闭按钮 */
+
+.tc_close_btn {
+    z-index: 998;
+    width: 61rpx;
+    height: 167rpx;
+    background: url(https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/index_tc_img/close_logo.png?sign=32d3ac61517ff5cf18168dfc3aea1b35&t=1557113336) center no-repeat;
+    background-size: 80% 80%;
+    position: absolute;
+    top: -88rpx;
+    right: 30rpx;
+}
+
+/* 详情banner */
+
+/* tttt */
+
+.tttt {
+    position: absolute;
+    top: 0rpx;
+    z-index: 9999;
+    left: 92rpx;
+    width: 54rpx;
+    height: 192rpx;
+}
+
+.tc_info_banner {
+    margin: 0 auto  0 auto;
+    box-sizing: border-box;
+    position: relative;
+     z-index: 9999;
+    width: 650rpx;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    border-radius: 10rpx;
+    background-color: #fff;
+    box-shadow: 0rpx 4rpx 7rpx -4rpx rgba(0, 0, 0, 0.6);
+}
+
+.tc_info_banner_left {
+    position: relative;
+    width: 120rpx;
+    height: 190rpx;
+    box-sizing: border-box;
+    border-radius: 10rpx 0 0 10rpx;
+}
+
+.tc_info_banner_left>view {
+    text-align: center;
+}
+
+.tc_info_banner_left>image {
+    display: block;
+    margin: 20rpx auto 10rpx auto;
+}
+
+.tc_info_banner_right {
+    width: 530rpx;
+    height: 190rpx;
+    border-radius: 0rpx 10rpx 10rpx 0rpx;
+}
+
+/* 商品详情 */
+.tc_info_group {
+    position: relative;
+    width: 615rpx;
+    border-radius: 0 0 50rpx 50rpx;
+    margin: 0 auto 0 auto;
+    background: linear-gradient(to bottom, #fc5558 0%, #ff7a53 100%);
+
+    padding-bottom:5rpx;
+}
+
+.tc_goods_info {
+    box-sizing: border-box;
+    padding: 0rpx 25rpx 0 25rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background-color: white;
+}
+
+/* item */
+
+.tc_info_item {
+    width: 570rpx;
+    margin-top: 10rpx;
+    margin-left: 22rpx;
+    height: 130rpx;
+    background: url(https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/index_tc_img/tc_bg_item.png?sign=a5ae7c83d8465640d05f617d91c62fc2&t=1557115931) center no-repeat;
+    background-size: 100% 100%;
+    border-radius: 10rpx;
+}
+
+.tc_info_item_top {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15rpx;
+    height: 85rpx;
+}
+
+.tc_info_item_top_left {
+    position: relative;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    height: 85rpx;
+}
+
+/* 商家logo图 */
+
+.sj_logo {
+    width: 40rpx;
+    height: 40rpx;
+    /* background-color: #777; */
+}
+
+.sc_name {
+    width: 150rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    padding-left: 10rpx;
+}
+
+/* 商家价格 */
+
+.sc_price {
+    width: 158rpx;
+}
+
+.tc_info_item_bottom {
+    text-align: center;
+}
+
+/*  */
+
+.tc_buy_btn {
+    width: 325rpx;
+    margin: 30rpx auto 10rpx auto;
+    height: 97rpx;
+    background: url(https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/index_tc_img/tc_button.png?sign=1eafa07a8fbfb8489894c3455c45586e&t=1557125084) center no-repeat;
+    background-size: 100% 100%;
+}
+/* 左侧半圆定位 */
+.tc_left_dot{
+    position: absolute;
+    bottom: 87rpx;
+    left: -28rpx;
+    width: 30rpx;
+    height: 90rpx;
+}

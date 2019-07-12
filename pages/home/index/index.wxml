@@ -1,0 +1,29 @@
+<!--pages/home/index/index.wxml-->
+<import src="../store/store.wxml" />
+<import src="/template/tanchuang/tanchuang.wxml" />
+<import src="/template/loading/loading.wxml" />
+<import src="../../other/bijia_tc/bijia_tc.wxml" />
+<!-- 未登陆 -->
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{!failflag}}" >
+  <block wx:if="{{hidden == 1}}">
+    <block wx:if="{{flag == 0}}">
+      <login flag="{{flag}}" bindgetuserinfo="getuserinfo"></login>
+    </block>
+    <!-- 未绑定手机号 -->
+    <block wx:else>
+      <login flag="{{flag}}" ycode="{{code}}" bindtijiao="tijiao"></login>
+    </block>
+  </block>
+  <!-- 已经登陆 -->
+  <block wx:if="{{hidden == 3}}">
+    <template wx:if="{{is_bijia == true}}" is="bijia" data="{{bj_data}}"></template>
+    <template is="store" data="{{store}}"></template>
+    <template is="window_two" data="{{item}}"></template>
+  </block>
+</view>
+<view class='no_data' catchtap='no_datatap' wx:if="{{failflag}}">
+  <image class='no_data_img' src='../../../images/image/person_order.png'></image>
+  <view class='ziti_2 color_gray no_data_txt '>点击重新加载</view>
+</view>
+

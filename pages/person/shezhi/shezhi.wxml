@@ -1,0 +1,13 @@
+<view class='navtop' wx:if="{{hidden}}">
+  <image class="navtop_img" src='{{head_pic}}'/>
+  <view class='ziti_2'>{{nickname}}</view>
+</view>
+<view class='content ziti_2' wx:if="{{hidden}}">
+  <view wx:for="{{list}}" wx:key=""  class="content_list"  catchtap='catchtap' data-index="{{index}}">
+     <view class=''>{{item.title}}</view>
+     <view class='content_txt'>
+       <view wx:if="{{item.txt}}">{{item.txt}}</view>
+       <image wx:if="{{index != 0}}" class='content_img' src='/images/image/person_dizhi_back.png'/>
+     </view>
+  </view>
+</view>

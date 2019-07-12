@@ -1,0 +1,5 @@
+<template name="loading"> 
+<view  class='loading' wx:if="{{loading}}">
+    <image src='../../../images/other/loading.gif' mode='aspectFit'></image>
+</view>
+</template>

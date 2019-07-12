@@ -1,0 +1,83 @@
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{hidden == 1}}">
+  <view wx:if="{{is_vip == 1}}" class='relative  flex'>
+    <image mode='widthFix' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/member/bg_huaban.png?sign=397e282cff49d9843ead83539d67aeba&t=1562377212' class='w-all ' />
+    <view class=' absolute w-all ' style='top:540rpx;left:0;'>
+      <view class='px-20 middle'>
+        <image mode='widthFix' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/member/hongbei.png?sign=d9a14f84b94cd5a9587f9e02f32c987b&t=1562377510' class='w-all' />
+      </view>
+    </view>
+
+    <view class='absolute w-all middle' style='top:444rpx;left:0;'>
+      <image class='yaoqima' mode='widthFix' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/member/yaoqima.png?sign=47e46388daaa84e3d3d60f775ab81abc&t=1562378612' />
+    </view>
+    <view class='absolute  middle' style='top:450rpx;left:184rpx;'>
+      <view class='jianbian_yq'>
+        <text class=' '>您的邀请码</text>
+        <text class=' mx-15 yqm_colo'>{{invite_code}}</text>
+      </view>
+    </view>
+    <view class='absolute  middle' style='top:450rpx;right:160rpx;'>
+      <view class='beijingse' catchtap='copy' data-cont="{{invite_code}}">复制</view>
+    </view>
+
+
+
+    <view class='absolute center middle w-all' style='top:644rpx;z-index:100'>
+      <image mode='widthFix' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/member/huiyuanquany.png?sign=df21807c8d1dd213503cd5b1ac923ac1&t=1562377593' class=' w-289 ' />
+    </view>
+    <view class='absolute fendi ' style='left:5%;width:90%;top:670rpx;'>
+      <view class='jieshao_vip'>
+        <view class='one_test'>1、每推荐一位VIP获得100元现金收益；</view>
+        <view class='one_test'>2、直接推荐15名有效VIP，可快速升级咨询顾问；</view>
+        <view class='one_test'>3、团队VIP成员越多，收益越高；</view>
+        <view class='one_test'>4、本次活动的解释权最终归好享淘平台所有。</view>
+      </view>
+    </view>
+
+  </view>
+  <view class="bc-big  {{is_vip == 1 ? 'pb-50' :'py-50'}} ">
+    <view class='radius-20 bc-white'>
+      <view class='middle ' wx:if="{{is_vip == 1}}" style='padding:36rpx 0  40rpx 0 ;'>
+        <image mode='widthFix' style='width:492rpx;display:flex;flex-shrink:0;' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/member/fengding.png?sign=d2339992218434ec5444d7952b5de2e5&t=1562383123' />
+      </view>
+      <view wx:for="{{list}}" wx:key="" class='list ziti_2' bindtap='detailClick' data-index="{{index}}">
+        <view class='  px-20  '>
+          <view class='bb between center py-40'>
+          <image mode='aspectFill' src='{{img_path+item.original_img}}' class='wh-280 shrink relative'>
+            <image mode='widthFix' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/member/zsvip.png?sign=f6df87786014fcd5327de5991d1fd819&t=1562669184' class='absolute huiyuanfu ' style='right:0;bottom:0;' wx:if="{{is_vip == 1}}" />
+          </image>
+          <view class='ml-30  column  between h-280 w-all'>
+            <view class='line-2 '>{{item.goods_name}} </view>
+            <view wx:if="{{is_vip == 1}}" class='between center'>
+                <view class=''>
+                  <view class='xhujia'>礼包特惠价</view>
+                  <view class='color_price'>¥
+                    <text style='font-size:36rpx;'>{{item.shop_price}}</text>
+                  </view>
+                </view>
+                <view class='w-70 h-46 '>
+                  <button open-type='share' data-item="{{item}}" class='w-70 h-46  fc-white center middle bc-e4'>分享</button>
+              </view>
+            </view>
+            <view class='between center' wx:else>
+              <view class='color_price'>¥
+                <text style='font-size:36rpx;'>{{item.shop_price}}</text>
+              </view>
+              <view class='w-70 h-46 bc-e4 '>
+                <view catchtap='payClick' data-goodsid="{{item.goods_id}}" data-item="{{item}}" class='w-70 h-46  fc-white center middle '>购买</view>
+              </view>
+            </view>
+          </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 该按钮功能未定，我暂时定为  分享页面了 -->
+  <!-- <view class='foot_yao' wx:if="{{is_vip == 1}}">
+    <button open-type='share' data-index="2" class='yaoq_lij middle w-all'>立即邀请好友</button>
+  </view> -->
+</view>

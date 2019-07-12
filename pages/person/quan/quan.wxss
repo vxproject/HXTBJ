@@ -1,0 +1,125 @@
+page{
+    background-color: #f5f5f5;
+}
+.tab_group{
+    background-color: #ffffff;
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    border-top: solid 2rpx rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top:0rpx;
+    z-index: 999;
+}
+.tab_center{
+    width: 450rpx;
+    margin: 0 auto;
+}
+.tab_item{
+    width: 150rpx;
+    text-align: center;
+}
+.tab_item>text{
+    display: block;
+    /* padding-bottom: 15rpx; */
+}
+.tab_center_item{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    /* padding-top: 15rpx; */
+}
+/* 选中样式 */
+.check_style{
+    border-top:solid 5rpx #ff5000;
+
+}
+.red_line{
+    width:50rpx;
+    margin: 0 auto;
+}
+/* 无订单 */
+.no_order{
+    position: absolute;
+    top: 386rpx;
+    left: 0;
+    right: 0;
+}
+.no_order_img{
+    display: block;
+    margin:  0 auto;
+    width: 160rpx;
+    height: 125rpx;
+}
+.no_order_txt{
+    text-align: center;
+    padding-top: 18rpx;
+}
+
+
+/* 有优惠券的状态 */
+.yes_quan{
+margin-top: 120rpx;
+}
+.quan_item{
+position: relative;
+width: 700rpx;
+height: 238rpx;
+margin: 0 auto;
+margin-bottom: 50rpx;
+}
+.quan_number{
+text-align: center;
+width: 250rpx;
+height: 238rpx;
+line-height: 238rpx;
+position: absolute;
+top: 0;
+color: #ffffff;
+}
+.quan_number_logo{
+font-size: 40rpx;
+}
+.quan_number_{
+font-size: 50rpx;
+}
+.quan_img{
+width: 700rpx;
+height: 238rpx;
+}
+.quan_title{
+position: absolute;
+top: 60rpx;
+left: 280rpx;
+}
+.quan_title1{
+color:#929fa8;
+}
+.quan_title_can{
+color: #ff5000;
+}
+.quan_guize_can{
+background-color: #F99B6D;
+color: #ffffff;
+}
+.quan_guize{
+position: absolute;
+top: 115rpx;
+left: 280rpx;
+padding: 0 10rpx;
+height: 45rpx;
+line-height: 45rpx;
+border-radius: 10rpx;
+}
+.quan_guize1{
+background-color:#929fa8;
+color:#ffffff;
+}
+.quan_date{
+position: absolute;
+bottom:40rpx;
+left: 280rpx;
+}

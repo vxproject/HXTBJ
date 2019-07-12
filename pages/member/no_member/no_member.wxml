@@ -1,0 +1,84 @@
+<template name="no_member">
+
+  <view class='header'>
+    <image src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/yijiqietu/no_member_bg.png?sign=c09df084da724eefc98e255f8b2f63dc&t=1559641925" mode='widthFix' class='header_img'></image>
+    <image class='novip_img' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/yijiqietu/icon_nomember_hg.png?sign=02c730d629ad6b743e7384ff467a7318&t=1560253679' />
+    <view class='header_user_info mar_center'>
+      <image src="{{source.userinfo.head_pic}}"></image>
+      <view class='user'>
+        <view class=' name txt_dot ziti_2' style='width:350rpx;'>{{source.userinfo.nickname}}</view>
+        <view class='  mingzi ziti_3 '>普通用户</view>
+      </view>
+    </view>
+    <view bindtap='fensiClick' class='content_my_fensi'>
+      <image src='../../../images/image/person.png' class='fensi_header_logo'></image>
+      <view class=' fensimingzi'>我的粉丝 ></view>
+    </view>
+    <view class=' invite_code_box2'>
+      <view class='yqm'>
+        <view class='ziti_3 '>邀请码:</view>
+        <view class='ziti_3'>{{source.userinfo.invite_code}}</view>
+      </view>
+
+      <view bindtap='copyText' class='fuzhi '>复制</view>
+    </view>
+  </view>
+  <!-- 主要内容 -->
+  <!-- 会员特权 -->
+  <view class='guanyu ziti_2'>
+    <image class='guanyu_img' src='../../../images/image/huangguang.png' />
+    <view class=''>会员特权</view>
+  </view>
+  <view class='vipjieshao'>
+    <view class='tequan_show round_shadow '>
+      <block wx:for='{{source.member_tqlist}}' wx:for-item='items'>
+        <view class='kuai'>
+          <image src='{{items.img}}'></image>
+          <view class='product_info_container2 '>
+            <view class='ziti_2 vip_ttle'>{{items.title}}</view>
+            <view class='ziti_3  vip_ttle_js '>{{items.info}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 关于好想淘 -->
+
+  <view class='guanyu ziti_2'>
+    <image class='guanyu_img' src='../../../images/image/guanyuhaoxiang.png' />
+    <view class=' '>关于好享淘</view>
+  </view>
+  <view class='vipjieshao'>
+    <view class='tequan_show round_shadow '>
+      <block wx:for='{{source.product_info_list}}' wx:for-item='items'>
+        <view class='kuai'>
+          <image src='{{items.img}}'></image>
+          <view class='product_info_container2'>
+            <view class='ziti_2 vip_ttle'>{{items.title}}</view>
+            <view class='ziti_3 vip_ttle_js'>{{items.info}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 商品列表 -->
+  <view class='guanyu goumai ziti_2'>选购任意一款礼包即可成为会员</view>
+  <view class='vipjieshao'>
+    <view class='goods_container round_shadow mar_center'>
+      <block wx:for="{{source.vipGoods}}" wx:key="{{index}}">
+        <view bindtap='detailClick' data-index="{{index}}" class='goods_item'>
+          <image class='goods_item_img' src='{{source.img_path}}{{item.original_img}}'></image>
+          <view class='goods_item_info'>
+            <view class='goods_item_info_title ziti_2 txt_dot'>{{item.goods_name}}</view>
+            <view class='goods_item_info_price ziti_2 color_price'>￥{{item.shop_price}}</view>
+          </view>
+          <!-- 购买按钮 -->
+          <view catchtap='buyGoods' data-goods_id="{{item.goods_id}}" class='goods_item_btn ziti_2 color_price'>购买</view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='kong' style='width:100%;height:20rpx;'></view>
+  <!-- 浮动按钮 -->
+  <image bindtap='ktmember' class='float_btn' src='{{source.img_list.float_btn}}'></image>
+</template>

@@ -1,0 +1,5 @@
+/* pages/other/usable_quan/usable_quan.wxss */
+
+/* 无订单 */
+
+@import '../../person/quan/quan.wxss';

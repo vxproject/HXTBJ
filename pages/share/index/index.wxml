@@ -1,0 +1,25 @@
+<!--pages/share/index/index.wxml  -->
+<import src="/template/tanchuang/tanchuang.wxml" />
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+  <template wx:if="{{flag == 1}}" is="lingqushibai" data="{{lingqu}}"></template>
+<view wx:if="{{hidden == 1}}" style="  overflow-x: hidden;">
+  <canvas style="width:750px;height:1184px;margin-top:-1184px;" canvas-id="firstCanvas"> </canvas>
+  <image  style='width:750rpx;height:99vh;'src="cloud://hxt-cdff72.6878-hxt-cdff72/other/618bg.png"></image>
+  <view  style='width:100%;padding-top:40rpx;text-align:center;'  class='bgx'  >
+    <image class='bg' style='width:600rpx;' mode="widthFix" src="{{img_path}}{{list_data.bg_img}}"></image>
+    <image class='' style='width:150rpx;height:150rpx;margin-left:-150rpx;' src="{{img_path}}{{list_data.wx_img}}"></image>
+  </view>
+
+  <view  class='footer'>
+       <button bindtap='share' hover-class='none' open-type='share' class='footer_item btn_active'> 
+      <image class='footer_item_img2' src='../../../images/image/wechat.png'></image>
+      <view class='footer_item_title ziti_2'>发送给好友</view>
+    </button>
+    <view bindtap='saveImage' class='footer_item btn_active'>
+      <image class='footer_item_img' src='../../../images/other/saveImage.png'></image>
+      <view class='footer_item_title ziti_2'>保存图片</view>
+    </view>
+ 
+  </view>
+</view>

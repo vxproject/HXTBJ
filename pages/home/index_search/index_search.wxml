@@ -1,0 +1,140 @@
+<wxs module="filters" src="../store/filter.wxs"></wxs>
+<import src="../../other/bijia_tc/bijia_tc.wxml" />
+<import src="/template/tanchuang/tanchuang.wxml" />
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view class='container'>
+  <!-- 头部 -->
+  <view class='header_ls'>
+    <!-- 头部搜索框 -->
+    <view class='header_search'>
+      <view class="search ziti_2 color_gray">
+        <view class="df search_arr">
+          <icon class="searchicon" size='40rpx' type='search'></icon>
+          <input bindinput='bindinput' class="" value="{{name}}"  placeholder="请输入关键字" />
+          <image bindtap='clearClose' src="../../../images/detail/close.png"></image>
+        </view>
+      </view>
+      <view bindtap='search' class='sousuo ziti_2'>搜索</view>
+    </view>
+
+
+    <!-- 历史记录 -->
+    <view class='old_search' wx:if='{{hidden == 0 && shuju.length > 0}}'>
+      <view class='old_search_header'>
+        <text class='ziti_2'>历史记录</text>
+        <!-- 清空记录 -->
+        <view bindtap='clear1' class='remove_jilu'>
+          <image src='../../../images/image/shan_chu.png'></image>
+          <text class='ziti_3 color_gray'>清空历史记录</text>
+        </view>
+      </view>
+      <view class='old_search_con ziti_3 color_gray'>
+        <text bindtap='searchItem' data-item="{{item}}" data-index="{{index}}" wx:for="{{shuju}}" class='old_search_item bgcolor txt_dot' style='color:white;'>{{item}}</text>
+      </view>
+    </view>
+
+    <!--头部分类按钮-->
+    <!-- 选中时字体变色是.color_pcice -->
+    <view wx:if="{{list_data.data[0]}}" class='header_class'>
+      <view bindtap='changeTop' data-seleted="0" class='header_class_item ziti_2 btn_active {{seleted==0?"color":"color_gray "}}'>综合</view>
+      <view bindtap='changeTop' data-seleted="1" class='header_class_item ziti_2 btn_active {{seleted==1?"color":"color_gray"}}'>销量</view>
+      <view bindtap='changeTop' data-seleted="2" class='header_class_item header_class_item3 ziti_2 btn_active {{seleted == 2|| seleted == 3?"color ":" color_gray"}}'>
+        <text>价格</text>
+
+        <!-- 箭头向下 -->
+        <image wx:if="{{seleted == 3}}" class='class_price_btn' src='../../../images/home/price_check_bottom.png'></image>
+        <!-- 箭头向上 -->
+        <image wx:elif="{{seleted == 2}}" class='class_price_btn' src='../../../images/home/price_check_top.png'></image>
+        <image wx:else class='class_price_btn' src='../../../images/home/price_nocheck.png'></image>
+      </view>
+    </view>
+
+  </view>
+
+
+
+
+  <!-- 有数据时的主要内容 -->
+  <view style='margin-top:218rpx;' wx:if="{{list_data.data[0]}}">
+    <!-- <view bindtap='goodsDetail' data-id="{{item.goods_id}}" class='goods_info' wx:for='{{list_data.data}}' wx:key="{{index}}">
+      <image class='goods_info_img' src='{{img_path}}{{item.specGoodsPrice[0].spec_img}}'></image>
+      <view class='goods_info_left'>
+        <view class='goods_info_title ziti_2 txt_dot'>{{item.goods_name}}</view>
+        <view class='goods_info_intro ziti_3 color_gray txt_dot'>
+          <text>{{item.goods_remark}}</text>
+        </view>
+        <view class='goods_info_price color_price ziti_3 txt_dot'>
+          <text class='goods_info_ts'>促销价</text>
+          <view class='ziti_2'>
+            <text class='ziti_3'>￥</text>{{item.shop_price}}</view>
+        </view>
+        <view class=' color_gray'>
+          <text class='ziti_3' style='text-decoration:line-through;'>￥{{item.market_price}}</text>
+          <image class='goods_info_cart' src='../../../images/home/cartss.png'></image>
+          <text class='ziti_3'>已售{{item.virtual_sales_sum}}件</text>
+        </view>
+        <view catchtap='addgwc' data-id="{{item.goods_id}}" class='add_cart_btn ziti_2 btn_active'>加车</view>
+      </view>
+    </view> -->
+
+
+
+    <block wx:for='{{list_data.data}}'>
+      <view bindtap='goodsDetail' data-id="{{item.goods_id}}" class='home_shiling_item'>
+        <image class='home_shiling_item_img' src='{{img_path}}{{item.specGoodsPrice[0].spec_img}}'></image>
+        <view class='home_shiling_item_info'>
+          <view class='miaosha_item_info_title ziti_2 txt_dot '>{{item.goods_name}}</view>
+          <view class='miaosha_item_info_text ziti_3 color_gray txt_dot'>{{item.goods_remark}}</view>
+          <view style='padding:0;' class='miaosha_item_info_price'>
+            <text class='miaosha_item_info_class ziti_3 color_price'>促销价</text>
+            <text class='ziti_3 color_price'>￥{{item.shop_price}}</text>
+            <text wx:if="{{is_vip == 1}}" class='zhuan_btn'>
+<text class='ziti_3'>赚</text>
+            <text wx:if="{{is_vip == 1}}" class='ziti_3'>￥{{filters.toFix(item.member_first*item.shop_price*0.01)}}</text>
+            </text>
+          </view>
+          <view class='home_shiling_item_info_bottom'>
+            <image wx:if="{{is_vip == 1}}" src='../../../images/home/tui_logo.png' class='miaosha_item_cart_logo'>
+            </image>
+            <text wx:if="{{is_vip == 1}}" class=' ziti_3' style='margin:0 10rpx;'>已推{{item.push_num}}次</text>
+            <image src='../../../images/home/miaosha_goods_cart.png' class='miaosha_item_cart_logo'>
+            </image>
+            <text class='ziti_3' style='margin:0 10rpx;'>已售{{item.virtual_sales_sum}}件</text>
+          </view>
+          <!-- <view catchtap='bijiaClick' data-item="{{item}}" class='add_goods_btn1 ziti_2 color_price' style='right:130rpx;width:100rpx;'>比价</view>
+          <view catchtap='addgwc' data-id="{{item.goods_id}}" class='add_goods_btn1 ziti_2 color_price' style='width:100rpx;'>加车</view> -->
+
+                         <button wx:if="{{is_vip == 1}}" class='miaosha_item_buy_btn1 ziti_2' style='background-color:#fd4a20;color:#fff;' data-id="{{item.goods_id}}" data-title="{{item.goods_name}}" catchtap='share' open-type="share" hover-class='none'>推广</button>
+                <text catchtap='addgwc' data-id="{{item.goods_id}}" class='miaosha_item_buy_btn ziti_2' style='margin-right:20rpx;'>加车</text>
+                <text catchtap='bijiaClick' data-item="{{item}}" class='miaosha_item_buy_btn ziti_2' style='margin-right:20rpx;'>比价</text>
+        </view>
+      </view>
+    </block>
+
+
+
+  </view>
+
+
+
+  <!-- 无数据时的内容 -->
+  <view class='no_con' style='margin-top:192rpx;' wx:else>
+    <view class='no_con_item'>
+      <image wx:if="{{list_data}}" class='no_con_item_img' src='../../../images/home/jiazaishibai.png'></image>
+      <view class='ziti_2 color_gray'>{{!list_data?"":"暂无您要搜索的数据内容"}}</view>
+    </view>
+  </view>
+
+
+
+
+  <!-- 底部购物车图片 -->
+  <!-- <view class='footer_cart'>
+        <image class='footer_cart_img' src='../../../images/home/cartss.png'></image>
+        <view class='footer_cart_jiaobiao jiaobiao_font'>12</view>
+    </view> -->
+
+</view>
+
+<template wx:if="{{is_bijia == true}}" is="bijia" data="{{bj_data}}"></template>

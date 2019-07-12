@@ -1,0 +1,43 @@
+<wxs module="filters" src="../../home/store/filter.wxs"></wxs>
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{hidden == 1}}" class='container'>
+  <!-- 导航栏 -->
+  <view class='tab_group'>
+    <view class='tab_center'>
+      <view class='tab_center_item'>
+        <block wx:for="{{topData}}" wx:key="{{index}}">
+          <view bindtap='btnClick' data-flag="{{index}}" class='tab_item'>
+            <text class='{{seleted == index?"ziti_1 color":"ziti_2 color_gray"}}'>{{item}}</text>
+            <view class='{{seleted == index?"red_line check_style":"red_line"}}'></view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+
+
+  <!-- 有优惠券状态 -->
+  <view wx:if='{{list_data.data.length > 0}}' class='yes_quan'>
+    <!-- 可使用 -->
+    <view wx:for="{{list_data.data}}" class='can_quan quan_item'>
+      <image class='quan_img' src='{{quan[seleted].img}}'></image>
+      <view class='quan_number'>
+        <text class='quan_number_logo'>￥</text>
+        <text class='quan_number_'>{{item.couponInfo.money}}</text>
+      </view>
+      <view class='{{quan[seleted].quan}}'>{{item.couponInfo.name}}</view>
+      <view class='{{quan[seleted].money}}'>满{{item.couponInfo.condition}}元可用</view>
+      <view class='quan_date' style='{{quan[seleted].time}}'>
+        <text class='ziti_3'>有效期</text>
+        <text class='ziti_3'>{{filters.dateFormat(item.couponInfo.use_start_time,"yyyy-MM-dd")}}-{{filters.dateFormat(item.couponInfo.use_end_time,"yyyy-MM-dd")}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 无订单状态 -->
+  <view wx:if='{{!list_data.data[0]}}' class='no_order'>
+            <image class='no_order_img' src='../../../images/image/person_quan_logo.png'></image>
+            <view class='ziti_2 color_gray no_order_txt'>暂无可使用优惠券</view>
+    </view>
+</view>

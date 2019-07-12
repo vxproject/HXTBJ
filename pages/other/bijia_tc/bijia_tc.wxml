@@ -1,0 +1,62 @@
+<template name="bijia">
+<view  catchtouchmove='true' id='tc_container' class='{{hidden?"ys":"xs"}}'>
+    <!-- 主要内容 -->
+    <view class='tc_content'>
+    <!-- kong -->
+<view style='height:127rpx;'></view>
+        <!-- 关闭按钮 -->
+        <view bindtap='clear' class='tc_close_btn'></view>
+        <!-- 详情banner -->
+        <view class='tc_info_banner'>
+            <!-- tttt  https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/index_tc_img/tttt.png?sign=5216ca3ffb561fc2f2fb08db07ac273b&t=1557131243   -->
+            <image src='cloud://hxt-cdff72.6878-hxt-cdff72/index_tc_img/loudou.png' class='tttt'></image>
+            <view class='tc_info_banner_left'>
+                <image class='sj_logo' src="../../../images/image/icon.png"></image>
+                <view class='ziti_2'>好享淘</view>
+                <view class='ziti_3 color'>
+                    <text>￥</text>
+                    <view class='ziti_2'>{{bj_data.cs.shop_price}}</view>
+                </view>
+            </view>
+            <image class='tc_info_banner_right' src="{{bj_data.imgPath}}{{bj_data.pingtai[0].goods_image}}" ></image>
+        </view>
+        <!-- 商品详情 -->
+        <view class='tc_info_group'>
+            <view class='tc_goods_info jiaobiao_font color2 txt_dot'>
+                {{bj_data.cs.goods_name}}
+            </view>
+            <scroll-view scroll-y style='max-height:420rpx;'>
+                <block wx:for='{{bj_data.pingtai}}'>
+                    <view class='tc_info_item round_shadow'>
+                        <view class='tc_info_item_top'>
+                            <view class='tc_info_item_top_left'>
+                                <!-- 商家logo图 -->
+                                <image class='sj_logo' src="{{bj_data.imgPath}}{{item.image}}"></image>
+                                <!-- 商家名字 -->
+                                <view class='txt_dot sc_name ziti_3'>
+                                    {{item.name}}
+                                </view>
+                                <!-- 商家价格 -->
+                                <view class='sc_price ziti_3 color'>
+                                    ￥
+                                    <text class='ziti_2'>{{item.price}}</text>
+                                </view>
+                            </view>
+                            <text class='ziti_3'>差价：{{item.c_price}}元</text>
+                        </view>
+                        <!-- 底部 -->
+                        <view class='tc_info_item_bottom ziti_3'>
+                            对比该平台，本次购买可为您
+                            <text class='ziti_1 color'>节省{{item.c_price}}</text>元
+                        </view>
+                    </view>
+                </block>
+            </scroll-view>
+            <!-- 左侧半圆定位 -->
+<image class='tc_left_dot' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/index_tc_img/left_dot.png?sign=4df3b26535c75c379fa5f00afbaf053c&t=1557225005'></image>
+            <!-- 购买btn -->
+            <view bindtap='clear' class='tc_buy_btn'></view>
+        </view>
+    </view>
+</view>
+</template>

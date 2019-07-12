@@ -1,0 +1,190 @@
+@import '../order/order.wxss';
+
+
+/* page{
+    background-color: #f5f5f5;
+}
+.container {
+    border-top: solid 3rpx #f5f5f5;
+    background-color: #ffffff;
+} */
+
+/* 头部tab */
+
+/* .header_tab {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 90rpx;
+    display: flex;
+    background-color: #ffffff;
+    z-index: 99;
+}
+
+.header_tab_item {
+    text-align: center;
+    width: 50%;
+}
+
+.header_tab_item_title {
+    padding-top: 25rpx;
+    padding-bottom: 15rpx;
+}
+
+.header_tab_item_line {
+    margin: 0 auto;
+    width: 40rpx;
+    height: 5rpx;
+    background-color: #f50;
+} */
+
+
+/* 退款申请列表
+.shenqing_tk_item_btn{
+    position: absolute;
+    right: 0;
+    bottom: -10rpx;
+}
+ */
+
+
+
+
+/* 申请纪录列表 */
+
+.shenqing_jl_item_header {
+    padding: 0 35rpx;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 3rpx #f5f5f5;
+}
+.copy{
+  border: 1rpx solid #808081;
+  border-radius: 10rpx;
+}
+
+.shouhou {
+  position: fixed;
+  top: 500rpx;
+  right: 0;
+  display: flex;
+  padding: 10rpx 30rpx;
+  background-color: #ff5767;
+  color: white;
+  border-bottom-left-radius: 40rpx;
+  border-top-left-radius: 40rpx;
+  align-items: center;
+  line-height: 55rpx;
+}
+
+/* 申请纪录商品详情 
+
+.goods_info {
+    width: 680rpx;
+    margin: 0 auto;
+    padding: 20rpx 0;
+    display: flex;
+    justify-content: space-between;
+    /* border-bottom: solid 3rpx #f5f5f5;
+}
+
+.goods_info_left {
+    position: relative;
+    width: 170rpx;
+    height: 170rpx;
+}
+
+.goods_info_img {
+    width: 170rpx;
+    height: 170rpx;
+    background-color: #f5f5f5;
+}
+
+.goods_info_bz {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35rpx;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #fead8d, #fc5a5f);
+    color: #fff;
+}
+
+.goods_info_bz_img {
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.goods_info_right {
+    position: relative;
+    width: 490rpx;
+    height: 170rpx;
+}
+
+.goods_info_right_title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.goods_info_right_price {
+    margin-top: 35rpx;
+}
+
+.shenqing_jl_item_footer {
+    padding: 0 35rpx;
+    height: 100rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.shenqing_jl_item_btn,.shenqing_tk_item_btn{
+    box-sizing: border-box;
+    width: 160rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    border-radius: 10rpx;
+    border: solid 3rpx #ccc;
+}
+ */
+/* 无订单 
+
+.no_order {
+    position: absolute;
+    top: 386rpx;
+    left: 0;
+    right: 0;
+}
+
+.no_order_img {
+    display: block;
+    margin: 0 auto;
+    width: 160rpx;
+    height: 125rpx;
+}
+
+.no_order_txt {
+    text-align: center;
+    padding-top: 28rpx;
+}
+*/
+/* 收藏图标 
+.order_shoucang_btn{
+width: 100rpx;
+height: 36rpx;
+position: absolute;
+
+right: -19rpx;
+z-index: 99;
+padding: 20rpx;
+}
+*/

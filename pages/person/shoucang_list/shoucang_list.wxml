@@ -1,0 +1,55 @@
+<!-- 我的收藏页面 -->
+<import src="/template/no_data/no_data.wxml" />
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{hidden}}">
+  <view style='margin-bottom:{{show_flag?105:0}}rpx;' wx:if="{{list.length}}"  >
+    <view class="content translate {{item.scrollflag && !show_flag ? 'scroll_left' :''}} " style='' wx:for="{{list}}" wx:key=""  bindtouchstart='bindtouchstart'  bindtouchend='bindtouchend'  data-index="{{index}}">
+      <view class='content_left' catchtap="{{show_flag?'' :'lookdetail'}} " data-ind="{{item.goodsInfo.is_on_sale}}" data-id="{{item.goods_id}}">
+        <view class='content_icon  ' catchtap='chooseOne' data-index="{{index}}" wx:if="{{show_flag}}">
+          <icon class='' type='success' size='18' color='#ff5000' wx:if="{{item.flag}}"></icon>
+          <icon class='' type='circle' size='18' color='#a3a3a3' wx:if="{{!item.flag}}"></icon>
+        </view>
+        <image src='{{imgsrc}}{{item.goodsInfo.specGoodsPrice[0].spec_img}}' class='content_img '>
+          <image src='/images/image/sp.png' class='content_imgsell' wx:if="{{item.goodsInfo.is_on_sale == 0}}" />
+        </image>
+      </view>
+      <view class='content_title txt_dot'>
+        <view class='content_top ' catchtap="{{show_flag ? '' :'lookdetail'}}" data-ind="{{item.goodsInfo.is_on_sale}}" data-id="{{item.goods_id}}">
+          <view class='ziti_2  txt_dot content_top'>{{item.goodsInfo.goods_name}}</view>
+          <view class='ziti_3 color_gray  txt_dot  content_top'>{{item.collect_num}}人收藏</view>
+          <view class='tag'>
+          </view>
+        </view>
+        <view class='content_bottom '>
+          <view class='content_bottom_title ' catchtap="{{show_flag ? '':'lookdetail'}}"  data-ind="{{item.goodsInfo.is_on_sale}}" data-id="{{item.goods_id}}">
+            <view class='ziti_2 color_price'>¥{{item.goodsInfo.shop_price}}</view>
+            <view class="ziti_3 color_gray through">¥{{item.goodsInfo.market_price}}</view>
+          </view>
+          <button class="content_btn ziti_2 color_price {{show_flag ? 'none' : ''}} " wx:if="{{item.goodsInfo.is_on_sale == 1}}" open-type="share" data-id='{{item.goods_id}}' data-title="{{item.goodsInfo.goods_name}}">分享</button>
+        </view>
+      </view>
+       <view class='cebian ziti_1'  catchtap='deleteOne' data-id="{{item.goods_id}}"  data-index="{{index}}">删除</view>
+
+    </view>
+    <view class='gunali  ziti_1' catchtap='selectOne'>
+      {{show_flag?'取消' :'管理'}}
+    </view>
+  </view>
+
+  <view wx:if="{{!list.length}}">
+    <template is="no_data" data="{{no_data}}"></template>
+  </view>
+  <view class='pos_bottom ziti_2 translate' style='bottom:{{show_flag?0:-100}}rpx;'>
+    <view class='bot_cont'>
+      <view class='bot_left'>
+        <!-- <view class='content_icon ' catchtap='chooseAll'>
+          <icon class='' type='success' size='18' color='#ff5000' wx:if="{{allFlag}}"></icon>
+          <icon class='' type='circle' size='18' color='#a3a3a3' wx:if="{{!allFlag}}"></icon>
+        </view>
+        <view class='' >全选</view> -->
+      </view>
+      <view class='deleall ' catchtap='deleteAll'>删除选中</view>
+    </view>
+  </view>
+</view>

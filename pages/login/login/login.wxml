@@ -1,0 +1,13 @@
+<!--pages/home/index/index.wxml-->
+<import src="../store/store.wxml" />
+<!-- 未登陆 -->
+  <block wx:if="{{flag == 0}}">
+    <login flag="{{flag}}" bindgetuserinfo="getuserinfo"></login>
+  </block>
+  <block wx:else>
+    <login flag="{{flag}}" ycode="{{code}}" bindtijiao="tijiao"></login>
+  </block>
+
+
+
+

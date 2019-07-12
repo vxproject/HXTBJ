@@ -1,0 +1,42 @@
+
+.cu-load {
+  display: block;
+  line-height: 3em;
+  text-align: center;
+}
+
+.cu-load::before {
+  font-family: "iconfont";
+  display: inline-block;
+  margin-right: 6rpx;
+}
+
+.cu-load.loading::before {
+  content: "\e67a";
+  animation: icon-spin 2s infinite linear;
+}
+
+.cu-load.loading::after {
+  content: "加载中...";
+}
+
+.cu-load.load-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 140rpx;
+  left: 0;
+  margin: auto;
+  width: 260rpx;
+  height: 260rpx;
+  /* background: #fff; */
+  border-radius: 10rpx;
+  box-shadow: 0 0 0rpx 2000rpx rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 28rpx;
+  z-index: 9999;
+  line-height: 2.4em;
+}

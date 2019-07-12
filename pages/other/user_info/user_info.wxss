@@ -1,0 +1,34 @@
+/* pages/other/user_info/user_info.wxss */
+
+page{
+  background-color: #e8e8e8;
+}
+.container{
+    margin-top: 3rpx;
+}
+/* 个人资料 */
+.user_con_item{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25rpx;
+    height: 120rpx;
+    background-color: #ffffff;
+    margin-bottom: 3rpx;
+}
+.user_con_item_img{
+    width: 100rpx;
+    height: 100rpx;
+    background-color: #e8e8e8;
+    border-radius: 50%;
+}
+.go_yaoqing>text{
+    vertical-align: middle;
+}
+.go_yaoqing>image{
+    vertical-align: middle;
+    width: 38rpx;
+    height: 38rpx;
+}
+/* 推荐人资料 */

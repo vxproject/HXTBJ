@@ -1,0 +1,145 @@
+<template name="yes_member">
+  <view class='container'>
+    <view class='header'>
+      <image mode='widthFix' class='huizhang' src="../../../images/image/jinsehuizhang.png" />
+      <view bindtap='personStore' class='header_tubiao'>
+        <image class='header_tubiao_home_logo' src='{{source.img_list2.header_home_logo}}'></image>
+        <text class='ziti_3'>分享店铺</text>
+      </view>
+      <image src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/yijiqietu/no_member_bg.png?sign=c09df084da724eefc98e255f8b2f63dc&t=1559641925" mode='widthFix' class='header_img'>
+      </image>
+
+      <view class='header_user_info mar_center'>
+        <image src="{{source.userinfo.head_pic}}"></image>
+        <view class='user'>
+          <view class=' name ziti_2 txt_dot'>{{source.userinfo.nickname}}</view>
+          <view class='vip_img'>
+            <view class='vip_img_cont'>
+              <image mode='' src='{{source.img_list2.user_vip_logo}}' class='vip_img_cont_img' />
+              <view class='ziti_4'>会员</view>
+            </view>
+            <image src='{{source.img_list2.header_lingpai_logo}}' class='header_lingpai_logo'></image>
+            <image src='{{source.img_list2.xiaoxiaojiantou}}' class='header_xiaoxiao'></image>
+          </view>
+        </view>
+      </view>
+      <view class='content_my_fensi'>
+        <view class='header_user_tuijian ziti_3 '>推荐人:{{source.userinfo.first_leader}}</view>
+
+      </view>
+      <view class=' invite_code_box2'>
+        <view class='yqm'>
+          <view class='ziti_3 '>邀请码:</view>
+          <view class='ziti_3'>{{source.userinfo.invite_code}}</view>
+        </view>
+
+        <view bindtap='copyText' class='fuzhi ziti_2'>复制</view>
+      </view>
+    </view>
+    <view class='container_group'>
+      <!-- 数据展示框 -->
+      <view class='tab_show'>
+        <view bindtap='gowebview' data-flag="4" class='tab_show_item'>
+          <view class=' color_num'>{{source.list_data.memberNum}}</view>
+          <view class='ziti_2 color_text'>我的会员</view>
+        </view>
+        <view bindtap='gowebview' data-flag="5" class='tab_show_item'>
+          <view class=' color_num'>{{source.list_data.fansNum}}</view>
+          <view class= 'ziti_2 color_text'>我的粉丝</view>
+        </view>
+        <view bindtap='gowebview' data-flag="6" class='tab_show_item'>
+          <view class=' color_num'>{{source.list_data.ordersNum}}</view>
+          <view class='ziti_2 color_text'>订单管理</view>
+        </view>
+      </view>
+      <!-- 图片导航 -->
+      <view class='img_tab '>
+        <image class='img_tab_jiangli' bindtap='shareLiBao' data-flag="0" src='{{source.img_list2.tab_img_left}}'></image>
+        <image class='img_tab_fanli' bindtap='share' data-flag="1" src='{{source.img_list2.tab_img_right}}'></image>
+      </view>
+      <!-- 收入数据展示 -->
+      <view  class='shouru_data   clearfix'>
+        <view catchtap='gowebview' data-flag="6" data-type="0" class='shouru_data_header'>
+          <view >预计收入</view>
+          <image src='{{source.img_list2.back_img}}'></image>
+        </view>
+        <view catchtap='gowebview' data-flag="6" data-type="today" class='model_yuji_modle'>
+          <view class='model_yuji'>
+            <image mode='widthFix' class='model_yuji_img' src='../../../images/image/today_yuji.png' />
+            <view class=''>
+              <view>¥{{source.list_data.todeyMoney}}</view>
+              <view class='  shouru_data_item'>今日预期收入(元)</view>
+            </view>
+          </view>
+          <view catchtap='gowebview' data-flag="6" data-type="week" class='model_yuji'>
+            <image mode='widthFix' class='model_yuji_img' src='../../../images/image/benzhou_yuji.png' />
+            <view class=''>
+              <view>¥{{source.list_data.weekMoney}}</view>
+              <view class=' shouru_data_item'>本周预期收入(元)</view>
+            </view>
+          </view>
+          <view catchtap='gowebview' data-flag="6" data-type="month" class='model_yuji'>
+            <image mode='widthFix' class='model_yuji_img' src='../../../images/image/benyue_yuji.png' />
+            <view class=''>
+              <view>¥{{source.list_data.monthMoney}}</view>
+              <view class=' shouru_data_item'>本月预期收入(元)</view>
+            </view>
+          </view>
+          <view catchtap='gowebview' data-flag="6" data-type="all" class='model_yuji'>
+            <image mode='widthFix' class='model_yuji_img' src='../../../images/image/leiji_yuji.png' />
+            <view class=''>
+              <view>¥{{source.list_data.allMoney}}</view>
+              <view class=' shouru_data_item'>累计预计收入(元)</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 余额和体现 -->
+      <view class='tixian '>
+        <view class='tixian_xianjin'>
+          <view class=' '>账户余额</view>
+          <view style='color:#c8ac73;padding-left:14rpx;'>{{source.list_data.user_money}}元</view>
+        </view>
+        <view bindtap='gowebview' data-flag="7" class=' xueyuan_header '>提现</view>
+      </view>
+      <!-- 商学院 -->
+      <view class='xueyuan_box'>
+        <view class='sx_xueyuan_header  '>商学院</view>
+        <view class='xueyuan_pro'>
+          <view bindtap='gowebview' data-flag="0" class='xueyuan_pro_item'>
+            <image class='xueyuan_pro_item_img' src='{{source.img_list2.guize_img}}'></image>
+            <text class='sx_ziti'>规则中心</text>
+          </view>
+          <view bindtap='gowebview' data-flag="1" class='xueyuan_pro_item'>
+            <image class='xueyuan_pro_item_img' src='{{source.img_list2.baodian_img}}'></image>
+            <text class='sx_ziti'>新手宝典</text>
+          </view>
+          <view bindtap='gowebview' data-flag="2" class='xueyuan_pro_item'>
+            <image class='xueyuan_pro_item_img' src='{{source.img_list2.jiangtang_img}}'></image>
+            <text class='sx_ziti'>大咖讲堂</text>
+          </view>
+          <view bindtap='gowebview' data-flag="3" class='xueyuan_pro_item'>
+            <image class='xueyuan_pro_item_img' src='{{source.img_list2.caifang_img}}'></image>
+            <text class='sx_ziti'>明星采访</text>
+          </view>
+        </view>
+      </view>
+      <!-- 公告 -->
+      <view wx:if="{{source.list_data.message.length > 0}}" class='notice_box mar_center'>
+        <view class='notice_header  '>公告</view>
+        <block>
+          <view wx:for="{{source.list_data.message}}" class='notice_item'>
+            <view class='notice_item_title '>{{item.message_title}}dsifjsj副书记方式</view>
+            <view class='notice_item_data'>
+              <view class='datanotiic'>
+                <view class='notice_item_new '>new</view>
+                <view class='shij_sty'>{{item.send_time}}2016-11-11 10:11:11</view>
+              </view>
+              <view class='yudu_str'>{{item.mmt_code}}9999已读</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</template>

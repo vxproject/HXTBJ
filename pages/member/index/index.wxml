@@ -1,0 +1,17 @@
+<!--pages/member/index/index.wxml-->
+<import src="../no_member/no_member.wxml" />
+<import src="../yes_member/yes_member.wxml" />
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<block wx:if="{{hidden == 1 && !failflag}}">
+  <block wx:if="{{source.userinfo.is_vip == 0}}">
+    <template is="no_member" data="{{source}}"></template>
+  </block>
+  <block wx:else>
+    <template is="yes_member" data="{{source}}"></template>
+  </block>
+</block>
+<view class='no_data' catchtap='no_datatap' wx:if="{{failflag}}">
+  <image class='no_data_img' src='../../../images/image/person_order.png'></image>
+  <view class='ziti_2 color_gray no_data_txt '>点击重新加载</view>
+</view>

@@ -1,0 +1,13 @@
+.no_data{
+  margin-top:386rpx;
+}
+.no_data_img{
+    display: block;
+    margin:  0 auto;
+    width: 160rpx;
+    height: 127rpx;
+}
+.no_data_txt{
+    text-align: center;
+    padding-top: 18rpx;
+}

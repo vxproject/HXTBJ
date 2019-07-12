@@ -1,0 +1,16 @@
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view class="content ziti_2"  catchtap='catchtap' data-index='1' wx:if="{{hidden}}">
+  <view>换绑手机号</view>
+  <view class='content_title'>
+    <view>{{userinfo.mobile}}</view>
+    <image class='content_img'  src='/images/image/person_dizhi_back.png'/> 
+  </view>
+</view>
+<view class="content ziti_2"  catchtap='catchtap' data-index='2'  wx:if="{{hidden}}">
+  <view>换绑微信</view>
+  <view class='content_title'>
+    <view>{{userinfo.nickname}}</view>
+    <image class='content_img'  src='/images/image/person_dizhi_back.png'/> 
+  </view>
+</view>

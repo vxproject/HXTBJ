@@ -1,0 +1,137 @@
+<wxs module="filters" src="../../home/store/filter.wxs"></wxs>
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<block wx:if="{{hidden == 1}}">
+<!-- 收货人地址 -->
+<view  class='address_box'>
+    <!-- 彩线 -->
+    <image style='width:100%;height:10rpx;display:block;' src='../../../images/buy/cai_line.png'></image>
+    <!-- 无地址时 -->
+    <!-- <navigator url="../../person/dizhi/dizhi?flag=1"> -->
+    <view bindtap='dizhiClick' wx:if="{{!list_data.address || list_data.address.length == 0}}" class='no_address_box'>
+        <view class='no_address_center'>
+            <image class='no_address_box_logo1' src='../../../images/buy/address_logo.png'></image>
+            <text style='width:540rpx;' class='ziti_2 color_price'>请选择收货地址</text>
+            <image class='no_address_box_logo2' src='../../../images/buy/dizhi_back.png'></image>
+        </view>
+    </view>
+    <!-- </navigator> -->
+    <!-- 有地址时 -->
+    <!-- <navigator url="../../person/dizhi/dizhi?flag=1"> -->
+    <view bindtap='dizhiClick' wx:if="{{list_data.address.length != 0}}" class='yes_address_box'>
+        <view class='yes_address_center'>
+            <view class='yes_address_group'>
+                <view class='address_group_item address_group_item1 txt_dot ziti_3 color_gray'>
+                    <text class='ziti_3 color_price' style='padding:0rpx 10rpx; border-radius: 10rpx;border: solid 3rpx #f50707;'>默认地址</text>
+                    <text style='padding-left:10rpx;'>{{list_data.address.province_name}}</text>
+                    <text style='padding-left:10rpx;'>{{list_data.address.city_name}}</text>
+                    <text style='padding-left:10rpx;'>{{list_data.address.district_name}}</text>
+                </view>
+                <view class='address_group_item txt_dot ziti_2'>
+                    {{list_data.address.address}}
+                </view>
+                <view class='address_group_item txt_dot ziti_3 color_gray'>
+                    <text>{{list_data.address.consignee}}</text>
+                    <text style='padding-left:10rpx;'>{{list_data.address.mobile}}</text>
+                </view>
+            </view>
+            <image class='no_address_box_logo2' src='../../../images/buy/dizhi_back.png'></image>
+        </view>
+    </view>
+     <!-- </navigator> -->
+
+
+</view>
+<!-- 空白 -->
+<view style='width:100%;height:20rpx;'></view>
+
+
+<!-- 商品详情 -->
+<view class='goods_info_box border_top'>
+    <view class='goods_info_box_t ziti_2 color_gray'>商品信息</view>
+    <block wx:for='{{list_data.goodsInfo}}'>
+        <view class='goods_info_center'>
+            <image class='goods_info_img' src="{{img_path}}{{item.spec_img}}"></image>
+            <view class='goods_info_group'>
+                <view class='goods_title ziti_2 txt_dot'>{{item.goods_name}}</view>
+                <view class='goods_guige ziti_3 color_gray txt_dot'>{{item.key_name}}</view>
+                <view class='goods_sm ziti_3 color_price'>
+                    <text style='padding:0rpx 10rpx; border-radius: 10rpx;border: solid 3rpx #f50707;'>{{item.is_refuse == 0?"不支持七天无理由退货":"支持七天无理由退货"}}</text>
+                </view>
+                <view class='goods_price ziti_2 color_price'>
+                    <text>￥{{item.shop_price}}</text>
+                    <text style='float:right;' class='ziti_2 color_gray'>x{{item.goods_num}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+
+
+</view>
+<!-- 商品合计 -->
+<view class='goods_total_box ziti_2'>
+    <text>共{{list_data.goods_totle_number}}件商品</text>
+    <view>
+        <text class='color_gray'>（商品券扣减￥{{list_data.disPrice}}）</text>
+        <text>小计:￥{{list_data.sumPrice}}</text>
+    </view>
+</view>
+<!-- 卖家留言 -->
+<view class='seller_words_box'>
+    <textarea auto-height='true' bindinput='liuyan' class='seller_textarea ziti_2 color_gray' placeholder='买家留言'></textarea>
+</view>
+<!-- 促销优惠  wx:if="{{list_data.coupon.length > 0}}"   {{list_data.coupon.couponInfo.money}} -->
+<view  class='goods_info_box_t ziti_2 color_gray' style='background:#ffffff;'>促销优惠</view>
+<!-- 平台券扣减 -->
+<view bindtap='quanClick'  class='pingtai_kou_box'>
+    <view class='pingtai_kou_item1 ziti_2'>
+        <text>平台券扣减</text>
+        <view class='pingtai_kou_item1_' style='height: 80rpx;'>
+            <text class='color_gray'>￥{{money}}</text>
+            <image style='padding:20rpx; ' class='no_address_box_logo2' src='../../../images/buy/dizhi_back.png'></image>
+        </view>
+    </view>
+    <view class='pingtai_kou_item2 ziti_2'>
+        <text>优惠共计：</text>
+        <text class='color_price'>￥{{money}}</text>
+    </view>
+    <!-- 运费 -->
+    <view class='yunfei_box'>
+        <text class='ziti_2'>运费</text>
+        <text class='ziti_2 color_gray'>{{list_data.shipping == 0?"包邮":list_data.shipping}}</text>
+    </view>
+    <!-- 还需支付 -->
+    <view class='pingtai_kou_item2 ziti_2' style='padding-top:35rpx;'>
+        <text>还需支付：</text>
+        <text class='color_price'>￥{{filters.toFix(list_data.totlePrice-money)*1}}</text>
+    </view>
+</view>
+
+<!-- 支付方式 -->
+<view class='pay_style ziti_2'>
+    <text>支付方式</text>
+    <view class='pay_style_right' style='height:90rpx;'>
+        <text>微信支付</text>
+        <image class='pay_style_logo' src='../../../images/buy/weixin_logo.png'></image>
+    </view>
+</view>
+
+<!-- 空白 -->
+<view style='width:100%;height:125rpx;'></view>
+<!-- 底部栏 -->
+<view class='footer_box'>
+    <view class='footer_box_info'>
+        <view>
+            <text class='ziti_2'>合计：</text>
+            <text class='ziti_2 color_price'>￥{{filters.toFix(list_data.totlePrice-money)*1}}</text>
+        </view>
+        <view>
+            <text class='ziti_3 color_gray'>请在30分钟内完成付款</text>
+        </view>
+    </view>
+
+    <view bindtap='pay' class='footer_box_btn'>去付款</view>
+</view>
+</block>
+
+

@@ -1,0 +1,35 @@
+.list_group{
+    border-top: solid 3rpx #f5f5f5;
+}
+.list_item{
+    display: -webkit-flex;
+    display:flex;
+    padding: 0 30rpx;
+    height: 150rpx;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-bottom: solid 3rpx #f5f5f5;
+}
+.list_item_info{
+    width: 580rpx;
+}
+.list_item_info2{
+    width: 580rpx;
+    padding-top: 10rpx;
+}
+.list_item_logo{
+    width: 90rpx;
+    height: 90rpx;
+}
+.list_item_info1{
+    width: 580rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.no_order_img{
+    display: block;
+    margin:  0 auto;
+    width: 160rpx;
+    height: 125rpx;
+}

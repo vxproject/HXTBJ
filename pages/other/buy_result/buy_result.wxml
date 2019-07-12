@@ -1,0 +1,60 @@
+
+<!-- 支付成功 -->
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<block wx:if="{{hidden == 2}}">
+
+
+<!-- 支付失败 -->
+<block wx:if="{{list_data.pay_status == 0}}">
+<view  class='header_box'>
+    <image class='header_bg' src='../../../images/order/pay_fail_bg.png'></image>
+    <view class='header_info'>
+        <view class='header_title ziti_1'>订单支付失败</view>
+        <view class='header_price'>{{list_data.goods_price}}元</view>
+        <!-- <view class='ziti_2 color_gray'>此订单存在异常，请反馈给客服人员</view> -->
+    </view>
+</view>
+</block>
+<block wx:else>
+<view class='header_box'>
+    <image class='header_bg' src='../../../images/order/pay_success_bg.png'></image>
+    <view class='header_info'>
+        <view class='header_title ziti_1'>订单支付成功</view>
+        <view class='header_price'>{{list_data.goods_price}}元</view>
+        <view class='ziti_2 color_gray'>我们将尽快为您安排发货,请保持手机畅通</view>
+    </view>
+</view>
+</block>
+
+<!-- 商品信息 -->
+<view  class='goods_info' >
+    <view class='goods_info_title ziti_2 color_gray'>商品详情</view>
+    <view wx:for="{{list_data.goodsInfo}}"  wx:key="{{index}}" class='goods_info_con ziti_2 color_gray'>
+        <text style='width:620rpx;' class='txt_dot'>{{item.goods_name}}</text>
+        <text>x{{item.goods_num}}</text>
+    </view>
+</view>
+
+
+<!-- 按钮组 -->
+<view class='btn_group ziti_1'>
+    <view bindtap='orderDetail' class='btn_item btn_item1 btn_active'>查看订单</view>
+    <view bindtap='goBack' class='btn_item btn_item2 btn_active'>回首页</view>
+</view>
+
+<!-- 安全提醒 -->
+<view class='safe_point'>
+    <view class='safe_point_title'>
+        <image class='safe_point_logo' src='../../../images/order/jinggao_logo.png'></image>
+        <text class='ziti_3'>安全提醒</text>
+    </view>
+    <view class='safe_point_con ziti_3 color_gray'>
+        好享淘平台及销售商不会以订单异常、系统升级等理由，通过任何方式发送给您退款链接。请您谨防
+        <text style='color: #f2223a;'>钓鱼链接或诈骗电话！</text>
+    </view>
+</view>
+
+
+</block>
+

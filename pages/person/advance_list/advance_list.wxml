@@ -1,0 +1,41 @@
+<!-- 导航栏 -->
+<import src="/template/loading/loading.wxml" />
+  <template is="loading" data="{{loading}}"></template>
+<view class='tab_group'>
+  <view class='tab_center'>
+    <view class='tab_center_item'>
+      <block wx:for="{{topData}}" wx:key="{{index}}">
+        <view bindtap='btnClick' data-flag="{{index}}" class='tab_item'>
+          <text class='{{seleted == index?"ziti_1 color":"ziti_2 color_gray"}}'>{{item}}</text>
+          <view class='{{seleted == index?"red_line check_style":"red_line"}}'></view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+
+
+<view wx:for="{{list_data[seleted].data}}" class='goods_content mar_center'>
+  <image class='goods_content_img' src=''></image>
+  <view class='goods_content_info'>
+    <view class='goods_content_info_title ziti_2'>
+      树懒果园 墨西哥进口牛油果水果 6个 单果170-200g
+    </view>
+    <view class='goods_content_info_spec ziti_3 color_gray'>
+      榨汁机55ml
+      <text style='padding-top:5rpx;padding-right:26rpx;' class='ziti_2 color_gray flo_right'>x1</text>
+    </view>
+    <view class='ziti_2 color_price clearbg'>
+      <view class='jiage'>￥399</view>
+      <button catchtap='orderClick' data-item="{{item}}" data-flag="2" class='goods_item_btn goods_item_btn1 ziti_3 ys1'>立即付款</button>
+      <button catchtap="orderClick" data-item="{{item}}" data-flag="1" class='goods_item_btn goods_item_btn2 ziti_3 ys2'>取消订单</button>
+    </view>
+  </view>
+</view>
+
+  <view wx:if="{{list_data[seleted].data.length <= 0}}"  class='no_order'>
+    <image class='no_order_img' src='../../../images/image/person_order.png'></image>
+    <view class='ziti_2 color_gray no_order_txt'>您还没有订单</view>
+  </view>
+

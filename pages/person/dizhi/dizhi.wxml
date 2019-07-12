@@ -1,0 +1,76 @@
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{hidden == 1}}" class='container'>
+    <!-- 顶部搜索框 -->
+    <view wx:if="{{list_data[0]}}" class='search_container'>
+        <view class='search_box ziti1'>
+            <image src='../../../images/image/person_dizhi_search.png'></image>
+            <input bindinput='bindKeyInput' type='text' placeholder-style='color:#6a6a6a;font-size: 30rpx;' placeholder='搜索已有地址'></input>
+        </view>
+    </view>
+    <!-- 无地址的状态 -->
+    <block wx:if="{{value == ''}}">
+    <view wx:if="{{!list_data[0]}}" class='no_address'>
+        <image src='../../../images/image/person_dizhi_address_logo.png'></image>
+        <view class='ziti_1'>请单击下方添加收货地址</view>
+    </view>
+    <!-- 有地址的状态 -->
+    <view wx:if="{{list_data[0]}}" class='yes_address'>
+        <view bindtap='seletedaddress' data-item="{{item}}" data-index="{{index}}" wx:for="{{list_data}}" class='yes_address_item' wx:key="{{index}}">
+            <view class='name_tel'>
+                <text class='ziti_2'>{{item.consignee}}</text>
+                <text class='ziti_3 color_gray'>{{item.mobile}}</text>
+            </view>
+            <!-- 三级地址 -->
+            <view class='sanji_address titletxt'>
+                        <text wx:if="{{item.is_default == 1}}" class='color ziti_3' style='border:solid 1rpx #FF5000;border-radius:10rpx;padding:3rpx 6rpx;'>默认地址</text>
+                    <text class='ziti_3' style='padding-left:10rpx;'>{{item.province_name}}</text>
+                    <text style='padding:0 5rpx;' class='ziti_3'>{{item.city_name}}</text>
+                    <text class='ziti_3' style='padding-left:10rpx;'>{{item.district_name}}</text>
+                    <text class='ziti_3' style='padding-left:10rpx;'>{{item.address}}</text>
+            </view>
+            <!-- 详细地址 transparent-->
+
+            <!-- <view class='xiangxi_address ziti_3'>
+            <text wx:if="{{item.is_default == 1}}" class='color' style='border:solid 1rpx #FF5000;border-radius:5rpx;padding:3rpx;'>默认地址</text>
+                  {{item.address}} 
+            </view> -->
+            <view class='xian'></view>
+            <view catchtap='edditaddress' data-item="{{item}}" data-index="{{index}}" class='bianji ziti_3 color_gray'>编辑</view>
+        </view>
+    </view>
+    </block>
+       <!-- 无地址的状态 -->
+    <block wx:else>
+    <view wx:if="{{!result[0]}}" class='no_address'>
+        <image src='../../../images/image/person_dizhi_address_logo.png'></image>
+        <view class='ziti_1'>暂无搜索到相关地址</view>
+    </view>
+    <!-- 有地址的状态 -->
+    <view wx:if="{{result[0]}}" class='yes_address'>
+        <view bindtap='seletedaddress' data-item="{{item}}" data-index="{{index}}" wx:for="{{result}}" class='yes_address_item' wx:key="{{index}}">
+            <view class='name_tel'>
+                <text class='ziti_2'>{{item.consignee}}</text>
+                <text class='ziti_3 color_gray'>{{item.mobile}}</text>
+            </view>
+            <!-- 三级地址 -->
+            <view class='sanji_address'>
+                    <text class='ziti_3'>{{item.province_name}}</text>
+                    <text style='padding:0 5rpx;' class='ziti_3'>{{item.city_name}}</text>
+                    <text class='ziti_3'>{{item.district_name}}</text>
+            </view>
+            <!-- 详细地址 transparent-->
+            <view class='xiangxi_address ziti_3'>
+                    {{item.address}}
+            </view>
+            <view class='xian'></view>
+            <view catchtap='edditaddress' data-item="{{item}}" data-index="{{index}}" class='bianji ziti_3 color_gray'>编辑</view>
+        </view>
+    </view>
+    </block>
+    
+    <!-- 底部添加地址按钮 -->
+    <view bindtap="adddizhi" class='btn_container'>
+        <button>添加收货地址</button>
+    </view>
+</view>

@@ -1,0 +1,42 @@
+.nmember2{
+  width: 100%;
+}
+.top{
+  width: 100%;
+  height: 400rpx;
+ 
+}
+.head{
+  position: absolute;
+  top:30rpx;
+  left: 50rpx;
+  width: 500rpx;
+  height: 100rpx;
+
+}
+
+.headImg{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.topk{
+  display: flex;
+  /* justify-content:center; */
+  align-items:center;
+}
+
+.vipstate{
+  color:rgb(226, 196, 119);
+  background-color: #808081;
+}
+.head view{
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  padding-top:5rpx;
+  padding-bottom: 5rpx;
+}
+.statett{
+ font-size: 26rpx;
+}

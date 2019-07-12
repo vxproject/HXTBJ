@@ -1,0 +1,129 @@
+<!--pages/home/miaosha/miaosha.wxml   -->
+<wxs module="miaosha" src="./miaosha.wxs"></wxs>
+<import src="/template/loading/loading.wxml" />
+
+<template is="loading" data="{{loading}}"></template>
+
+<view wx:if="{{hidden == 1}}" class='{{is_loading == true?"alpha2":"alpha1"}}'>
+
+  <block wx:if="{{time_axis.length > 0}}">
+    <image src="{{img_path}}{{banner}}" class='banner' mode="widthFix"></image>
+    <!-- 时间 -->
+    <view wx:if="{{s_flag == true}}" class='dingwei' style='background:linear-gradient(to right, #fd4722 0%, #ff6413 100%);'>
+      <scroll-view scroll-x scroll-left="{{scroll_left}}" scroll-with-animation="true" class='scrollview ' style=''>
+        <view class='time-scrollview'>
+          <view class='' wx:for="{{time_axis}}" wx:key="{{index}}" style='' class="ziti_2 time-kuai {{time_axis.length == 1?'bj3':time_axis.length == 2?'bj2':time_axis.length == 3?'bj1':'bj'}}" bindtap='navClick' data-index="{{index}}">
+            <view class='{{status == index ? "time_color":""}}'>{{item.title}}</view>
+            <view class='{{status == index ? "qgstate":""}} ziti_3' style='margin-top:5rpx;'>{{item.des}}</view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <view wx:if="{{time_axis[status].category_status != 3 && time_axis[status].show_time == 1}}" class='daojishi ziti_3'>
+        <text style='color:#333333;font-size:24rpx;padding-right:20rpx;'>{{time_axis[status].category_status == 0?"距开始":"距结束"}} </text>
+        <text class='daojishi_time'>{{time_axis[status].djs.hou?time_axis[status].djs.hou:'00'}}</text>
+        <text style='padding:0 10rpx;'>:</text>
+        <text class='daojishi_time'>{{time_axis[status].djs.min?time_axis[status].djs.min:'00'}}</text>
+        <text style='padding:0 10rpx;'>:</text>
+        <text class='daojishi_time'>{{time_axis[status].djs.sec?time_axis[status].djs.sec:'00'}}</text>
+      </view>
+    </view>
+    <!-- style='margin-top:-10rpx;' -->
+    <view class='fiexd {{s_flag?"alpha1":"alpha2"}}' style='background:linear-gradient(to right, #fd4722 0%, #ff6413 100%);'>
+      <scroll-view scroll-x scroll-left="{{scroll_left}}" scroll-with-animation="true" class='scrollview '>
+        <view class='time-scrollview'>
+          <view class='' wx:for="{{time_axis}}" wx:key="{{index}}" style='' class="ziti_2 time-kuai {{time_axis.length == 1?'bj3':time_axis.length == 2?'bj2':time_axis.length == 3?'bj1':'bj'}}" bindtap='navClick' data-index="{{index}}">
+            <view class='{{status == index ? "time_color":""}}'>{{item.title}}</view>
+            <view class='{{status == index ? "qgstate":""}} ziti_3' style='margin-top:5rpx;'>{{item.des}}</view>
+          </view>
+        </view>
+      </scroll-view>
+      <view wx:if="{{time_axis[status].category_status != 3 && time_axis[status].show_time == 1}}" class='daojishi ziti_3'>
+        <text style='color:#333333;font-size:24rpx;padding-right:20rpx;'>{{time_axis[status].category_status == 0?"距开始":"距结束"}} </text>
+        <text class='daojishi_time'>{{time_axis[status].djs.hou?time_axis[status].djs.hou:'00'}}</text>
+        <text style='padding:0 10rpx;'>:</text>
+        <text class='daojishi_time'>{{time_axis[status].djs.min?time_axis[status].djs.min:'00'}}</text>
+        <text style='padding:0 10rpx;'>:</text>
+        <text class='daojishi_time'>{{time_axis[status].djs.sec?time_axis[status].djs.sec:'00'}}</text>
+      </view>
+    </view>
+
+
+    <swiper class='swiper'   bindanimationfinish="changeCount" style='height:{{list_data[status].data.length == 0?300:list_data[status].data.length*300+30}}rpx' current="{{status}}">
+      <swiper-item wx:for="{{time_axis.length}}" wx:key="{{index}}">
+        <!--  -->
+
+        <view wx:if="{{list_data[status].data.length > 0}}" wx:for="{{list_data[status].data}}" wx:key="{{index}}" bindtap='goods_detail' data-id="{{item.goods_id}}" class='goods_info'>
+          <image src="{{img_path}}{{item.flash_img}}" class='goods_image'></image>
+          <view class='goods'>
+            <button data-id="{{item.goods_id}}" data-title="{{item.goods_name}}" catchtap='share' open-type="share" class="ms_share" hover-class='none'>
+              <image src="../../../images/miaosha/ms_share.png"></image>
+            </button>
+            <view class='ziti_2 txt_dot' style='width:300rpx;'>{{item.goods_name}}</view>
+            <view class='ziti_3 color1 txt_dot' style='margin-top:26rpx;'>{{item.goods_remark}}</view>
+            <view wx:if="{{item.status != 0}}" class='progress'>
+              <progress wx:if="{{item.status != 3}}" percent="{{item.progress}}" stroke-width="12" border-radius="40" color="red" />
+              <view class='ziti_3 color1 {{item.status == 3 ?"":"progressView"}}'>{{miaosha.getStatus(item.status,item.progress)}}</view>
+            </view>
+            <view class='ms_price'>
+              <image src="../../../images/miaosha/cuxiao.png"></image>
+              <view class='price'>
+                <text style="font-size:20rpx;">￥</text>
+                <text style="font-size:26rpx;">{{item.spike_price}}</text>
+              </view>
+            </view>
+            <view catchtap='qgClick' data-status="{{item.status}}" data-id="{{item.goods_id}}" class='qg_btn {{item.status == 1?"qg_status3":item.status == 0?"qg_status1":"qg_status2"}}' style='font-size:26rpx;'>{{miaosha.setBtn(item.status)}}</view>
+          </view>
+        </view>
+        <!--  -->
+        <view wx:if="{{list_data[status].data.length == 0}}">
+          <view class='ziti_2 color1' style='width:100%;text-align:center;margin-top:100rpx;'>
+            <image class='no_order_img' style='padding-bottom:20rpx;width:160rpx;height:127rpx;' src='../../../images/image/person_order.png'></image>
+            暂无数据
+          </view>
+
+        </view>
+
+      </swiper-item>
+    </swiper>
+
+    <!-- <view wx:if="{{1 == 1}}" class='daojishi ziti_3'>
+    <text style='color:#333333;font-size:24rpx;padding-right:20rpx;'>距开始 </text>
+    <text class='daojishi_time'>00</text>
+    <text>：</text>
+    <text class='daojishi_time'>05</text>
+    <text>：</text>
+    <text class='daojishi_time'>12</text>
+  </view>
+  <view wx:for="{{10}}" class='goods_info'>
+    <image src="https://cdn.hxtapp.com/public/upload/spec/2019/04-18/fed0f5f20eccb14e77ebe610822679aa.png" class='goods_image'></image>
+    <view class='goods'>
+      <button open-type="share" class="ms_share" hover-class='none'>
+        <image src="../../../images/miaosha/ms_share.png"></image>
+      </button>
+      <view class='ziti_2' style='width:300rpx;'>福建高山火参果2个装</view>
+      <view class='ziti_3 color1 txt_dot' style='margin-top:26rpx;'>新鲜采摘 清新酸甜 低糖低志 健康美味</view>
+      <view class='progress'>
+        <progress percent="30" stroke-width="12" border-radius="40" color="red" />
+        <view class='ziti_3 color1'>已抢完</view>
+      </view>
+      <view class='ms_price'>
+        <image src="../../../images/miaosha/cuxiao.png"></image>
+        <view class='price'>
+          <text style="font-size:20rpx;">￥</text>
+          <text style="font-size:26rpx;">9.90</text>
+        </view>
+      </view>
+      <view class='qg_btn qg_status1' style='font-size:26rpx;'>已抢完</view>
+    </view>
+  </view> -->
+  </block>
+  <block wx:else>
+    <view class='ziti_2 color1' style='width:100%;text-align:center;margin-top:400rpx;'>
+      <image class='no_order_img1' style='padding-bottom:20rpx;' src='../../../images/image/person_order.png'></image>
+      暂无数据
+      <view>下拉刷新</view>
+    </view>
+
+  </block>
+</view>

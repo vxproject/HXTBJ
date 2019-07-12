@@ -1,0 +1,89 @@
+{
+  "pages": [
+    "pages/home/index/index",
+    "pages/cart/index/index",
+    "pages/member/index/index",
+    "pages/person/dizhi/dizhi",
+    "pages/person/index/index",
+    "pages/member/yes_member/yes_member",
+    "pages/person/ruzhu/ruzhu",
+    "pages/person/quan/quan",
+    "pages/person/order/order",
+    "pages/person/replace/replace",
+    "pages/person/dizhi_xiangqing/dizhi_xiangqing",
+    "pages/other/goods_detail/goods_detail",
+    "pages/member/buy_member/buy_member",
+    "pages/other/buy_goods/buy_goods",
+    "pages/other/webview/webview",
+    "pages/other/buy_result/buy_result",
+    "pages/home/index_info/index_info",
+    "pages/person/order_detail/order_detail",
+    "pages/home/search/search",
+    "pages/person/order_tuikuan/order_tuikuan",
+    "pages/other/goods_eval/goods_eval",
+    "pages/home/index_search/index_search",
+    "pages/home/miaosha/miaosha",
+    "pages/member/tixian/tixian",
+    "pages/member/tixian_state/tixian_state",
+    "pages/member/person_store/person_store",
+    "pages/person/order_tuikuan_info/order_tuikuan_info",
+    "pages/other/user_info/user_info",
+    "pages/home/member_list/member_list",
+    "pages/other/advance_detail/advance_detail",
+    "pages/person/collection_list/collection_list",
+    "pages/other/usable_quan/usable_quan",
+    "pages/other/ling_quan/ling_quan",
+    "pages/other/desc_detail/desc_detail",
+    "pages/login/login/login",
+    "pages/other/bijia_tc/bijia_tc",
+    "pages/person/shoucang_list/shoucang_list",
+    "pages/person/shezhi/shezhi",
+    "pages/person/xiugai/xiugai",
+    "pages/person/suggest/suggest",
+    "pages/person/manage/manage",
+    "pages/person/managenew/managenew",
+    "pages/kanjia/index/index",
+    "pages/kanjia/kj_info/kj_info",
+    "pages/share/index/index",
+    "pages/kanjia/mykanjia/mykanjia"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "好享淘优选",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#FF5000",
+    "list": [
+      {
+        "pagePath": "pages/home/index/index",
+        "iconPath": "/images/tabbar/home.png",
+        "selectedIconPath": "/images/tabbar/homes.png",
+        "text": "商城"
+      },
+      {
+        "pagePath": "pages/member/index/index",
+        "iconPath": "/images/tabbar/member.png",
+        "selectedIconPath": "/images/tabbar/members.png",
+        "text": "会员"
+      },
+      {
+        "pagePath": "pages/cart/index/index",
+        "iconPath": "/images/tabbar/cart.png",
+        "selectedIconPath": "/images/tabbar/carts.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/person/index/index",
+        "iconPath": "/images/tabbar/person.png",
+        "selectedIconPath": "/images/tabbar/persons.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000
+  },
+  "sitemapLocation": "sitemap.json"
+}

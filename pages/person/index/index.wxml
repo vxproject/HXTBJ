@@ -1,0 +1,99 @@
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{hidden == 1 && !failflag}}" class='container'>
+  <view class='header'>
+    <view class='content'>
+      <view class='content_dingdan '>
+        <view class='round_shadow hudu'>
+          <view class='content_dingdan_head  '>
+            <view class='quanbu_ls ziti_2'>全部订单</view>
+            <view catchtap='ddBtnClick' data-path="../order/order?flag=0" class='ziti_3 ssss_img_qb'>查看全部订单
+              <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_dizhi_back.png?sign=d88e6269ec2ca562b9edae8bfcdb05c7&t=1559727758' class='ssss_img_jt' />
+            </view>
+          </view>
+
+
+          <!-- 订单状态组 -->
+          <view class='content_dingdan_group'>
+            <block wx:for='{{person_data.dingdan_list}}' wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
+              <view catchtap='ddBtnClick' data-path="{{item.path}}" class='content_dingdan_item'>
+                <image style='width:56rpx;' src='{{item.img}}' mode='widthFix'></image>
+                <text class=' sj_color ziti_3'>{{item.title}}</text>
+                <view wx:if="{{item.num != 0}}" class='jiaobiao jiaobiao_font color_price'>{{item.num}}</view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <image mode='widthFix' class='header_bg' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/yijiqietu/lsz_car_bcimg.png?sign=348473474867b772f6ab79828736e241&t=1559700818'>
+    </image>
+    <image bindtap='shezhi' class='icon shezhi' src="../../../images/other/shezhi.png"></image>
+    <image bindtap='xiaoxi' class='icon xiaoxi' src="../../../images/other/xiaoxi.png"></image>
+    <view class='lsz_person'>
+      <image bindtap='userinfo' class='header_user_img' src='{{userinfo.head_pic}}'></image>
+      <!-- <image bindtap='userinfo' class='vipicon' src='{{vipicon[userinfo.is_vip]}}'></image> -->
+      <view class='lsz_person_name' bindtap='userinfo'>
+        <view class='minzi_re txt_dot'>{{userinfo.nickname}}</view>
+        <view class='vip_img' wx:if="{{userinfo.is_vip == 1}}">
+          <view class='vip_img_cont'>
+            <image mode='' src='../../../images/image/yes_momber_vip_logo.png' class='vip_img_cont_img' />
+            <view class='v_ip ziti_3'>会员</view>
+          </view>
+        </view>
+        <view wx:if="{{userinfo.is_vip == 0}}" class=' lsz_pu ziti_3'>普通用户</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 菜单导航 -->
+  <view class='lsz_rder_group  '>
+    <view class='hudu round_shadow'>
+      <view class=' lsz_rder_group_name ziti_2 '>我的服务</view>
+      <view class='content_order_group '>
+        <block wx:for="{{person_data.fuwu_list}}" wx:key="{{index}}">
+          <!-- <navigator open-type='navigate' url="{{item.path}}"> -->
+            <view bindtap='goNav' data-path="{{item.path}}" class='content_order_item'>
+              <image src='{{item.img}}'></image>
+              <text class=' sj_color ziti_3'>{{item.title}}</text>
+            </view>
+          <!-- </navigator> -->
+        </block>
+      </view>
+    </view>
+  </view>
+  <view wx:if="">
+    <view class='lsz_car_dibu'>
+      <image mode='widthFix' class='lsz_car_xian1' src='../../../images/cart/lsz_car_xian.png' />
+      <view class='lsz_car_xiangyao'>
+        <image class='lsz_car_hongxin' mode='widthFix' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/kongxinlls.png?sign=12751f7a8a5ffc109639b2d285d1ce37&t=1559722263' />
+        <view class='tuijjj ziti_2'>为你推荐</view>
+      </view>
+      <image mode='widthFix' class='lsz_car_xian' src='../../../images/cart/lsz_car_xian.png' />
+    </view>
+
+    <view class='lsz_tuijain'>
+      <view class='smb_box'>
+        <view wx:for="{{5}}" wx:key="" class='lsz_tuijian_list'>
+          <image class='lsz_good_img' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/yijiqietu/lsz_car_bcimg.png?sign=d8b278fd7f7bfd907ce7eea38e17a9ad&t=1559726050' />
+          <view class=' lsz_content'>
+            <view class=' sj_colortui new_text ziti_2  sjy_wid'>商品名称商品名称商品名称商品名称商品名称商品名称商品名称</view>
+            <view class=' color_gray_sj ziti_3 new_text sjy_wid'>介绍商品名称商品名称商品名称商品名称商品名称</view>
+            <view class='bq_ziti'>标签</view>
+            <view class='lsz_list_danjai ziti_2'>
+              <view class=' color_gray_sj'>
+                <text class='sj_color_price '>¥1.22</text>/盒</view>
+              <image class='lsz_good_jiahao' src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/lsz_weinituijain.png?sign=d0424361e95578d939c15fc513a59aaf&t=1559725588" />
+            </view>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='no_data' catchtap='no_datatap' wx:if="{{failflag}}">
+  <image class='no_data_img' src='../../../images/image/person_order.png'></image>
+  <view class='ziti_2 color_gray no_data_txt '>点击重新加载</view>
+</view>

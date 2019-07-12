@@ -1,0 +1,163 @@
+/* pages/person/advance_list/advance_list.wxss */
+/* ---商品详情 */
+
+/* .goods_content {
+position: relative;
+height: 460rpx;
+background-color: rebeccapurple;
+border-radius: 50%;
+} */
+.goods_content {
+position: relative;
+height: 260rpx;
+padding: 10rpx;
+margin-top: 20rpx;
+border-bottom: 1rpx solid #f5f5f5;
+}
+
+.goods_content_img {
+width: 160rpx;
+height: 160rpx;
+/* background-color: #f8f8f8; */
+background-color: red;
+border-radius: 20rpx;
+margin-left:20rpx;
+}
+
+.goods_content_info {
+position: absolute;
+top: 0rpx;
+right: 0rpx;
+}
+
+.goods_content_info_title {
+    width: 510rpx;
+display: -webkit-box;
+
+overflow: hidden;
+
+text-overflow: ellipsis;
+
+word-wrap: break-word;
+
+white-space: normal !important;
+
+-webkit-line-clamp: 2;
+
+-webkit-box-orient: vertical;
+
+}
+
+.goods_content_info_spec {
+padding: 20rpx 0 10rpx 0;
+}
+
+/* */
+
+.goods_info_sum {
+height: 80rpx;
+line-height: 80rpx;
+text-align: right;
+border-bottom: solid 3rpx #f5f5f5;
+border-top: solid 3rpx #f5f5f5;
+}
+.flo_right {
+float: right;
+}
+.order{
+  border-radius: 30rpx;
+  border:1rpx solid #FF5000;
+}
+
+
+.goods_item_btn {
+padding: 0;
+width: 160rpx;
+height: 65rpx;
+line-height: 60rpx;
+background-color: #fff;
+}
+
+.goods_item_btn1 {
+position: absolute;
+top: 220rpx;
+transform: translateY(-50%);
+right: 30rpx;
+
+}
+.ys1{
+  color: #ff5000;
+border: solid 2rpx #ff5000;
+}
+.ys2{
+border: solid 2rpx #777;
+}
+
+.goods_item_btn2 {
+  position: absolute;
+  top: 220rpx;
+  transform: translateY(-50%);
+  right: 220rpx;
+}
+
+.jiage{
+  position: absolute;
+  top: 220rpx;
+  transform: translateY(-50%);
+}
+button{
+  border-radius: 35rpx;
+}
+
+
+.tab_group{
+    background-color: #ffffff;
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    border-top: solid 2rpx rgba(0, 0, 0, 0.1);
+}
+.tab_center{
+    width: 450rpx;
+    margin: 0 auto;
+}
+.tab_item{
+    width: 150rpx;
+    text-align: center;
+}
+.tab_item>text{
+    display: block;
+    /* padding-bottom: 15rpx; */
+}
+.tab_center_item{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    /* padding-top: 15rpx; */
+}
+/* 选中样式 */
+.check_style{
+    border-top:solid 5rpx #ff5000;
+
+}
+.red_line{
+    width:50rpx;
+    margin: 0 auto;
+}
+/* 无订单 */
+.no_order{
+  padding-top:386rpx;
+}
+.no_order_img{
+    display: block;
+    margin:  0 auto;
+    width: 160rpx;
+    height: 125rpx;
+}
+.no_order_txt{
+    text-align: center;
+    padding-top: 18rpx;
+}

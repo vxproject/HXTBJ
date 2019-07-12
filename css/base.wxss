@@ -1,0 +1,125 @@
+page{
+  background-color:#fff;
+
+}
+.container{
+  width: 100%;
+  height: 100%;
+}
+.flexcenter{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.flex{
+  display: flex;
+}
+/* 登陆提醒1  29rpx*/
+.ziti1{
+  font-size: 29rpx;
+}
+/* 获取验证码字体   login */
+.ziti2{
+  font-size: 29rpx;
+}
+/* 官方色 */
+.color{
+  color: #FF5000;
+}
+/* 登陆备注色 */
+.bzcolor{
+  color:#FEB390;
+}
+/*  */
+.color1{
+  color: #595959;
+}
+
+.color2{
+  color: #808081;
+}
+
+
+
+/* 背景颜色 */
+.bgcolor{
+  background-color: #FF5000;
+}
+.huicolor{
+  background-color: #D7D7D7;
+}
+
+
+
+/* 标题-黑色 */
+.ziti_1{
+    font-size: 35rpx;
+}
+/* 二级标题-黑色 */
+.ziti_2{
+    font-size: 30rpx;
+}
+/* 三级标题-灰色 */
+.ziti_3{
+    font-size: 25rpx;
+}
+.ziti_4{
+  font-size: 22rpx;
+}
+/* 标题字体灰色颜色 */
+.color_gray{
+    color: #777777;
+}
+/* 价格以及购买按钮字体的颜色 */
+.color_price{
+    color: #ff5000;
+}
+
+.txt_dot{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jiaobiao_font{
+font-size: 20rpx;
+}
+
+.jzhd{
+  overflow: hidden;
+}
+
+
+
+
+
+
+.loading{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 140rpx;
+  left: 0;
+  margin: auto;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 9999;
+  line-height: 3em;
+  text-align: center;
+  background: #000;
+}
+
+
+.titletxt{
+   display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    word-wrap: break-word;
+}

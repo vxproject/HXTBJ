@@ -1,0 +1,38 @@
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view class='container'>
+   <!-- <canvas style="width: {{h_width}}px;height:{{h_height}}px;margin-top:{{-h_height}}px" canvas-id="firstCanvas">     </canvas> -->
+      <canvas style="width:640px;height:960px;margin-top:-960px" canvas-id="firstCanvas">     </canvas>
+    <!-- 页面背景 -->
+    <view class='bg_img_box'>
+        <image mode='widthFix' class='bg_img' src='../../../images/image/my_shop_logo.png'></image>
+
+        <!-- 二维码243.6rpx  60rpx-->
+        <view class='er_code_group ziti_3'>
+            <image class='er_code_img' src='{{img_path}}{{store.wx_small_img}}'></image>
+            <text style='padding-top:20rpx;'>长按识别二维码</text>
+        </view>
+    </view>
+
+    <!-- 头部栏 -->
+    <view wx:if="{{flag != 1}}" class='header ziti_3'>
+        <image class='header_user_name ' src='{{userinfo.head_pic}}'></image>
+        <view bindtap='saveStore' class='header_group'>
+            <image class='header_home_logo' src='../../../images/image/my_shop_title_logo.png'></image>
+            <text class='txt_dot' style='padding:0 20rpx;max-width:320rpx;'>{{store.store_name}}</text>
+            <text style='padding:0 20rpx;border-left:solid 2rpx currentColor;'>编辑</text>
+        </view>
+    </view>
+    <!-- 底部按钮组 -->
+    <view bindtap='saveImage' class='footer'>
+        <view class='footer_item btn_active'>
+            <image class='footer_item_img' src='../../../images/image/my_shop_baocun_logo.png'></image>
+            <view class='footer_item_title ziti_2'>保存图片</view>
+        </view>
+    </view>
+</view>
+
+
+<modal bindconfirm="hideTip" bindcancel="hideModal" hidden="{{hidden}}"  confirm-text="完成" cancel-text="取消">
+<input maxlength='15' placeholder='请输入要修改店铺名称' bindinput='storeName'></input>
+</modal>

@@ -1,0 +1,23 @@
+<!--pages/other/ling_quan/ling_quan.wxml-->
+<!-- 支付成功 -->
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<block wx:if="{{hidden == 2}}">
+<!-- 支付失败 -->
+
+<view  class='header_box' style='height:500rpx;'>
+    <image class='header_bg' src='{{is_ok == 0 ?"../../../images/image/yhq_sb.png":"../../../images/image/yhq_su.png"}}' style='width:530rpx;height:283rpx;margin-top:70rpx;'></image>
+    <view class='header_info' style='top:380rpx;'>
+        <view class='header_title ziti_1'>{{is_ok == 0?"领取失败":"领取成功"}}</view>
+        <!-- <view class='header_price'>{{list_data.goods_price}}元</view> -->
+        <text bindtap='ckClick' wx:if="{{is_ok == 1}}" class='ziti_2 color_gray'>已放入账户，</text><text bindtap='ckClick' wx:if="{{is_ok == 1}}" class='ziti_2' style='color:#618EC6'>查看>></text>
+    </view>
+</view>
+<!-- 按钮组 -->
+<view class='btn_group ziti_1'>
+    <!-- <view bindtap='orderDetail' class='btn_item btn_item1 btn_active'>查看订单</view> -->
+    <view bindtap='goBack' class='btn_item btn_item2 btn_active' style='width:730rpx;margin-top:-40rpx;'>去逛逛</view>
+</view>
+
+</block>
+

@@ -1,0 +1,26 @@
+/* pages/person/collection_list/collection_list.wxss */
+
+/* 头部 */
+
+
+.head {
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  background-color: #f5f5f5;
+}
+
+.head image {
+  width: 110rpx;
+  height: 110rpx;
+  background-color: #f5f5f5;
+  margin-top: 20rpx;
+  margin-left: 50rpx;
+  border-radius: 50%;
+}
+
+.head view {
+  line-height: 150rpx;
+  margin-left: 20rpx;
+}
+@import "../../home/store/store.wxss"

@@ -1,0 +1,241 @@
+<wxs module="filters" src="./filter.wxs"></wxs>
+<template name="store">
+  <view class="header" style="background:{{store.scrollTop || store.srcoll_check_id != 0 ? '#fff' :'url(../../../images/home/zhaungtailan.png ) no-repeat'}} ;">
+    <view class='header_search_container' wx:if="{{store.scrollTop || store.srcoll_check_id != 0}}">
+      <view class='header_search_box'>
+        <image class='header_search_tao_logo shrink' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/shouye/haoxiantao_logo.png?sign=eee2b6a30995e319b13e43dff0d10a71&t=1560853413'></image>
+        <view class='row center w-all px-20'>
+          <view class='ziti_2 shrink px-10  txt_dot  ' wx:if="{{store.store_name && store.user_id != store.userinfo.user_id }}" style='color:#333;'>{{filters.getStoreName(store.store_name)}}</view>
+          <view class="center bc-f5 pxy_10 w-all " bindtap='search'>
+            <icon type='search' size='18' color='#a3a3a3' />
+            <view class='w-all ziti_2 color_gray  px-20 shrink '>请输入商品名称</view>
+          </view>
+        </view>
+        <image bindtap='messagelist' class='shrink header_search_xin_logo' src='/images/home/haoxserach.png'></image>
+      </view>
+    </view>
+    <view wx:else>
+      <view class='header_search_container'>
+        <view class='header_search_box'>
+          <image class='header_search_tao_logo shrink' src='../../../images/home/hxtlogo.png'></image>
+          <view class='row center w-all px-20'>
+            <view class='ziti_2 shrink px-10  txt_dot  ' wx:if="{{store.store_name && store.user_id != store.userinfo.user_id }}" style='color:"#fff"'>{{filters.getStoreName(store.store_name)}}</view>
+            <view class="center bc-f5 pxy_10 w-all " bindtap='search'>
+              <icon type='search' size='18' color='#a3a3a3' />
+              <view class='w-all ziti_2 color_gray  px-20 shrink '>请输入商品名称</view>
+            </view>
+          </view>
+          <image bindtap='messagelist' class='shrink header_search_xin_logo' src="/images/home/home_header_xin_logo.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="{{store.scrollTop || store.srcoll_check_id != 0 ? '' :'rgba_lsz'}}">
+      <navigation-lsz bindchooseOne="topNav" wx:if="{{store.lsz_flag }}" scrollTop="{{store.scrollTop}}" arrayList="{{store.categoryList}}"  lineWidth="60" itemindex="0" color="{{store.scrollTop || store.srcoll_check_id != 0 ? '#777777' :'#ffffff'}} "
+        border_color=" {{store.scrollTop || store.srcoll_check_id != 0? '#ff5000' : '#ffffff'}}"></navigation-lsz>
+    </view>
+    <view class='goods_class_container' wx:if='{{store.flag_class==1}}' style='height:{{store.windowHeight}}px;margin-top:-80rpx;'>
+      <view class='goods_class_header'>
+        <text>全部分类</text>
+        <image bindtap='show_class_hide' data-id="-1" class='goods_class_header_shut' src='../../../images/home/shut_logo.png'></image>
+      </view>
+      <view class='goods_class_box'>
+        <block wx:for='{{store.categoryList}}' wx:for-item='items' wx:key="{{index}}">
+          <view bindtap='show_class_hide' data-id="{{index}}" class='goods_class_item'>
+            <image class='goods_class_item_img' src='{{store.img_path}}{{items.image}}'></image>
+            <view class='ziti_3 color_gray'>{{items.mobile_name}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- <view wx:else class="header" style="background:url(../../../images/home/zhaungtailan.png ) no-repeat;}}">
+    <view class='header_search_container'>
+      <view class='header_search_box'>
+        <image class='header_search_tao_logo shrink' src='../../../images/home/hxtlogo.png'></image>
+        <view class='row center w-all px-20'>
+          <view class='ziti_2 shrink px-10  txt_dot  ' wx:if="{{store.store_name && store.user_id != store.userinfo.user_id }}" style='color:"#fff"'>{{filters.getStoreName(store.store_name)}}</view>
+          <view class="center bc-f5 pxy_10 w-all " bindtap='search'>
+            <icon type='search' size='18' color='#a3a3a3' />
+            <view class='w-all ziti_2 color_gray  px-20 shrink '>请输入商品名称{{store.srcoll_check_id}}</view>
+          </view>
+        </view>
+        <image bindtap='messagelist' class='shrink header_search_xin_logo' src="/images/home/home_header_xin_logo.png"></image>
+      </view>
+    </view>
+    <navigation-lsz bindchooseOne="topNav" wx:if="{{store.lsz_flag }}" scrollTop="{{store.scrollTop}}" arrayList="{{store.categoryList}}" itemindex="{{store.srcoll_check_id}}" lineWidth="60" itemindex="0" color="#ffffff" border_color="#ffffff"></navigation-lsz>
+
+    <view class='goods_class_container' wx:if='{{store.flag_class==1}}' style='height:{{store.windowHeight}}px;margin-top:-80rpx;'>
+      <view class='goods_class_header'>
+        <text>全部分类</text>
+        <image bindtap='show_class_hide' data-id="-1" class='goods_class_header_shut' src='../../../images/home/shut_logo.png'></image>
+      </view>
+      <view class='goods_class_box'>
+        <block wx:for='{{store.categoryList}}' wx:for-item='items' wx:key="{{index}}">
+          <view bindtap='show_class_hide' data-id="{{index}}" class='goods_class_item'>
+            <image class='goods_class_item_img' src='{{store.img_path}}{{items.image}}'></image>
+            <view class='ziti_3 color_gray'>{{items.mobile_name}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view> -->
+
+
+
+  <view class=''>
+    <view class='home_index_box' wx:if='{{store.list_data.swiper}}'>
+      <image class='hudu_ui' src='cloud://hxt-cdff72.6878-hxt-cdff72/shouye/baitiao.png' />
+      <swiper circular='true' autoplay="true" indicator-dots  indicator-active-color='#fff' bindchange="goodsSwipter" class='home_swiper'>
+        <swiper-item bindtap='yin_animation' wx:for="{{store.list_data.swiper}}" class='home_swiper_item' wx:key="{{index}}">
+          <image bindtap='navClick' data-item="{{item}}" class=' check_swiper_img' src="{{store.img_path}}{{item.img_url}}"></image>
+        </swiper-item>
+      </swiper>
+      <view class='photo_tab_container' style='background:#fff url({{store.img_path}}{{store.list_data.header[0].img_url}}) no-repeat;  background-size:750rpx 344rpx; background-position:bottom center;'>
+        <view bindtap='{{item.is_tpl == 0 && item.value == 1?"kanjia":"navClick"}}' data-item="{{item}}" wx:for="{{store.list_data.nav}}" wx:key="{{index}}" class='photo_tab_item '>
+          <image class='photo_tab_img' src='{{store.img_path}}{{item.img_url}}'></image>
+          <view class='photo_tab_txt ziti_3'>{{item.desc}}</view>
+        </view>
+
+        <view class="gifClick" bindtap='{{store.list_data.header[0].is_tpl == 0?"cyClick":"navClick"}}' data-item="{{store.list_data.header[0]}}"></view>
+
+      </view>
+
+      <block wx:if="{{store.list_data.spikeList.list.length > 0}}">
+        <view class='ms_lsz_style' catchtap='lookmore' data-cid="{{store.list_data.spikeList.cid}}">
+          <view class='ssss_lll'>
+            <image class='sj_ms_img' src='../../../images/home/xs_ms.png' />
+          </view>
+          <view class='jieshu_lsz ziti_3'>
+            <view>{{store.list_data.spikeList.is_start == 1 ? '距结束':'距开始' }} </view>
+            <view class='com_time_fang'>{{store.time.hou?store.time.hou:"00"}}</view>:
+            <view class='com_time_fang'>{{store.time.min?store.time.min:"00"}}</view>:
+            <view class='com_time_fang'>{{store.time.sec?store.time.sec:"00"}}</view>
+            <view class='lsz_more_g'>更多</view>
+            <image class='con_time_img' src='../../../images/home/more_img.png' />
+          </view>
+        </view>
+        <view class='scroll-view_lsz'>
+          <scroll-view scroll-x class='scroll-view' scroll-with-animation>
+            <view class='sj_scroll_model'>
+              <view wx:for="{{store.list_data.spikeList.list}}" wx:key="" class=" scro_bc_col" catchtap='goodsDetail' data-id="{{item.goods_id}}">
+                <image class='sy_btsj_img' src='{{store.img_path+item.flash_img}}'></image>
+                <view class='sy_btsj txt_dot ziti_3'>{{item.goods_name}}</view>
+                <view class='sy_price ziti_3'>
+                  <view style='font-size:24rpx;'>¥{{item.spike_price}}</view>
+                  <view class='color_gray ziti_4' style='text-decoration:line-through;margin-left:10rpx;'>¥{{item.good_price}}</view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </block>
+
+      <view class='remai_tuijian ziti_1'>
+        <image src='../../../images/home/hot_remai.png' class='rehuo_time_img' />
+      </view>
+      <view wx:if="{{store.list_data.hot.data.length > 0}}" class='miaosha_list_box '>
+        <view bindtap='goodsDetail' data-id="{{item.goods_id}}" wx:for="{{store.list_data.hot.data}}" class='miaosha_item' wx:key="{{index}}">
+          <view class='msbg'>
+            <view wx:if="{{item.is_show_lable == 1}}" class='img_top_info'>
+              <view class='biaoqian'>
+                <image wx:for="{{item.lable}}" wx:for-item="iitem" wx:for-index="idx" class='home_img_logo {{idx == 1?"secondimg":""}}' src='{{store.img_path}}{{iitem.path}}'></image>
+              </view>
+              <view class='txt_dot' style='font-weight:bold;font-size:28rpx;'>{{item.goods_name}}</view>
+              <view class='ziti_4 color_gray img_top_title'>每人限购一件</view>
+              <view class='img_new_price ziti_3 '>
+                <text style='' class='color_gray ziti_4'>活动价:</text>
+                <text style='' class='ziti_4 color_meihong'>￥</text>
+                <text class='ziti_1 color_meihong' style='font-weight:bold;'>{{item.lable_price}}</text>
+                <text class='color_gray ziti_4'>/{{item.lable_key_name}}</text>
+              </view>
+              <image class='img_show_btn bg_meihong ziti_2 color_white' src="../../../images/home/chakan.png"></image>
+              <view class='ziti_3 color_white' style='margin-top:-50rpx; margin-left:14rpx;'> 点击查看</view>
+            </view>
+            <image wx:if="{{item.original_img}}" class='miaosha_item_img' src="{{store.img_path}}{{item.original_img}}" mode="widthFix"></image>
+            <image wx:else class='miaosha_item_img' src="../../../images/home/zanwei.png"></image>
+
+            <view class='miaosha_item_info'>
+              <view class='miaosha_item_info_title ziti_2 txt_dot '>{{item.goods_name}}</view>
+              <view class='miaosha_item_info_text ziti_3 color_gray txt_dot' style='margin-top:10rpx;'>{{item.goods_remark}}</view>
+              <view class='miaosha_item_info_price'>
+                <text class='miaosha_item_info_class ziti_3 color_price'>促销价</text>
+                <text class='ziti_3 color_price'>￥</text>
+                <text class='ziti_1 color_price'>{{item.shop_price}}</text>
+                <text wx:if="{{store.userinfo.is_vip == 1}}" class='zhuan_btn'>
+<text class='ziti_3'>赚</text>
+                <text wx:if="{{store.userinfo.is_vip == 1}}" class='ziti_3'>￥{{filters.toFix(item.member_first*item.shop_price*0.01)}}</text>
+                </text>
+              </view>
+              <view class='miaosha_item_info_bottom'>
+                <view class='leftkuai'>
+                  <image wx:if="{{store.userinfo.is_vip == 1}}" src='../../../images/home/tui_logo.png' class='miaosha_item_cart_logo' style=''>
+                  </image>
+                  <text wx:if="{{store.userinfo.is_vip == 1}}" class=' ziti_3' style='margin:0 10rpx;'>已推{{item.push_num}}次</text>
+                  <image src='../../../images/home/miaosha_goods_cart.png' style='' class='miaosha_item_cart_logo'>
+                  </image>
+                  <text class='ziti_3' style='margin:0 10rpx;'>已售{{filters.toFixNum(item.virtual_sales_sum)}}</text>
+                </view>
+                <button wx:if="{{store.userinfo.is_vip == 1}}" class='miaosha_item_buy_btn1 ziti_2' style='background-color:#fd4a20;color:#fff;margin-top: -50rpx;' data-id="{{item.goods_id}}" data-title="{{item.goods_name}}" catchtap='share' open-type="share" hover-class='none'>推广</button>
+                <text catchtap='addgwc' data-id="{{item.goods_id}}" class='miaosha_item_buy_btn ziti_2' style='margin-right:20rpx;margin-top: -50rpx;'>加车</text>
+                <text catchtap='bijiaClick' data-item="{{item}}" class='miaosha_item_buy_btn ziti_2' style='margin-right:20rpx; margin-top: -50rpx;'>比价</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{store.categoryList[store.srcoll_check_id].is_hot == 0}}" class='home_shiling_box'>
+      <image wx:if="{{store.list_data.image_url}}" style='display:block; margin:0 auto;' class='miaosha_item_img' src="{{store.img_path}}{{store.list_data.image_url}}"></image>
+      <scroll-view scroll-x='true' class='er_scroll' scroll-into-view="{{store.fView}}" scroll-left='0px' scroll-top='0px'>
+
+        <block wx:for='{{store.list_data.child}}' wx:key="{{index}}">
+          <text id="f{{index}}" bindtap="changefl" data-index="{{index}}" class='{{index == store.f_seleted?"er_scroll_item ziti_3 bgcolor tcolor":"er_scroll_item ziti_3 flbg color_gray"}}'>{{item.mobile_name}}</text>
+        </block>
+
+      </scroll-view>
+      <block wx:if="{{!store.list_data.list.data || store.list_data.list.data.length == 0}}">
+
+        <view class='ziti_2 color1' style='width:100%;text-align:center;margin-top:150rpx;'>
+          <image class='no_order_img' style='padding-bottom:20rpx;' src='../../../images/image/person_order.png'></image>
+          暂无数据
+
+        </view>
+
+
+      </block>
+      <view style="margin-top:70rpx;">
+        <block wx:for='{{store.list_data.list.data}}'>
+          <view bindtap='goodsDetail' data-id="{{item.goods_id}}" class='home_shiling_item'>
+            <image class='home_shiling_item_img' src='{{store.img_path}}{{item.specGoodsPrice[0].spec_img}}'></image>
+            <view class='home_shiling_item_info'>
+              <view class='miaosha_item_info_title ziti_2 txt_dot '>{{item.goods_name}}</view>
+              <view class='miaosha_item_info_text ziti_3 color_gray txt_dot'>{{item.goods_remark}}</view>
+              <view style='padding:0;' class='miaosha_item_info_price'>
+                <text class='miaosha_item_info_class ziti_3 color_price'>促销价</text>
+                <text class='ziti_3 color_price'>￥{{item.shop_price}}</text>
+                <text wx:if="{{store.userinfo.is_vip == 1}}" class='zhuan_btn'>
+<text class='ziti_3'>赚</text>
+                <text wx:if="{{store.userinfo.is_vip == 1}}" class='ziti_3'>￥{{filters.toFix(item.member_first*item.shop_price*0.01)}}</text>
+                </text>
+              </view>
+              <view class='home_shiling_item_info_bottom'>
+                <image wx:if="{{store.userinfo.is_vip == 1}}" src='../../../images/home/tui_logo.png' class='miaosha_item_cart_logo'>
+                </image>
+                <text wx:if="{{store.userinfo.is_vip == 1}}" class=' ziti_3' style='margin:0 10rpx;'>已推{{item.push_num}}次</text>
+                <image src='../../../images/home/miaosha_goods_cart.png' class='miaosha_item_cart_logo'>
+                </image>
+                <text class='ziti_3' style='margin:0 10rpx;'>已售{{filters.toFixNum(item.virtual_sales_sum)}}</text>
+              </view>
+              <button wx:if="{{store.userinfo.is_vip == 1}}" class='miaosha_item_buy_btn1 ziti_2' style='background-color:#fd4a20;color:#fff;' data-id="{{item.goods_id}}" data-title="{{item.goods_name}}" catchtap='share' open-type="share" hover-class='none'>推广</button>
+              <text catchtap='addgwc' data-id="{{item.goods_id}}" class='miaosha_item_buy_btn ziti_2' style='margin-right:20rpx;'>加车</text>
+              <text catchtap='bijiaClick' data-item="{{item}}" class='miaosha_item_buy_btn ziti_2' style='margin-right:20rpx;'>比价</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</template>

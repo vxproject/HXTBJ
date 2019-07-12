@@ -1,0 +1,131 @@
+<!--pages/kanjia/index/index.wxml-->
+<import src="/template/tanchuang/tanchuang.wxml" />
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{hidden == 1 }}" class='kanjia {{list_data.chop_goods.length > 0?"bg1":"bg2"}}'>
+<block wx:if="{{list_data.chop_goods.length > 0}}">
+  <!-- 顶上图片 -->
+  <image class='topImage' src="{{list_data.chop_goods.length == 0? 'cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/kanjia_2.png':'cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/kanjia_1.png'}}"></image>
+  <!-- 砍价按钮 -->
+  <image wx:if="{{list_data.chop_goods.length == 0}}" class='kj_button' src="cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/kj_button.png"></image>
+
+  <!-- 背景框 -->
+  <view class='bottom_bg'>
+    <!-- 里面背景框 -->
+    <!-- 是否砍价 -->
+    <view wx:if="{{list_data.chop_goods.length != 0 && list_data.chop_goods[0].status == 0}}" class='kuai'>
+      <view class='list last'>
+        <block wx:for="{{list_data.chop_goods}}">
+          <view wx:if="{{item.status == 0}}" bindtap='kj_detail' data-chop_goods_id="{{item.chop_goods_id}}" data-is_kj="{{item.is_kj}}" class='goods {{index+1 == list_data.chop_goods.length?"last":""}}'>
+            <image class='goodImage' src="{{img_path}}{{item.specGoodsPrice.spec_img}}"></image>
+            <view class='goodsInfo'>
+              <view class='ziti_2 txt_dot'>{{item.goodsInfo.goods_name}}</view>
+              <view class='ziti_2 txt_dot ' style='margin-top:10rpx;'>{{item.goodsInfo.goods_remark}}</view>
+              <view class='ziti_3 kjtxt'>已砍
+                <text class='color'>{{item.chop_money}}</text> 元
+              </view>
+              <view wx:if="{{item.status == 0 && item.time}}" class='ziti_3 shou over'>
+                <text class='time'>{{item.time.hou}}</text>
+                <view class='mh'>:</view>
+                <text class='time'>{{item.time.min}}</text>
+                <view class='mh'>:</view>
+                <text class='time'>{{item.time.sec}}</text>
+                <view class='overtxt'>后结束</view>
+              </view>
+              <text bindtap='shouhou' class='shouhou_btn sh_bg color ziti_3'>{{kj_state[item.status]}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+
+<view wx:if="{{list_data.chop_goods.length != 0 && list_data.chop_goods[list_data.chop_goods.length-1].status != 0}}" class='kuai' style='margin-top:10rpx;'>
+      <view class='list last' >
+        <block wx:for="{{list_data.chop_goods}}">
+          <view wx:if="{{item.status != 0}}" bindtap='kj_detail' data-chop_goods_id="{{item.chop_goods_id}}" data-is_kj="{{item.is_kj}}" class='goods {{index+1 == list_data.chop_goods.length?"last":""}}'>
+            <image class='goodImage' src="{{img_path}}{{item.specGoodsPrice.spec_img}}"></image>
+            <image wx:if="{{item.status == 2}}" class='scimage' src="../../../images/kanjia/kanjia_mc.png"></image>
+            <view class='goodsInfo'>
+              <view class='ziti_2 txt_dot {{item.status == 2?"color1":""}}'>{{item.goodsInfo.goods_name}}</view>
+              <view class='ziti_2 txt_dot {{item.status == 2?"color1":""}}' style='margin-top:10rpx;'>{{item.goodsInfo.goods_remark}}</view>
+              <view wx:if="{{item.status == 1}}" class='ziti_3 kjtxt color1'>砍价成功
+                <!-- <text class='color'>{{item.chop_money}}</text> 元 -->
+              </view>
+              <!-- <view wx:if="{{item.status == 0 && item.time}}" class='ziti_3 shou over'>
+                <text class='time'>{{item.time.hou}}</text>
+                <view class='mh'>:</view>
+                <text class='time'>{{item.time.min}}</text>
+                <view class='mh'>:</view>
+                <text class='time'>{{item.time.sec}}</text>
+                <view class='overtxt'>后结束</view>
+              </view> -->
+              <view class='ziti_3 color shou'>已送出{{item.number}}件</view>
+              <text catchtap='shouhou' data-item="{{item}}" data-index="{{index}}" class='shouhou_btn color ziti_3 {{item.status == 1?"ckorder":"sh_bg"}}'>{{kj_state[item.status]}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+
+
+
+
+
+    <view wx:if="{{type == 1}}" class='kong'></view>
+    <!-- <view wx:if="{{list_data.chop_price.data}}" class='kuai'> -->
+  
+      <!-- <view class='list'>
+        <view bindtap='mfpay' data-chop_id="{{item.chop_id}}" wx:for="{{list_data.chop_price.data}}" class='goods {{index+1 == list_data.chop_price.data.length?"last":""}}'>
+          <image class='goodImage' src="{{img_path}}{{item.specGoodsPrice.spec_img}}"></image>
+          <view class='goodsInfo'>
+            <view class='ziti_2 txt_dot'>{{item.goodsInfo.goods_name}}</view>
+            <view class='ziti_2 txt_dot' style='margin-top:10rpx;'>{{item.goodsInfo.goods_remark}}</view>
+            <view class='ziti_3 color shou'>已送出{{item.number}}件</view>
+            <text class='shouhou_btn sh_bg color ziti_3'>点击免费拿</text>
+          </view>
+        </view>
+      </view> -->
+
+      <!-- 每日上新 -->
+      <!-- <view wx:if="{{1 == 2}}" class='newList'>
+        <image class='newGoods' src="cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/newbg.png"></image>
+        <text class='ziti_1 title'>每日上新，超值精选</text>
+        <text class='ziti_3 zhaiyao'>7.9万人已免费拿 > </text>
+        <view class='newgoodsinfo'>
+          <view wx:for="{{3}}" class='spinfo'>
+            <image src=""></image>
+            <view class='ziti_3 '>湖南麻阳冰糖橙子</view>
+            <view class='ziti_4 color'>630人已免费拿</view>
+          </view>
+        </view>
+      </view> -->
+
+
+      <!-- <view class='list'>
+      <view wx:for="{{20}}" class='goods {{index == 2?"last":""}}'>
+        <image class='goodImage'></image>
+        <view class='goodsInfo'>
+          <view class='ziti_2 txt_dot'>湖南麻阳冰糖橙5斤，单果55mm+,像小巨蛋一样圆润，果肉无敌甜蜜</view>
+          <view class='ziti_3 color shou'>已送出1007件</view>
+          <text bindtap='shouhou' class='shouhou_btn btn_active color ziti_3'>点击免费拿</text>
+        </view>
+      </view>
+    </view> -->
+
+
+    <!-- </view> -->
+  </view>
+  </block>
+  <block wx:else>
+
+  <view class='ziti_2 color1' style='width:100%;text-align:center;padding-top:400rpx;'>
+   <image class='no_order_img' style='padding-bottom:20rpx;' src='../../../images/image/person_order.png'></image>
+  暂无数据
+
+  </view>
+  </block>
+</view>
+
+<template wx:if="{{is_dizhi}}" is="querendizhi" data="{{address}}"></template>

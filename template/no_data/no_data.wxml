@@ -1,0 +1,8 @@
+<!-- 暂无数据模板    -->
+<!-- no_datatap（暂定该名字）  如需点击跳转事件可用   名字可自行修改 -->
+<template name="no_data">
+  <view class='no_data' catchtap='no_datatap'>
+    <image class='no_data_img' src='../../../images/image/person_order.png' wx:if="{{no_data.src}}"></image>
+    <view class='ziti_2 color_gray no_data_txt'>{{no_data.title}}</view>
+  </view>
+</template>

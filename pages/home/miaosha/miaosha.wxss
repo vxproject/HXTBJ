@@ -1,0 +1,224 @@
+/* pages/home/miaosha/miaosha.wxss */
+
+.banner{
+  width: 100%;
+vertical-align: bottom;
+  /* max-height: 600rpx;
+  min-height: 400rpx; */
+}
+page{
+  background-color: #F4F4F4;
+}
+
+.time-scrollview{
+  width: 750rpx;
+  /* background:linear-gradient(to right, #fd4722 0%, #ff6413 100%); */
+  display: flex;
+  height: 120rpx;
+  flex-flow: row nowrap;
+  flex-shrink: 0;
+}
+scroll-view{
+  background:linear-gradient(to right, #fd4722 0%, #ff6413 100%);
+}
+
+
+.bj{
+  width:  28.5%;
+}
+.bj1{
+width:33.33333%
+}
+.bj2{
+  width:50%
+}
+.bj3{
+  width: 100%;
+}
+.time-kuai{
+  /* width: 25%; */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  color:#fac4b9;
+
+}
+
+.qgstate{
+  background-color: #fff;
+  padding: 5rpx 10rpx;
+  border-radius: 20rpx;
+  color: #fd4722;
+}
+
+/* 商品 */
+.goods_info{
+ 
+  width: 710rpx;
+  height: 280rpx;
+  background-color: #fff;
+  display: flex;
+  flex-shrink: 1;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+
+.goods_image{
+  width: 280rpx;
+  height: 280rpx;
+  background-color: #f5f5f5;
+  border-top-left-radius: 15rpx;
+  border-bottom-left-radius: 15rpx;
+}
+
+.goods{
+  width: 395rpx;
+  /* background-color: green; */
+  position: relative;
+
+  padding: 30rpx 20rpx 20rpx 20rpx;
+}
+.progress progress{
+  width:55%;
+}
+.progress{
+  margin-top:20rpx;
+  display: flex;
+}
+.progressView{
+  margin-left: 16rpx;
+}
+
+.qg_btn{
+  /* padding: 10rpx 20rpx; */
+  border-radius: 40rpx;
+  position: absolute;
+  right: 20rpx;
+  bottom: 8rpx;
+  width: 130rpx;
+  height: 42rpx;
+  text-align: center;
+  line-height: 42rpx;
+}
+.qg_status1{
+  color: white;
+  background-color:#55C217;
+}
+
+.qg_status2{
+  color: white;
+  background-color: #999999;
+}
+.qg_status3{
+  color: white;
+background:linear-gradient(to right, #fd4722 0%, #ff6413 100%);
+}
+.dingwei{
+  position: fixed;
+  top:0;
+  left: 0;
+  z-index: 999;
+}
+
+/* 倒计时 */
+
+.daojishi{
+  width: 750rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #fff;
+}
+.daojishi_time{
+  padding: 5rpx 5rpx;
+  background-color: #333333;
+  color: #fff;
+  border-radius: 4rpx;
+}
+
+.ms_price{
+  position: absolute;
+  left:20rpx;
+  bottom: 10rpx;
+  padding-right: 10rpx;
+  height: 38rpx;
+  background-color: #fd4722;
+  display: flex;
+  border-radius: 5rpx;
+  color:#fff;
+ 
+  
+}
+.ms_share{
+  position: absolute;
+  right:-40rpx;
+  top: 15rpx;
+  background:transparent;
+  width: 168rpx;
+  height: 80rpx;
+
+
+}
+.ms_share::after{
+  border: 0;
+}
+button{
+  padding-left:0;
+  padding-right:0;
+}
+button image{
+    width:84rpx;
+  height: 40rpx;
+}
+.ms_price image{
+  width: 100rpx;
+  height: 38rpx;
+}
+.price{
+  display: flex;
+  align-items: baseline;
+  height: 38rpx;
+  line-height: 38rpx;
+}
+
+
+.swiper{
+width: 100%;
+/* height: 700rpx; */
+  
+}
+.dingwei2{
+  position: fixed;
+  top:110rpx;
+  z-index: 999;
+  
+}
+.time_color{
+  color:#fff;
+}
+
+.alpha1{
+  opacity: 0;
+  display: 'none';
+}
+.alpha2{
+  opacity: 1;
+  display: 'block';
+}
+
+.no_order_img{
+    display: block;
+    margin:  0 auto;
+    width: 160rpx;
+    height: 125rpx;
+}
+
+.no_order_img1{
+    display: block;
+    margin:  0 auto;
+    width: 160rpx;
+    height: 125rpx;
+}

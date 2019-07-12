@@ -1,0 +1,58 @@
+var getState = function (item) {
+  // 未取消
+  if (item.deleted == 0){
+    if (item.pay_status == 0){
+      //未支付
+      return '待付款'
+    }else{
+      //已经支付
+      if (item.goodsInfo[0].is_send == 0){
+        //待发货
+        return '待发货'
+      } else if (item.goodsInfo[0].is_send == 1 && item.goodsInfo[0].return_status == 0){
+        //待收货
+         return '待收货'
+      }else{
+        //已收货
+        if (item.goodsInfo[0].is_comment == 1){
+          return '已收货' 
+        } else if (item.goodsInfo[0].return_status == 1) {
+          if (item.goodsInfo[0].status == 0) return '退款申请中'
+          else if (item.goodsInfo[0].status == 1) return '交易关闭'
+          else if (item.goodsInfo[0].status == 2) return '退款申请失败'
+          else if (item.goodsInfo[0].status == 4) return '交易关闭'
+        }
+        else{
+          return '待评价'
+        }
+         
+      }
+    }
+  }else{
+    //这个是订单
+    return -1
+  }
+}
+var getStateText = function (state) {
+  if (state == 0) return "申请中"
+  else if (state == 1) return '申请通过'
+  else if (state == 2) return '申请失败详情'
+  else if (state == 4) return '退款完成'
+}
+
+
+var formatTime = function (timestamp){
+  let date = new Date(timestamp);
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+
+  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+module.exports = {
+  getState: getState, getStateText: getStateText, formatTime: formatTime
+};

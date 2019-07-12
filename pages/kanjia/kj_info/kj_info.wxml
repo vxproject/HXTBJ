@@ -1,0 +1,150 @@
+<import src="/template/tanchuang/tanchuang.wxml" />
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+
+
+<view wx:if="{{hidden == 1}}" class='kj_info'>
+  <view class='top'>
+    <!-- 头像 -->
+    <view wx:if="{{type == 2}}" class='userInfo'>
+      <image class='touxiang' src="{{list_data.userInfo.head_pic}}"></image>
+      <view class='miaosu'>
+        <view class='ziti_2 title'>{{list_data.userInfo.nickname}}</view>
+        <view class='ziti_3 zhaiyao color2'>我发现一件好货，一起来砍价0元拿</view>
+      </view>
+    </view>
+    <!-- 商品 -->
+    <view class='goods'>
+      <image src="{{img_path}}{{list_data.info.specGoodsPrice.spec_img}}" class='goodImage'></image>
+      <view class='goodsInfo'>
+        <view class='ziti_2 txt_dot'>{{list_data.info.goodsInfo.goods_name}}</view>
+        <view class='ziti_2 txt_dot'>{{list_data.info.goodsInfo.goods_remark}}</view>
+        <view wx:if="{{list_data.info.status == 0 && list_data.info.time}}" class='ziti_3 shou over'>
+          <text class='time'>{{list_data.info.time.hou}}</text>
+          <view class='mh'>:</view>
+          <text class='time'>{{list_data.info.time.min}}</text>
+          <view class='mh'>:</view>
+          <text class='time'>{{list_data.info.time.sec}}</text>
+          <view class='overtxt color2'>后结束</view>
+        </view>
+        <view class='color price ziti_3'>￥{{list_data.info.goods_shop}}</view>
+        <view class='color2 xiaoliang ziti_3'>{{list_data.info.number}}人已0元拿 ></view>
+      </view>
+      <!-- <text bindtap='shouhou' class='shouhou_btn color ziti_3 shstate'>待发货</text> -->
+    </view>
+    <!-- 砍价  已砍{{list_data.info.chop_money}}元，还差{{list_data.info.c_price}}元 -->
+    <view class='kanjia'>
+      <view wx:if="{{list_data.info.status != 0}}" class='ziti_2'>{{type == 2&&list_data.info.status==1?list_data.userInfo.nickname + "已经砍价成功，你也快来免费拿":kj_states[list_data.info.status-1]}}</view>
+      <view wx:else class='ziti_2'>
+        <text>已砍</text>
+        <text class='color'>{{list_data.info.chop_money}}</text>
+        <text>元，还差</text>
+        <text class='color'>{{list_data.info.c_price}}</text>
+        <text>元</text>
+      </view>
+      <progress class='progress' percent="{{list_data.info.status == 1?'100':list_data.info.chop_money/list_data.info.goods_shop*100}}" stroke-width="6" activeColor="red" backgroundColor="#EBEBEB" border-radius="15" />
+      <block wx:if="{{type == 1}}">
+        <!-- <view class='ziti_2 sharezy color'>{{stateData[list_data.info.status].title}}</view> -->
+        <block wx:for="{{stateData[list_data.info.status].image}}">
+          <block wx:if="{{list_data.info.status == 0 ||(list_data.info.status == 1 && index == 0)}}">
+            <button  open-type='share' data-id="{{list_data.info.chop_goods_id}}" data-title="{{list_data.info.goodsInfo.goods_name}}">
+              <image mode="widthFix" class='stateImage' src="{{item}}"></image>
+            </button>
+          </block>
+          <block wx:else>
+            <image bindtap='{{stateData[list_data.info.status].click[index]}}' mode="widthFix" class='stateImage' src="{{item}}"></image>
+          </block>
+        </block>
+        </block>
+
+        <block wx:elif="{{type == 2}}">
+          <!-- <view class='ziti_2 sharezy color'>邦好友砍一刀</view> -->
+          <view>
+            <image bindtap='kanjiaDetail' data-iskj="{{list_data.info.is_kj}}" mode="widthFix" class='stateImage' src="{{list_data.info.is_kj == 0 && list_data.info.status == 0?'cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/f_kanjia.png':'cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/mymianfei.png'}}"></image>
+          </view>
+        </block>
+    </view>
+
+    <!-- 砍价anli -->
+    <view wx:if="{{list_data.rand_chop[0]}}" class='kjbang'>
+      <view class='ziti_2 color anli'>已有{{list_data.info.totel_number}}人砍价成功</view>
+      <!-- <view class='ziti_2 color miandan'>
+        <image src="cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/kanjia_money.png"></image>
+        免单攻略
+      </view> -->
+      <view wx:for="{{list_data.rand_chop}}" class='anligoods'>
+        <image class='goodsimg' src="{{img_path}}{{item.specGoodsPrice.spec_img}}"></image>
+        <view class='gsinfo '>
+          <view class='gs_title ziti_3 titletxt'>{{item.goodsInfo.goods_name}}</view>
+          <view class='gs_xiaoliang ziti_3 color'>已送出{{item.number}}件</view>
+        </view>
+        <view class='rightuser'>
+          <view class='topuser'>
+            <image src="{{item.userInfo.head_pic}}"></image>
+            <view class='ziti_2 color2 name txt_dot'>{{item.userInfo.nickname}}</view>
+          </view>
+          <view class='ziti_2 color gsstate'>已免费拿</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 砍价帮 -->
+
+    <view wx:if="{{list_data.chop_user.length > 0}}" class='kjbang'>
+      <image class='kjbImage' src="cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/kjb.png"></image>
+      <!-- <scroll-view scroll-y="{{scrollview}}" style='max-height:{{kjbHeight}}rpx;'> -->
+      <view class='{{scrollview == false?"kjbheight":""}}'>
+        <view wx:for="{{list_data.chop_user}}" class='userInfo'>
+          <image class='touxiang' src="{{item.userInfo.head_pic}}"></image>
+          <view class='miaosu kjbbg'>
+            <view class='ziti_2 title'>{{item.userInfo.nickname}}</view>
+            <view class='ziti_3 zhaiyao color2 txt_dot'>{{item.notes}}</view>
+          </view>
+          <view class='moneybg'>
+            <image src="cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/kanjia_money.png"></image>
+            <view class='ziti_2'>砍掉{{item.money}}元</view>
+          </view>
+        </view>
+        <!-- </scroll-view> -->
+      </view>
+      <view bindtap='loadmore' class='ziti_2 color2 more'>{{moreTxt}}
+      <image src="{{moreimage}}"></image>
+      </view>
+    </view>
+    <!-- </view> -->
+
+
+
+
+    <!-- 活动规则 -->
+    <view wx:if="{{scrollview}}" class='kjbang ziti_2 color2'>
+      <image class='kjbImage' src="cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/kanjia_gz.png"></image>
+      <view class='guize'>1、为感谢广大消费者对好享淘的支持和热爱，好享淘官方为消费者提供免费领取商品的福利，消费者可以通过水果免费吃活动获得商品。</view>
+      <view class='guize'>2、选择您心仪的商品，邀请好友一起砍价，只要在24小时内砍价砍到0元就可以免费获得商品，无须承担任何商品成本及邮寄费用。</view>
+      <view class='guize'>3、必须在砍价过期前提供收货地址，没有收货地址砍到0元也是砍价失败，将无法为您发货。</view>
+      <view class='guize'>4、砍到0元并填写好地址后，我们将会为您进行审核订单，订单审核成功即可发货，若发现异常砍价订单（包括但不限于恶意刷单、非正常手段砍成），水果免费吃活动运营方有权取消订单。</view>
+      <view class='guize'> 您每天最多能帮助3个好友砍价，对于同一个砍价，只能帮助砍价1次。</view>
+    </view>
+
+
+  </view>
+  <!-- 精选推荐 -->
+  <view wx:if="{{list_data.recomm.length > 0 }}" class='jingxuan'>
+    <view class='jxtitle'>
+      <image src="cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/kanjia_money.png"></image>
+      <view class='ziti_2 color tjtitle'>精选推荐</view>
+    </view>
+    <view class='newgoodsinfo'>
+      <view wx:for="{{list_data.recomm}}" class='spinfo'>
+        <image src=""></image>
+        <view class='ziti_3 '>湖南麻阳冰糖橙子</view>
+        <view class='ziti_4 color'>630人已免费拿</view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<template wx:if="{{is_kj == 2}}" is="kanjiajindu" data="{{jindu_data}}"></template>
+
+<template wx:if="{{is_kj == 3}}" is="mianfeina" data="{{mianfeina_data}}"></template>

@@ -1,0 +1,11 @@
+/* pages/other/webview/webview.wxss */
+
+
+.help{
+  position: fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
+  height: 105rpx;
+  background-color: red;
+}

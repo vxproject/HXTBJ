@@ -1,0 +1,107 @@
+/* 当前进度 */
+
+.tk_progress {
+    padding: 30rpx 35rpx 20rpx 35rpx;
+    position: relative;
+}
+.tk_progress_btn{
+    position: absolute;
+    top: 15rpx;
+    right: 35rpx;
+    width: 160rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    border-radius: 10rpx;
+    border: solid 3rpx currentColor;
+}
+.tk_progress_con {
+    display: flex;
+    flex-direction: column;
+}
+
+.tk_progress_con text {
+    margin-top: 20rpx;
+}
+
+/* 退款商品详情 */
+
+.tkgoods_info {
+    padding: 35rpx;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tkgoods_info_img {
+    width: 150rpx;
+    height: 150rpx;
+    background-color: #f5f5f5;
+}
+
+.tkgoods_info_txt {
+    width: 510rpx;
+    height: 150rpx;
+}
+
+.tk_reason {
+    padding: 20rpx 35rpx;
+}
+
+/* 退款原因补充描述 */
+
+.tk_reason_txt {
+    padding: 30rpx 35rpx;
+}
+
+.tk_reason_txt_title {
+    padding-bottom: 20rpx;
+}
+
+.tk_reason_txt_txt>view {
+    background-color: #f5f5f5;
+    border-radius: 10rpx;
+    padding: 15rpx;
+}
+
+/* 申请图片 */
+
+.tk_photo {
+    padding-left: 35rpx;
+}
+
+.tk_photo_title {
+    padding-bottom: 20rpx;
+}
+
+.tk_photo_group image:nth-child(3n-1) {
+    margin: 0rpx 30rpx 20rpx 30rpx;
+}
+
+.tk_photo_img {
+    margin-bottom: 20rpx;
+    width: 206rpx;
+    height: 206rpx;
+    background-color: #f5f5f5;
+}
+
+/* 固定客服框 */
+
+.fixed_kefu {
+    width: 260rpx;
+    height: 110rpx;
+    position: fixed;
+    right: 0;
+    bottom: 140rpx;
+    background: #f50;
+    border-top-left-radius: 50rpx;
+    border-bottom-left-radius: 50rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.fixed_kefu_img {
+
+    width: 55rpx;
+    height: 55rpx;
+}

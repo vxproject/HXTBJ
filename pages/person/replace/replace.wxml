@@ -1,0 +1,84 @@
+<wxs module="orders" src="../order/order.wxs"></wxs>
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view class='container'>
+  <!-- 退款申请列表 -->
+  <view class='shenqing_jl_box' wx:if="{{2 == 3}}">
+    <block wx:for='{{8}}'>
+      <view class='shenqing_jl_item'>
+        <!--  -->
+        <view class='shenqing_jl_item_header'>
+          <text class='ziti_3 color_gray'>订单编号：N181222544830202768</text>
+        </view>
+        <!-- 纪录商品 -->
+        <view class='goods_info'>
+          <view class='goods_info_left'>
+            <image class='goods_info_img'></image>
+          </view>
+
+          <view class='goods_info_right'>
+            <view class=' ziti_2 txt_dot'>
+              苹果100箩筐苹果100箩筐苹果100箩筐苹果100箩筐
+            </view>
+            <view style='margin-top:30rpx;' class='goods_info_right_price ziti_3'>
+              <text>实付金额：￥66666.6</text>
+              <text style='padding-left:20rpx;'>数量：x1</text>
+            </view>
+            <view class='shenqing_tk_item_btn ziti_2 btn_active'>申请售后</view>
+          </view>
+        </view>
+      </view>
+      <!-- kong -->
+      <view style='height:20rpx;background:#f7f7f7;'></view>
+    </block>
+  </view>
+  <view wx:if='{{list_data.data[0]}}'  bindtap='detail' data-index="{{idx}}" wx:for="{{list_data.data}}" wx:for-index="idx" class='order_quxiao order_item'>
+   
+    <!-- 头部 -->
+    <view class='order_item_header'>
+      <text class='order_item_header_n ziti_3 color_gray' style='padding-right:20rpx;'>订单编号:{{item.order_goods_sn}}</text>
+                      <text catchtap='copy' data-copTxt="{{item.order_goods_sn}}" class='ziti_3 color_gray copy' style='padding:5rpx 10rpx;'>复制</text>
+      <text class='order_status ziti_3 color_price'>{{item.status == 0?"退款申请中":item.status == 1?"交易关闭":item.status == 2?"退款申请失败":"交易关闭"}}</text>
+    </view>
+    <!-- 商品详情 -->
+    <view class='goods_container'>
+      <view class='goods_content mar_center'>
+        <image class='goods_content_img' src='{{img_path}}{{item.spec_img}}'></image>
+        <view class='goods_content_info'>
+          <view class='goods_content_info_title ziti_2'>
+            {{item.goods_name}}
+          </view>
+          <view class='goods_content_info_spec ziti_3 color_gray'>{{item.spec_key_name}}</view>
+          <view>
+            <text class='ziti_2 color_price'>￥{{item.goods_price}}</text>
+            <text style='padding-top:5rpx;' class='ziti_2 color_gray flo_right'>x{{item.goods_num}}</text>
+          </view>
+        </view>
+        <image catchtap='shouchang' data-bindex="{{idx}}" data-item="{{item}}" data-flag="1" data-index="{{idx}}" class='order_shoucang_btn' src='{{item.is_collectd == 0?"../../../images/order/order_dai_shoucang.png":"../../../images/order/order_yi_shoucang.png"}}'></image>
+      </view>
+    </view>
+    <!--  -->
+    <view class='goods_info_sum'>
+      <text class='ziti_3 color_gray'>共{{item.goods_num}}件商品</text>
+      <text style='padding:0 30rpx;' class='ziti_3'>已支付:￥{{item.goods_price}}</text>
+    </view>
+ </view>
+
+    <view wx:if="{{list_data.data[0]}}"  class='shouhou  ziti_3' catchtap='shouhou'>
+      售后说明
+    </view>
+
+
+
+
+  <!-- 无订单状态 -->
+  <view wx:if='{{!list_data.data[0]}}' class='no_order'>
+            <image class='no_order_img' src='../../../images/image/person_order.png'></image>
+            <view class='ziti_2 color_gray no_order_txt'>暂无退款售后</view>
+    </view>
+
+
+
+
+
+</view>

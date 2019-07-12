@@ -1,0 +1,11 @@
+<template name="nmember">
+    <view class='top'>
+        <image class='nmember2' src="{{item.nmember}}"></image>
+        <view class='head topk'>
+           <image class='headImg' src="{{item.icon}}"></image>
+           <view class='ziti2'>张益鹏</view>
+           <view class='vipstate statett'>普通</view>
+        </view>
+    </view>
+</template>
+

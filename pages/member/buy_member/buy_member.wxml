@@ -1,0 +1,117 @@
+<!-- 创业人信息 -->
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<block wx:if="{{hidden == 1}}">
+<view class='chuangye_user_info border_top'>
+    <view class='title_ ziti_1'>创业人信息</view>
+    <view class='form_group ziti_2'>
+        <view class='form_item color_gray'>
+            <input bindinput="bindKeyInput" data-flag ="name"  type='text' placeholder='输入真实姓名'></input>
+        </view>
+        <view class='form_item border_top color_gray'>
+            <input bindinput="bindKeyInput" data-flag ="phone" type='number' placeholder='输入真实手机号' maxlength='11'></input>
+        </view>
+        <view class='form_item form_btn_box border_top color_gray'>
+            <input bindinput="bindKeyInput" data-flag ="code" type='number' placeholder='验证码'></input>
+            <view bindtap='getCode' class='huoqu_btn ziti_2 color_price'>{{yanzhengma}}</view>
+        </view>
+        <view class='form_item border_top'>
+            <text>绑定微信：</text>
+            <image class='form_item_user_img' src="{{userinfo.head_pic}}"></image>
+            <text class='user_name'>{{userinfo.nickname}}</text>
+        </view>
+        <view class='form_item border_top'>
+            <text>推荐人：</text>
+            <image class='form_item_user_img' src="{{userinfo.first_header}}"></image>
+            <text class='user_name'>{{userinfo.first_leader}}</text>
+        </view>
+
+
+    </view>
+</view>
+<!-- 收货人地址 -->
+<view class='address_box'>
+    <view class='title_ ziti_1'>收货人地址</view>
+    <!-- 彩线 -->
+    <image style='width:100%;height:10rpx;display:block;' src='../../../images/buy/cai_line.png'></image>
+    <!-- 无地址时 -->
+    <view bindtap='addaddress' wx:if="{{!list_data.address || list_data.address.length == 0}}" class='no_address_box'>
+        <view class='no_address_center'>
+            <image class='no_address_box_logo1' src='../../../images/buy/address_logo.png'></image>
+            <text style='width:540rpx;' class='ziti_2 color_price'>请选择收货地址</text>
+            <image class='no_address_box_logo2' src='../../../images/buy/dizhi_back.png'></image>
+        </view>
+    </view>
+    <!-- 有地址时 -->
+    <view bindtap='addaddress' wx:else class='yes_address_box'>
+        <view class='yes_address_center'>
+            <view class='yes_address_group'>
+                <view class='address_group_item address_group_item1 txt_dot ziti_3 color_gray'>
+                    <text class='ziti_3 color_price' style='padding:0rpx 10rpx; border-radius: 10rpx;border: solid 3rpx #f50707;'>收货地址</text>
+                    <text style='padding-left:10rpx;'>{{list_data.address.province_name}}</text>
+                    <text style='padding-left:10rpx;'>{{list_data.address.city_name}}</text>
+                    <text style='padding-left:10rpx;'>{{list_data.address.district_name}}</text>
+                </view>
+                <view class='address_group_item txt_dot ziti_2'>
+                    {{list_data.address.address}}
+                </view>
+                <view class='address_group_item txt_dot ziti_3 color_gray'>
+                    <text>{{list_data.address.consignee}}</text>
+                    <text style='padding-left:10rpx;'>{{list_data.address.mobile}}</text>
+                </view>
+            </view>
+            <image class='no_address_box_logo2' src='../../../images/buy/dizhi_back.png'></image>
+        </view>
+    </view>
+
+
+</view>
+
+
+<!-- 商品详情 -->
+<view class='goods_info_box_t ziti_2 color_gray'>商品信息</view>
+<view class='goods_info_box border_top'>
+    <view class='goods_info_center'>
+        <image class='goods_info_img' src="{{img_path}}{{list_data.specGoodsPrice[0].spec_img}}"></image>
+        <view class='goods_info_group'>
+            <view class='goods_title ziti_2 txt_dot'>{{list_data.goods_name}}</view>
+            <view class='goods_guige ziti_3 color_gray txt_dot'>{{list_data.specGoodsPrice[0].key_name}}</view>
+            <view class='goods_sm ziti_3 color_price'>
+                <text style='padding:0rpx 10rpx; border-radius: 10rpx;border: solid 3rpx #f50707;'>不支持七天无理由退货</text>
+            </view>
+            <view class='goods_price ziti_2 color_price'>
+                <text>￥{{list_data.shop_price}}</text>
+                <text style='float:right;' class='ziti_2 color_gray'>x1</text> 
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+<!-- 支付方式 -->
+<view class='pay_style ziti_2'>
+    <text>支付方式</text>
+    <view class='pay_style_right' style='height:90rpx;'>
+        <text>微信支付</text>
+        <image class='pay_style_logo' src='../../../images/buy/weixin_logo.png'></image>
+    </view>
+</view>
+
+
+<!-- 协议 -->
+<view class='agreement_box ziti_3 color_gray'>
+    本人承诺“本人无任何违法犯罪纪录，且未参与任何邪教组织”，如本人上述承诺不属实， 本人愿承担由此给贵公司造成的全部损失，以及相应的法律责任。
+</view>
+
+
+<!-- 底部栏 -->
+<view class='bottom_box'>
+    <text class='ziti_3 color_price' style='padding-left: 35rpx;'>支付成功后即可成为会员，享受特权</text>
+    <view bindtap='pay' class='bottom_box_btn btn_active ziti_3'>
+        <view>去付款</view>
+        <view>￥{{list_data.shop_price}}</view>
+    </view>
+</view>
+</block>
+

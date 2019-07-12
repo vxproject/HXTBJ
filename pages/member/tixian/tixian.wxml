@@ -1,0 +1,120 @@
+<!--pages/member/tixian/tixian.wxml-->
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view wx:if="{{hidden == 1}}" class='container'>
+  <!-- 实名资料 -->
+ <form bindsubmit="formSubmit">
+  <view class='user_data ziti_2'>
+   
+      <view class='user_data_header user_data_item color_gray'>实名资料</view>
+      <view class='name_ipt user_data_item'>
+        <text>真实姓名</text>
+        <input name="realname" class='input_' placeholder='输入持卡人真实姓名'></input>
+      </view>
+
+      <!-- 开户银行选择 -->
+      <view class='check_tiaojian user_data_item'>
+        <view class='check_tiaojian_left'>
+          <text class='ziti_2'>开户银行</text>
+        </view>
+        <picker bindchange="bindPickerChange" class='check_tiaojian_right' mode='selector' range='{{card_list}}'>
+          <text class='check_tiaojian_txt ziti_2 color_gray'>{{card_list[seleted]}}</text>
+          <image class='back_logo' src='../../../images/image/person_dizhi_back.png'></image>
+        </picker>
+      </view>
+
+      <view class='name_ipt user_data_item'>
+        <text>储蓄银行卡</text>
+        <input name="bank" class='input_' placeholder='输入储蓄银行卡号'></input>
+      </view>
+
+  </view>
+  <!-- kong -->
+  <view style='height:35rpx;background:#f5f5f5;'></view>
+  <!-- 手机和验证码 -->
+  <view class='user_data ziti_2'>
+    <view class='name_ipt user_data_item'>
+      <text>手机号</text>
+      <input bindinput='getPhone' name="mobile" class='input_' placeholder='请输入手机号' maxlength='11'></input>
+    </view>
+    <view class='name_ipt user_data_item'>
+      <input name="code" style='text-align: left;' class='input_' placeholder='请填写验证码'></input>
+      <text bindtap='getCode' class='huoqu_btn color_price btn_active'>{{yanzhengma}}</text>
+    </view>
+  </view>
+ 
+
+
+  <!-- kong -->
+  <view style='height:70rpx;background:#f5f5f5;'></view>
+  <!-- 下一步btn -->
+  <view style='background:#f5f5f5;'>
+    <button form-type="submit" class='next_btn ziti_2 btn_active'>
+      下一步
+    </button>
+  </view>
+  </form>
+
+  <!-- 注意事项 -->
+  <view class='zhuyi_box ziti_2'>
+    <view class='zhuyi_box_header'>注意事项</view>
+    <view class='zhuyi_box_txt ziti_3 color_gray'>
+      <text>1.为了保证资金安全,请输入与当前会员账户一致的相关信息;</text>
+      <text>2.当前每个账户仅可绑定一张银行卡作为提现账户,请谨慎填写提现信息;</text>
+      <text>3.请确保以上信息真实无误;</text>
+    </view>
+
+  </view>
+</view>
+
+
+<view wx:if="{{hidden == 2}}" class='container'>
+    <!-- 到账银行卡 -->
+    <view class='dao_box ziti_2'>
+        <text class='color_gray'>到账银行卡</text>
+        <image class='bank_img' src='{{img_path}}{{list_data.bankInfo.hasBankModel.img_big}}'></image>
+        <text>{{list_data.bankInfo.hasBankModel.bank_name}}</text>
+    </view>
+    <!-- 金额填写 -->
+    <view class='ipt_price round_shadow'>
+        <view class='ipt_price_ipt'>
+            <text>￥</text>
+            <input type='number' bindinput='changeMoney' value='{{money}}'  placeholder='0.0' class='ziti_2'></input>
+        </view>
+        <view class='ipt_price_ts ziti_2'>
+            <text class='color_gray'>当前可提现金额 {{list_data.bankInfo.user_money}}元</text>
+            <text bindtap='allTixian' class='btn_active' style='color:#fbb71d;padding:25rpx 0 25rpx 20rpx;'>全部提现</text>
+        </view>
+    </view>
+    <!-- 手机和验证码 -->
+    <view class='phone_box round_shadow ziti_2 color_gray'>
+        <view>
+            <text>手机号</text>
+            <text>{{list_data.bankInfo.teltphone}}</text>
+        </view>
+        <view>
+            <input bindinput='changeCode' type='number' placeholder='请填写验证码'></input>
+            <text bindtap='getyzm' class='huoqu_btn color_price btn_active'>{{yanzhengma}}</text>
+        </view>
+    </view>
+    <view bindtap='tixian' class='next_btn ziti_2 btn_active'>
+        立即提现
+    </view>
+    <!-- 注意事项 -->
+    <view class='zhuyi_box ziti_2'>
+        <view class='zhuyi_box_header'>注意事项</view>
+        <!-- line -->
+        <view class='line_'></view>
+        <view class='zhuyi_box_txt ziti_3 color_gray'>
+            <text>1.单笔提现金额不得小于1元，不得大于20000元;</text>
+            <text>2.每日最多提现5次;</text>
+            <text>3.每日提现总金额不得大于20000元;</text>
+        </view>
+
+    </view>
+</view>
+
+
+
+
+

@@ -1,0 +1,167 @@
+<!-- 第一种模板弹窗 -->
+<template name="window_two">
+  <view wx:if="{{item}}" class=" showmodel_wind {{item.testFlag?'':'transform'}} " catchtouchmove="catchtouchmove">
+    <view class='content'>
+      <view class=' content_small '>
+        <view class='content_small_hezi '>
+          <image mode='aspectFill' src='/images/template/chahao_two.png' catchtap='cancel' class='content_small_img ' />
+        </view>
+      </view>
+      <image class='content_big_img ' mode='' src="{{item.imgsrc}}{{item.image}} " catchtap="{{item.type==1?'navClick':'catchbtn'}}" data-item="{{item}}">
+      </image>
+    </view>
+  </view>
+</template>
+
+<!-- 选择地址列表弹窗 -->
+<template name="xuanzedizhi">
+  <view class='window_yinying  ziti_2'>
+  </view>
+  <view class='xuanzeaddress'>
+    <view class='xuanzeaddress_top' catchtap='cancle'>
+      <view class='  top_ttiel'>选择收货地址</view>
+      <image class='xuanzeaddress_img' src="../../images/home/shut_logo.png" />
+    </view>
+    <scroll-view class='dizhilist' scroll-y style='max-height:710rpx;'>
+      <view wx:for="{{address_list}}" wx:key="" class='xuanzeaddress_list ' catchtap='choose_address'>
+        <view class='list_data'>
+          <view class='list_xingming'>
+            <view>{{item.username}}</view>
+            <view class='tel'>{{item.tel}}</view>
+          </view>
+          <view class='list_xingming  xiangxi'>
+            <view class='morendizhi  color_price ' wx:if="{{item.flag}}">默认地址</view>
+            <view class='txt_dot '>{{item.address_detail}}</view>
+          </view>
+        </view>
+        <image class='list_img' src='../../images/buy/dizhi_back.png' />
+      </view>
+      <view class='newaddress   color_gray' catchtap='add_address'>
+        <view>添加新收货地址</view>
+        <image class='list_img' src='../../images/buy/dizhi_back.png' />
+      </view>
+    </scroll-view>
+  </view>
+</template>
+
+<!-- 确认地址弹窗 -->
+<template name="querendizhi">
+  <view class='window_yinying '>
+    <view class='queren'>
+      <view class='queren_title  ziti_1'>请确认您的收货地址</view>
+      <view class='querencontern color_gray'>
+        <view class='ziti_2  queren_cont'>{{address.consignee}}，{{address.mobile}}，{{address.province_name}}{{address.city_name}}{{address.district_name}}{{address.address}}</view>
+      </view>
+      <view class='queren_btn ziti_2'>
+        <view class='color_gray cancel_btn' catchtap='confirm_btn' data-flag="0">取消</view>
+        <view class='color_price  confirm_btn' catchtap='confirm_btn' data-flag="1">确认</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 分享 -->
+<template name="fenxiang">
+  <view class='window_yinying'>
+    <view class='share_data' wx:if="{{share_data}}">
+      <image class='share_ing' src='{{share_data.img}}'>
+        <view class='dedao ziti_2'>已有{{share_data.num}}人免费拿</view>
+      </image>
+      <view class='share_cont'>
+        <view class='share_title ziti_2 color_gray'>不分享给好友吗？免费的{{share_data.title}}还在等你哦~</view>
+      </view>
+      <view class='share_btn ziti_2'>
+        <view class='color_gray cancel_btn' catchtap='share_btno'>放弃免费机会</view>
+        <button class='color_price  confirm_btn ziti_2' open-type='share' hover-class='none'>去分享</button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 群分享 -->
+<template name="qunfenxiang">
+  <view class='window_yinying'>
+    <view class='qun_data'>
+      <view class='color_gray ziti_2 qun_text'>继续分享2个不同的群聊，再
+        <text class='color_price ziti_1'>多砍2.99</text>元</view>
+      <view class='jindu_vx'>
+        <view class='ziti_2 qun_shouci'>首次分享成功，多砍了
+          <text class='color_price price'>2.88</text> 元</view>
+        <image class='vx_img' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/kanjia/vx_header.png?sign=10613055cc8b7fbbb54236adecd045da&t=1559200302' />
+      </view>
+      <view class='share_vx'>
+        <button class='ziti_3 vx_btn  color_gray' hover-class='none' open-type='share'>分享给好友</button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 砍价途径 -->
+<template name="kanjiatujing">
+  <view class='window_yinying'>
+    <view class='share_data' wx:if="{{tujing_img}}">
+      <image class='share_ing' src='{{tujing_img}}' />
+      <view class='kanjia_title ziti_2 color_gray'>通过不同的途径:浏览商品或点</view>
+      <view class='kanjia_text ziti_2 color_gray'>赞评论等获取不同金额砍价的机会</view>
+      <view class='share_btn ziti_2'>
+        <view class='color_gray cancel_btn' catchtap='kanjia_btno'>离开</view>
+        <view class='color_price  confirm_btn' catchtap='kanjia_yes'>转转</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 砍价进度 -->
+<template name="kanjiajindu">
+  <view bindtap="closeTC" class='window_yinying'>
+    <view class='jindu_data'>
+      <image class='jindu_ing' mode='widthFix' src='../../../images/other/success_kanjia.png' />
+      <view class='ziti_1 jindu_text'>您已经砍价
+        <text class='color_price ziti_1'>{{jindu_data.money}}</text> 元</view>
+      <view class='progress_tanchuang'>
+        <!-- jindu_data.money/jindu_data.allmoney -->
+        <progress border-radius="10" stroke-width='10' activeColor="#ff5500" percent="{{jindu_data.jindu}}" class='jindu' />
+      </view>
+      <view class='color_gray ziti_2 jindu_text'>分享给好友,可以多砍一刀哟</view>
+      <button class='jindu_vx' data-id="{{jindu_data.chop_goods_id}}" data-title="{{jindu_data.title}}" hover-class='none' open-type='share'>
+        <image class='vx_img' src='../../../images/other/vx_header.png' />
+      </button>
+      <view class=''>
+        <button class='ziti_3 vx_btn  color_gray' data-id="{{jindu_data.chop_goods_id}}" data-title="{{jindu_data.title}}" hover-class='none' open-type='share'>分享给好友</button>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+<template name="mianfeina">
+  <view bindtap='closeTC' class='mfn_zhezhao'>
+    <view class='mfn_content'>
+      <image class='mfn_content_img' src='cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/tanchuang_beijing_img.png' mode='widthFix' />
+    </view>
+    <view class='mfn_text ziti_3 color_gray'>
+      <view class='lainaa '>谢谢你帮我砍了
+        <text class='color_price ziti_1'>{{mianfeina_data.price}}</text>元, </view>
+      <view class='lainaa'>你也来免费拿吧</view>
+    </view>
+    <image class='mfn_content_touxiang' src='{{mianfeina_data.head_img}}' />
+    <image catchtap='mianfei_pay' class='mfn_btn_img' src='cloud://hxt-cdff72.6878-hxt-cdff72/kanjia/tc_click.png' mode='widthFix' />
+  </view>
+</template>
+
+
+<!-- 领取失败 -->
+<template name="lingqushibai">
+  <view bindtap='closeTC' class='lingq_fail_img'>
+    <view class='lin_fail_img'>
+      <image wx:if="{{lingqu.type == 1}}" class='lingq_fail' src="{{lingqu.img}}" mode="widthFix" />
+
+      <image wx:if="{{lingqu.type == 2}}" class='lingq_success' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/yijiqietu/icon_coomen_c_success.png?sign=a3d014a3616b002a241490a7ade849cb&t=1560255156' mode="widthFix">
+       <view class='ziti_jinqian'>¥{{lingqu.money}}</view>
+      </image>
+    </view>
+    <!-- <view class='chahao_img'>
+      <image class='chahao' src='../../../images/detail/close.png'></image>
+    </view> -->
+  </view>
+</template>

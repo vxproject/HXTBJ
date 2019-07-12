@@ -1,0 +1,50 @@
+<!--components/login/login.wxml-->
+<view class='container'>
+
+  <!-- 微信授权 -->
+  <view wx:if="{{flag == 0}}" class="">
+    <view class='icon_bg'>
+      <image class='icon' src='{{icon}}'></image>
+      <image class='login_zh' src='{{login_zh}}'></image>
+      <image class='icon' src='{{wechat}}'></image>
+    </view>
+    <view class='zy ziti1 color1'>登陆后应用将获得以下权限</view>
+    <view class='wechat_info'>
+      <image src="{{yuandian}}"></image>
+      获得你的公开信息（昵称、头像等）
+    </view>
+    <button class='wechat flexcenter sq_btn' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+      <view class="wtext" style='font-size:36rpx;'>确认授权</view>
+    </button>
+  </view>
+  <!-- 登陆 -->
+  <view wx:elif="{{flag == 1}}">
+    <view class='kuai'>
+      <image class='icon' src='{{icon}}' style='margin-bottom:80rpx;'></image>
+      <view class='gy_yshi'>
+        <image mode='widthFix' src='../../images/other/shouji.png' class='shoujhao' />
+        <input class='input2 ziti1' bindinput="bindKeyInput" data-flag="phone" maxlength="11" type="number" placeholder="请输入手机号" />
+      </view>
+
+      <view class='flex'>
+        <view class='gy_yshi'>
+          <image mode='widthFix' src='../../images/other/xiaodunpai.png' class='shoujhao' />
+          <input class='input2 ziti1 yinput' bindinput="bindKeyInput" data-flag="code" maxlength="6" type="number" placeholder="请输入验证码" />
+        </view>
+
+        <view bindtap="bindgetcode" class='getyzm ziti2 color'>{{yanzhengma}}</view>
+      </view>
+      <view class='gy_yshi'>
+        <image mode='widthFix' src='../../images/other/dibiao.png' class='shoujhao' />
+        <input class='input2 ziti1' bindinput="bindKeyInput" disabled="{{ycode == -1 ?false:true}}" data-flag="yqcode" placeholder="{{ycode == -1?'请输入邀请码':ycode}}" />
+      </view>
+
+      <view class='tx ziti_2 bzcolor'>为了保证您的账户安全，请绑定手机号</view>
+    </view>
+    <view bindtap='bindtijiao' class="{{istj == 0?'sure hui':'sure bgcolor'}}">确认</view>
+    <view bindtap='tiaokuan' class='ziti_3' style='margin-top:10rpx;'>
+      <text class='color2'>登录即代表阅读并同意</text>
+      <text class='color'>服务条款</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+var getStatus = function (status,progress) {
+  if (status == 1){
+    if(progress >= 98){
+      return '即将售罄'
+    }
+    return '已抢' + progress + "%"
+  } 
+  else if (status == 2) return '已售罄'
+  else if (status == 3) return '已结束'
+  else return '11111111'
+}
+var setBtn = function(status){
+  if(status == 1) return '立即抢购'
+  else if(status == 2) return '已售罄'
+  else if (status == 3) return '已结束'
+  else return '未开始'
+}
+
+var setstyle = function (status) {
+  if (status == 1) return ''
+  else if (status == 2) return 
+  else if (status == 3) return 
+}
+
+module.exports = {
+  getStatus: getStatus, setBtn: setBtn, setstyle: setstyle
+};

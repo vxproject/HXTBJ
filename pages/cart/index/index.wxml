@@ -1,0 +1,117 @@
+<!-- 无商品的状态 -->
+<wxs module="filters" src="../../home/store/filter.wxs"></wxs>
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<block wx:if="{{hidden == 1 && !failflag }}">
+ 
+  <view class='lsz_car_gouwucge'>
+    <image mode='widthFix' class='lsz_car_topimg' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/yijiqietu/lsz_car_bcimg.png?sign=348473474867b772f6ab79828736e241&t=1559700818'>
+      <view class='lsz_car_guanli' catchtap='guanli' wx:if="{{list_data.list && list_data.list.length > 0}}">{{guanliFlag?"完成":"管理"}}</view>
+    </image>
+  </view>
+
+  <view class='no_goods_box_lsz' wx:if='{{!list_data.list || list_data.list.length == 0 }}'>
+    <!-- !list_data.list || list_data.list.length == 0 -->
+    <view class='no_goods_box'>
+      <image class='no_goods_img' src='../../../images/cart/goods_cart_logo.png'></image>
+      <view class='no_goods_info ziti_3 color_gray'>你的购物车空空如也~~</view>
+      <view bindtap='gohome' class='no_goods_btn ziti_3 color_price'>去逛逛吧</view>
+    </view>
+    <view class='lsz_car_dibu'>
+      <!-- <image mode='widthFix' class='lsz_car_xian1' src='../../../images/cart/lsz_car_xian.png' />
+      <view class='lsz_car_xiangyao'>
+        <image class='lsz_car_hongxin' mode='widthFix' src='../../../images/cart/lsz_car_hongxin.png' />
+        <view>这也可能是你想要的</view>
+      </view>
+      <image mode='widthFix' class='lsz_car_xian' src='../../../images/cart/lsz_car_xian.png' /> -->
+    </view>
+  </view>
+  <!-- 有商品状态下 -->
+  <view wx:if="{{list_data.list && list_data.list.length > 0}}" class='container'>
+    <view class='yes_goods_box' wx:if="{{list_data.list[0] && list_data.list[0].length > 0}}">
+      <view class='goods_section'>
+        <view class='limage'>
+          <image bindtap='allSeleted' data-index="{{index}}" class='yes_goods_check_dot' src='{{allState?"../../../images/cart/check_true_logo.png":"../../../images/cart/check_flase_logo.png"}}'></image>
+        </view>
+        <image class='icon' src="../../../images/home/home_header_tao_logo.png"></image>
+        <view class='ziti_2 icon_t'>好享淘</view>
+      </view>
+      <block wx:for='{{list_data.list[0]}}' wx:key="{{index}}">
+        <!-- <view class='yes_goods_info mar_center'>
+                <image class='yes_goods_check_dot' src='{{check_flag?"../../../images/cart/check_true_logo.png":"../../../images/cart/check_flase_logo.png"}}'></image>
+                <image class='yes_goods_img' src='{{img_path}}{{item.specGoods.spec_img}}'></image>
+                <view class='yes_goods_info_r'>
+                    <view class='yes_goods_info_title ziti_2 txt_dot'>{{item.goods_name}}</view>
+                    <text class='yes_goods_info_guige ziti_3 color_gray'>{{item.spec_key_name}}</text>
+                    <view class='yes_goods_info_price'>
+                        <text class='ziti_2 color_price'>￥{{item.market_price}}</text>
+                        <text style='padding:0 20rpx;' class='ziti_3'>返利</text>
+                        <text class='ziti_3'>￥{{item.market_price-item.goods_price}}</text>
+                    </view>
+                </view>
+            </view> -->
+        <cart-item goods_name="{{item.goods_name}}" spec_key_name="{{item.spec_key_name}}" img_path="{{img_path}}{{item.specGoods.spec_img}}" market_price="{{filters.getMoney(item.ms_state,item.flashSale[0].price,item.goods_price)}}" chajia="{{filters.toFix(item.market_price-item.goods_price)}}" num="{{item.goods_num}}" member_first="{{item.member_first}}"
+          check_flag="{{item.selected}}" index="{{index}}" bindchangeState="changeState" bindchangeNum="changeNum" list_id="{{item.id}}" binddelete="deleteGoods" time="{{item.time?item.time:''}}" ms_state="{{item.ms_state}}" type="0" flashSale="{{item.flashSale}}" is_vip="{{is_vip}}"
+          store_count="{{item.specGoods.store_count}}" binddetailClick="detailClick">
+        </cart-item>
+      </block>
+      <!-- <view style='height:10rpx;' style='background-color:#f5f5f5;'></view>
+      <block wx:for='{{list_data.list[1]}}' wx:key="{{index}}">
+        <cart-item goods_name="{{item.goods_name}}" spec_key_name="{{item.spec_key_name}}" img_path="{{img_path}}{{item.specGoods.spec_img}}" market_price="{{item.goods_price}}" chajia="{{filters.toFix(item.market_price-item.goods_price)}}" num="{{item.goods_num}}"
+          check_flag="{{item.selected}}" index="{{index}}" bindchangeState="changeState" bindchangeNum="changeNum" list_id="{{item.id}}" binddelete="deleteGoods" time="{{item.time?item.time:''}}" ms_state="{{item.ms_state}}" type="1" that="{{_that}}" binddetailClick="detailClick">
+        </cart-item>
+
+      </block> -->
+
+
+
+      <!-- 空白 -->
+      <!-- <view style='height:160rpx;'></view> -->
+      <!-- 底部固定栏 -->
+      <view class='yes_goods_bottom_box'>
+        <view class='yes_goods_bottom_con'>
+          <view bindtap='allSeleted' style='width:200rpx;display:flex;align-items:center;height:100rpx;'>
+            <image class='yes_goods_bottom_img' src='{{allState?"../../../images/cart/check_true_logo.png":"../../../images/cart/check_flase_logo.png"}}'></image>
+            <view class='ziti_2 ' style='padding-left:10rpx;'>全选</view>
+          </view>
+          <view class='yes_goods_bottom_price'>
+            <view>
+              <text class='ziti_2 '>合计：</text>
+              <text class='ziti_2 lsz_price '>￥{{list_data.totlePrice}}</text>
+            </view>
+            <view class='ziti_3 color_gray ' style='margin-top:10rpx;'>已优惠￥{{list_data.disPrice}}</view>
+          </view>
+          <view bindtap='jiesuan' data-id="{{guanliFlag ? 2 : 1}}" class='buy_btn ziti_1 '>{{guanliFlag ? '删除' : '去结算'}} </view>
+        </view>
+      </view>
+    </view>
+    <!-- 失效 -->
+    <view wx:if="{{list_data.list[1].length > 0}}" class='no_goods_xiajia'>
+      <view class='sj_lsz_good ziti_2'>
+        <view>失效商品{{list_data.list[1].length}}件</view>
+        <view class='yirushoucang ziti_3 new_color'  catchtap='makeshoucang' >移入收藏</view>
+      </view>
+      <block wx:for='{{list_data.list[1]}}' wx:key="{{index}}">
+        <cart-item goods_name="{{item.goods_name}}" spec_key_name="{{item.spec_key_name}}" img_path="{{img_path}}{{item.specGoods.spec_img}}" market_price="{{item.goods_price}}" chajia="{{filters.toFix(item.market_price-item.goods_price)}}" num="{{item.goods_num}}"
+          check_flag="{{item.selected}}" index="{{index}}" bindchangeState="changeState" bindchangeNum="changeNum" list_id="{{item.id}}" binddelete="deleteGoods" time="{{item.time?item.time:''}}" ms_state="{{item.ms_state}}" flashSale="{{item.flashSale}}" store_count="{{item.specGoods.store_count}}"
+          type="1" that="{{_that}}" binddetailClick="detailClick">
+        </cart-item>
+      </block>
+
+    </view>
+    <view class='lsz_car_dibu2'>
+      <!-- <image mode='widthFix' class='lsz_car_xian1' src='../../../images/cart/lsz_car_xian.png' />
+      <view class='lsz_car_xiangyao'>
+        <image class='lsz_car_hongxin' mode='widthFix' src='../../../images/cart/lsz_car_hongxin.png' />
+        <view>这也可能是你想要的</view>
+      </view>
+      <image mode='widthFix' class='lsz_car_xian' src='../../../images/cart/lsz_car_xian.png' /> -->
+    </view>
+  </view>
+</block>
+
+
+<view class='no_data' catchtap='no_datatap' wx:if="{{failflag}}">
+  <image class='no_data_img' src='../../../images/image/person_order.png'></image>
+  <view class='ziti_2 color_gray no_data_txt '>点击重新加载</view>
+</view>

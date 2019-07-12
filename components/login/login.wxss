@@ -1,0 +1,268 @@
+/* components/login/login.wxss */
+
+/* @import "../../css/base.wxss"; */
+
+.container {
+  text-align: center;
+}
+
+/* icon */
+
+.icon {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+/* 提醒 */
+
+.zy {
+  margin-top: 90rpx;
+}
+
+.wechat_info {
+  color: #666;
+  font-size: 30rpx;
+  margin-top: 42rpx;
+}
+
+.wechat_info image {
+  width: 15rpx;
+  height: 15rpx;
+  padding-right: 14rpx;
+}
+
+.wechat {
+  width: 526rpx;
+  margin-top: 105rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: linear-gradient(to right, #ff6313 0%, #fd4622 100%);
+  border-radius: 60rpx;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.sq_btn {
+  margin-top: 142rpx;
+}
+
+.wimage {
+  width: 49rpx;
+  height: 44rpx;
+}
+
+.wtext {
+  margin-left: 15rpx;
+}
+
+/* 底部图片 */
+
+.bimage {
+  width: 531rpx;
+  height: 491rpx;
+  margin-top: 40rpx;
+}
+
+/* button::after {
+  border: none;
+} */
+
+.kuai {
+  width: 80%;
+  margin: auto;
+  margin-top: 100rpx;
+}
+
+.input2 {
+  width: 100%;
+  height: 90rpx;
+  text-align: left;
+  margin-left: 15rpx;
+  margin-top:7rpx;
+}
+
+.yinput {
+  width: 70%;
+}
+
+/* 获取验证码 */
+
+.getyzm {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100rpx;
+  line-height: 100rpx;
+  float: right;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tx {
+  margin-top: 20rpx;
+  text-align: left;
+}
+
+.hui {
+  background-color: rgb(215, 215, 215);
+}
+
+/*按钮*/
+
+.sure {
+  clear: both;
+  width: 80%;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  font-size: 34rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  margin: 30rpx auto 50rpx;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.flexcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+/* 登陆提醒1  29rpx*/
+
+.ziti1 {
+  font-size: 32rpx;
+}
+
+/* 获取验证码字体   login */
+
+.ziti2 {
+  font-size: 29rpx;
+}
+
+/* 官方色 */
+
+.color {
+  color: #ff5000;
+}
+
+/* 登陆备注色 */
+
+.bzcolor {
+  color: #dac790;
+}
+
+/*  */
+
+.color1 {
+  color: #333;
+}
+
+.color2 {
+  color: #808081;
+}
+
+/* 背景颜色 */
+
+.bgcolor {
+  background-color: #ff5000;
+}
+
+.huicolor {
+  background-color: #d7d7d7;
+}
+
+/* 字体加粗 */
+
+.font_w {
+  font-weight: 600;
+}
+
+/* 标题-黑色 */
+
+.ziti_1 {
+  font-size: 35rpx;
+}
+
+/* 二级标题-黑色 */
+
+.ziti_2 {
+  font-size: 30rpx;
+}
+
+/* 三级标题-灰色 */
+
+.ziti_3 {
+  font-size: 25rpx;
+}
+
+/* 标题字体灰色颜色 */
+
+.color_gray {
+  color: #777;
+}
+
+/* 价格以及购买按钮字体的颜色 */
+
+.color_price {
+  color: #ff5000;
+}
+
+.txt_dot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jiaobiao_font {
+  font-size: 20rpx;
+}
+
+.jzhd {
+  overflow: hidden;
+}
+
+/* 图片背景 */
+
+.icon_bg {
+  width: 100%;
+  height: 130rpx;
+  display: flex;
+  /* background-color: red; */
+  margin-top: 113rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.login_zh {
+  width: 38rpx;
+  height: 34rpx;
+  padding: 0 40rpx;
+}
+
+.shoujhao {
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.gy_yshi {
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+}
+
+

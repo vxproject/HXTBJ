@@ -1,0 +1,39 @@
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view class='container'>
+  <view class='form_box'>
+    <view class='form_ipt_item form_ipt_name'>
+      <text class='ziti_2 color_gray'>收货人</text>
+      <input bindinput="bindKeyInput" data-flag ="name" class='ziti1' type='text' value="{{item?item.consignee:''}}" placeholder='请输入收货人姓名'></input>
+    </view>
+    <view class='form_ipt_item form_ipt_tel'>
+      <text class='ziti_2 color_gray'>电话</text>
+      <input bindinput="bindKeyInput" data-flag ="phone" type='tel' class='ziti1' value='{{item?item.mobile:""}}' maxlength='11' placeholder='请输入电话号码'></input>
+    </view>
+    <view class='form_ipt_item form_ipt_tel'>
+      <text class='ziti_2 color_gray'>所在地区</text>
+      <label class='ziti_2'>{{dizhiText}}</label>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{rangeTitle}}" value="{{multiIndex}}" class='ziti_2 color_gray'>
+        <text class='form_ipt_item_x'>请选择</text>
+        <image class='form_ipt_item_back' src='../../../images/image/person_dizhi_back.png'></image>
+      </picker>
+    </view>
+    <!-- 填写详细地址 -->
+    <view class='mar_center'>
+      <textarea bindinput="bindKeyInput" data-flag ="address" class='ziti_2 color_gray' value='{{item?item.address:""}}' placeholder='街道、小区门牌等详细信息'></textarea>
+    </view>
+  </view>
+  <!-- 设置默认地址 -->
+  <view class='set_moren'>
+    <text class='ziti_2'>设置为默认地址</text>
+    <switch checked="{{checked}}" bindchange="switchChange" style='width: 110rpx;height:70rpx;'></switch>
+  </view>
+
+    <view wx:if="{{item.address_id}}" bindtap='delete' class='set_moren'>
+    <text class='ziti_2 color'>删除收货地址</text>
+  </view>
+  <!-- 底部保存按钮 -->
+  <view bindtap='saveAddress' class='btn_container'>
+    <button>保存</button>
+  </view>
+</view>

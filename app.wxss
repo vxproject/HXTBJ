@@ -1,0 +1,42 @@
+
+@import "css/base.wxss";
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+
+}  */
+
+
+/* 四周环绕阴影 */
+.round_shadow{
+    box-shadow: 0  2rpx 2rpx #999;
+}
+/* 单行文本超出变点 */
+
+.txt_dot {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+/* 清楚浮动 */
+
+.clearfix::before, .clearfix::after {
+content: "";
+display: block;
+height: 0;
+line-height: 0px;
+clear: both;
+visibility: hidden;
+}
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+width: 0;
+height: 0;
+color: transparent;
+}

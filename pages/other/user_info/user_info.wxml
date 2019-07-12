@@ -1,0 +1,40 @@
+<!--pages/other/user_info/user_info.wxml-->
+<view class='container'>
+    <!-- 个人资料 -->
+    <view class='user_con ziti_2' wx:if='{{hidden == 1}}'>
+        <view class='user_con_item'>
+            <text>头像</text>
+            <image class='user_con_item_img' src='{{userinfo.head_pic}}'></image>
+        </view>
+        <view class='user_con_item'>
+            <text>姓名</text>
+            <text>{{userinfo.realname?userinfo.realname:userinfo.nickname}}</text>
+        </view>
+        <view class='user_con_item'>
+            <text>手机号</text>
+            <text>{{userinfo.mobile}}</text>
+        </view>
+        <view bindtap='myyq' class='user_con_item'>
+            <text>我的邀请人</text>
+            <view class='go_yaoqing'>
+                <text>{{userinfo.first_leader}}</text>
+                <image src='../../../images/buy/dizhi_back.png'></image>
+            </view>
+        </view>
+    </view>
+    <!-- 推荐人资料 -->
+    <view class='tuijian_people_con ziti_2' wx:else>
+        <view class='user_con_item'>
+            <text>推荐人头像</text>
+            <image class='user_con_item_img' src='{{userinfo.first_header}}'></image>
+        </view>
+        <view class='user_con_item'>
+            <text>推荐人姓名</text>
+            <text>{{userinfo.first_leader}}</text>
+        </view>
+        <view class='user_con_item'>
+            <text>推荐人手机号</text>
+            <text>{{userinfo.first_mobile}}</text>
+        </view>
+    </view>
+</view>

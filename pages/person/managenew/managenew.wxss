@@ -1,0 +1,71 @@
+/* pages/person/managenew/managenew.wxss */
+page {
+  background-color: #f5f5f5;
+}
+input{
+  width: 100%;
+} 
+.model {
+  margin: 50rpx 30rpx;
+  border: 1rpx solid #b6b6b6;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.title {
+  padding: 30rpx 20rpx 15rpx 20rpx;
+  background-color: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  border-bottom: 1rpx solid #b6b6b6;
+}
+
+.title_tt {
+  padding: 15rpx 20rpx 30rpx 20rpx;
+  background-color: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title_img {
+  width: 48rpx;
+  height: 77rpx;
+  display: flex;
+  flex-shrink: 0;
+  margin-right: 25rpx;
+}
+.title_tt_img {
+  width: 57rpx;
+  height: 66rpx;
+  display: flex;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+
+.title_con {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.codeer {
+  padding: 10rpx 12rpx;
+  border: 1rpx solid;
+  color: #ff911c;
+  border-radius: 6rpx;
+  display: flex;
+  flex-shrink: 0;
+}
+.yanzheng{
+  margin: 30rpx;
+  background-color: #ff911c;
+  color: #ffffff;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}

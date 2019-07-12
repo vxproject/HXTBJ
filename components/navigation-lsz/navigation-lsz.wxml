@@ -1,0 +1,11 @@
+<!-- 顶部底部导航 -->
+<view class='h-70 '  >
+  <scroll-view scroll-x  scroll-with-animation scroll-into-view="itemindex{{itemindex-2?itemindex-2:0}}"  class='scroll-view w-all'>
+    <view class='row-nowrap '  >
+      <view wx:for="{{arrayList}}" wx:key=""  id="itemindex{{index}}" class=" row-nowrap transform  middle ziti_2 " style="flex-shrink: 0;color:{{color}};{{arrayList.length < 5 ? 'width:'+widthItem +'%;padding:10rpx  0  15rpx 0 ;'  : 'padding :10rpx  35rpx 15rpx 35rpx  ;'}}" catchtap='_chooseOne' data-index="{{index}}" >{{item.mobile_name}}</view>
+    </view>
+    <view class='  transform middle' style='width:{{lineBoxWidth}}px;transform: translateX({{translateX}}px)' >
+       <view class='tab_border' style='border-color:{{border_color}};width:{{lineWidth}}rpx'></view>
+    </view>
+  </scroll-view>
+</view>

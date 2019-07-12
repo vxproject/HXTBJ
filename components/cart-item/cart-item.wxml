@@ -1,0 +1,82 @@
+<wxs module="filters" src="../../pages/home/store/filter.wxs"></wxs>
+
+<view class='{{isdh == true?"dr":isdh== -1?"gw":"dc"}}' style='display:flex;width:120%;'>
+  <view bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend='touchend' data-index="{{index}}" style='width:100%;padding-bottom:5rpx;'>
+    <!-- mar_center -->
+    <view bindtap='detailClick' class='yes_goods_info '>
+      <!-- wx:if="{{type == 0}}"   -->
+      <view class='limage'>
+        <image wx:if="{{type == 0}}" catchtap='changeState' data-index="{{index}}" class='yes_goods_check_dot {{type==1?"yc":""}}' src='{{check_flag?"../../images/cart/check_true_logo.png":"../../images/cart/check_flase_logo.png"}}'></image>
+
+        <image wx:elif="{{type == 1}}" data-index="{{index}}" class='yes_goods_check_dot yc' src='{{check_flag?"../../images/cart/check_true_logo.png":"../../images/cart/check_flase_logo.png"}}'></image>
+      </view>
+      <image class='yes_goods_img' src='{{img_path}}'></image>
+      <image wx:if="{{type == 1}}" class='yes_goods_img sp ' src='{{store_count == 0?"../../images/image/cart_shoupan.png":"../../images/image/sp.png"}}'></image>
+      <!-- <image wx:if="{{type == 1}}" class='yes_goods_img_btn sp' src='../../images/image/xiajiaClick.png'></image> -->
+      <view class='yes_goods_info_r'>
+        <view class='yes_goods_info_title ziti_3 titletxt {{type == 1?"color2":""}}'>{{goods_name}}{{store_count}}</view>
+        <text class='yes_goods_info_guige ziti_3 {{type == 1?"color2":"color1"}}'>{{spec_key_name}}</text>
+        <view wx:if="{{type == 0}}" class='yes_goods_info_price'>
+          <view class='ziti_3 miaoshak'>
+            <!--  --> 
+            <view wx:if="{{ms_state == 2}}" class='miaosha'>
+              <image src="../../images/cart/cart_shandian.png"></image>
+              <text class='miaosha ziti_4'>秒杀价</text>
+            </view>
+          </view>
+          <view class='new_color ziti_2'>￥</view>
+          <view class='new_color ziti_1'>{{market_price}}</view>
+            <!-- {{filters.toFix(member_first*market_price*0.01)}} -->
+          <block wx:if="{{member_first != 0}}">
+            <view wx:if="{{is_vip == 1}}" class='ziti_4 price' style='margin-left:10rpx;'>返利￥</view>
+            <view wx:if="{{is_vip == 1}}" class='ziti_2'>{{member_first}}</view>
+          </block>
+          <!-- <text wx:if="{{ms_state == 2}}" class='ziti_2'>促销价:</text>
+          <text class='ziti_2 color_price'>￥{{market_price}}</text> -->
+        </view>
+
+        <view wx:else class='xj_qh_title ziti_3'>商品暂时缺货</view>
+      </view>
+      <!-- 暂时隐藏掉 -->
+      <!-- <view wx:if="{{ms_state != 0 }}" class='{{ms_state == 2?"daojishi ziti_3 color":"daojishi ziti_3 djsys"}}' >{{ms_state == 0?"已经结束":filters.mstime(ms_state,time.hou,time.min,time.sec)}} </view> -->
+      <view class='ziti_3 daojishi' wx:if="{{ms_state != 0 }}">
+        <view wx:if="{{ms_state == 2}}" class='miaos_lsz'>
+          <view class="{{ms_state == 2 ? 'new_color' : 'color_gray' }}">{{ms_state == 2 ? '距秒杀结束还有' : '距秒杀开始还有'}}</view>
+          <view class='miaos_lsz_time'>
+            <view class="lsz_jt_time {{ms_state == 2 ? 'start_bc':'end_bc'}}">{{time.hou}}</view>：
+            <view class="lsz_jt_time {{ms_state == 2 ? ' start_bc':'end_bc'}}">{{time.min}}</view>：
+            <view class="lsz_jt_time {{ms_state == 2 ? 'start_bc':'end_bc'}}">{{time.sec}}</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+
+    <view wx:if="{{type == 0}}" class='yes_goods_add_box mar_center'>
+      <view class='yes_goods_add_item'>
+        <view class='lsz_jianhao' catchtap='changeNum' data-flag="0" style='margin-top:-21rpx;'>
+          <image class='yes_goods_reduce_logo' src='../../images/cart/reduce_hei.png'> </image>
+        </view>
+        <!-- 变灰 -->
+        <text class='yes_goods_add_number' style='font-size: 25rpx;'>{{num}}</text>
+        <view catchtap='changeNum' data-flag="1" class='lsz_jianhao'>
+          <image class='yes_goods_add_logo' src='../../images/cart/add_logo.png'>
+          </image>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- <view wx:if="{{type == 0}}" class='yes_goods_add_box mar_center'>
+      <view class='yes_goods_add_item'>
+        <image wx:if="{{num > 1}}" bindtap='changeNum' data-flag="0" class='yes_goods_reduce_logo' src='../../images/cart/reduce_hei.png'> </image>
+        <image wx:if="{{num == 1}}" class='yes_goods_reduce_logo' src='../../images/cart/reduce_hui.png'></image>
+        <text class='yes_goods_add_number' style='font-size: 25rpx;'>{{num}}</text>
+        <image bindtap='changeNum' data-flag="1" class='yes_goods_add_logo' src='../../images/cart/add_logo.png'>
+        </image>
+      </view>
+    </view> -->
+  </view>
+  <view bindtap='delete' class="ziti_1" style='color:white;width:20%;background-color:red;display:flex;justify-content:center;align-items:center;'>删除</view>
+</view>

@@ -1,0 +1,9 @@
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+<view class='sug ziti_2'>
+  <view>请填写您的问题反馈</view>
+  <textarea placeholder='您的宝贵反馈是我们前进的动力' placeholder-class='color_gray' bindinput='bindinput'></textarea>
+</view>
+<view class='submitbtn  ziti_2'>
+  <view class='btn bgcolor '  catchtap='subbtn'>提交</view>
+</view>
