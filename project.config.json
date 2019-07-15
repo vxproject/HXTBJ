@@ -41,58 +41,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
-			"list": [
-				{
-					"id": -1,
-					"name": "测试更新",
-					"pathName": "pages/home/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试更新1",
-					"pathName": "pages/home/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试更新2",
-					"pathName": "pages/home/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试更新3",
-					"pathName": "pages/home/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试更新4",
-					"pathName": "pages/home/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试更新5",
-					"pathName": "pages/home/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试更新6",
-					"pathName": "pages/home/index/index",
-					"query": "",
-					"scene": null
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }

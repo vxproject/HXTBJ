@@ -147,7 +147,7 @@ page {
 /* 商品详情 */
 
 .shangpin_ls {
-  padding: 30rpx ;
+  padding: 30rpx;
   background: #fff;
   position: relative;
 }
@@ -192,7 +192,7 @@ page {
   display: flex;
   flex-shrink: 0;
   top: 1rpx;
-  left:5rpx;
+  left: 5rpx;
   font-size: 20rpx;
   line-height: 26rpx;
   justify-content: center;
@@ -362,6 +362,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 24rpx;
 }
 
 .check_guige_txt {
@@ -374,9 +375,10 @@ page {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  padding:0 30rpx;
+  padding: 0 30rpx;
   height: 68rpx;
   border-top: 1rpx solid #f5f5f5;
+  font-size: 24rpx;
 }
 
 .chengruo {
@@ -432,6 +434,7 @@ page {
   align-items: center;
   height: 68rpx;
   padding: 0 30rpx;
+  font-size: 24rpx;
 }
 
 .goods_eval_off {
@@ -470,6 +473,7 @@ page {
   height: 90rpx;
   padding: 0 30rpx;
   margin-top: 30rpx;
+  font-size: 24rpx;
 }
 
 .mingzi_toux {
@@ -512,14 +516,15 @@ page {
   display: flex;
   justify-content: space-between;
   padding: 20rpx 30rpx 40rpx 30rpx;
+  font-size: 22rpx;
 }
 
 /* 详情tab内容 */
 
 .tab_detail_box {
-  position: fixed;
-  height: 90rpx;
-  line-height: 90rpx;
+  /* position: fixed; */
+  /* height: 90rpx;
+  line-height: 90rpx; */
   top: 70rpx;
   left: 0;
   right: 0;
@@ -547,6 +552,49 @@ page {
   background: #fff;
 }
 
+
+
+.fixed{
+  position: fixed;
+  top: 72rpx;
+  left: 0;
+  z-index: 500;
+  width: 100%;
+}
+
+.line-ls-model {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.line-ls-mode {
+  width: 30%;
+  padding: 28rpx 0 20rpx 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-ls-bot {
+  height: 4rpx;
+  width: 50rpx;
+  margin-top: 10rpx;
+}
+
+.line-bc-ff {
+  background: #ff6214;
+}
+
+.line-color-hei {
+  color: #333;
+}
+
 /* 选中 */
 
 .shangpin_detail {
@@ -554,6 +602,7 @@ page {
   padding: 30rpx;
   background: #fff;
   margin-top: 20rpx;
+  font-size: 24rpx;
 }
 
 .tab_detail_check {
@@ -562,7 +611,8 @@ page {
 }
 
 .tab_detail_img {
-  margin-top: 105rpx;
+  padding-top: 163rpx;
+  padding-bottom: 100rpx;
   width: 100%;
 }
 
@@ -737,7 +787,8 @@ button::after {
 /* 暂无数据 */
 
 .no_shuju {
-  padding-top: 400rpx;
+  padding-top:166rpx;
+  background: #fff;
 }
 
 /* 底部弹出框 */
@@ -775,12 +826,14 @@ button::after {
 .commodity_attr_con {
   padding: 0 20rpx;
 }
-.kucun{
+
+.kucun {
   font-size: 22rpx;
-  color: #999999;
+  color: #999;
   margin: 10rpx 0;
 }
-.ls_pric_mode{
+
+.ls_pric_mode {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -812,13 +865,15 @@ button::after {
   font-weight: bold;
   color: #fd4722;
 }
-.image_ms{
+
+.image_ms {
   height: 34rpx;
   position: relative;
-  margin-left:12rpx;
+  margin-left: 12rpx;
   width: 95rpx;
 }
-.lll_ms{
+
+.lll_ms {
   position: absolute;
   left: 18rpx;
   top: 0;
@@ -827,6 +882,7 @@ button::after {
   width: 95rpx;
   color: #fd4722;
 }
+
 .color_fd {
   color: #fd4722;
 }
@@ -908,6 +964,8 @@ button::after {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  border-radius: 10rpx;
+  overflow: hidden;
 }
 
 .red_ls {
