@@ -6,7 +6,6 @@ const push = require('../../../utils/push.js')
 const utils = require('../../../utils/util.js')
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -21,6 +20,7 @@ Page({
     is_dw: false,//商品详情是否定位
 
     arr: ['图文详情', '客服说明'],
+    arrpin: ['全部','有图'],
     setInter: null,//定时器
     now_time: 0,
     isRequest: false,
@@ -37,7 +37,7 @@ Page({
     list_data: null,
     hidden: 0,
     img_path: baseurl.imgPath,
-    topData: ["简介", "详情", "评价"],
+    topData: ["商品", "详情", "评价"],
     seleted: 0,
     otherSeleted: 0,
     gg_seleted: 0,

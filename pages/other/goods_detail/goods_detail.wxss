@@ -36,7 +36,9 @@ page {
 .check_style {
   border-bottom: solid #ff5000 5rpx;
 }
-
+.sle_color{
+  color: #ff5000;
+}
 .tab_item_line {
   margin: 0 auto;
   width: 40rpx;
@@ -582,7 +584,7 @@ page {
 }
 
 .line-ls-bot {
-  height: 4rpx;
+  height: 5rpx;
   width: 50rpx;
   margin-top: 10rpx;
 }
@@ -641,7 +643,6 @@ page {
   align-items: center;
   background-color: #fff;
   z-index: 99;
-  border-top: 1rpx solid #f5f5f5;
 }
 
 button {

@@ -9,7 +9,7 @@
   <view wx:if="{{topState}}" class='header_container'>
     <view class='header_box'>
       <view bindtap='changeSeleted' data-index="{{index}}" wx:for="{{topData}}" wx:key="{{index}}" class='header_item'>
-        <view class='{{seleted == index?"ziti_1":"ziti_2 color_gray"}}'>{{item}}</view>
+        <view class='ziti_2 {{seleted == index?"sle_color ":" color_gray"}}'>{{item}}</view>
         <view class='tab_item_line {{seleted == index?" check_style":""}}'></view>
       </view>
     </view>
@@ -99,7 +99,7 @@
       <view class='yishou_ls  color_gray' style='font-size:24rpx;'>
         <view>包邮</view>
         <view>
-          <text style='margin-right:16rpx;'>已售</text>{{list_data.virtual_sales_sum}}件</view>
+          <text style='margin-right:16rpx;'>已售</text>{{filters.toFixNum(list_data.virtual_sales_sum)}}</view>
       </view>
     </view>
 
@@ -155,7 +155,7 @@
           </view>
           <view class='goods_eval_footer  color_gray'>
             <text>{{list_data.commentList[index].spec_name}}</text>
-            <text>{{filters.dateFormat(list_data.commentList[index].buy_time,'yyyy-MM-dd')}}</text>
+            <text>{{filters.dateFormat(list_data.commentList[index].add_time,'yyyy-MM-dd')}}</text>
           </view>
         </view>
       </block>
@@ -218,7 +218,7 @@
   </view>
   <view class='' wx:if='{{seleted==2}}'>
     <view class="line-ls-model fixed">
-      <view wx:for="{{arr}}" wx:key="" class='line-ls-mode' catchtap='changeOseleted' data-index="{{index}}">
+      <view wx:for="{{arrpin}}" wx:key="" class='line-ls-mode' catchtap='changeOseleted' data-index="{{index}}">
         <view class=" {{ otherSeleted == index  ? 'line-color-hei' :''}} ">{{item}}（{{comment_list[index].total?comment_list[index].total:0}}）</view>
         <view class="line-ls-bot {{otherSeleted == index ? 'line-bc-ff' :''}}"></view>
       </view>
@@ -236,10 +236,8 @@
       <block wx:for='{{comment_list[otherSeleted].data }}' wx:key="{{index}}">
         <view class='goods_eval_content' style='background:#ffffff;'>
           <view class='goods_eval_content_header'>
-            <view class='mingzi_toux'>
               <image class='goods_eval_user_img' src="{{item.wx_header}}"></image>
               <view class='goods_eval_user_name ziti_2 txt_dot'>{{item.username}}</view>
-            </view>
             <view class='goods_eval_star_group'>
               <image wx:for="{{item.goods_rank}}" wx:key="{{index}}" class='goods_eval_star' src='../../../images/detail/goods_star_color.png'></image>
               <image wx:for="{{5-item.goods_rank}}" wx:key="{{index}}" class='goods_eval_star' src='../../../images/detail/goods_star.png'></image>
@@ -256,7 +254,7 @@
 
           <view class='goods_eval_footer ziti_3 color_gray'>
             <text>{{item.spec_name}}</text>
-            <text>购买时间：{{filters.dateFormat(item.buy_time)}}</text>
+            <text>{{filters.dateFormat(item.add_time,'yyyy-MM-dd')}}</text>
           </view>
         </view>
       </block>
@@ -298,7 +296,7 @@
         </view>
       </view>
       <view class='item_group'>
-        <view class='tetxt' style='padding-bottom:20rpx;font-size:28rpx;'>规格：</view>
+        <view class='tetxt' style='padding-bottom:20rpx;font-size:28rpx;'>规格</view>
         <scroll-view scroll-y='true' style='max-height:150rpx;'>
           <block wx:for='{{list_data.specGoodsPrice}}' wx:key="{{index}}">
             <view bindtap='changeggSeleted' data-index="{{index}}" class='{{index == gg_seleted?"guige_item2  ":"guige_item "}}'>{{item.key_name}}</view>
@@ -306,7 +304,7 @@
         </scroll-view>
       </view>
       <view class='flex' style='margin-top:20rpx;'>
-        <view class='tetxt' style='font-size:28rpx;'>数量：</view>
+        <view class='tetxt' style='font-size:28rpx;'>数量</view>
         <view class='yes_goods_add_item'>
           <view class='red_ls {{num > 1 ? "bc-F5" :"bc-F"}}' bindtap='changeNum' data-flag="0">
             <image class='yes_goods_reduce_logo' src='../../../images/cart/{{num > 1 ? "reduce_hei":"reduce_hui"}}.png' />
@@ -325,8 +323,8 @@
       <view bindtap='goumai'>立即购买</view>
     </view>
     <block wx:else class="">
-      <view bindtap='toCar ' class='btn_wrop2 pz fonw'>加入购物车</view>
-      <view bindtap='goumai ' class='btn_wrop2 pz2 fonw'>立即购买</view>
+      <view bindtap='toCar' class='btn_wrop2 pz fonw'>加入购物车</view>
+      <view bindtap='goumai' class='btn_wrop2 pz2 fonw'>立即购买</view>
     </block>
   </view>
   <view class='footer_box'>

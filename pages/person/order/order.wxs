@@ -3,19 +3,19 @@ var getState = function (item) {
   if (item.deleted == 0){
     if (item.pay_status == 0){
       //未支付
-      return '待付款'
+      return '等待买家付款'
     }else{
       //已经支付
       if (item.goodsInfo[0].is_send == 0){
         //待发货
-        return '待发货'
+        return '买家已付款'
       } else if (item.goodsInfo[0].is_send == 1 && item.goodsInfo[0].return_status == 0){
         //待收货
-         return '待收货'
+         return '卖家已发货'
       }else{
         //已收货
         if (item.goodsInfo[0].is_comment == 1){
-          return '已收货' 
+          return '交易成功' 
         } else if (item.goodsInfo[0].return_status == 1) {
           if (item.goodsInfo[0].status == 0) return '退款申请中'
           else if (item.goodsInfo[0].status == 1) return '交易关闭'
@@ -23,7 +23,7 @@ var getState = function (item) {
           else if (item.goodsInfo[0].status == 4) return '交易关闭'
         }
         else{
-          return '待评价'
+          return '交易成功'
         }
          
       }

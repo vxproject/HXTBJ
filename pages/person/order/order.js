@@ -14,7 +14,7 @@ Page({
     seleted: 0,
     is_vip:0,
     topData: [{
-      title: "全部订单",
+      title: "全部",
       type: ''
     }, {
       title: "待付款",
@@ -80,11 +80,8 @@ Page({
               list_data:res.data
             })
           }
-       
-
         }
     },c=>{
-      
       this.setData({
         hidden:1
       })
@@ -217,16 +214,16 @@ Page({
       }
     })
   },
-  copy:function(e){
-    wx.setClipboardData({
-      data: e.currentTarget.dataset.coptxt,
-      success: function (res) {
-        wx.showToast({
-          title: '复制成功',
-        })
-      }
-    })
-  },
+  // copy:function(e){
+  //   wx.setClipboardData({
+  //     data: e.currentTarget.dataset.coptxt,
+  //     success: function (res) {
+  //       wx.showToast({
+  //         title: '复制成功',
+  //       })
+  //     }
+  //   })
+  // },
 
 
   /**
