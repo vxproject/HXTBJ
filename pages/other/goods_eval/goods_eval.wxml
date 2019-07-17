@@ -1,49 +1,43 @@
 <import src="/template/loading/loading.wxml" />
 <template is="loading" data="{{loading}}"></template>
-<view wx:if="{{hidden == 1}}" class='container'>
-    <!-- 评分框 -->
-    <view class='pingfen_box'>
-        <image class='pingfen_box_img' src="{{img_path}}"></image>
-        <view style='margin-left:20rpx;' class='pingfen_box_info'>
-            <view class='pingfen_box_title ziti_1'>商品评分</view>
-            <view class='pingfen_box_star'>
-            <!-- 通过改变背景色来变灰星星 -->
-                <image bindtap='changeXing' data-index="{{index}}" wx:for="{{5}}" class='img_star ' src="../../../images/detail/{{index <= xing_count ? 'goods_star_color' :'goods_star'}}.png"></image>
-            </view>
-        </view>
+<view wx:if="{{hidden == 1}}" class='contai'>
+  <!-- 评分框 -->
+  <view class='pingfen_box'>
+    <image class='pingfen_box_img' src="{{img_path}}"></image>
+    <view style='margin-left:20rpx;' class='pingfen_box_info'>
+      <view class=' fs-30 fc-99'>商品评分</view>
+      <view class=''>
+        <!-- 通过改变背景色来变灰星星 -->
+        <image bindtap='changeXing' data-index="{{index}}" wx:for="{{5}}" class='img_star ' src="../../../images/detail/{{index <= xing_count ? 'goods_star_color' :'goods_star'}}.png"></image>
+      </view>
     </view>
-    <!-- 评论框 -->
-    <view class='ipt_txt_box'>
-        <textarea bindinput="bindTextAreaBlur" class='ipt_txt_box_textarea ziti_2' maxlength='500' placeholder='您宝贵的反馈是我们前进的动力' style='height:150rpx;'></textarea>
-
-    </view>
-    <view style='padding:0 35rpx;text-align: right;' class='ziti_2 color_gray'>最多输入500个字</view>
-    <!-- 上传图片 -->
+  </view>
+  <!-- 评论框 -->
+  <view class='ipt_txt_box'>
+    <textarea bindinput="bindTextAreaBlur" class=' ziti_2' maxlength='500'  placeholder='您宝贵的反馈是我们前进的动力' placeholder-class='fs-26 fc-99' style='width:100%;'></textarea>
+    <view style='text-align: right;' class=' fs-26 fc-99'>{{num}}/500</view>
     <view class='show_img clearfix'>
-        <!-- 图片 -->
-        <block wx:for='{{file_imgs}}'>
-            <view bindtap='preview' data-index="{{index}}" class='show_img_item'>
-                <image class='show_img_item_photo' mode="aspectFill" src="{{item}}"></image>
-                <image catchtap='deleteImage' data-index="{{index}}"  class='jingting_logo_img' src='../../../images/home/jinting_logo.png'></image>
-            </view>
-            
-        </block>
-        <!-- 添加图片的按钮 -->
-        <view wx:if="{{file_imgs.length < 9}}" bindtap='addImage' class='show_img_add'></view>
-    </view>
-    <!-- 空白 -->
-    <view style='height:125rpx;background:#f5f5f5;'></view>
-    <!-- 底部栏 -->
-    <view class='footer'>
-        <view bindtap='changeState' class='footer_select_box'>
-            <image class='footer_select_btn' src='{{state== true?"../../../images/cart/check_true_logo.png":"../../../images/cart/check_flase_logo.png"}}'></image>
-            <!-- <image class='footer_select_btn' src=''></image> -->
-            <text style='padding-left:20rpx;' class='{{state==true?"ziti_1 color":"ziti_1"}}'>匿名</text>
+      <block wx:for='{{file_imgs}}'>
+        <view bindtap='preview' data-index="{{index}}" class='show_img_item'>
+          <image class='show_img_item_photo' mode="aspectFill" src="{{item}}"></image>
+          <image catchtap='deleteImage' data-index="{{index}}" class='jingting_logo_img' src='../../../images/home/jinting_logo.png'></image>
         </view>
-        <view bindtap='fabu' class='footer_btn btn_active color_price ziti_1'>发布</view>
+      </block>
+      <view wx:if="{{file_imgs.length < 9}}" bindtap='addImage' class='show_img_add'>
+        <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/camera_ls.png?sign=d7f53605924250bd0c739aeda5c8bd40&t=1563344651' class='show_img_ls'></image>
+        <view class='fs-20 fc-99'>添加图片</view>
+      </view>
     </view>
-
-
+  </view>
+  <view class='footer_select'>
+    <view bindtap='changeState' class='footer_select_box'>
+      <image class='footer_select_btn' src='{{state== true?"../../../images/cart/check_true_logo.png":"../../../images/cart/check_flase_logo.png"}}'></image>
+      <text style='padding-left:10rpx;' class='fs-22 fc-33'>匿名评价</text>
+    </view>
+    <view class='fs-20 fc-66'>您的评论能帮助其他小伙伴哟</view>
+  </view>
+  <!-- 底部栏 -->
+  <view class='footer'>
+    <view bindtap='fabu' class='footer_btn  fc-white fs-30 '>提交评价</view>
+  </view>
 </view>
-
-

@@ -45,8 +45,8 @@
                   </view>
                 </view>
                 <view class='ls_shoucang' catchtap='shouchang' data-bindex="{{index}}" data-index="{{idx}}" data-flag="0" data-item="{{itemName}}">
-                  <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/huixin.png?sign=826339a8a56951905b1854b3ecaa2103&t=1563259926' class='w-38' mode='widthFix' wx:if="{{itemName.is_collectd == 0}}" />
-                  <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/hongxin.png?sign=d061395a4f8c57ebfc5808198f643aa4&t=1563259864' class='w-38' mode='widthFix' wx:else />
+                  <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/huixin.png?sign=826339a8a56951905b1854b3ecaa2103&t=1563259926' class='wh-38-34' mode='widthFix' wx:if="{{itemName.is_collectd == 0}}" />
+                  <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/hongxin.png?sign=d061395a4f8c57ebfc5808198f643aa4&t=1563259864' class='wh-38-34' mode='widthFix' wx:else />
                   <view class='fs-24 fc-66 ls_shoucang_text'>收藏</view>
                 </view>
               </view>
@@ -134,8 +134,8 @@
                   </view>
                 </view>
                 <view class='ls_shoucang' catchtap='shouchang' data-bindex="{{idx}}" data-item="{{item}}" data-flag="1" data-index="{{idx}}">
-                  <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/huixin.png?sign=826339a8a56951905b1854b3ecaa2103&t=1563259926' class='w-38' mode='widthFix' wx:if="{{item.is_collectd == 0}}" />
-                  <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/hongxin.png?sign=d061395a4f8c57ebfc5808198f643aa4&t=1563259864' class='w-38' mode='widthFix' wx:else />
+                  <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/huixin.png?sign=826339a8a56951905b1854b3ecaa2103&t=1563259926' class='wh-38-34' mode='widthFix' wx:if="{{item.is_collectd == 0}}" />
+                  <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/hongxin.png?sign=d061395a4f8c57ebfc5808198f643aa4&t=1563259864' class='wh-38-34' mode='widthFix' wx:else />
                   <view class='fs-24 fc-66 ls_shoucang_text'>收藏</view>
                 </view>
               </view>
@@ -145,7 +145,7 @@
               </view>
             </view>
           </view>
-     
+
         </view>
 
         <view class='goods_info_sum fc-33'>
@@ -155,7 +155,7 @@
             <text style='padding-left:30rpx;' class='fs-20'>合计:￥ <text class='fs-24'>{{item.goods_price}}</text></text>
           </view>
         </view>
-   
+
         <view wx:if="{{seleted == 3}}" class='goods_info_btn' style='margin-top:30rpx;'>
           <view></view>
           <view class='goods_info_btn'>
@@ -184,5 +184,26 @@
     </view>
   </view>
 
+
+  <view class="transition {{cancleorder_flag ?  'cancelmodel' :'cancelmodel2'}} " catchtap='changese_flag'>
+    <view class=" transition {{cancleorder_flag ? 'mode_wind' :'mode_wind2'}}">
+      <view class='fs-28 fc-33 px-20 arr_cancel_title' style='padding-top:44rpx;padding-bottom:48rpx;'>取消订单</view>
+      <view class='fs-26 fc-99 px-20' style='padding-bottom:62rpx;'>请选择取消订单的原因</view>
+      <view wx:for="{{arr_cancel}}" wx:key="" class='arr_cancel fs-26 fc-33 px-20' catchtap='chooseOne_yy' data-index="{{index}}">
+        <view class='arr_cancel_txt '>{{item.txt}}</view>
+        <view>
+          <image src="{{item.flag ?  'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hong.png?sign=c743c8faae146acad727f088f779f40b&t=1563335776' : 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hui.png?sign=419e3338540db98651356c94889dcc82&t=1563335805'}}"
+            class='wh-33' />
+        </view>
+      </view>
+      <view class='fs-20 fc-66 px-20'>温馨提示</view>
+      <view class='fs-20 fc-66 px-20 py-10'>1、订单一旦取消,限时特价、购买资格等购买优惠可能一并取消,不可恢复;</view>
+      <view class='fs-20 fc-66 px-20'>2、订单所用红包、优惠券支持退回,为避免过期经尽快使用。</view>
+      <view class='arr_cancel_btn fs-20'>
+        <view class='cancel_btn_ls1 btn_ls1 '  catchtap='makesure' data-index="1">暂不取消</view>
+        <view class='cancel_btn_ls2 btn_ls2' catchtap='makesure' data-index="2">确定取消</view>
+      </view>
+    </view>
+  </view>
 
 </view>

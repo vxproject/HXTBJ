@@ -3,11 +3,18 @@ page {
 }
 
 .status_banner {
-    width: 100%;
-    height: 125rpx;
-    display: flex;
-    align-items: center;
-    background-color: #f7f1db;
+   position: relative;
+}
+.absolute{
+  position: absolute;
+}
+.small_ls_logo{
+  width: 212rpx;
+  height: 132rpx;
+}
+.status_banner_img{
+  width: 750rpx;
+  height: 300rpx;
 }
 
 .status_banner_logo {

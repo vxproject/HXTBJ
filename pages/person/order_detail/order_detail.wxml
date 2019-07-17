@@ -4,176 +4,169 @@
 <import src="/template/loading/loading.wxml" />
 <template is="loading" data="{{loading}}"></template>
 <block wx:if="{{hidden == 1}}">
-  <view class='status_fail_box'>
-    <view class='status_banner'>
+  <view class='status_banner'>
+    <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/top_orderdetail.png?sign=45f3f6ac4172fab8a98608fb1d451e3a&t=1563353366' class='status_banner_img' />
+    <view wx:if="">
+      <view></view>
+      <view></view>
+    </view>
+       <image class='absolute  small_ls_logo' style='bottom:40rpx;right:80rpx;' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_daifukuan.png?sign=5f8571c94acc67c745574763c73abf16&t=1563354510' wx:if="{{state == 0}}" />
+    <image class='absolute  small_ls_logo' style='bottom:40rpx;right:80rpx;' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yiguanbi.png?sign=8ebb3b836083b8cf2b59ce54a8aa86c2&t=1563353903' wx:if="{{state == 1}}" />
+    <image class='absolute  small_ls_logo' style='bottom:40rpx;right:80rpx;' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_daifahuo.png?sign=96dd1a35ef0b50f58f61f21cef755d5f&t=1563354537' wx:if="{{state == 2}}" />
+    <image class='absolute  small_ls_logo' style='bottom:40rpx;right:80rpx;' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_daishouhuo.png?sign=77d74c3c92bfff8f0893f75b3b1c2bd6&t=1563354566' wx:if="{{state == 3}}" />
+    <image class='absolute  small_ls_logo' style='bottom:40rpx;right:80rpx;' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658' wx:if="{{state == 4 || state == 5 || state == 6}}" />
+  </view>
+  <!-- <view class='status_banner'>
       <image class='status_banner_logo' src='{{topData[state].imgurl}}'></image>
       <text class='ziti_1 color_price'>{{topData[state].title}}</text>
-    </view>
-    <!-- 物流信息展示 已发货及之后的状态都显示 -->
-    <!-- <view wx:if="{{state > 2}}" class='no_address_box'>
-        <view class='no_address_center'>
-            <view class='wuliu_text_box ziti_2'>
-                I句温暖速度加我ie附件为I叫我ic价位I为覅我就诶附件为ie家cweid很 粗二胡不会VU我被U发布叫我把你宠物额不服额不服
-            </view>
-            <image class='no_address_box_logo2' src='../../../images/buy/dizhi_back.png'></image>
-        </view>
-        <view style='padding-left:35rpx;' class='ziti_3 color_gray'>2019-01-07 17:34:23</view>
     </view> -->
 
-
-    <!-- 有地址时 -->
-    <view wx:if="{{list_data.address}}" class='yes_address_box'>
-      <view class='yes_address_center'>
-        <view class='yes_address_group'>
-          <view class='address_group_item address_group_item1 txt_dot ziti_3 color_gray'>
-            <text class='ziti_3 color_price' style='padding:0rpx 10rpx; border-radius: 10rpx;border: solid 3rpx #f50707;'>默认地址</text>
-            <text style='padding-left:10rpx;'>{{list_data.province_name}}</text>
-            <text style='padding-left:10rpx;'>{{list_data.city_name}}</text>
-            <text style='padding-left:10rpx;'>{{list_data.district_name}}</text>
-          </view>
-          <view class='address_group_item txt_dot ziti_2'>
-            {{list_data.address}}
-          </view>
-          <view class='address_group_item txt_dot ziti_3 color_gray'>
-            <text>{{list_data.consignee}}</text>
-            <text style='padding-left:10rpx;'>{{list_data.mobile}}</text>
-          </view>
+  <!-- 有地址时 -->
+  <view wx:if="{{list_data.address}}" class='yes_address_box'>
+    <view class='yes_address_center'>
+      <view class='yes_address_group'>
+        <view class='address_group_item address_group_item1 txt_dot ziti_3 color_gray'>
+          <text class='ziti_3 color_price' style='padding:0rpx 10rpx; border-radius: 10rpx;border: solid 3rpx #f50707;'>默认地址</text>
+          <text style='padding-left:10rpx;'>{{list_data.province_name}}</text>
+          <text style='padding-left:10rpx;'>{{list_data.city_name}}</text>
+          <text style='padding-left:10rpx;'>{{list_data.district_name}}</text>
         </view>
-        <!-- <image class='no_address_box_logo2' src='../../../images/buy/dizhi_back.png'></image> -->
+        <view class='address_group_item txt_dot ziti_2'>
+          {{list_data.address}}
+        </view>
+        <view class='address_group_item txt_dot ziti_3 color_gray'>
+          <text>{{list_data.consignee}}</text>
+          <text style='padding-left:10rpx;'>{{list_data.mobile}}</text>
+        </view>
       </view>
     </view>
+  </view>
 
 
-    <!-- 空白 -->
-    <view style='width:100%;height:20rpx;'></view>
+  <!-- 空白 -->
+  <view style='width:100%;height:20rpx;'></view>
 
-
-    <!-- 商品信息 -->
-    <!-- 商品详情 -->
-    <view  class='goods_info_box border_top'>
-      <view class='goods_info_box_t ziti_2 color_gray'>商品信息</view>
-      <block wx:for='{{list_data.goodsInfo}}'>
-        <view bindtap='goodsDetail' data-id="{{item.goods_id}}" class='goods_info_center'>
-          <image class='goods_info_img' src="{{img_path}}{{item.spec_img}}"></image>
-          <view class='goods_info_group'>
-            <view class='goods_title ziti_2 txt_dot'>{{item.goods_name}}</view>
-            <view class='goods_guige ziti_3 color_gray txt_dot'>{{item.spec_key_name}}</view>
-            <!-- <view class='goods_sm ziti_3 color_price'>
-              <text style='padding:0rpx 10rpx; border-radius: 10rpx;border: solid 3rpx #f50707;'>不支持七天无理由退货</text>
-            </view> -->
-            <view class='goods_price ziti_2 color_price'>
-              <text>￥{{item.goods_price}}</text>
-              <text style='float:right;' class='ziti_2 color_gray'>x{{item.goods_num}}</text>
-            </view>
+  <!-- 商品详情 -->
+  <view class='goods_info_box border_top'>
+    <view class='goods_info_box_t ziti_2 color_gray'>商品信息</view>
+    <block wx:for='{{list_data.goodsInfo}}'>
+      <view bindtap='goodsDetail' data-id="{{item.goods_id}}" class='goods_info_center'>
+        <image class='goods_info_img' src="{{img_path}}{{item.spec_img}}"></image>
+        <view class='goods_info_group'>
+          <view class='goods_title ziti_2 txt_dot'>{{item.goods_name}}</view>
+          <view class='goods_guige ziti_3 color_gray txt_dot'>{{item.spec_key_name}}</view>
+          <view class='goods_price ziti_2 color_price'>
+            <text>￥{{item.goods_price}}</text>
+            <text style='float:right;' class='ziti_2 color_gray'>x{{item.goods_num}}</text>
           </view>
         </view>
-      </block>
-    </view>
-    <!-- 申请售后 已发货和待评价的时候显示 state 2 -->
-    <view wx:if="{{state > 1 && state != 5}}" class='goods_total_box ziti_2'>
-      <text bindtap='shouhou' class='shouhou_btn btn_active color'>{{ state == 2?"申请退款":list_data.goodsInfo[0].return_status == 0?"申请售后":orders.getStateText(list_data.returnInfo.status)}}</text>
-    </view>
-    <!-- 商品合计 -->
-    <view class='goods_total_box ziti_2' style='border-bottom:hidden;'>
-      <text>共{{list_data.all_goods_num}}件商品</text>
-      <view>
-        <text wx:if="{{list_data.goods_reduce > 0}}" class='color_gray'>（商品券扣减￥{{list_data.goods_reduce}}）</text>
-        <text>小计:￥{{list_data.total_amount}}</text>
       </view>
+    </block>
+  </view>
+  <!-- 申请售后 已发货和待评价的时候显示 state 2 -->
+  <view wx:if="{{state > 1 && state != 5}}" class='goods_total_box ziti_2'>
+    <text bindtap='shouhou' class='shouhou_btn btn_active color'>{{ state == 2?"申请退款":list_data.goodsInfo[0].return_status == 0?"申请售后":orders.getStateText(list_data.returnInfo.status)}}</text>
+  </view>
+  <!-- 商品合计 -->
+  <view class='goods_total_box ziti_2' style='border-bottom:hidden;'>
+    <text>共{{list_data.all_goods_num}}件商品</text>
+    <view>
+      <text wx:if="{{list_data.goods_reduce > 0}}" class='color_gray'>（商品券扣减￥{{list_data.goods_reduce}}）</text>
+      <text>小计:￥{{list_data.total_amount}}</text>
     </view>
+  </view>
 
 
 
-    <!-- 运费 -->
-    <view class='yunfei_box'>
-      <text class='ziti_2'>运费</text>
-      <text class='ziti_2 color_gray'>{{list_data.shipping_price == 0?"":"￥"}}{{list_data.shipping_price == 0?"包邮":list_data.shipping_price}}</text>
-    </view>
-    <!-- 平台券立减 -->
-        <view wx:if="{{list_data.coupon_price > 0}}" class='yunfei_box'>
-      <text class='ziti_2'>平台券立减</text>
-      <text class='ziti_2 color'>￥{{list_data.coupon_price}}</text>
-    </view>
-    <!-- 实际支付 -->
-    <view class='pingtai_kou_item2 ziti_2' style='padding-top:35rpx;'>
-      <text>{{state == 0?"待支付:":"实际支付:"}}</text>
-      <text class='color_price ziti_1'>￥{{state == 1 ?"0.0":list_data.goodsInfo[0].order_amount}}
+  <!-- 运费 -->
+  <view class='yunfei_box'>
+    <text class='ziti_2'>运费</text>
+    <text class='ziti_2 color_gray'>{{list_data.shipping_price == 0?"":"￥"}}{{list_data.shipping_price == 0?"包邮":list_data.shipping_price}}</text>
+  </view>
+  <!-- 平台券立减 -->
+  <view wx:if="{{list_data.coupon_price > 0}}" class='yunfei_box'>
+    <text class='ziti_2'>平台券立减</text>
+    <text class='ziti_2 color'>￥{{list_data.coupon_price}}</text>
+  </view>
+  <!-- 实际支付 -->
+  <view class='pingtai_kou_item2 ziti_2' style='padding-top:35rpx;'>
+    <text>{{state == 0?"待支付:":"实际支付:"}}</text>
+    <text class='color_price ziti_1'>￥{{state == 1 ?"0.0":list_data.goodsInfo[0].order_amount}}
         </text>
+  </view>
+
+
+  <!-- 支付方式 -->
+  <view wx:if="{{state != 1}}" class='pay_style ziti_2'>
+    <text>支付方式</text>
+    <view class='pay_style_right' style='height:90rpx;'>
+      <text>微信支付</text>
+      <image class='pay_style_logo' src='../../../images/buy/weixin_logo.png'></image>
     </view>
+  </view>
 
 
-    <!-- 支付方式 -->
-    <view wx:if="{{state != 1}}" class='pay_style ziti_2'>
-      <text>支付方式</text>
-      <view class='pay_style_right' style='height:90rpx;'>
-        <text>微信支付</text>
-        <image class='pay_style_logo' src='../../../images/buy/weixin_logo.png'></image>
-      </view>
+  <!-- 空白 -->
+  <view style='width:100%;height:20rpx;'></view>
+
+
+  <!-- 订单详细信息 -->
+  <view class='footer_detail_info'>
+    <view>
+      <text class='ziti_3 color_gray'>订单编号：{{list_data.order_sn}}</text>
+      <text style='margin-left:20rpx;' bindtap='copyText' class='ziti_2 copy_btn'>复制</text>
     </view>
-
-
-    <!-- 空白 -->
-    <view style='width:100%;height:20rpx;'></view>
-
-
-    <!-- 订单详细信息 -->
-    <view class='footer_detail_info'>
-      <view>
-        <text class='ziti_3 color_gray'>订单编号：{{list_data.order_sn}}</text>
-        <text style='margin-left:20rpx;' bindtap='copyText' class='ziti_2 copy_btn'>复制</text>
-      </view>
-      <view wx:if="{{state > 1}}">
-        <text class='ziti_3 color_gray'>支付方式：微信支付</text>
-      </view>
-      <view wx:if="{{state > 1}}">
-        <text class='ziti_3 color_gray'>支付时间：{{filters.dateFormat(list_data.pay_last_time,'yyyy/MM/dd hh:ss')}}</text>
-      </view>
-      <view>
-        <text class='ziti_3 color_gray'>创建时间：{{filters.dateFormat(list_data.add_time,'yyyy/MM/dd hh:ss')}}</text>
-      </view>
-      <!-- <view wx:if="{{state > 2}}">
+    <view wx:if="{{state > 1}}">
+      <text class='ziti_3 color_gray'>支付方式：微信支付</text>
+    </view>
+    <view wx:if="{{state > 1}}">
+      <text class='ziti_3 color_gray'>支付时间：{{filters.dateFormat(list_data.pay_last_time,'yyyy/MM/dd hh:ss')}}</text>
+    </view>
+    <view>
+      <text class='ziti_3 color_gray'>创建时间：{{filters.dateFormat(list_data.add_time,'yyyy/MM/dd hh:ss')}}</text>
+    </view>
+    <!-- <view wx:if="{{state > 2}}">
         <text class='ziti_3 color_gray'>发货时间：2019-01-07 11：35：42</text>
       </view>
       <view wx:if="{{state == 4}}">
         <text class='ziti_3 color_gray'>成交时间：2019-01-09 11：35：42</text>
       </view> -->
 
-    </view>
+  </view>
 
 
 
-    <!-- 咨询客服 -->
-    <!-- <view class='zixun_btn btn_active'>
+  <!-- 咨询客服 -->
+  <!-- <view class='zixun_btn btn_active'>
       <image class='zixun_btn_img' src='../../../images/order/red_kefu_logo.png'></image>
       <text class='ziti_1'>咨询客服</text>
     </view> -->
-    <button class='zixun_btn btn_active' open-type="contact" class='ziti_1' style='border-top: solid 3rpx #f5f5f5;width: 100%;height: 110rpx;background-color: #fff;color: #cf3243;display: flex;align-items: center;justify-content: center;'>
-      <image class='zixun_btn_img' src='../../../images/order/red_kefu_logo.png'></image>
-      <text class='ziti_1'>咨询客服</text>
-    </button>
+  <button class='zixun_btn btn_active' open-type="contact" class='ziti_1' style='border-top: solid 3rpx #f5f5f5;width: 100%;height: 110rpx;background-color: #fff;color: #cf3243;display: flex;align-items: center;justify-content: center;'>
+    <image class='zixun_btn_img' src='../../../images/order/red_kefu_logo.png'></image>
+    <text class='ziti_1'>咨询客服</text>
+  </button>
 
-    <!-- 空白 -->
-    <view style='width:100%;height:100rpx;'></view>
+  <!-- 空白 -->
+  <view style='width:100%;height:100rpx;'></view>
 
 
-    <!-- 底部栏之待付款 -->
-    <view wx:if="{{state == 0}}" class='bottom_btn_box ziti_2'>
-      <!-- 倒计时 -->
-      <text wx:if="{{list_data.time}}" style='padding-right:20rpx;' class='ziti_3 color_price'>剩余{{list_data.time}}</text>
-      <text catchtap='orderClick' data-flag="1" class='bottom_btn_item btn_active'>取消订单</text>
-      <text catchtap='orderClick' data-flag="2" class='bottom_btn_item bottom_btn_item2 btn_active color_price'>立即付款</text>
-    </view>
+  <!-- 底部栏之待付款 -->
+  <view wx:if="{{state == 0}}" class='bottom_btn_box ziti_2'>
+    <!-- 倒计时 -->
+    <text wx:if="{{list_data.time}}" style='padding-right:20rpx;' class='ziti_3 color_price'>剩余{{list_data.time}}</text>
+    <text catchtap='orderClick' data-flag="1" class='bottom_btn_item btn_active'>取消订单</text>
+    <text catchtap='orderClick' data-flag="2" class='bottom_btn_item bottom_btn_item2 btn_active color_price'>立即付款</text>
+  </view>
 
-    <!-- 底部栏之已发货待收货时 -->
-    <view wx:if="{{state == 3}}" class='bottom_btn_box ziti_2'>
-      <text catchtap='orderClick' data-flag="3" class='bottom_btn_item btn_active'>查看物流</text>
-      <text catchtap='orderClick' data-flag="4" class='bottom_btn_item bottom_btn_item2 btn_active color_price'>确认收货</text>
-    </view>
+  <!-- 底部栏之已发货待收货时 -->
+  <view wx:if="{{state == 3}}" class='bottom_btn_box ziti_2'>
+    <text catchtap='orderClick' data-flag="3" class='bottom_btn_item btn_active'>查看物流</text>
+    <text catchtap='orderClick' data-flag="4" class='bottom_btn_item bottom_btn_item2 btn_active color_price'>确认收货</text>
+  </view>
 
-    <!-- 底部栏之已收货待评价时 -->
-    <view wx:if="{{state == 4}}" class='bottom_btn_box ziti_2'>
-      <text catchtap='orderClick' data-flag="5" class='bottom_btn_item btn_active'>再次购买</text>
-      <text catchtap='orderClick' data-flag="6" wx:if="{{list_data.goodsInfo[0].is_comment == 0}}" class='bottom_btn_item bottom_btn_item2 btn_active color_price'>评价商品</text>
-    </view>
+  <!-- 底部栏之已收货待评价时 -->
+  <view wx:if="{{state == 4}}" class='bottom_btn_box ziti_2'>
+    <text catchtap='orderClick' data-flag="5" class='bottom_btn_item btn_active'>再次购买</text>
+    <text catchtap='orderClick' data-flag="6" wx:if="{{list_data.goodsInfo[0].is_comment == 0}}" class='bottom_btn_item bottom_btn_item2 btn_active color_price'>评价商品</text>
   </view>
 </block>

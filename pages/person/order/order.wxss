@@ -160,6 +160,7 @@ page {
   border-radius: 10rpx;
   display: flex;
   flex-shrink: 0;
+  margin-right: 20rpx;
 }
 
 .goods_content_info {
@@ -167,11 +168,13 @@ page {
   flex-flow: row nowrap;
   justify-content: space-between;
 }
-.shouc_ls{
+
+.shouc_ls {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
 }
+
 .goods_content_right {
   display: flex;
   flex-flow: column nowrap;
@@ -239,8 +242,9 @@ page {
   flex-flow: row nowrap;
 }
 
-.w-38 {
+.wh-38-34 {
   width: 38rpx;
+  height: 34rpx;
 }
 
 .ls_shoucang {
@@ -284,14 +288,6 @@ button::after {
   border: solid 2rpx #ff6413;
 }
 
-.goods_content_img {
-  width: 160rpx;
-  height: 160rpx;
-  background-color: #f8f8f8;
-  border-radius: 20rpx;
-  margin-right: 20rpx;
-}
-
 .goods_content_info {
   width: 100%;
 }
@@ -312,4 +308,115 @@ button::after {
   border-radius: 10rpx;
 }
 
-/* */
+.cancelmodel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.cancelmodel2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(225, 225, 225, 0);
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.mode_wind {
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  z-index: 1500;
+}
+
+.mode_wind2 {
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: -1000rpx;
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  z-index: 1500;
+}
+
+.transition {
+  transition: all 0.3s ease-in;
+}
+
+.wh-33 {
+  height: 33rpx;
+  width: 33rpx;
+}
+
+.arr_cancel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 44rpx;
+}
+
+.px-20 {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.arr_cancel_title {
+  display: flex;
+  justify-content: center;
+}
+
+.py-10 {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.arr_cancel_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 106rpx 0 20rpx 0;
+}
+
+.cancel_btn_ls1 {
+  width: 225rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-top-left-radius: 45rpx;
+  border-bottom-left-radius: 45rpx;
+}
+
+.cancel_btn_ls2 {
+  width: 225rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-top-right-radius: 45rpx;
+  border-bottom-right-radius: 45rpx;
+}
+
+.btn_ls1 {
+  background: #ff6413;
+}
+
+.btn_ls2 {
+  background: #fd4625;
+}

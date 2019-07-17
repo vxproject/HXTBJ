@@ -382,18 +382,23 @@ Page({
     let index = e.currentTarget.dataset.index
     let gg_seleted = this.data.gg_seleted
     if (index == gg_seleted) return
+    this.data.shop_price = (this.data.list_data.specGoodsPrice[index].price).split('.');
+    this.data.list_data.market_price = this.data.list_data.specGoodsPrice[index].cost_price;
     this.setData({
-      gg_seleted: index
+      gg_seleted: index,
+      list_data: this.data.list_data,
+      shop_price: this.data.shop_price
     })
-
+    console.info('这是售价',this.data.shop_price)
   },
   changeNum: function (e) {
     let flag = e.currentTarget.dataset.flag
+    let gg_seleted = this.data.gg_seleted
     let num = this.data.num
     let that = this
     if (flag == "0" && num == 1) return
     num = flag == 0 ? num - 1 : num + 1
-    if (that.data.list_data.flashSale[0]) {
+    if (that.data.list_data.flashSale[0] && that.data.list_data.flashSale[0].status == 1 && that.data.list_data.flashSale[0].item_id == that.data.list_data.specGoodsPrice[gg_seleted].item_id) {
       if (that.data.list_data.flashSale[0].buy_limit < num) {
         wx.showToast({
           icon: 'none',
@@ -424,25 +429,12 @@ Page({
     let num = that.data.num
     let index = that.data.gg_seleted
     let itemid = that.data.list_data.specGoodsPrice[index].item_id
-
-    if (that.data.list_data.flashSale[0]) {
-      if (that.data.list_data.flashSale[0].buy_limit < num) {
-        wx.showToast({
-          icon: 'none',
-          title: '抱歉，每人限购' + that.data.list_data.flashSale[0].buy_limit + "件",
-        })
-        return
-
-      }
-    }
     cart.addgwc(that, goods_id, num, res => {
       if (res.status == 200) {
         that.hideModal()
         that.getRequest(goods_id)
       }
     }, itemid)
-
-
 
   },
   // 立即购买
@@ -452,25 +444,9 @@ Page({
     let num = that.data.num
     let index = that.data.gg_seleted
     let itemid = that.data.list_data.specGoodsPrice[index].item_id
-
-    if (that.data.list_data.flashSale[0]) {
-      if (that.data.list_data.flashSale[0].buy_limit < num) {
-        wx.showToast({
-          icon: 'none',
-          title: '抱歉，每人限购' + that.data.list_data.flashSale[0].buy_limit + "件",
-        })
-        return
-      }
-    }
-
     wx.navigateTo({
       url: '../buy_goods/buy_goods?goods_id=' + goods_id + "&goods_num=" + num + "&item_id=" + itemid,
     })
-
-
-
-
-
   },
   //跳转评价
   tzpingjia: function () {

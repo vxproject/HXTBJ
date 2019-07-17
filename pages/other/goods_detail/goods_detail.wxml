@@ -81,7 +81,7 @@
         </view>
         <view class='zhuanquan' wx:if="{{is_vip == 1}}">
           <view class='zhuan_ls'>赚</view>
-          <view class='zhuan_ls_pri'>{{filters.toFix(list_data.member_first*list_data.shop_price*0.01)}}</view>
+          <view class='zhuan_ls_pri'>{{filters.toFix(list_data.member_first*list_data.specGoodsPrice[gg_seleted].price*0.01)}}</view>
         </view>
         <view bindtap='bijiaClick' class='bijia_btn active_'></view>
       </view>

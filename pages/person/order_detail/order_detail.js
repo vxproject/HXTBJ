@@ -20,7 +20,7 @@ Page({
         { title: '已收货', imgurl: '../../../images/order/goods_success.png' },
         { title: '已完成', imgurl: '../../../images/order/goods_success.png' },
         { title: '退货款', imgurl: '../../../images/order/goods_success.png' }],
-        state:0,
+      state: 0,  //0:代付款 1：订单取消 2：待发货 3：待发货 4、已收货  5、以评论
       img_path: baseurl.imgPath,
         isTime:false,
         options:{}

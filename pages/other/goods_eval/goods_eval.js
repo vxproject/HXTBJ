@@ -15,8 +15,8 @@ Page({
     state: false,
     imgurl: [],
     img_thumb: [],
-    hidden:0
-
+    hidden: 0,
+    num: 0,
 
   },
 
@@ -28,16 +28,19 @@ Page({
     this.setData({
       rec_id: options.rec_id,
       img_path: this.data.img_path + "" + options.image,
-      hidden:1
+      hidden: 1
     })
   },
   bindTextAreaBlur(e) {
     this.data.value = e.detail.value
+    this.setData({
+      num:this.data.value.length
+    })
   },
   // 添加图片
   addImage: function() {
     let that = this
-    if (this.data.file_imgs.length >= 9){
+    if (this.data.file_imgs.length >= 9) {
       return
     }
     wx.chooseImage({
@@ -45,8 +48,6 @@ Page({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
-        console.log(res)
-        // tempFilePath可以作为img标签的src属性显示图片
         let file_imgs = that.data.file_imgs.concat(res.tempFilePaths)
         that.setData({
           file_imgs: file_imgs
@@ -64,9 +65,9 @@ Page({
   // 发布按钮
   fabu: function() {
     let that = this
-    if (that.data.value == ''){
+    if (that.data.value == '') {
       util.showmodel('请输入商品评价')
-return
+      return
     }
     wx.showToast({
       title: '加载中....',
@@ -83,9 +84,8 @@ return
         img: d.imgurl.join(","),
         img_thumb: d.img_thumb.join(",")
       }
-      console.log(params)
       wx.hideToast()
-      request.postRequest(that,baseurl.add_comment, params, res => {
+      request.postRequest(that, baseurl.add_comment, params, res => {
         if (res.status == 200) {
           util.showmodel(res.message, res => {
             wx.navigateBack({
@@ -93,7 +93,7 @@ return
             })
           })
         }
-        
+
       })
     })
   },
@@ -112,13 +112,10 @@ return
         "token": wx.getStorageSync('token')
       },
       success: function(res) {
-
         res.data = JSON.parse(res.data)
-        console.log(res.data)
         if (res.data.status == 200) {
           that.data.imgurl.push(res.data.data.url)
           that.data.img_thumb.push(res.data.data.thumb)
-          console.log(that.data.imgurl)
           index = index + 1
           that.uploadImage(index, cd)
         }
@@ -140,14 +137,13 @@ return
   },
   deleteImage: function(e) {
     let index = e.currentTarget.dataset.index
-    this.data.file_imgs.splice(index,1)
+    this.data.file_imgs.splice(index, 1)
     this.setData({
       file_imgs: this.data.file_imgs
     })
   },
   // 图片放大图
   preview: function(e) {
-    console.log(e)
     wx.previewImage({
       current: this.data.file_imgs[e.currentTarget.dataset.index], // 当前显示图片的http链接
       urls: this.data.file_imgs // 需要预览的图片http链接列表
@@ -164,7 +160,7 @@ return
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+ 
   },
 
   /**
