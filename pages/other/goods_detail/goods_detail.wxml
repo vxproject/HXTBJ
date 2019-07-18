@@ -20,7 +20,7 @@
   <view class='container {{is_loading?"alpha1":"alpha2"}}' wx:if="{{seleted == 0}}">
 
     <!-- 轮播 -->
-    <swiper class='swiper_container' indicator-dots='true' indicator-color='#f5f5f5' indicator-active-color='#ff5500'>
+    <swiper class='swiper_container' indicator-dots='true' indicator-color='#f5f5f5' indicator-active-color='#ff5500' circular='true' autoplay="true" interval="3000">
       <block wx:for='{{list_data.goodsImages}}' wx:key="{{index}}">
         <swiper-item class='swiper_item'>
           <image class='swiper_img' src="{{img_path}}{{item.image_url}}"></image>
@@ -108,7 +108,7 @@
       <view style='height:20rpx;background:#f5f5f5;'></view>
       <view bindtap='{{!overFlag?"":"showModal"}}' data-flag="0" class='goods_detail_check_guige '>
         <view class='check_guige_txt'>
-          <text class='goods_detail_t  color_gray'>已选：</text>
+          <text class='goods_detail_t  color_gray'>已选</text>
           <view class=' check_guige_xuan  txt_dot'>
             {{list_data.specGoodsPrice[gg_seleted].key_name}},{{num}}件
           </view>
@@ -116,7 +116,7 @@
         <image class='chakanpinglun' src='../../../images/detail/chakanpinglun.png'></image>
       </view>
       <view class='laji_dx  '>
-        <view class=' chengruo color_gray'>服务承诺：</view>
+        <view class=' chengruo color_gray'>服务承诺</view>
         <view class='check_guige_n txt_dot '>48小时发货</view>
       </view>
       <view style='height:20rpx;background:#f5f5f5;'></view>
@@ -171,24 +171,6 @@
       </view>
     </view>
 
-
-
-    <!-- <view wx:if="{{is_dw}}" class='tab_detail_box'>
-      <view catchtap='changeOseleted1' data-index="0" class='ziti_2 tab_detail_item_ls  {{pj_seleted == 0?"tab_detail_check  ":" "}}'>
-        商品详情
-      </view>
-      <view catchtap='changeOseleted1' data-index="1" class=' ziti_2 tab_detail_item_ls {{pj_seleted == 1?"tab_detail_check ":" "}}'>
-        客服说明
-      </view>
-    </view>
-    <view class='{{is_dw?"alpha1":"alpha2"}}'>
-      <view catchtap='changeOseleted1' data-index="0" class='ziti_2 tab_detail_item_ls  {{pj_seleted == 0?"tab_detail_check  ":" "}}'>
-        商品详情
-      </view>
-      <view catchtap='changeOseleted1' data-index="1" class=' ziti_2 tab_detail_item_ls {{pj_seleted == 1?"tab_detail_check ":" "}}'>
-        客服说明
-      </view>
-    </view> -->
     <image wx:for="{{list_data.goods_content}}" wx:key="{{index}}" class='ls_xiangqing {{pj_seleted == 1?"alpha1":"alpha2"}}' mode='widthFix' src='{{item}}'>
     </image>
     <image class='ls_xiangqing {{pj_seleted == 0?"alpha1":"alpha2"}}' mode='widthFix' src="{{img_path2}}{{kf_img}}"></image>
@@ -202,19 +184,10 @@
       </view>
     </view>
 
-    <!-- <view class='tab_detail_box'>
-      <view bindtap='changeOseleted' data-index="0" class='{{otherSeleted == 0?"tab_detail_check tab_detail_item ziti_2":"tab_detail_item ziti_2"}}'>
-        商品详情
-      </view>
-      <view bindtap='changeOseleted' data-index="1" class='{{otherSeleted == 1?"tab_detail_check tab_detail_item ziti_2":"tab_detail_item ziti_2"}}'>
-        客服说明
-      </view>
-    </view> -->
-    <!-- <scroll-view scroll-y='true' style='height:468px;'> -->
-      <image wx:if="{{otherSeleted == 0}}" wx:for="{{list_data.goods_content}}" wx:key="{{index}}" class='tab_detail_img' mode='widthFix' src='{{item}}'>
-      </image>
-      <image wx:if="{{otherSeleted == 1}}" class='tab_detail_img' mode='widthFix' src="{{img_path2}}{{kf_img}}"></image>
-    <!-- </scroll-view> -->
+
+    <image wx:if="{{otherSeleted == 0}}" wx:for="{{list_data.goods_content}}" wx:key="{{index}}" class='tab_detail_img' mode='widthFix' src='{{item}}'>
+    </image>
+    <image wx:if="{{otherSeleted == 1}}" class='tab_detail_img' mode='widthFix' src="{{img_path2}}{{kf_img}}"></image>
   </view>
   <view class='' wx:if='{{seleted==2}}'>
     <view class="line-ls-model fixed">
@@ -224,20 +197,12 @@
       </view>
     </view>
 
-    <!-- <view class='tab_detail_box'>
-      <view bindtap='changeOseleted' data-index="0" class='{{otherSeleted == 0?"tab_detail_item tab_detail_check ziti_2":"tab_detail_item ziti_2"}} '>
-        全部（{{comment_list[0].total?comment_list[0].total:0}}）
-      </view>
-      <view bindtap='changeOseleted' data-index="1" class='{{otherSeleted == 1?"tab_detail_item tab_detail_check ziti_2":"tab_detail_item ziti_2"}}'>
-        有图（{{comment_list[1].total?comment_list[1].total:0}}）
-      </view>
-    </view> -->
     <scroll-view bindscrolltolower="scrolltolower" scroll-y='true' style='height:{{windowHeight - 135}}px;padding-top:166rpx;' wx:if="{{comment_list[otherSeleted] && comment_list[otherSeleted].data.length != 0}}">
       <block wx:for='{{comment_list[otherSeleted].data }}' wx:key="{{index}}">
         <view class='goods_eval_content' style='background:#ffffff;'>
           <view class='goods_eval_content_header'>
-              <image class='goods_eval_user_img' src="{{item.wx_header}}"></image>
-              <view class='goods_eval_user_name ziti_2 txt_dot'>{{item.username}}</view>
+            <image class='goods_eval_user_img' src="{{item.wx_header}}"></image>
+            <view class='goods_eval_user_name ziti_2 txt_dot'>{{item.username}}</view>
             <view class='goods_eval_star_group'>
               <image wx:for="{{item.goods_rank}}" wx:key="{{index}}" class='goods_eval_star' src='../../../images/detail/goods_star_color.png'></image>
               <image wx:for="{{5-item.goods_rank}}" wx:key="{{index}}" class='goods_eval_star' src='../../../images/detail/goods_star.png'></image>
@@ -345,5 +310,7 @@
     </view>
     <view class='yishouqing' wx:if="{{!overFlag && is_miaosha }}">已售罄</view>
   </view>
+  
+   <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/good_detail/ls_back.png?sign=80e26a033651595d7bc6b6880e1a2479&t=1563443653' class=' tran {{is_dw && seleted == 0 ? "backimg" :"backimg2"}}'   catchtap='gobackTop'/>
 
 </block>

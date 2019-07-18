@@ -36,9 +36,11 @@ page {
 .check_style {
   border-bottom: solid #ff5000 5rpx;
 }
-.sle_color{
+
+.sle_color {
   color: #ff5000;
 }
+
 .tab_item_line {
   margin: 0 auto;
   width: 40rpx;
@@ -149,7 +151,7 @@ page {
 /* 商品详情 */
 
 .shangpin_ls {
-  padding: 30rpx;
+  padding: 30rpx 30rpx 26rpx 30rpx;
   background: #fff;
   position: relative;
 }
@@ -237,7 +239,7 @@ page {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
 }
 
 .ls_yugao_miaosha {
@@ -278,7 +280,6 @@ page {
 
 .goods_detail_container {
   background-color: #fff;
-  padding-top: 25rpx;
 }
 
 .goods_detail_price {
@@ -524,8 +525,7 @@ page {
 /* 详情tab内容 */
 
 .tab_detail_box {
-  /* position: fixed; */
-  /* height: 90rpx;
+  /* position: fixed; *//* height: 90rpx;
   line-height: 90rpx; */
   top: 70rpx;
   left: 0;
@@ -554,9 +554,7 @@ page {
   background: #fff;
 }
 
-
-
-.fixed{
+.fixed {
   position: fixed;
   top: 72rpx;
   left: 0;
@@ -788,7 +786,7 @@ button::after {
 /* 暂无数据 */
 
 .no_shuju {
-  padding-top:166rpx;
+  padding-top: 166rpx;
   background: #fff;
 }
 
@@ -1169,4 +1167,26 @@ button::after {
 .alpha2 {
   opacity: 1;
   display: block;
+}
+
+.backimg {
+  width: 64rpx;
+  height: 64rpx;
+  position: fixed;
+  bottom: 150rpx;
+  right: 50rpx;
+  z-index: 1000;
+}
+
+.backimg2 {
+  width: 0;
+  height: 0;
+  position: fixed;
+  bottom: 150rpx;
+  right: 50rpx;
+  z-index: 1000;
+}
+
+.tran {
+  transition: all 0.3s ease-in;
 }

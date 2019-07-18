@@ -87,7 +87,7 @@
   <view class=''>
     <view class='home_index_box' wx:if='{{store.list_data.swiper}}'>
       <image class='hudu_ui' src='cloud://hxt-cdff72.6878-hxt-cdff72/shouye/baitiao.png' />
-      <swiper circular='true' autoplay="true" indicator-dots  indicator-active-color='#fff' bindchange="goodsSwipter" class='home_swiper'>
+      <swiper circular='true' autoplay="true" interval="3000" indicator-dots  indicator-active-color='#fff' bindchange="goodsSwipter" class='home_swiper'>
         <swiper-item bindtap='yin_animation' wx:for="{{store.list_data.swiper}}" class='home_swiper_item' wx:key="{{index}}">
           <image bindtap='navClick' data-item="{{item}}" class=' check_swiper_img' src="{{store.img_path}}{{item.img_url}}"></image>
         </swiper-item>

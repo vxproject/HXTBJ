@@ -10,18 +10,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    miaoshaFlag: true,  // false:距开始  true :距结束
-    overFlag: true,// true:未抢完  false :已抢完
+    miaoshaFlag: true, // false:距开始  true :距结束
+    overFlag: true, // true:未抢完  false :已抢完
     haveFlag: true, // 假价格   true:有  false:没有 
     is_miaosha: false, //秒杀商品  true ：秒杀商品  false:普通商品
     youFlag: true, //是否售罄
-    topState: false,//顶部隐藏
+    topState: false, //顶部隐藏
     // dw_top:759,  //商品详情
-    is_dw: false,//商品详情是否定位
+    is_dw: false, //商品详情是否定位
 
     arr: ['图文详情', '客服说明'],
-    arrpin: ['全部','有图'],
-    setInter: null,//定时器
+    arrpin: ['全部', '有图'],
+    setInter: null, //定时器
     now_time: 0,
     isRequest: false,
 
@@ -51,13 +51,14 @@ Page({
     is_bijia: false,
     //比价数据源
     bj_data: [],
-    time: {}, is_time: false
+    time: {},
+    is_time: false
   },
   //获取屏幕高度
-  gain_height: function () {
+  gain_height: function() {
     var that = this;
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.setData({
           windowHeight: res.windowHeight,
           is_vip: app.userinfo.is_vip
@@ -66,7 +67,7 @@ Page({
     })
   },
   //底部弹框点击
-  showModal: function (e) {
+  showModal: function(e) {
     let flag = e.currentTarget.dataset.flag
     var that = this;
     // 显示遮罩层
@@ -82,14 +83,14 @@ Page({
       showModalStatus: true,
       gg_flag: flag
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export()
       })
     }.bind(this), 200)
   },
-  hideModal: function () {
+  hideModal: function() {
     // 隐藏遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -101,7 +102,7 @@ Page({
     this.setData({
       animationData: animation.export(),
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -112,14 +113,19 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.gain_height();
     this.data.goods_id = options.goods_id
     this.getRequest(options.goods_id)
     let that = this
     //获取商品详情的位置
   },
-  getRequest: function (id) {
+  gobackTop(){
+   wx.pageScrollTo({
+     scrollTop: 0,
+   })
+  },
+  getRequest: function(id) {
     let that = this
     if (that.data.isRequest == true) return
     that.data.isRequest = true
@@ -131,21 +137,24 @@ Page({
           hidden: 1,
           is_loading: true
         })
-        if (res.data.flashSale[0]) {
+        if (res.data.flashSale[0] && (res.data.flashSale[0].item_id == res.data.specGoodsPrice[that.data.gg_seleted].item_id) ) {
           that.countDown1(res.data.flashSale[0])
           //未抢完
-          let overFlag = true, youFlag = true
+          let overFlag = true,
+            youFlag = true
           console.log(res.data)
           if (res.data.flashSale[0].status == 2) {
             overFlag = false
             youFlag = false
           }
           that.setData({
+            is_miaosha:true,
             overFlag: overFlag,
             youFlag: youFlag
           })
         } else {
           that.setData({
+            is_miaosha: false,
             overFlag: true,
             youFlag: true
           })
@@ -167,20 +176,21 @@ Page({
               }
             )
           }, 500)
-
       }
     }, res => {
       that.data.isRequest = false
     })
   },
   // 新版的倒计时
-  countDown1: function (e) {
-
-    let time = 0, that = this
+  countDown1: function(e) {
+   
+    let time = 0,
+      that = this
     let end_time = e.end_time
     let start_time = e.start_time
     let timestamp = e.now
     let miaoshaFlag = false
+    let list= that.data.list_data
     if (timestamp > end_time) {
       //已经结束
       that.data.now_time = -1
@@ -200,10 +210,10 @@ Page({
       return
     }
     that.data.setInter = setInterval(res => {
-      let time_obj = {}, is_miaosha = false, flag = 0
-      if (that.data.now_time > 0) {
+      let time_obj = {},
+        flag = 0
+      if (that.data.now_time > 0  ){
         miaoshaFlag = true
-        is_miaosha = true
         let time = that.data.now_time
         let day = parseInt(time / (60 * 60 * 24));
         let hou = parseInt(time % (60 * 60 * 24) / 3600);
@@ -217,34 +227,29 @@ Page({
         that.data.now_time--;
         that.setData({
           time: time_obj,
-          is_miaosha: is_miaosha,
           flag: flag
         })
-
       } else {
         time_obj = {
           hou: '00',
           min: '00',
           sec: '00'
         }
-        is_miaosha = false
         setTimeout(() => {
-
           that.getRequest(that.data.goods_id)
         }, 1000)
         that.setData({
           time: time_obj,
-          is_miaosha: is_miaosha,
           flag: flag
         })
       }
     }, 1000)
   },
 
-  timeFormat: function (param) { //小于10的格式化函数
+  timeFormat: function(param) { //小于10的格式化函数
     return param < 10 ? '0' + param : param;
   },
-  changeSeleted: function (e) {
+  changeSeleted: function(e) {
     let that = this
     let index = e.currentTarget.dataset.index
     let seleted = this.data.seleted
@@ -279,7 +284,7 @@ Page({
     }
   },
 
-  onPageScroll: function (e) {
+  onPageScroll: function(e) {
     let scrollTop = e.scrollTop
     let that = this
     if (that.data.seleted != 0) {
@@ -309,30 +314,8 @@ Page({
         is_dw: false
       })
     }
-    // if (that.data.seleted != 0) {
-    //   that.setData({
-    //     topState: true,
-    //     is_dw: that.data.seleted == 1 ? true : false
-    //   })
-    //   return
-    // }
-    // if (scrollTop > 10 && that.data.topState == false) {
-    //   that.setData({
-    //     topState: true
-    //   })
-    // } else if (scrollTop <= 10 && that.data.topState == true) {
-    //   that.setData({
-    //     topState: false
-    //   })
-    // }
-    // if (scrollTop >= that.data.dw_top && that.data.is_dw == false) {
-    //   that.setData({ is_dw: true})
-    // }
-    // else if (scrollTop < that.data.dw_top && that.data.is_dw == true) {
-    //   that.setData({ is_dw: false })
-    // }
   },
-  commentRequest: function (flag, page, loading = false) {
+  commentRequest: function(flag, page, loading = false) {
     let that = this
     let goods_id = this.data.list_data.goods_id
     request.getRequest(that, baseurl.comment + "?page=" + page + "&goods_id=" + goods_id + "&is_img=" + flag, res => {
@@ -354,7 +337,7 @@ Page({
 
     }, loading)
   },
-  changeOseleted1: function (e) {
+  changeOseleted1: function(e) {
     let that = this
     let index = e.currentTarget.dataset.index
     let pj_seleted = this.data.pj_seleted
@@ -364,7 +347,7 @@ Page({
     })
   },
 
-  changeOseleted: function (e) {
+  changeOseleted: function(e) {
     let that = this
     let index = e.currentTarget.dataset.index
     let otherSeleted = this.data.otherSeleted
@@ -372,26 +355,27 @@ Page({
     this.setData({
       otherSeleted: index
     })
-    // console.log(this.data.seleted)
-    // console.log(this.data.otherSeleted[index])
     if (this.data.seleted == 2 && !this.data.comment_list[index]) {
       this.commentRequest(index, 1, true)
     }
   },
-  changeggSeleted: function (e) {
+  changeggSeleted: function(e) {
     let index = e.currentTarget.dataset.index
+    let list_data = this.data.list_data
     let gg_seleted = this.data.gg_seleted
     if (index == gg_seleted) return
-    this.data.shop_price = (this.data.list_data.specGoodsPrice[index].price).split('.');
-    this.data.list_data.market_price = this.data.list_data.specGoodsPrice[index].cost_price;
+    this.data.shop_price = (list_data.specGoodsPrice[index].price).split('.');
+    list_data.market_price = list_data.specGoodsPrice[index].cost_price;
     this.setData({
+      is_miaosha: list_data.flashSale[0] && (list_data.flashSale[0].item_id == list_data.specGoodsPrice[index].item_id) ? true :false,
       gg_seleted: index,
       list_data: this.data.list_data,
       shop_price: this.data.shop_price
     })
-    console.info('这是售价',this.data.shop_price)
+    
+    console.info('这是售价', this.data.shop_price)
   },
-  changeNum: function (e) {
+  changeNum: function(e) {
     let flag = e.currentTarget.dataset.flag
     let gg_seleted = this.data.gg_seleted
     let num = this.data.num
@@ -411,19 +395,19 @@ Page({
       num: num
     })
   },
-  changequan: function (e) {
+  changequan: function(e) {
     this.setData({
       l_quan: true
     })
   },
   // 去购物车
-  navgwc: function () {
+  navgwc: function() {
     wx.switchTab({
       url: '../../cart/index/index',
     })
   },
   // 加入购物车
-  toCar: function () {
+  toCar: function() {
     let that = this
     let goods_id = that.data.list_data.goods_id
     let num = that.data.num
@@ -438,7 +422,7 @@ Page({
 
   },
   // 立即购买
-  goumai: function () {
+  goumai: function() {
     let that = this
     let goods_id = that.data.list_data.goods_id
     let num = that.data.num
@@ -449,7 +433,7 @@ Page({
     })
   },
   //跳转评价
-  tzpingjia: function () {
+  tzpingjia: function() {
     this.setData({
       seleted: 2,
       otherSeleted: 0
@@ -460,12 +444,12 @@ Page({
     }, 1000)
   },
   // 评价上拉加载
-  scrolltolower: function (e) {
+  scrolltolower: function(e) {
     let d = this.data
     this.commentRequest(d.otherSeleted, d.comment_list[d.otherSeleted].current_page * 1 + 1)
   },
   // 这个是预览图片
-  prveImage: function (e) {
+  prveImage: function(e) {
     console.log()
     let that = this
     let image = that.data.img_path + "" + e.currentTarget.dataset.image
@@ -480,7 +464,7 @@ Page({
     })
   },
   // 比价点击数据
-  bijiaClick: function (e) {
+  bijiaClick: function(e) {
     let that = this
     let d = that.data
     if (d.bj_data.length > 0) {
@@ -515,7 +499,7 @@ Page({
 
   },
 
-  clear: function (e) {
+  clear: function(e) {
     this.setData({
       is_bijia: false
     })
@@ -524,28 +508,28 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
     if (this.data.setInter) {
       clearInterval(this.data.setInter)
       this.data.setInter = ''
@@ -555,7 +539,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
@@ -563,7 +547,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     let seleted = this.data.seleted
     if (seleted == 2) {
       let otherSeleted = this.data.otherSeleted
@@ -573,9 +557,9 @@ Page({
   },
 
   /**
-  * 用户点击右上角分享
-  */
-  onShareAppMessage: function () {
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
     let that = this
     return request.share(that.data.list_data.goods_name, that.data.list_data.goods_id)
   }
