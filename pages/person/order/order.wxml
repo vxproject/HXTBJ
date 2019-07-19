@@ -23,10 +23,10 @@
   <!-- 有订单状态 -->
   <view wx:else class='yes_order'>
     <!-- 待付款 -->
-    <view wx:if="{{seleted < 2}}" wx:for="{{list_data.data}}" class=' order_item' wx:for-index="index">
+    <view wx:if="{{seleted < 2 && item.goodsInfo.length > 0}}" wx:for="{{list_data.data}}" class=' order_item' wx:for-index="index">
       <view class='bc-white'>
         <!-- 头部 -->
-        <view class='order_item_header'>
+        <view class='order_item_header' >
           <view class=' fs-24 fc-99'>
             <text style='margin-right:10rpx;'>订单编号</text> {{item.order_sn}}</view>
           <view class=' fs-26 fc-ff'>{{orders.getState(item) == -1?"交易关闭":orders.getState(item)}}</view>
@@ -57,7 +57,7 @@
             </view>
           </view>
         </view>
-        <view class='goods_info_sum fc-33'>
+        <view class='goods_info_sum fc-33' >
           <view></view>
           <view class='goods_io_sum'>
             <text class=' fs-20'>共{{item.goodsInfo.length}}件商品</text>
@@ -70,7 +70,7 @@
           <view class='fs-24' style='color:#ff6413;'>
             <text class='fs-20 fc-66' wx:if="{{item.time}}">支付剩余：</text>{{item.time ? item.time :'' }}</view>
           <view class='goods_info_btn'>
-            <button class='goods_item_btn  fs-24 quxian_hui'>联系客服</button>
+            <button class='goods_item_btn  fs-24 quxian_hui' open-type="contact">联系客服</button>
             <button catchtap='orderClick' data-item="{{item}}" data-flag="1" wx:if="{{item.goodsInfo[0].is_comment == 0}}" style='margin-left:20rpx;' class='goods_item_btn  fs-24 quxian_hui'>取消订单</button>
             <button catchtap='orderClick' data-item="{{item}}" data-flag="2" style='margin-left:20rpx;' class='goods_item_btn  fs-24 ys1'>付款</button>
           </view>
@@ -109,10 +109,10 @@
       </view>
     </view>
 
-    <view wx:if="{{seleted > 1}}" wx:for="{{list_data.data}}" wx:for-index="idx" class=' order_item'>
+    <view wx:if="{{seleted > 1 && list_data.data.length > 0}}" wx:for="{{list_data.data}}" wx:for-index="idx" class=' order_item'>
       <!-- 头部 -->
-      <view class='bc-white'>
-        <view class='order_item_header'>
+      <view class='bc-white' >
+        <view class='order_item_header' >
           <view class='fs-24 fc-99'>
             <text style='margin-right:10rpx;'>订单编号</text>{{item.order_goods_sn}}</view>
           <!-- <text bindtap='copy' data-copTxt="{{item.order_goods_sn}}" class='ziti_3 color_gray copy' style='padding:5rpx 10rpx;'>复制</text> -->
@@ -148,7 +148,7 @@
 
         </view>
 
-        <view class='goods_info_sum fc-33'>
+        <view class='goods_info_sum fc-33' wx:if="{{list_data.data.length > 0}}">
           <view></view>
           <view class='goods_io_sum'>
             <text class=' fs-20'>共{{item.goods_num}}件商品</text>
@@ -162,12 +162,7 @@
             <button catchtap='orderClick' data-item="{{item}}" data-flag="3" class='goods_item_btn  fs-24 quxian_hui'>查看物流</button>
             <button catchtap='orderClick' data-item="{{item}}" data-flag="4" class='goods_item_btn  fs-24 ys1' style='margin-left:20rpx;'>确认收货</button>
           </view>
-
         </view>
-        <!-- <view wx:if="{{seleted == 3}}" class='goods_info_btn'>
-          <button catchtap='orderClick' data-item="{{item}}" data-flag="4" class='goods_item_btn goods_item_btn1 ziti_3 ys1'>确认收货</button>
-          <button catchtap='orderClick' data-item="{{item}}" data-flag="3" class='goods_item_btn goods_item_btn2 ziti_3 ys2'>查看物流</button>
-        </view> -->
         <view wx:elif="{{seleted == 4}}" class='goods_info_btn' style='margin-top:30rpx;'>
           <view></view>
           <view class='goods_info_btn'>
@@ -176,10 +171,6 @@
             <button catchtap='orderClick' data-item="{{item}}" data-flag="6" wx:if="{{item.is_comment == 0}}" style='margin-left:20rpx;' class='goods_item_btn  fs-24 ys1'>去评价</button>
           </view>
         </view>
-        <!-- <view wx:elif="{{seleted == 4}}" class='goods_info_btn'>
-          <button catchtap='orderClick' data-item="{{item}}" data-flag="5" class='goods_item_btn goods_item_btn1 ziti_3 ys1'>再次购买</button>
-          <button catchtap='orderClick' data-item="{{item}}" data-flag="6" wx:if="{{item.is_comment == 0}}" class='goods_item_btn goods_item_btn2 ziti_3 ys1'>评价商品</button>
-        </view> -->
       </view>
     </view>
   </view>

@@ -1,0 +1,40 @@
+<!--components/collectionCell/collectionCell.wxml  bindtouchstart='bindtouchstart' bindtouchend='bindtouchend'-->
+<view class="content translate {{item.scrollflag && !show_flag ? 'scroll_left' :'scroll_left1'}} " style='' catchtap="{{show_flag ? '' :'lookdetail'}}" data-ind="{{item.goodsInfo.is_on_sale}}" data-id="{{item.goods_id}}" >
+
+  <view class='content_left' >
+    <view class='content_icon  ' catchtap='chooseOne' data-index="{{index}}" wx:if="{{show_flag}}">
+      <icon class='' type='success' size='19' color='#ff5000' wx:if="{{item.flag}}"></icon>
+      <icon class='' type='circle' size='19' color='#a3a3a3' wx:if="{{!item.flag}}"></icon>
+    </view>
+    <image src='{{imgsrc}}{{item.goodsInfo.specGoodsPrice[0].spec_img}}' class='content_img '>
+      <!-- <image src='/images/image/sp.png' class='content_imgsell' wx:if="{{item.goodsInfo.is_on_sale == 0}}" /> -->
+    </image>
+  </view>
+  <view class='content_title txt_dot'>
+    <view class='' catchtap="{{show_flag ? '' :'lookdetail'}}" data-ind="{{item.goodsInfo.is_on_sale}}" data-id="{{item.goods_id}}">
+      <view class='txt_dot content_top title_wz' style='font-size:26rpx;color:#333333;'>{{item.goodsInfo.goods_name}}</view>
+      <view class='color_gray  txt_dot  content_top sc_wz' style='font-size:22rpx;color:#999999;'>{{item.collect_num}}人收藏</view>
+      <view class='tag'>
+      </view>
+    </view>
+    <view class='content_bottom '>
+      <view class='content_bottom_title ' catchtap="{{show_flag ? '':'lookdetail'}}" data-ind="{{item.goodsInfo.is_on_sale}}" data-id="{{item.goods_id}}">
+        <view wx:if="{{item.goodsInfo.is_on_sale != 0 && item.goodsInfo.store_count != 0}}" class='ziti_2 colorprice'>
+        <text style='font-size:20rpx;'>¥</text>
+        <text style='font-size:34rpx;'>{{shop_price[0]}}.</text>
+        <text style='font-size:26rpx;'>{{shop_price[1]}}</text>
+        <!-- {{item.goodsInfo.shop_price}} -->
+        </view>
+        <view wx:else>
+           <view class='shixiao'>失效</view>
+        </view>
+      </view>
+      <button catchtap='button' hidden="{{show_flag}}" class="content_btn ziti_2 color_price {{show_flag ? 'none' : ''}} " wx:if="{{item.goodsInfo.is_on_sale == 1}}" open-type="share" data-id='{{item.goods_id}}' data-title="{{item.goodsInfo.goods_name}}">分享</button>
+
+    </view>
+
+  </view>
+
+          <view class='cebian ziti_1' catchtap='deleteOne' data-id="{{item.goods_id}}" data-index="{{index}}">删除</view>
+
+</view>

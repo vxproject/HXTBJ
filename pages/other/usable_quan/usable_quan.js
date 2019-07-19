@@ -7,7 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    quan: { img: '../../../images/image/person_quan_can.png', quan: 'quan_title ziti_1 quan_title_can', money: 'quan_guize ziti_3 quan_guize_can', time: 'color:#ffffff;' }, 
+    quan: [{ img: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_quan_can.png?sign=dd95c124ce8126f28d23c811a809354a&t=1563272720', quan: '../../../images/other/person_quan_kguoqi.png', money: 'quan_guize ziti_3 quan_guize_can', time: 'color:#ffffff;' },
+    { img: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_quan_guo.png?sign=c459534f28097f8f8961669a86467ede&t=1563272746', quan: '../../../images/other/person_quan_yixiaofei.png', money: 'quan_guize quan_guize1 ziti_3', time: 'color:#929fa8;' },
+    { img: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_quan_guo.png?sign=c459534f28097f8f8961669a86467ede&t=1563272746', quan: '../../../images/other/person_quan_guoqi.png', money: 'quan_guize quan_guize1 ziti_3', time: 'color:#929fa8' }],
+    opacity: 0, 
+    seleted:0,
     coupon:[],
   },
 
@@ -23,6 +27,12 @@ Page({
         // price: JSON.parse(options.price),
       })
     }
+
+    setTimeout(()=>{
+      this.setData({
+        opacity:1
+      })
+    },1000)
   },
   // getRequest: function (goods_list, order_amount){
   //   let that = this

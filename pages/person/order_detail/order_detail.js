@@ -72,7 +72,7 @@ Page({
         txt: '交易完成',
         src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
       }, ],
-    state: 0, //0:代付款 1：订单取消 2：待发货 3：待发货 4、已收货  5、以评论
+    state: 0, 
     img_path: baseurl.imgPath,
     isTime: false,
     options: {}
@@ -102,6 +102,7 @@ Page({
           list_data: res.data,
           state: state
         })
+        console.info('---------------', that.data.state)
         if (state == 0) that.countDown()
       }
     })
@@ -123,7 +124,7 @@ Page({
             list_data.time = null
             that.cancelOrder(list_data.order_id)
           } else {
-            list_data.time = "" + that.timeFormat(hou) + ":" + that.timeFormat(min) + ":" + that.timeFormat(sec)
+            list_data.time = "" + that.timeFormat(hou) + "时" + that.timeFormat(min) + "分" + that.timeFormat(sec)+"秒"
           }
           that.setData({
             list_data: list_data
@@ -212,11 +213,13 @@ Page({
     util.showCancelModel("要确认收货吗?", res => {
       order.orderList(that, "1", rec_id, res => {
         if (res.status == 200) {
-          that.onLoad(that.data.options)
+          // that.onLoad(that.data.options)
+          wx.navigateTo({
+            url: '../../person/shouhuosuccess/shouhuosuccess?item=' + rec_id,
+          })
         }
       })
     })
-
   },
   goodsDetail: function(e) {
     console.log(e.currentTarget.dataset.id)
@@ -344,7 +347,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    console.log("这里走了吗")
     this.data.isTime = true
   },
 
@@ -352,7 +354,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    console.log("这里走了吗")
     this.data.isTime = true
   },
 

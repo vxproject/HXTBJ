@@ -62,8 +62,11 @@ Page({
     let flag = e.currentTarget.dataset.flag
     let seleted = this.data.seleted
     if (flag == seleted) return
+    let list_data = this.data.list_data;
+    list_data.data=[];
     this.setData({
-      seleted: flag
+      seleted: flag,
+      list_data: list_data
     })
     this.postRequest(flag, 1)
   },
@@ -171,7 +174,7 @@ Page({
     // if(flag == 1) this.cancelOrder(orderid) // 取消订单 
     else if (flag == 2) this.payOrder(item.order_sn) //立即付款
     else if (flag == 3) this.wuliu(rec_id)   //物流
-    else if(flag == 4) this.shouhuo(rec_id)  //确认收货
+    else if (flag == 4) this.shouhuo(rec_id)  //确认收货
     else if (flag == 5) this.payAgain(goods_id, item.item_id ? item.item_id : item.goodsInfo[0].item_id, item.goods_num ? item.goods_num : item.goodsInfo[0].goods_num)
     else if (flag == 6) this.pingjia(rec_id, spc_image)
   },
@@ -204,16 +207,16 @@ Page({
     util.showCancelModel("要确认收货吗?", res => {
       order.orderList(that, "1", rec_id, res => {
         if (res.status == 200) {
-          that.postRequest(that.data.seleted, 1, true)
+          // that.postRequest(that.data.seleted, 1, true)
+          wx.navigateTo({
+            url: '../../person/shouhuosuccess/shouhuosuccess?item=' + rec_id,
+          })
         }
       })
     })
 
   },
   payAgain: function (goods_id, item_id, goods_num) {
-    // wx.navigateTo({
-    //   url: '../../other/goods_detail/goods_detail?goods_id='+goods_id,
-    // })
     wx.navigateTo({
       url: '../../other/buy_goods/buy_goods?goods_id=' + goods_id + "&goods_num=" + goods_num + "&item_id=" + item_id,
     })

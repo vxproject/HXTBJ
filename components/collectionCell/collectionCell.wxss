@@ -1,0 +1,246 @@
+/* components/collectionCell/collectionCell.wxss */
+/* pages/person/shoucang_list/shoucang_list.wxss */
+@import "../../css/base.wxss";
+page {
+  background-color: #f5f5f5;
+}
+
+.title_top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  width: 100%;
+  display: flex;
+}
+
+.title {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  margin-bottom: 10rpx;
+  width: 100%;
+}
+
+.title_cont {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding-right: 60rpx;
+  background: #fff;
+}
+
+.triangle-down {
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 10rpx solid;
+  margin-left: 10rpx;
+}
+
+.content {
+  /* padding: 0rpx 20rpx 0rpx 0rpx; */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+
+  align-items: center;
+  position: relative;
+  /* top: 0;
+  left: 0; */
+  margin:0 auto;
+  width:115%;
+    margin-bottom: 10rpx;
+    /* overflow-x:scroll; */
+  border-top-left-radius:10rpx;
+  border-bottom-left-radius:10rpx;
+    -webkit-overflow-scrolling:touch;
+}
+
+.scroll_left{
+  left: -15%;
+  transition:  left 500ms;
+}
+.scroll_left1{
+  left: 0%;
+  transition:  left 500ms;
+}
+.cebian{
+  width: 15%;
+  height: 270rpx;
+  /* position: absolute;
+  right: -15%;
+  top: 0; */
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+ 
+}
+
+
+
+
+.content_left {
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+
+}
+
+
+.colorprice{
+  color:#ff5000;
+}
+
+
+.shixiao{
+  background-color: #999999;
+  color: #fff;
+  width: 66rpx;
+  height: 30rpx;
+  font-size: 20rpx;
+  text-align: center;
+  border-radius: 8rpx;
+}
+.content_img {
+  display: flex;
+  flex-shrink: 0;
+  width: 270rpx;
+  height: 270rpx;
+  /* margin-right: 20rpx; */
+  position: relative;
+  border-top-left-radius:10rpx;
+  border-bottom-left-radius:10rpx;
+  background-color: #fff;
+  /* padding-left: 20rpx; */
+
+}
+.content_imgsell{
+   width: 270rpx;
+  height: 270rpx;
+  flex-shrink: 0;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.content_title {
+  display: flex;
+  width: 425rpx;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  height: 270rpx;
+   flex-shrink: 0;
+   background-color: #fff;
+   padding-left: 20rpx;
+}
+
+.content_top {
+  width: 100%;
+  /* padding-top: 20rpx; */
+}
+.title_wz{
+  padding-top: 28rpx;
+}
+.sc_wz{
+  padding-top: 26rpx;
+}
+
+.content_bottom {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.content_bottom_title {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+  width: 100%;
+}
+
+button {
+  background-color: rgb(247, 247, 247);
+  border-radius: 0rpx;
+  padding: 0rpx;
+  margin: 0rpx;
+  display: inline-block;
+  line-height: 1;
+}
+
+button::after {
+  border: none;
+}
+
+.content_btn {
+  /* border: 1rpx solid #ff5000; */
+  border-radius: 30rpx;
+  width: 130rpx;
+  text-align: center;
+  line-height: 42rpx;
+  color: #fff;
+  font-size: 26rpx;
+  margin-right: 20rpx;
+  background: linear-gradient(to right, #ff6413 0%, #fd4722 100%);
+}
+
+.through {
+  text-decoration: line-through;
+}
+
+.bg_tag {
+  background-color: #fadddf;
+  font-size: 22rpx;
+  padding: 0 8rpx;
+  border-radius: 4rpx;
+  margin-top: 6rpx;
+}
+
+.tag {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width:100%; 
+  padding: 20rpx 0;
+}
+
+.btn {
+  padding: 20rpx 30rpx;
+}
+
+.btn_guanli {
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: blue;
+  border-radius: 12rpx;
+  color: white;
+}
+
+
+
+
+
+
+
+.content_icon {
+  display: flex;
+  padding: 30rpx 30rpx 30rpx 0rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.none{
+  pointer-events: none;
+}

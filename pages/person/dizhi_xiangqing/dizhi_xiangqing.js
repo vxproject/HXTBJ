@@ -18,7 +18,7 @@ Page({
     diqus: [0, 0, 0],
     name:'',
     phone:'',
-    dizhiText:'',
+    dizhiText:'省、市、区县',
     item:null,
     address:'',
     checked:false
@@ -40,6 +40,11 @@ Page({
       this.data.name = item.consignee
       this.data.phone = item.mobile
       this.data.address = item.address
+    }
+    if(options.flag) {
+      wx.setNavigationBarTitle({
+        title: '添加地址',
+      })
     }
     this.cityRequest(0, -1)
   },
@@ -150,9 +155,9 @@ Page({
       })
     }
   },
-  switchChange:function(e){
+  switchChange:function(){
     this.setData({
-      checked: e.detail.value
+      checked: !this.data.checked
     })
   },
   // 保存地址

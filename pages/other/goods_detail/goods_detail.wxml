@@ -311,6 +311,6 @@
     <view class='yishouqing' wx:if="{{!overFlag && is_miaosha }}">已售罄</view>
   </view>
   
-   <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/good_detail/ls_back.png?sign=80e26a033651595d7bc6b6880e1a2479&t=1563443653' class=' tran {{is_dw && seleted == 0 ? "backimg" :"backimg2"}}'   catchtap='gobackTop'/>
+   <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/good_detail/ls_bcaktop.png?sign=240b84fafe4a517f4df0d12cda54edb1&t=1563523388' class=' tran {{is_dw && seleted == 0 ? "backimg" :"backimg2"}}'   catchtap='gobackTop'/>
 
 </block>

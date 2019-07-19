@@ -1,0 +1,55 @@
+<wxs module="filters" src="../../home/store/filter.wxs"></wxs>
+<block wx:if="{{hidden == 1}}">
+  <view class='relative fc-white'>
+    <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/top_orderdetail.png?sign=45f3f6ac4172fab8a98608fb1d451e3a&t=1563353366' class='status_banner_img' />
+    <view class='absolute' style='top:100rpx;left:0;'>
+      <view class='ls_shoucang2'>
+        <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_whitebc.png?sign=9bb86555ba4049c22d6752dd4b18897e&t=1563503718' class='wh-35' />
+        <view>交易成功</view>
+      </view>
+      <view class='ls_shoucang2 fs-22 mt-14'>去评价一下本次的购物体验吧~</view>
+      <view class='ls_shoucang2 btn_ls_bot mt-30 px-50'>
+        <view class='douyu'></view>
+        <button class='goods_item_btn  fs-24 quxian_white' catchtap='goback'>
+          返回首页
+        </button>
+        <button class='goods_item_btn  fs-24 quxian_white' catchtap='pinglun' data-item="{{list_data.goodsInfo[0]}}">
+          立即评价
+        </button>
+        <view class='douyu'></view>
+      </view>
+    </view>
+  </view>
+  <view class='order_item'>
+    <view class='fs-24 ls_address_mode ls_adradius'>
+      <image class="ls_address" src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_address.png?sign=7a6f542f2a742b7c92e1ffc173564d7c&t=1563421811" />
+      <view class='fc-33 address_mode'>
+        <view class='line-1'>{{list_data.consignee}}
+          <text class='fc-99'>{{list_data.mobile}}</text>
+        </view>
+        <view class='line-1 address_detail'>{{list_data.province_name}}
+          <text class='ml-10'>{{list_data.city_name}}</text>
+          <text class='mx-10'>{{list_data.district_name}}</text>{{list_data.address}}</view>
+      </view>
+    </view>
+    <view class='fc-33 ' style='margin-top:10rpx;'>
+      <view class='foot_modebc'>
+        <view class='fs-26  ls_shoucang'>
+          <view class='shuxian'></view>
+          <view>订单信息</view>
+        </view>
+        <view class='fs-20'>
+          <view class='goods_info_btn mt-30' style=' margin-left: 12rpx;' bindtap='copyText'>
+            <view>订单编号：{{list_data.order_sn}}</view>
+            <view class='fc-ff '>复制</view>
+          </view>
+          <view class='mt-20'>创建时间：{{filters.dateFormat(list_data.add_time,'yyyy/MM/dd hh:ss:mm')}}</view>
+          <view class='mt-20'>支付时间：{{filters.dateFormat(list_data.pay_time,'yyyy/MM/dd hh:ss:mm')}}</view>
+          <view class='mt-20'>发货时间：{{filters.dateFormat(list_data.delivery_time,'yyyy/MM/dd hh:ss:mm')}}</view>
+          <view class='mt-20'>成交时间：{{filters.dateFormat(list_data.receive_time,'yyyy/MM/dd hh:ss:mm')}}</view>
+
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

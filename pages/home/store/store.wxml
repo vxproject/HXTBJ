@@ -189,7 +189,7 @@
 
     <view wx:if="{{store.categoryList[store.srcoll_check_id].is_hot == 0}}" class='home_shiling_box'>
       <image wx:if="{{store.list_data.image_url}}" style='display:block; margin:0 auto;' class='miaosha_item_img' src="{{store.img_path}}{{store.list_data.image_url}}"></image>
-      <scroll-view scroll-x='true' class='er_scroll' scroll-into-view="{{store.fView}}" scroll-left='0px' scroll-top='0px'>
+      <scroll-view scroll-x='true' class='er_scroll' wx:if="{{store.list_data.child.length > 0}}" scroll-into-view="{{store.fView}}" scroll-left='0px' scroll-top='0px'>
 
         <block wx:for='{{store.list_data.child}}' wx:key="{{index}}">
           <text id="f{{index}}" bindtap="changefl" data-index="{{index}}" class='{{index == store.f_seleted?"er_scroll_item ziti_3 bgcolor tcolor":"er_scroll_item ziti_3 flbg color_gray"}}'>{{item.mobile_name}}</text>
@@ -201,12 +201,10 @@
         <view class='ziti_2 color1' style='width:100%;text-align:center;margin-top:150rpx;'>
           <image class='no_order_img' style='padding-bottom:20rpx;' src='../../../images/image/person_order.png'></image>
           暂无数据
-
         </view>
 
-
       </block>
-      <view style="margin-top:70rpx;">
+      <view style='margin-top:{{store.list_data.child[0]?"70":"-18"}}rpx'>
         <block wx:for='{{store.list_data.list.data}}'>
           <view bindtap='goodsDetail' data-id="{{item.goods_id}}" class='home_shiling_item'>
             <image class='home_shiling_item_img' src='{{store.img_path}}{{item.specGoodsPrice[0].spec_img}}'></image>

@@ -86,10 +86,11 @@ page {
 
 .yes_order {
   margin-top: 90rpx;
+  padding-bottom: 20rpx;
 }
 
 .order_item {
-  padding: 20rpx;
+  padding: 20rpx 20rpx 0 20rpx;
 }
 
 .bc-white {

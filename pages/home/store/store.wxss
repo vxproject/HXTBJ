@@ -675,7 +675,7 @@ line-height: 90rpx;
 white-space: nowrap;
 background-color: white;
 position: fixed;
-top:150rpx;
+top:140rpx;
 left:0rpx;
 z-index:99;
 }

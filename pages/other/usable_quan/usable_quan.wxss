@@ -3,3 +3,6 @@
 /* 无订单 */
 
 @import '../../person/quan/quan.wxss';
+.quan_item {
+  margin-top:10rpx;
+}

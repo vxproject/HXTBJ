@@ -315,13 +315,16 @@ image {
 .h-90 {
   height: 90rpx;
 }
-.h-110{
+
+.h-110 {
   height: 110rpx;
   width: 100%;
 }
-.fc-21{
+
+.fc-21 {
   color: #2170c9;
 }
+
 .fc-33 {
   color: #333;
 }
@@ -390,6 +393,7 @@ image {
 .address_mode {
   width: 100%;
 }
+
 .address_mode2 {
   width: 525rpx;
 }
@@ -525,6 +529,7 @@ image {
   color: #666;
   border: solid 2rpx #666;
 }
+
 .ys1 {
   color: #ff6413;
   border: solid 2rpx #ff6413;
@@ -568,6 +573,14 @@ image {
   margin-left: 12rpx;
 }
 
+.mx-10 {
+  margin: 0 10rpx;
+}
+
+.ml-10 {
+  margin-left: 10rpx;
+}
+
 .fixed {
   position: fixed;
   bottom: 0;
@@ -586,9 +599,6 @@ image {
 .btn_ls_bot {
   padding: 0 40rpx;
 }
-
-
-
 
 .cancelmodel {
   position: fixed;
@@ -702,10 +712,32 @@ image {
 .btn_ls2 {
   background: #fd4625;
 }
-.wh-30{
+
+.wh-30 {
   width: 30rpx;
   height: 30rpx;
   position: absolute;
   right: 20rpx;
   bottom: 50rpx;
+}
+
+.triangle-up {
+  width: 0;
+  height: 0;
+  border-width: 0 15rpx 15rpx;
+  border-style: solid;
+  border-color: transparent transparent #e7e5e5; /*透明 透明  灰*/
+  position: relative;
+}
+
+.span {
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 0 14rpx 14rpx;
+  border-style: solid;
+  border-color: transparent transparent #fff; /*透明 透明  黄*/
+  position: absolute;
+  top: 1rpx;
+  left: -13rpx;
 }

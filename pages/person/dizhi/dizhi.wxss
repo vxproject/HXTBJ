@@ -1,12 +1,16 @@
 .search_container{
-    height: 90rpx;
+    height: 80rpx;
+    padding-top: 10rpx;
 }
 .search_box{
     position: relative;
-    width: 690rpx;
+    width: 710rpx;
     height: 70rpx;
-    margin: 10rpx auto;
-    background-color: #f5f5f5;
+    margin: 0rpx auto;
+    background-color: #eeeeee;
+    display: flex;
+    align-items: center;
+    border-radius: 10rpx;
 }
 .search_box>image{
     display: inline-block;
@@ -20,7 +24,7 @@
 .search_box>input{
     position: absolute;
     top: 50%;
-    left: 100rpx;
+    left: 68rpx;
     transform: translateY(-50%);
     width: 596rpx;
     height: 70rpx;
@@ -48,15 +52,53 @@
 .yes_address{
     width: 690rpx;
     margin: 0 auto;
-    padding: 30rpx 0 130rpx 0;
+    padding: 46rpx 0 130rpx 0;
 }
 .yes_address_item{
     position: relative;
     padding-bottom: 50rpx;
+   
     /* background-color: wheat; */
 }
-.name_tel text:first-child{
-    padding-right: 15rpx;
+.yes_address_item image{
+  width: 32rpx;
+  height: 34rpx;
+  position: absolute;
+  right:-20rpx;
+  top: 10rpx;
+  padding: 20rpx;
+}
+.name_tel{
+  display: flex;
+  align-items: center;
+
+}
+.name_tel view{
+border:solid 1rpx #fea593;
+border-radius:10rpx;
+width: 60rpx;
+font-size: 22rpx;
+color:#fd4722;
+text-align: center;
+height: 32rpx;
+line-height: 32rpx;
+margin-right: 16rpx
+}
+.name_tel text{
+    /* padding-left: 16rpx; */
+
+}
+.name_tel text:last-child{
+  padding-left: 26rpx;
+}
+.name_class{
+  font-size: 28rpx;
+  color:#333;
+  font-weight: bold;
+}
+.tel_class{
+  font-size:26rpx;
+  color:#999999;
 }
 .xiangxi_address{
     width: 580rpx;
@@ -70,14 +112,14 @@
     /* padding:4rpx 0 4rpx 25rpx; */
     padding: 60rpx 25rpx;
  }
- .xian{
+ /* .xian{
     position: absolute;
     right: 90rpx;
     top: 50%;
     transform: translateY(-55%);
     border-left: solid 2rpx currentColor;
     padding:25rpx 4rpx;
- }
+ } */
 /* 底部按钮 */
 .btn_container{
     position: fixed;
@@ -97,8 +139,24 @@
     margin: 0 auto;
     background-color: #ff5000;
     color: #ffffff;
+    font-size: 30rpx;
+    border-radius: 80rpx;
 }
 .sanji_address{
   width: 530rpx;
-  padding-bottom: 10rpx;
+  padding-bottom: 48rpx;
+  font-size: 26rpx;
+  color:#999999;
+  padding-top: 12rpx;
+  
+}
+.xian{
+   border-bottom: solid 2rpx #f5f5f5;
+   width:700rpx;
+   height: 1rpx;
+   margin: 0 auto;
+}
+
+.icon-small{
+  margin-left: 20rpx;
 }

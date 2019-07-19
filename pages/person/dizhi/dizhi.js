@@ -26,7 +26,7 @@ Page({
     //添加地址按钮
     adddizhi: function (){
         wx.navigateTo({
-          url: '../dizhi_xiangqing/dizhi_xiangqing',
+          url: '../dizhi_xiangqing/dizhi_xiangqing?flag=1',
         })
     },
     postRequest:function(){

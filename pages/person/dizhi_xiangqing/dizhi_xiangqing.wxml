@@ -3,37 +3,39 @@
 <view class='container'>
   <view class='form_box'>
     <view class='form_ipt_item form_ipt_name'>
-      <text class='ziti_2 color_gray'>收货人</text>
-      <input bindinput="bindKeyInput" data-flag ="name" class='ziti1' type='text' value="{{item?item.consignee:''}}" placeholder='请输入收货人姓名'></input>
+      <text class='left_bt'>收货人</text>
+      <input bindinput="bindKeyInput" data-flag ="name" class='info_zy' type='text' value="{{item?item.consignee:''}}" placeholder='姓名'></input>
     </view>
     <view class='form_ipt_item form_ipt_tel'>
-      <text class='ziti_2 color_gray'>电话</text>
-      <input bindinput="bindKeyInput" data-flag ="phone" type='tel' class='ziti1' value='{{item?item.mobile:""}}' maxlength='11' placeholder='请输入电话号码'></input>
+      <text class='left_bt'>电话</text>
+      <input bindinput="bindKeyInput" data-flag ="phone" type='tel' class='info_zy' value='{{item?item.mobile:""}}' maxlength='11' placeholder='手机号码'></input>
     </view>
     <view class='form_ipt_item form_ipt_tel'>
-      <text class='ziti_2 color_gray'>所在地区</text>
-      <label class='ziti_2'>{{dizhiText}}</label>
+      <text class='left_bt'>地区</text>
+      <!-- <label class='info_zy'>{{dizhiText}}</label> -->
       <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{rangeTitle}}" value="{{multiIndex}}" class='ziti_2 color_gray'>
-        <text class='form_ipt_item_x'>请选择</text>
-        <image class='form_ipt_item_back' src='../../../images/image/person_dizhi_back.png'></image>
+        <text class='form_ipt_item_x info_zy'>{{dizhiText}}</text>
+        <!-- <image class='form_ipt_item_back' src='../../../images/image/person_dizhi_back.png'></image> -->
       </picker>
     </view>
     <!-- 填写详细地址 -->
-    <view class='mar_center'>
-      <textarea bindinput="bindKeyInput" data-flag ="address" class='ziti_2 color_gray' value='{{item?item.address:""}}' placeholder='街道、小区门牌等详细信息'></textarea>
+    <view class='form_ipt_item form_ipt_tel'>
+      <text class='left_bt'>详细地址</text>
+      <input bindinput="bindKeyInput" data-flag ="address" class='info_zy dizhi_info' value='{{item?item.address:""}}' placeholder='街道、小区、楼栋号、单元室等'></input>
     </view>
   </view>
   <!-- 设置默认地址 -->
-  <view class='set_moren'>
-    <text class='ziti_2'>设置为默认地址</text>
-    <switch checked="{{checked}}" bindchange="switchChange" style='width: 110rpx;height:70rpx;'></switch>
+  <view style='background-color:#fff;'>
+  <view bindtap='switchChange' class='set_moren'>
+    <view class='left_bt'>设为默认</view>
+    <image src="{{checked ? '../../../images/other/seleted_yes.png':'../../../images/other/seleted_no.png'}}"></image>
   </view>
-
-    <view wx:if="{{item.address_id}}" bindtap='delete' class='set_moren'>
+    <view wx:if="{{item.address_id}}" bindtap='delete' class='set_moren xian'>
     <text class='ziti_2 color'>删除收货地址</text>
   </view>
+  </view>
   <!-- 底部保存按钮 -->
-  <view bindtap='saveAddress' class='btn_container'>
+  <view bindtap='saveAddress'>
     <button>保存</button>
   </view>
 </view>

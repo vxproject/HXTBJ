@@ -199,7 +199,7 @@ let add_free_coupon = baseURL + version + "/add_free_coupon"
 
 let flash_list = baseURL + version + "/flash_list"
 
-
+let collect_filter = baseURL + version + "/collect_filter"
 
 module.exports = {
   baseURL: baseURL,
@@ -227,5 +227,5 @@ module.exports = {
   //账号管理
   change_mobile, reset_mobile,
   //砍价
-  chop_price, chop_goods, add_goods, chop_user, chop_detail, chop_share, chop_delete, six_share, add_free_coupon, flash_list
+  chop_price, chop_goods, add_goods, chop_user, chop_detail, chop_share, chop_delete, six_share, add_free_coupon, flash_list, collect_filter
 }

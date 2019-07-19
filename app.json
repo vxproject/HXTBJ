@@ -1,5 +1,6 @@
 {
   "pages": [
+   
     "pages/home/index/index",
     "pages/cart/index/index",
     "pages/member/index/index",
@@ -9,6 +10,7 @@
     "pages/person/ruzhu/ruzhu",
     "pages/person/quan/quan",
     "pages/person/order/order",
+    "pages/person/shouhuosuccess/shouhuosuccess",
     "pages/person/replace/replace",
     "pages/person/dizhi_xiangqing/dizhi_xiangqing",
     "pages/other/goods_detail/goods_detail",

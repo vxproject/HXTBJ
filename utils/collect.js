@@ -9,13 +9,25 @@ let add_collect = (that,goods_id, cd) => {
 /**
  * 获取收藏列表
  */
-function collect_list(that,num, cd) {
-  request.getRequest(that,baseurl.collect + "?page=" + num, res => {
+function collect_list(that,num, cd,params=null) {
+  let url = baseurl.collect + "?page=" + num
+  if(params){
+    url = url + "&"+params
+  }
+  request.getRequest(that,url, res => {
     typeof cd == "function" && cd(res)
   })
 
 }
-
+/**
+ * 收藏头部
+ */
+function collect_filter(that, cd) {
+  request.getRequest(that,baseurl.collect_filter,res=>{
+    typeof cd == "function" && cd(res)
+  })
+  
+}
 /**
  * 取消收藏
  */
@@ -37,6 +49,8 @@ function selectids(list, cd) {
   })
   typeof cd == "function" && cd(goodid)
 }
+
+
 
 
 function selectAll(list) {
@@ -69,5 +83,5 @@ let orderData = (list_data, goods_id, is_collectd, flag) => {
 }
 
 module.exports = {
-  add_collect, collect_list, selectAll, collect_cancel, selectids, orderData
+  add_collect, collect_list, selectAll, collect_cancel, selectids, orderData, collect_filter
 }

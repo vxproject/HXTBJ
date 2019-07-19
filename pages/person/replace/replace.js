@@ -38,8 +38,6 @@ Page({
   detail:function(e){
     let index = e.currentTarget.dataset.index
     let data = this.data.list_data.data[index]
-    console.log(index)
-
     wx.navigateTo({
       url: '../order_detail/order_detail?rec_id=' + data.rec_id,
     })

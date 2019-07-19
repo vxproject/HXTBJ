@@ -8,7 +8,7 @@
     <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/top_orderdetail.png?sign=45f3f6ac4172fab8a98608fb1d451e3a&t=1563353366' class='status_banner_img' />
     <view class='absolute fc-white h-70' style='bottom:72rpx;left:80rpx;'>
       <view class='fs-30 '>{{newArr[state].txt}}</view>
-      <view class='fs-22' wx:if="{{state == 0}}">剩10小时10分自动关闭</view>
+      <view class='fs-22' wx:if="{{state == 0 && list_data.time}}">剩{{list_data.time}}自动关闭</view>
       <view class='fs-22' wx:if="{{state == 3}}">还剩10小时10分自动确认</view>
     </view>
     <image class='absolute  small_ls_logo' style='bottom:40rpx;right:80rpx;' src='{{newArr[state].src}}' />
@@ -20,24 +20,24 @@
 
 
   <view class='ls_addressbig'>
-    <view class='fs-24 ls_address_mode ls_adradius'  wx:if="{{state > 2}}" catchtap='orderClick' data-flag="3">
+    <view class='fs-24 ls_address_mode ls_adradius' wx:if="{{state > 2}}" catchtap='orderClick' data-flag="3">
       <image class="ls_address" src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_Car.png?sign=1801e3576a44725cef41b444215d5f04&t=1563441615" />
-      <view class='fc-33 address_mode2' >
+      <view class='fc-33 address_mode2'>
         <view class='line-2 fc-21'>SDK解放军睡觉觉蓉儿苹果控盘跑【而苹果偶尔是分我水电费可
         </view>
         <view class='fc-99 ' style='margin-top:10rpx;'>2012-10-08 12:00:15</view>
       </view>
-      <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_dizhi_back.png?sign=9c1c53e7a1aee66fe47bb68a5478dd61&t=1563446197' class='wh-30'/>
+      <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_dizhi_back.png?sign=9c1c53e7a1aee66fe47bb68a5478dd61&t=1563446197' class='wh-30' />
     </view>
     <view class='fs-24 ls_address_mode ls_adradius'>
       <image class="ls_address" src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_address.png?sign=7a6f542f2a742b7c92e1ffc173564d7c&t=1563421811" />
       <view class='fc-33 address_mode'>
-        <view class='line-1'>是健康减肥
-          <text class='fc-99'>15458785565</text>
+        <view class='line-1'>{{list_data.consignee}}
+          <text class='fc-99'>{{list_data.mobile}}</text>
         </view>
-        <view class='line-1 address_detail'>河南省
-          <text>郑州市</text>
-          <text>中原区</text>圣诞节反倒是解放军问卡的积分四大皆空反馈斯柯达积分</view>
+        <view class='line-1 address_detail'>{{list_data.province_name}}
+          <text class='ml-10'>{{list_data.city_name}}</text>
+          <text class='mx-10'>{{list_data.district_name}}</text>{{list_data.address}}</view>
       </view>
     </view>
     <view class='fs-24 ls_address_mode between top_line'>
@@ -116,7 +116,12 @@
         <view>商品总额</view>
         <view>￥{{list_data.total_amount}}</view>
       </view>
-      <view class='goods_info_btn fs-26 fc-33 top_line ' style='margin-top:24rpx;padding-top:22rpx;'>
+      <view class='goods_info_btn fs-26 fc-33 top_line  status_banner' style='margin-top:24rpx;padding-top:22rpx;'>
+        <view class='absolute ' style='top:-15rpx;right:40rpx;'>
+          <view class='triangle-up'>
+            <view class='span'></view>
+          </view>
+        </view>
         <view>实际支付</view>
         <view class='fc-ff '>
           <text class='fs-20'>￥</text>{{state == 1 ? list_data.order_amount :list_data.goodsInfo[0].order_amount}}</view>
@@ -134,10 +139,10 @@
           <view>订单编号：{{list_data.order_sn}}</view>
           <view class='fc-ff '>复制</view>
         </view>
-        <view class='mt-20'>创建时间：{{filters.dateFormat(list_data.add_time,'yyyy/MM/dd hh:ss:mm')}}</view>
-        <view class='mt-20' wx:if="{{state > 1}}">支付时间：{{filters.dateFormat(list_data.pay_time,'yyyy/MM/dd hh:ss:mm')}}</view>
-        <view class='mt-20' wx:if="{{state > 2}}">发货时间：{{filters.dateFormat(list_data.delivery_time,'yyyy/MM/dd hh:ss:mm')}}</view>
-        <view class='mt-20' wx:if="{{state == 4}}">成交时间：{{filters.dateFormat(list_data.receive_time,'yyyy/MM/dd hh:ss:mm')}}</view>
+        <view class='mt-20'>创建时间：{{filters.dateFormat(list_data.add_time)}}</view>
+        <view class='mt-20' wx:if="{{state > 1}}">支付时间：{{filters.dateFormat(list_data.pay_time)}}</view>
+        <view class='mt-20' wx:if="{{state > 2}}">发货时间：{{filters.dateFormat(list_data.delivery_time)}}</view>
+        <view class='mt-20' wx:if="{{state == 4}}">成交时间：{{filters.dateFormat(list_data.receive_time)}}</view>
 
       </view>
     </view>
@@ -152,8 +157,8 @@
       </view>
     </view>
   </view>
-  <view class='h-110'></view>
-  <view class='fixed'>
+  <view class='h-110' wx:if="{{state <= 4}}"></view>
+  <view class='fixed' wx:if="{{state <= 4}}">
     <view></view>
     <view class='ls_shoucang btn_ls_bot'>
       <button class='goods_item_btn  fs-24 quxian_hui' open-type="contact" wx:if="{{state == 0 || state == 2 || state == 3 }}">
