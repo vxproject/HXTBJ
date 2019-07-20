@@ -10,6 +10,7 @@
       <view class='fs-30 '>{{newArr[state].txt}}</view>
       <view class='fs-22' wx:if="{{state == 0 && list_data.time}}">剩{{list_data.time}}自动关闭</view>
       <view class='fs-22' wx:if="{{state == 3 && list_data.daytime}}">还剩{{list_data.daytime}}自动确认</view>
+      <view class='fs-22' wx:if="{{state == 1 }}">超时关闭</view>
     </view>
     <image class='absolute  small_ls_logo' style='bottom:40rpx;right:80rpx;' src='{{newArr[state].src}}' />
   </view>
