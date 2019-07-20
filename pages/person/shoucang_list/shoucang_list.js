@@ -275,9 +275,9 @@ Page({
     that.setData({
       seleted: zt
     })
-    if(that.data.show_flag) that.setData({
-        show_flag: false
-    })
+    // if(that.data.show_flag) that.setData({
+    //     show_flag: false
+    // })
 
   },
 

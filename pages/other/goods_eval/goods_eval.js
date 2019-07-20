@@ -79,7 +79,7 @@ Page({
       let d = that.data
       let params = {
         rec_id: d.rec_id,
-        goods_rank: d.xing_count,
+        goods_rank: d.xing_count+1,
         content: d.value,
         img: d.imgurl.join(","),
         img_thumb: d.img_thumb.join(",")

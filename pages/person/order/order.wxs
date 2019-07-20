@@ -12,7 +12,7 @@ var getState = function (item) {
       } else if (item.goodsInfo[0].is_send == 1 && item.goodsInfo[0].return_status == 0){
         //待收货
          return '卖家已发货'
-      }else{
+      } else {
         //已收货
         if (item.goodsInfo[0].is_comment == 1){
           return '交易成功' 

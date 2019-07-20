@@ -9,7 +9,7 @@
     <view class='absolute fc-white h-70' style='bottom:72rpx;left:80rpx;'>
       <view class='fs-30 '>{{newArr[state].txt}}</view>
       <view class='fs-22' wx:if="{{state == 0 && list_data.time}}">剩{{list_data.time}}自动关闭</view>
-      <view class='fs-22' wx:if="{{state == 3}}">还剩10小时10分自动确认</view>
+      <view class='fs-22' wx:if="{{state == 3 && list_data.daytime}}">还剩{{list_data.daytime}}自动确认</view>
     </view>
     <image class='absolute  small_ls_logo' style='bottom:40rpx;right:80rpx;' src='{{newArr[state].src}}' />
   </view>
@@ -20,16 +20,16 @@
 
 
   <view class='ls_addressbig'>
-    <view class='fs-24 ls_address_mode ls_adradius' wx:if="{{state > 2}}" catchtap='orderClick' data-flag="3">
+    <view class='fs-24 ls_address_mode ls_adradius' wx:if="{{state > 2 && list_data.wuliu[0]}}" catchtap='orderClick' data-flag="3">
       <image class="ls_address" src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_Car.png?sign=1801e3576a44725cef41b444215d5f04&t=1563441615" />
       <view class='fc-33 address_mode2'>
-        <view class='line-2 fc-21'>SDK解放军睡觉觉蓉儿苹果控盘跑【而苹果偶尔是分我水电费可
+        <view class='line-2 fc-21'>{{list_data.wuliu[0].AcceptStation}}
         </view>
-        <view class='fc-99 ' style='margin-top:10rpx;'>2012-10-08 12:00:15</view>
+        <view class='fc-99 ' style='margin-top:10rpx;'>{{list_data.wuliu[0].AcceptTime}}</view>
       </view>
       <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_dizhi_back.png?sign=9c1c53e7a1aee66fe47bb68a5478dd61&t=1563446197' class='wh-30' />
     </view>
-    <view class='fs-24 ls_address_mode ls_adradius'>
+    <view class='fs-24 ls_address_mode ls_adradius {{ list_data.send_time ?"" :"radiuslls"}}'>
       <image class="ls_address" src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_address.png?sign=7a6f542f2a742b7c92e1ffc173564d7c&t=1563421811" />
       <view class='fc-33 address_mode'>
         <view class='line-1'>{{list_data.consignee}}
@@ -40,9 +40,9 @@
           <text class='mx-10'>{{list_data.district_name}}</text>{{list_data.address}}</view>
       </view>
     </view>
-    <view class='fs-24 ls_address_mode between top_line'>
+    <view class='fs-24 ls_address_mode between top_line' wx:if="{{list_data.send_time}}">
       <view class='fc-33'>配送时间</view>
-      <view class=' fc-66'>预计6月10日送达</view>
+      <view class=' fc-66'>预计{{list_data.send_time}}送达</view>
     </view>
   </view>
   <!-- <view wx:if="{{list_data.address}}" class='yes_address_box'>
@@ -96,7 +96,8 @@
           </view>
         </view>
       </view>
-      <view class='goods_info_btn' wx:if="{{state > 1 && state != 5}}">
+      <view class='goods_info_btn' wx:if="{{state > 1 }}">
+      <!-- && state != 5 -->
         <view></view>
         <view class='goods_info_btn' bindtap='shouhou'>
           <button class='goods_item_btn  fs-24 quxian_hui'>
@@ -157,14 +158,14 @@
       </view>
     </view>
   </view>
-  <view class='h-110' wx:if="{{state <= 4}}"></view>
-  <view class='fixed' wx:if="{{state <= 4}}">
+  <view class='h-110' wx:if="{{state <= 5}}"></view>
+  <view class='fixed' wx:if="{{state <= 5}}">
     <view></view>
     <view class='ls_shoucang btn_ls_bot'>
       <button class='goods_item_btn  fs-24 quxian_hui' open-type="contact" wx:if="{{state == 0 || state == 2 || state == 3 }}">
         联系客服
       </button>
-      <button class='goods_item_btn  fs-24  {{state == 1 ? "ys1" :"quxian_hui"}}' catchtap='orderClick' data-flag="7" wx:if="{{state ==1 || state == 4}}">
+      <button class='goods_item_btn  fs-24  {{state == 1 || state == 5 ? "ys1" :"quxian_hui"}}' catchtap='orderClick' data-flag="7" wx:if="{{state ==1 || state == 4 || state == 5}}">
         删除订单
       </button>
       <button class='goods_item_btn  fs-24 quxian_hui' catchtap='orderClick' data-flag="1" wx:if="{{state == 0}}" style='margin-left:20rpx;'>

@@ -63,7 +63,7 @@ Page({
     let seleted = this.data.seleted
     if (flag == seleted) return
     let list_data = this.data.list_data;
-    list_data.data=[];
+    list_data.data = [];
     this.setData({
       seleted: flag,
       list_data: list_data
@@ -103,36 +103,54 @@ Page({
   orderDetail: function (e) {
     let id = e.currentTarget.dataset.id
     let state = e.currentTarget.dataset.state
+    let pagenum = e.currentTarget.dataset.pagenum
     if (state == 1) id = e.currentTarget.dataset.recid
     let seleted = this.data.seleted
-    let url = '../order_detail/order_detail?order_id=' + id
+    let url = '../order_detail/order_detail?order_id=' + id + '&pagenum=' + pagenum;
     if (seleted > 1 || state == 1) {
-      url = '../order_detail/order_detail?rec_id=' + id
+      url = '../order_detail/order_detail?rec_id=' + id + '&pagenum=' + pagenum;
     }
     wx.navigateTo({
       url: url,
     })
   },
   /**
+   * 删除订单
+   */
+  deleteOrder(e) {
+    wx.showModal({
+      content: '是否确定删除订单？',
+      cancelColor: '#2170c9',
+      confirmColor: '#2170c9',
+      success: res => {
+        if (res.confirm) {
+          let rec_id = e.currentTarget.dataset.item;
+          request.postRequest(this, baseurl.order_hide, { rec_id: rec_id }, res => {
+            if (res.status == 200) {
+              this.postRequest(this.data.seleted, 1, true)
+            }
+          })
+        } else if (res.cancel) {
+        }
+      }
+    })
+  },
+  /**
    * 底部按钮 （取消订单）
    */
-  makesure(e){
-    let that=this;
-    let index = e.currentTarget.dataset.index ;
-    if(index == '1'){
-      wx.showToast({
-        title: '暂不取消',
+  makesure(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let arr_cancel = that.data.arr_cancel;
+    if (index == '1') {
+      that.setData({
+        cancleorder_flag: false
       })
     }
-    if( index =='2'){
-      wx.showToast({
-        title: '确定取消',
-      })
+    if (index == '2') {
+      let data = { order_id: that.data.orderid, reason: order.chools_one(that.data.arr_cancel,that) ? that.data.arr_cancel[that.data.index_ls].txt : undefined }
+      this.cancelOrder(data);
     }
-    that.setData({
-      cancleorder_flag:true
-    })
-
   },
   /**
    * 选择一个原因
@@ -147,7 +165,7 @@ Page({
     })
     arr_cancel[index].flag = !flag;
     that.setData({
-      arr_cancel: arr_cancel
+      arr_cancel: arr_cancel,
     })
   },
   changese_flag() {
@@ -167,7 +185,8 @@ Page({
     if (!spc_image) spc_image = item.goodsInfo[0].spec_img
     if (flag == 1) {// 取消订单
       this.setData({
-        cancleorder_flag: !this.data.cancleorder_flag
+        cancleorder_flag: !this.data.cancleorder_flag,
+        orderid: orderid,//订单id
       })
     }
 
@@ -182,6 +201,9 @@ Page({
     let that = this
     order.cancelOrder(that, orderid, res => {
       util.showmodel(res.message)
+      that.setData({
+        cancleorder_flag:false,
+      })
       if (res.status == 200) {
         that.postRequest(that.data.seleted, 1, true)
       }
@@ -244,7 +266,8 @@ Page({
               let sec = parseInt(time % (60 * 60 * 24) % 3600 % 60);
               if (time <= 0) {
                 item.deleted = 1
-                that.cancelOrder1(item.order_id)
+                let order_id = { order_id: item.order_id}
+                that.cancelOrder1(order_id)
                 item.time = null
               } else {
                 item.time = "" + that.timeFormat(hou) + ":" + that.timeFormat(min) + ":" + that.timeFormat(sec)
@@ -258,8 +281,6 @@ Page({
           })
         }
       }
-
-
       that.countDown()
     }, 1000)
   },

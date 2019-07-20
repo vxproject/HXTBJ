@@ -15,11 +15,11 @@
           <image src="{{seleted == 2 ? '../../../images/other/sc_jt1.png':'../../../images/other/sc_jt2.png'}}"></image>
         </view>
       </view>
-      <view wx:if="{{seleted != 0}}" class="bg" bindtap='quxiao'>
+      <view wx:if="{{seleted != 0}}" class="bg" bindtap='quxiao' catchtouchmove="ture">
         <view class='statesInfo' catchtap='statesClick'>
-        <view catchtap='statusClick' data-index="{{index}}" wx:if="{{statesArr[seleted-1].length > 0}}" wx:for="{{statesArr[seleted-1]}}" wx:key="{{index}}" class='statefl {{(seleted == 1 && seleted0 == index)|| (seleted == 2 && seleted1 == index)?"seletedfl":""}}'>
-          <view>{{item.title}}</view>
-        </view>
+          <view catchtap='statusClick' data-index="{{index}}" wx:if="{{statesArr[seleted-1].length > 0}}" wx:for="{{statesArr[seleted-1]}}" wx:key="{{index}}" class='statefl {{(seleted == 1 && seleted0 == index)|| (seleted == 2 && seleted1 == index)?"seletedfl":""}}'>
+            <view>{{item.title}}</view>
+          </view>
         </view>
       </view>
     </view>
@@ -28,7 +28,7 @@
         <collectionCell item="{{item}}" bindchooseOne="chooseOne" binddeleteOne="deleteOne" index="{{index}}" show_flag="{{show_flag}}"></collectionCell>
       </view>
       <view class='gunali' catchtap='selectOne'>
-        {{show_flag?'取消' :'管理'}}
+        {{show_flag?'完成' :'管理'}}
       </view>
     </view>
   </view>

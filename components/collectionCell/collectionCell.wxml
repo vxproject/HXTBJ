@@ -29,7 +29,7 @@
            <view class='shixiao'>失效</view>
         </view>
       </view>
-      <button catchtap='button' hidden="{{show_flag}}" class="content_btn ziti_2 color_price {{show_flag ? 'none' : ''}} " wx:if="{{item.goodsInfo.is_on_sale == 1}}" open-type="share" data-id='{{item.goods_id}}' data-title="{{item.goodsInfo.goods_name}}">分享</button>
+      <button catchtap='button' hidden="{{show_flag}}" class="content_btn ziti_2 color_price {{show_flag ? 'none' : ''}} " wx:if="{{item.goodsInfo.is_on_sale == 1 &&item.goodsInfo.store_count != 0}}" open-type="share" data-id='{{item.goods_id}}' data-title="{{item.goodsInfo.goods_name}}">分享</button>
 
     </view>
 

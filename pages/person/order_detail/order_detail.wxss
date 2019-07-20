@@ -407,6 +407,10 @@ image {
   border-bottom-left-radius: 10rpx;
   border-bottom-right-radius: 10rpx;
 }
+.radiuslls{
+    border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
 
 .ls_adradius {
   border-top-left-radius: 10rpx;
