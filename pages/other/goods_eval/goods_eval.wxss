@@ -125,15 +125,15 @@ page {
 
 .show_img_item {
   position: relative;
-  margin-right: 15rpx;
+  margin-right: 20rpx;
 }
 
 .jingting_logo_img {
   position: absolute;
-  top: 0rpx;
-  right: 0rpx;
-  width: 40rpx;
-  height: 40rpx;
+  top: -18rpx;
+  right: -18rpx;
+  width: 30rpx;
+  height: 30rpx;
   padding-left: 25rpx;
   padding-bottom: 25rpx;
 }

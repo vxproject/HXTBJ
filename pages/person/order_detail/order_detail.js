@@ -169,7 +169,7 @@ Page({
     // else if (flag == 5) this.payAgain(goods.goods_id, goods.item_id, goods.goods_num) //再来一次
     else if (flag == 6) this.pingjia(goods.rec_id, goods.spec_img) //评价
     else if (flag == 7) this.deletOrder(goods.rec_id)  // 删除订单
-    else if (flag == 8) this.tixingOrder()  // 提醒发货
+    else if (flag == 8) this.tixingOrder(goods.rec_id)  // 提醒发货
   },
   /**
    * 删除订单
@@ -199,16 +199,31 @@ Page({
     })
 
   },
-  tixingOrder() {
+  /**
+   * 提醒发货
+   */
+  tixingOrder(data) {
     wx.showModal({
       content: '只能提醒一次,您是否提醒？',
       cancelColor: '#2170c9',
       confirmColor: '#2170c9',
       success: res => {
         if (res.confirm) {
-          console.log('用户点击确定')
+          request.postRequest(this,baseurl.order_remind, { rec_id: data }, res => {
+            if (res.status == 200) {
+              wx.showModal({
+                content: '已通知卖家尽快为您发货！',
+                showCancel:false,
+                confirmText:'确定',
+                confirmColor:'#2170c9',
+                success:res=>{
+                  let options = this.data.options
+                  this.orderData(options.rec_id, "2")
+                }
+              })
+            }
+          })
         } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }
     })
@@ -352,7 +367,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let options = this.data.options 
+    let options = this.data.options
     if (options.order_id) {
       this.orderData(options.order_id, "1")
     } else {

@@ -110,9 +110,10 @@
         <view>运费</view>
         <view>{{list_data.shipping_price == 0?"":"￥"}}{{list_data.shipping_price == 0?"包邮":list_data.shipping_price}}</view>
       </view>
-      <view class='goods_info_btn fs-24 fc-33' style='margin-top:24rpx;' wx:if="{{list_data.coupon_price > 0}}">
+      <view class='goods_info_btn fs-24 fc-33' style='margin-top:24rpx;' >
+      <!-- wx:if="{{list_data.coupon_price > 0}}" -->
         <view>平台优惠券</view>
-        <view>-￥{{list_data.coupon_price}}</view>
+        <view>-￥{{list_data.coupon_price?list_data.coupon_price : '0.00' }}</view>
       </view>
       <view class='goods_info_btn fs-24 fc-33' style='margin-top:24rpx;'>
         <view>商品总额</view>
@@ -163,7 +164,7 @@
   <view class='fixed' wx:if="{{state <= 5}}">
     <view></view>
     <view class='ls_shoucang btn_ls_bot'>
-      <button class='goods_item_btn  fs-24 quxian_hui' open-type="contact" wx:if="{{state == 0 || state == 2 || state == 3 }}">
+      <button class='goods_item_btn  fs-24  {{list_data.remind == 1 && state == 2 ? "ys1":"quxian_hui"}}' open-type="contact" wx:if="{{state == 0 || state == 2 || state == 3 }}">
         联系客服
       </button>
       <button class='goods_item_btn  fs-24  {{state == 1 || state == 5 ? "ys1" :"quxian_hui"}}' catchtap='orderClick' data-flag="7" wx:if="{{state ==1 || state == 4 || state == 5}}">
@@ -181,7 +182,7 @@
       <button class='goods_item_btn  fs-24 ys1' catchtap='orderClick' data-flag="6" wx:if="{{state == 4}}" style='margin-left:20rpx;'>
         评价
       </button>
-      <button class='goods_item_btn  fs-24 ys1' catchtap='orderClick' data-flag="8" wx:if="{{state == 2}}" style='margin-left:20rpx;'>
+      <button class='goods_item_btn  fs-24 ys1' catchtap='orderClick' data-flag="8" wx:if="{{state == 2 && list_data.remind == 0}}" style='margin-left:20rpx;'>
         提醒发货
       </button>
       <button class='goods_item_btn  fs-24 ys1' catchtap='orderClick' data-flag="4" wx:if="{{state == 3}}" style='margin-left:20rpx;'>

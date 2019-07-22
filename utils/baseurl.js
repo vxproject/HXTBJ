@@ -43,7 +43,8 @@ let order_cancel = baseURL + version + "/order_cancel"  //订单取消
 let order_goods_list = baseURL + version + "/order_goods_list"   //待发货|待收货|待评价|退款货物
 let order_hide = baseURL + version + "/order_hide" //删除订单
 let order_return_submit = baseURL + version + "/order_return_submit"  //退款申请提交
-let order_list = baseURL + version + "/order_list"  //订单返回各种类型
+let order_list = baseURL + version + "/order_list_v2"  //订单返回各种类型
+let order_remind = baseURL + version + "/order_remind"  //发货提醒
 
 //会员管理
 let revenue = baseURL + version + "/revenue"  //我的预收入
@@ -210,7 +211,7 @@ module.exports = {
   //购物车
   select_cart, deal_cart, change_num, cart_delete, add_cart, cart, cart_number,
   // 订单管理
-  pay_order_status, order_return_pay, cart_order, add_comment, goods_confirm, order_detail, order_type_number, wx_pay, add_order, order_cancel, order_goods_list, order_return_submit, order_list, order_hide,
+  pay_order_status, order_return_pay, cart_order, add_comment, goods_confirm, order_detail, order_type_number, wx_pay, add_order, order_cancel, order_goods_list, order_return_submit, order_list, order_hide, order_remind,
   //会员管理
   revenue, fans_detail, wx_fans, member_info, details, member_goods, user_rebute,
   mobile_code, add_bank, bank_status, save_store, user_store, cash, pay_package, member_package,

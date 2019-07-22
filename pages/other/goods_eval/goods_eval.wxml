@@ -20,7 +20,7 @@
       <block wx:for='{{file_imgs}}'>
         <view bindtap='preview' data-index="{{index}}" class='show_img_item'>
           <image class='show_img_item_photo' mode="aspectFill" src="{{item}}"></image>
-          <image catchtap='deleteImage' data-index="{{index}}" class='jingting_logo_img' src='../../../images/home/jinting_logo.png'></image>
+          <image catchtap='deleteImage' data-index="{{index}}" class='jingting_logo_img' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/quexiao_ls.png?sign=97adcb7f5bea70f7a464327ca694c1fa&t=1563767639'></image>
         </view>
       </block>
       <view wx:if="{{file_imgs.length < 9}}" bindtap='addImage' class='show_img_add'>

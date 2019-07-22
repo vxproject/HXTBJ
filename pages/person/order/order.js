@@ -117,7 +117,7 @@ Page({
   /**
    * 删除订单
    */
-  deleteOrder(e) {
+  deleteOrder_one(e) {
     wx.showModal({
       content: '是否确定删除订单？',
       cancelColor: '#2170c9',
@@ -126,6 +126,27 @@ Page({
         if (res.confirm) {
           let rec_id = e.currentTarget.dataset.item;
           request.postRequest(this, baseurl.order_hide, { rec_id: rec_id }, res => {
+            if (res.status == 200) {
+              this.postRequest(this.data.seleted, 1, true)
+            }
+          })
+        } else if (res.cancel) {
+        }
+      }
+    })
+  },
+  /**
+  * 删除订单(全部)
+  */
+  deleteOrder_two(e) {
+    wx.showModal({
+      content: '是否确定删除订单？',
+      cancelColor: '#2170c9',
+      confirmColor: '#2170c9',
+      success: res => {
+        if (res.confirm) {
+          let order_id = e.currentTarget.dataset.item;
+          request.postRequest(this, baseurl.order_hide, { order_id: order_id }, res => {
             if (res.status == 200) {
               this.postRequest(this.data.seleted, 1, true)
             }

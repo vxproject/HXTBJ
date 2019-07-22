@@ -23,7 +23,7 @@
   <!-- 有订单状态 -->
   <view wx:else class='yes_order'>
     <!-- 待付款 -->
-    <view wx:if="{{seleted < 2 && item.goodsInfo.length > 0}}" wx:for="{{list_data.data}}" class=' order_item' wx:for-index="index">
+    <view wx:if="{{seleted < 2 && item.showGoodsInfo.length > 0}}" wx:for="{{list_data.data}}" class=' order_item' wx:for-index="index">
       <view class='bc-white'>
         <!-- 头部 -->
         <view class='order_item_header'>
@@ -32,7 +32,7 @@
           <view class=' fs-26 fc-ff'>{{orders.getState(item) == -1?"交易关闭":orders.getState(item)}}</view>
         </view>
         <!-- 商品详情 -->
-        <view wx:for="{{item.goodsInfo}}" wx:for-index="idx" wx:for-item="itemName" data-flag="0" bindtap='orderDetail' data-pagenum="{{seleted}}" data-id="{{item.order_id}}" data-recid="{{item.goodsInfo[0].rec_id}}" data-state="{{item.pay_status}}" class='goods_container'>
+        <view wx:for="{{item.showGoodsInfo}}" wx:for-index="idx" wx:for-item="itemName" data-flag="0" bindtap='orderDetail' data-pagenum="{{seleted}}" data-id="{{item.order_id}}" data-recid="{{item.showGoodsInfo[0].rec_id}}" data-state="{{item.pay_status}}" class='goods_container'>
           <view class='goods_content '>
             <image class='goods_content_img' src='{{img_path}}{{itemName.spec_img}}' wx:if="{{itemName.spec_img}}"></image>
             <view class='goods_content_info'>
@@ -60,7 +60,7 @@
         <view class='goods_info_sum fc-33'>
           <view></view>
           <view class='goods_io_sum'>
-            <text class=' fs-20'>共{{item.goodsInfo.length}}件商品</text>
+            <text class=' fs-20'>共{{item.showGoodsInfo.length}}件商品</text>
             <text style='padding-left:30rpx;' class='fs-20'>合计:￥ <text class='fs-24'>{{item.order_amount}}</text></text>
           </view>
         </view>
@@ -71,7 +71,7 @@
             <text class='fs-20 fc-66' wx:if="{{item.time}}">支付剩余：</text>{{item.time ? item.time :'' }}</view>
           <view class='goods_info_btn'>
             <button class='goods_item_btn  fs-24 quxian_hui' open-type="contact">联系客服</button>
-            <button catchtap='orderClick' data-item="{{item}}" data-flag="1" wx:if="{{item.goodsInfo[0].is_comment == 0}}" style='margin-left:20rpx;' class='goods_item_btn  fs-24 quxian_hui'>取消订单</button>
+            <button catchtap='orderClick' data-item="{{item}}" data-flag="1" wx:if="{{item.showGoodsInfo[0].is_comment == 0}}" style='margin-left:20rpx;' class='goods_item_btn  fs-24 quxian_hui'>取消订单</button>
             <button catchtap='orderClick' data-item="{{item}}" data-flag="2" style='margin-left:20rpx;' class='goods_item_btn  fs-24 ys1'>付款</button>
           </view>
         </view>
@@ -80,7 +80,7 @@
           <button catchtap='orderClick' data-item="{{item}}" data-flag="2" class='goods_item_btn goods_item_btn1 ziti_3 ys1'>立即付款</button>
           <button catchtap="orderClick" data-item="{{item}}" data-flag="1" class='goods_item_btn goods_item_btn2 ziti_3 ys2'>取消订单</button>
         </view> -->
-        <view wx:elif="{{item.deleted == 0 && item.pay_status == 1 && item.goodsInfo[0].is_send==1&&item.goodsInfo[0].return_status==0}}" class='goods_info_btn' style='margin-top:30rpx;'>
+        <view wx:elif="{{item.deleted == 0 && item.pay_status == 1 && item.showGoodsInfo[0].is_send==1&&item.showGoodsInfo[0].return_status==0}}" class='goods_info_btn' style='margin-top:30rpx;'>
           <view></view>
           <view class='goods_info_btn'>
             <button catchtap='orderClick' data-item="{{item}}" data-flag="3" class='goods_item_btn  fs-24 quxian_hui'>查看物流</button>
@@ -94,12 +94,12 @@
         </view> -->
 
 
-        <view wx:elif="{{item.deleted == 0 && item.pay_status == 1 && item.goodsInfo[0].is_send==4&&item.goodsInfo[0].return_status==0}}" class='goods_info_btn' style='margin-top:30rpx;'>
+        <view wx:elif="{{item.deleted == 0 && item.pay_status == 1 && item.showGoodsInfo[0].is_send==4&&item.showGoodsInfo[0].return_status==0}}" class='goods_info_btn' style='margin-top:30rpx;'>
           <view></view>
           <view class='goods_info_btn'>
-            <button catchtap='deleteOrder' data-item="{{item.goodsInfo[0].rec_id}}" class='goods_item_btn  fs-24 {{item.goodsInfo[0].is_comment == 0 ? "quxian_hui" : "ys1"}} '>删除订单</button>
-            <button catchtap='orderClick' data-item="{{item}}" wx:if="{{item.goodsInfo[0].is_comment == 0}}" style='margin-left:20rpx;' data-flag="3" class='goods_item_btn  fs-24 quxian_hui'>查看物流</button>
-            <button catchtap='orderClick' data-item="{{item}}" data-flag="6" wx:if="{{item.goodsInfo[0].is_comment == 0}}" style='margin-left:20rpx;' class='goods_item_btn  fs-24 ys1'>去评价</button>
+            <button catchtap='deleteOrder_two' data-item="{{item.showGoodsInfo[0].order_id}}" class='goods_item_btn  fs-24 {{item.showGoodsInfo[0].is_comment == 0 ? "quxian_hui" : "ys1"}} '>删除订单</button>
+            <button catchtap='orderClick' data-item="{{item}}" wx:if="{{item.showGoodsInfo[0].is_comment == 0}}" style='margin-left:20rpx;' data-flag="3" class='goods_item_btn  fs-24 quxian_hui'>查看物流</button>
+            <button catchtap='orderClick' data-item="{{item}}" data-flag="6" wx:if="{{item.showGoodsInfo[0].is_comment == 0}}" style='margin-left:20rpx;' class='goods_item_btn  fs-24 ys1'>去评价</button>
           </view>
         </view>
 
@@ -110,7 +110,7 @@
         <view wx:elif="{{item.deleted == 1}}" class='goods_info_btn' style='margin-top:30rpx;'>
           <view></view>
           <view class='goods_info_btn'>
-            <button catchtap='deleteOrder' data-item="{{item.goodsInfo[0].rec_id}}" class='goods_item_btn  fs-24 ys1'>删除订单</button>
+            <button catchtap='deleteOrder_two' data-item="{{item.showGoodsInfo[0].order_id}}" class='goods_item_btn  fs-24 ys1'>删除订单</button>
           </view>
         </view>
       </view>
@@ -173,7 +173,7 @@
         <view wx:elif="{{seleted == 4}}" class='goods_info_btn' style='margin-top:30rpx;'>
           <view></view>
           <view class='goods_info_btn'>
-            <button catchtap='deleteOrder' data-item="{{item.rec_id}}" class='goods_item_btn  fs-24 quxian_hui'>删除订单</button>
+            <button catchtap='deleteOrder_one' data-item="{{item.rec_id}}" class='goods_item_btn  fs-24 quxian_hui'>删除订单</button>
             <button catchtap='orderClick' data-item="{{item}}" style='margin-left:20rpx;' data-flag="3" class='goods_item_btn  fs-24 quxian_hui'>查看物流</button>
             <button catchtap='orderClick' data-item="{{item}}" data-flag="6" wx:if="{{item.is_comment == 0}}" style='margin-left:20rpx;' class='goods_item_btn  fs-24 ys1'>去评价</button>
           </view>
