@@ -2,157 +2,234 @@
 <import src="/template/loading/loading.wxml" />
 <template is="loading" data="{{loading}}"></template>
 <view class='tuikuan_dh' wx:if='{{pid==1}}'>
-    <!-- 退款商品列表 -->
-    <view class='goods_list tuikuan_dh_goods'>
-        <view class='goods_item' style='border-bottom:hidden;'>
-            <image class='goods_img' src='{{img_path}}{{list_data.spec_img}}'></image>
-            <view class='goods_info'>
-                <view class='goods_info_title ziti_2 yichu_dot'>
-                    {{list_data.goods_name}}
-                </view>
-
-                <view class='goods_info_price ziti_3 color_gray'>
-                    <view class='ziti_3 color_gray'>实付金额：￥{{list_data.goods_price}}</view>
-              
-                </view>
-            </view>
+  <!-- 退款商品列表 -->
+  <view class='goods_list tuikuan_dh_goods'>
+    <view class='goods_item' style='border-bottom:hidden;'>
+      <image class='goods_img' src='{{img_path}}{{list_data.spec_img}}'></image>
+      <view class='goods_info'>
+        <view class='goods_info_title yichu_dot'>
+          {{list_data.goods_name}}
         </view>
+
+        <view class='goods_info_price'>
+          <view>实付金额：￥{{goodsInfo[0].order_amount}}</view>
+          <view style='margin-left:62rpx;'> 数量 x{{goodsInfo[0].goods_num}}</view>
+
+        </view>
+      </view>
     </view>
-    <!-- 退款点击通道 -->
+  </view>
+  <!-- 退款点击通道 -->
+  <view style='  margin-top: 20rpx;'>
     <view bindtap='tuikuan' class='tuikuan_road_box'>
-            <image class='tuikuan_road_logo' src='../../../images/image/qiandai.png'></image>
-            <view class='tuikuan_road_info color_gray'>
-                    <view class='ziti_1'>仅退款</view>
-                    <view class='ziti_3'>未收到货（包括未签收），或在卖家同意的前提下。</view>
-            </view>
-            <image class='tuikuan_road_go' src='../../../images/image/person_dizhi_back.png'></image>
+      <image class='tuikuan_road_logo' src='../../../images/image/qiandai.png'></image>
+      <view class='tuikuan_road_info color_gray'>
+        <view class='title'>仅退款</view>
+        <view class='zhaiyao'>未收到货（包括未签收），或在卖家同意的前提下。</view>
+      </view>
+      <image class='tuikuan_road_go' src='../../../images/other/tuikuan_jiantou.png'></image>
     </view>
-    <!-- 售后说明 -->
-    <!-- <view class='shuoming_box'>
-            <view class='shuoming_btn ziti_2 color_price btn_active'>售后说明</view>
-    </view> -->
+
+    <view bindtap='tuikuan' class='tuikuan_road_box'>
+      <image class='tuikuan_road_logo' src='../../../images/image/qiandai.png'></image>
+      <view class='tuikuan_road_info color_gray'>
+        <view class='title'>退货退款</view>
+        <view class='zhaiyao'>已收到货，需要退换已收到的货物</view>
+      </view>
+      <image class='tuikuan_road_go' src='../../../images/other/tuikuan_jiantou.png'></image>
+    </view>
+  </view>
+  <!-- 售后说明 -->
+  <view bindtap="shouhou" class='btn_container'>
+    <button>售后说明</button>
+  </view>
 </view>
 
 
 <!-- 退款填写 -->
 <view class='container' wx:else>
-    <!-- 退款商品列表 -->
-    <view class='goods_list'>
-        <view class='goods_item'>
-            <image class='goods_img' src="{{img_path}}{{list_data.spec_img}}"></image>
-            <view class='goods_info'>
-                <view class='goods_info_title ziti_2 yichu_dot'>
-                    {{list_data.goods_name}}
-                </view>
-
-                <view class='goods_info_price ziti_3 color_gray'>
-                    <view class='ziti_3 color_gray'>实付金额：￥{{list_data.goods_price}}</view>
-                    <!-- <view class='ziti_3 color_gray'>剩余可退金额：￥45555</view> -->
-                </view>
-            </view>
+  <!-- 退款商品列表 -->
+  <!-- <view class='goods_list'>
+    <view class='goods_item'>
+      <image class='goods_img' src="{{img_path}}{{list_data.spec_img}}"></image>
+      <view class='goods_info'>
+        <view class='goods_info_title ziti_2 yichu_dot'>
+          {{list_data.goods_name}}
         </view>
+
+        <view class='goods_info_price ziti_3 color_gray'>
+          <view class='ziti_3 color_gray'>实付金额：￥{{list_data.goods_price}}</view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+
+
+  <!-- 退款商品列表 -->
+  <view class='goods_list tuikuan_dh_goods'>
+    <view class='goods_item' style='border-bottom:hidden;'>
+      <image class='goods_img' src='{{img_path}}{{list_data.spec_img}}'></image>
+      <view class='goods_info'>
+        <view class='goods_info_title yichu_dot'>
+          {{list_data.goods_name}}
+        </view>
+        <view class='goods_info_price'>
+          <view>实际付款：￥{{goodsInfo[0].order_amount}}</view>
+          <view style='margin-left:62rpx;'> 剩余可退：￥{{list_data.goods_price}}</view>
+        </view>
+      </view>
     </view>
 
 
-    <!-- 退款原因 -->
+  </view>
+
+
+  <!-- 退款原因 -->
+  <view bindtap='changese_flag' data-flag="1" class='check_tiaojian'>
+    <!-- <view class='check_tiaojian_left'> -->
+    <view class='left_kuai'>
+      <image class='bixuan_logo' src='../../../images/image/bixuan.png'></image>
+      <view style='padding-left:4rpx;' class='ziti_title'>退款原因</view>
+    </view>
+    <view class='right_kuai'>
+
+      <view style='padding-right:10rpx;' class='ziti_zhaiyao'> {{tuikuanCell.seleted1 == -1?"请选择":tuikuanCell.tuikuan_list[tuikuanCell.seleted1]}}</view>
+      <image class='back_logo' src='../../../images/other/tuikuan_jiantou.png'></image>
+    </view>
+    <!-- </view> -->
+    <!-- <picker class='check_tiaojian_right' bindchange="bindPickerChange" mode='selector' range='{{tuikuan_list}}' value="{{index}}">
+      <text class='check_tiaojian_txt ziti_2 color_gray'>请选择</text>
+      <image class='back_logo' src='../../../images/image/person_dizhi_back.png'></image>
+    </picker> -->
+  </view>
+  <!-- 商品损坏数量 -->
+  <view  class='goods_sh' style='margin-top:20rpx;'>
+    <view bindtap='changese_flag' data-flag="2" class='check_tiaojian'>
+      <!-- <view class='check_tiaojian_left'>
+      <image class='bixuan_logo' src='../../../images/image/bixuan.png'></image>
+      <text style='padding-left:20rpx;' class='ziti_2 color_gray'>商品损坏数量:</text>
+      <text style='padding-left:10rpx;' class='ziti_2 color_gray'>   {{sunhuai_list[index1]}}</text>
+    </view>
+    <picker class='check_tiaojian_right' bindchange="bindPickerChange2" mode='selector' range='{{sunhuai_list}}'>
+      <text class='check_tiaojian_txt ziti_2 color_gray'>请选择</text>
+      <image class='back_logo' src='../../../images/image/person_dizhi_back.png'></image>
+    </picker> -->
+      <view class='left_kuai'>
+        <image class='bixuan_logo' src='../../../images/image/bixuan.png'></image>
+        <view style='padding-left:4rpx;' class='ziti_title'>商品损坏数量</view>
+      </view>
+      <view class='right_kuai'>
+        <view style='padding-right:10rpx;' class='ziti_zhaiyao'> {{tuikuanCell.seleted2 == -1?"请选择":tuikuanCell.sunhuai_list[tuikuanCell.seleted2]}}</view>
+        <image class='back_logo' src='../../../images/other/tuikuan_jiantou.png'></image>
+      </view>
+    </view>
+
+
+
+
     <view class='check_tiaojian'>
-        <view class='check_tiaojian_left'>
-            <image class='bixuan_logo' src='../../../images/image/bixuan.png'></image>
-            <text style='padding-left:20rpx;' class='ziti_2 color_gray'>退款原因:</text>
-            <text style='padding-left:10rpx;' class='ziti_2 color_gray'>   {{tuikuan_list[index]}}</text>
-        </view>
-        <picker class='check_tiaojian_right' bindchange="bindPickerChange" mode='selector' range='{{tuikuan_list}}' value="{{index}}">
-            <text class='check_tiaojian_txt ziti_2 color_gray'>请选择</text>
-            <image class='back_logo' src='../../../images/image/person_dizhi_back.png'></image>
-        </picker>
+      <view style='margin:0rpx 20rpx;' class='ziti_title'>预计退款金额:</view>
+      <view wx:if="{{price}}" class='color ziti_zhaiyao'>{{price}}</view>
     </view>
 
-    <!-- 商品损坏数量 -->
     <view class='check_tiaojian'>
-        <view class='check_tiaojian_left'>
-            <image class='bixuan_logo' src='../../../images/image/bixuan.png'></image>
-            <text style='padding-left:20rpx;' class='ziti_2 color_gray'>商品损坏数量:</text>
-             <text style='padding-left:10rpx;' class='ziti_2 color_gray'>   {{sunhuai_list[index1]}}</text>
-        </view>
-        <picker class='check_tiaojian_right' bindchange="bindPickerChange2" mode='selector' range='{{sunhuai_list}}'>
-            <text class='check_tiaojian_txt ziti_2 color_gray'>请选择</text>
-            <image class='back_logo' src='../../../images/image/person_dizhi_back.png'></image>
-        </picker>
+      <view style='margin:0rpx 20rpx;' class='ziti_title'>商品问题描述:</view>
+
     </view>
 
 
-    <!-- 商品问题描述 -->
-    <view class='question_ms ziti_2 color_gray'>
-        <view class='question_ms_header'>商品问题描述：</view>
-        <textarea class='question_ms_ipt ziti_3' maxlength='200' placeholder='最多可以输入200字'></textarea>
+  </view>
+
+
+  <!-- 商品问题描述 -->
+  <view class='question_ms ziti_2 color_gray'>
+    <!-- <view class='question_ms_header'>商品问题描述：</view> -->
+    <textarea bindinput='input' class='question_ms_ipt ziti_3' maxlength='200' placeholder='选填...'></textarea>
+    <view class='ziti_zhaiyao ziti_length'>{{len}}/200</view>
+  </view>
+
+  <!-- 三条 -->
+  <!-- <view class='cai_line_box'>
+    <view class='cai_line_item'></view>
+    <view style='background:#fe7b60;' class='cai_line_item'></view>
+    <view class='cai_line_item'></view>
+  </view> -->
+
+
+  <!-- 上传商品图片 -->
+  <view class='upload_img'>
+    <view class='check_tiaojian ziti_title'>
+      <text style='padding-left:20rpx;'>上传商品图片：(最多6张)</text>
     </view>
 
-    <!-- 三条 -->
-    <view class='cai_line_box'>
-        <view class='cai_line_item'></view>
-        <view style='background:#fe7b60;' class='cai_line_item'></view>
-        <view class='cai_line_item'></view>
-    </view>
 
-
-    <!-- 上传商品图片 -->
-    <view class='upload_img ziti_2 color_gray'>
-        <view class='question_ms_header'>上传商品图片：(最多6张)</view>
-
-
-        <!-- 上传图片 -->
+    <!-- 上传图片 -->
 
     <!-- 上传图片 -->
     <view class='show_img clearfix'>
-        <!-- 图片 -->
-        <block wx:for='{{file_imgs}}'>
-            <view bindtap='preview' data-index="{{index}}" class='show_img_item'>
-                <image class='show_img_item_photo' mode="aspectFill" src="{{item}}"></image>
-                <image catchtap='deleteImage'  data-index="{{index}}"  class='jingting_logo_img' src='../../../images/home/jinting_logo.png'></image>
-            </view>
-            
-        </block>
-        <!-- 添加图片的按钮 -->
-        <view wx:if="{{is_add == false}}" bindtap='addImage' class='show_img_add'></view>
+      <!-- 图片 -->
+      <block wx:for='{{file_imgs}}'>
+        <view bindtap='preview' data-index="{{index}}" class='show_img_item {{index%3 == 0?"carma1":index%3 == 1?"carma2":"carma3"}}'>
+          <image class='show_img_item_photo' mode="aspectFill" src="{{item}}">
+            <image catchtap='deleteImage' data-index="{{index}}" class='jingting_logo_img' src='../../../images/home/jinting_logo.png'></image>
+          </image>
+
+        </view>
+      </block>
+      <!-- 添加图片的按钮 -->
+      <view wx:if="{{is_add == false}}" class='show_img_item {{file_imgs.length%3 == 0?"carma1":file_imgs.length%3 == 1?"carma2":"carma3"}}'>
+      <view  bindtap='addImage' class='show_img_add'>
+        <image src="../../../images/other/carma.png"></image>
+      </view>
+      </view>
     </view>
+  </view>
 
 
-        <!-- <view class='show_img'>
-        
-            <block wx:for='{{file_imgs}}'>
-                <view class='show_img_item'>
-                    <image class='show_img_item_photo' src='{{item}}'></image>
-                </view>
-            </block>
-   
-            <view bindtap='addImage' class='show_img_add'></view>
-        </view> -->
+  <!-- 客服提示 -->
+  <view class='kefu_txt_box'>
+  <!-- <view class='kefu_txt_box round_shadow'> -->
+    <!-- <view class='kefu_txt_header ziti_2'>客服提示</view>
+    <view class='kefu_txt_con ziti_3 color_gray'>
+      1.生鲜、水果、食品、鲜花、绿植等商品发货后不支持 无理甶退货，若因您个人原因未及时签收,损失将甶您个 人承担，平台不支持退款；
     </view>
-
-
-    <!-- 客服提示 -->
-    <view class='kefu_txt_box round_shadow'>
-        <view class='kefu_txt_header ziti_2'>客服提示</view>
-        <view class='kefu_txt_con ziti_3 color_gray'>
-            1.生鲜、水果、食品、鲜花、绿植等商品发货后不支持 无理甶退货，若因您个人原因未及时签收,损失将甶您个 人承担，平台不支持退款；
-        </view>
-        <view class='kefu_txt_con ziti_3 color_gray'>
-            2.生鲜、水果、食品、鲜花、绿植等商品发货后不支持修改地址和拒收，若因为您个人原因导致的发错地址或拒收,损失将由您个人承担，平台不支持退款；
-        </view>
-        <view class='kefu_txt_con ziti_3 color_gray'>
-            3.如果收到的商品有质量问题，请在收到货物的48小时内 联系客服在APP-我的订单页面提出退货申请并上传图片 (请将全部的变质/受损的商品+清晰的快递面单拍在一张 图片上),签收超过48小时平台不受理退换货需求。收到 您的退款申请后，客服会在24小时内完成审核并安排退 款，退款会在1-5个工作日内退还到您的原始支付方式中；
-        </view>
-        <view class='kefu_txt_con ziti_3 color_gray'>
-            4.生鲜、水果、食品、鲜花、绿植等商品图片仅供参考， 商品请以实物为准，生鲜类商品受季节、气候、存储条件 等因素影响，不同批次略有差异属正常现象，不可作为售 后理甶。
-        </view>
+    <view class='kefu_txt_con ziti_3 color_gray'>
+      2.生鲜、水果、食品、鲜花、绿植等商品发货后不支持修改地址和拒收，若因为您个人原因导致的发错地址或拒收,损失将由您个人承担，平台不支持退款；
     </view>
+    <view class='kefu_txt_con ziti_3 color_gray'>
+      3.如果收到的商品有质量问题，请在收到货物的48小时内 联系客服在APP-我的订单页面提出退货申请并上传图片 (请将全部的变质/受损的商品+清晰的快递面单拍在一张 图片上),签收超过48小时平台不受理退换货需求。收到 您的退款申请后，客服会在24小时内完成审核并安排退 款，退款会在1-5个工作日内退还到您的原始支付方式中；
+    </view>
+    <view class='kefu_txt_con ziti_3 color_gray'>
+      4.生鲜、水果、食品、鲜花、绿植等商品图片仅供参考， 商品请以实物为准，生鲜类商品受季节、气候、存储条件 等因素影响，不同批次略有差异属正常现象，不可作为售 后理甶。
+    </view> -->
+  </view>
 
 
 
-    <!-- 底部按钮 -->
-    <view bindtap='tijiao' class='footer_btn ziti_2 btn_active'>提交</view>
+  <!-- 底部按钮 -->
+  <view bindtap='tijiao' class='footer_btn ziti_2 btn_active'>提交</view>
 
 
 
 
 </view>
+<tuikuanCell list_data="{{tuikuanCell}}" bindmakesure="makesure"></tuikuanCell>
+
+ <!-- <view class="transition {{cancleorder_flag ?  'cancelmodel' :'cancelmodel2'}} " catchtap='changese_flag'>
+  </view>
+  <view class=" transition {{cancleorder_flag ? 'mode_wind' :'mode_wind2'}}  auto">
+    <view class='fs-28 fc-33 px-20 arr_cancel_title' style='padding-top:44rpx;padding-bottom:48rpx;'>商品损坏数量</view>
+    <view class='fs-26 fc-99 px-20' style='padding-bottom:62rpx;'>请选择商品损坏数量</view>
+    <view wx:for="{{arr_cancel}}" wx:key="" class='arr_cancel fs-26 fc-33 px-20 ' catchtap='chooseOne_yy' data-index="{{index}}">
+      <view class='arr_cancel_txt '>{{item}}</view>
+      <view>
+        <image src="{{(seleted == 1 && seleted1 == index)||(seleted == 2 && seleted2 == index) ?  'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hong.png?sign=c743c8faae146acad727f088f779f40b&t=1563335776' : 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hui.png?sign=419e3338540db98651356c94889dcc82&t=1563335805'}}"
+          class='wh-33' />
+      </view>
+    </view>
+    <view class='arr_cancel_btn fs-20'>
+      <view class='cancel_btn_ls1 btn_ls1 ' catchtap='makesure' data-index="1">取消</view>
+      <view class='cancel_btn_ls2 btn_ls2' catchtap='makesure' data-index="2">确定</view>
+    </view>
+  </view> -->
+

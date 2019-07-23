@@ -2,59 +2,89 @@
 <wxs module="filters" src="../../home/store/filter.wxs"></wxs>
 <import src="/template/loading/loading.wxml" />
 <template is="loading" data="{{loading}}"></template>
-<view wx:if="{{hidden == 2}}" class='container'>
-    <!-- 空白 -->
-    <view style='background:#f5f5f5;width:100%;height:20rpx;'></view>
-    <!-- 当前进度 -->
-    <view class='tk_progress'>
-    <!-- {{list_data.returnInfo.status == 0?"退款申请中":list_data.returnInfo.status == 1?"审核通过":list_data.returnInfo.status == 2?"退款申请失败":"退款完成"}} -->
-        <view class='tk_progress_title ziti_2'>当前进度：</view>
-        <view wx:for="{{imageArr.getjindu(list_data.returnInfo)}}" style='margin-top:20rpx;' class='tk_progress_title ziti_2 color_gray'>{{imageArr.dateFormat(list_data.returnInfo,index)}}{{item}}</view>
-       
+<view wx:if="{{hidden == 2}}" class=''>
+  <view class='top_bc'>
+    <view class='top_txt fc-white'>
+      <view class='fs-30 '>{{list_data.returnInfo.status == 0?"退款申请中":list_data.returnInfo.status == 1?"正在退款":list_data.returnInfo.status == 2?"退款申请失败":"退款完成"}}</view>
+      <view class='fs-22 ' style='margin-top:18rpx;'>{{imageArr.dateFormat(list_data.returnInfo,index)}}</view>
     </view>
-    <!-- 空白 -->
-    <view style='background:#f5f5f5;width:100%;height:20rpx;'></view>
-    <!-- 商品详情 -->
-    <view class='tkgoods_info'>
+  </view>
+  <!-- 当前进度 -->
+  <!-- {{list_data.returnInfo.status == 0?"退款申请中":list_data.returnInfo.status == 1?"审核通过":list_data.returnInfo.status == 2?"退款申请失败":"退款完成"}} -->
+  <!-- <view class='tk_progress'>
+    <view class='tk_progress_title ziti_2'>当前进度：</view>
+    <view wx:for="{{imageArr.getjindu(list_data.returnInfo)}}" style='margin-top:20rpx;' class='tk_progress_title ziti_2 color_gray'>{{imageArr.dateFormat(list_data.returnInfo,index)}}{{item}}</view>
+  </view> -->
+
+  <!-- 商品详情 -->
+  <view class='good_ls'>
+    <view class='title_ls bb' style='height:90rpx;'>
+      <view class='fs-26 fc-33'>退款信息</view>
+      <view class=''><button class='goods_item_btn  fs-24 quxian_hui' open-type="contact">联系客服</button></view>
+    </view>
+    <view class='row py-30'>
+      <image src='{{img_path}}{{list_data.goodsInfo[0].spec_img}}' class='wh-162' />
+      <view class='fs-22 fc-33'>
+        <view class='line-2'>{{list_data.goodsInfo[0].goods_name}}</view>
+        <view class='fc-66 fs-20 title_ls' style='margin-top:16rpx;'>
+          <view class='bc-f5 biaoqian'>五斤装</view>
+          <view></view>
+        </view>
+      </view>
+    </view>
+    <view class='title_ls fs-22 fc-33 row'>
+      <view class='line-1'>退款原因：{{list_data.returnInfo.reason}}</view>
+      <view class='shrink' style='margin-left:30rpx;'>退款金额：
+        <text class='fc-ff'>¥{{list_data.goodsInfo[0].goods_price}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- <view class='tkgoods_info'>
         <image class='tkgoods_info_img' src="{{img_path}}{{list_data.goodsInfo[0].spec_img}}"></image>
         <view class='tkgoods_info_txt ziti_2'>
             <text>{{list_data.goodsInfo[0].goods_name}}</text>
             <view class='ziti_3 color_gray' style='margin-top:40rpx;'>退款金额￥{{list_data.goodsInfo[0].goods_price}}</view>
         </view>
+    </view> -->
+
+  <!-- 退款原因 -->
+  <!-- <view class='tk_reason'>
+    <text class='ziti_2'>退款原因：</text>
+    <text class='ziti_2 color_gray'>{{list_data.returnInfo.reason}}</text>
+  </view> -->
+
+
+  <!-- 退款原因补充描述 -->
+  <!-- <view class='tk_reason_txt'>
+    <view class='tk_reason_txt_title ziti_2'>退款原因补充描述：</view>
+    <view class='tk_reason_txt_txt ziti_3 color_gray'>
+      <view>{{list_data.returnInfo.describe}}</view>
     </view>
-
-    <!-- 退款原因 -->
-    <view class='tk_reason'>
-        <text class='ziti_2'>退款原因：</text>
-        <text class='ziti_2 color_gray'>{{list_data.returnInfo.reason}}</text>
+  </view> -->
+  <view class='good_ls fs-26 fc-33'>
+    <view class='center bb' style='height:90rpx;'>补充描述</view>
+    <view class='fc-66 fs-24' style='padding-top:30rpx;'>{{list_data.returnInfo.describe}}</view>
+    <view class='wrap' wx:if="{{list_data.returnInfo.img_thumb}}" >
+      <image src='{{img_path}}{{item}}' class='image_ret' wx:for="{{imageArr.imageArr(list_data.returnInfo.img_thumb)}}" wx:key="" bindtap='imageInfo' data-imgs="{{list_data.returnInfo.img_thumb}}" data-image="{{item}}" />
     </view>
+  </view>
+  <!-- 申请图片 -->
 
-    <!-- 空白 -->
-    <view style='background:#f5f5f5;width:100%;height:20rpx;'></view>
-    <!-- 退款原因补充描述 -->
-    <view class='tk_reason_txt'>
-        <view class='tk_reason_txt_title ziti_2'>退款原因补充描述：</view>
-        <view class='tk_reason_txt_txt ziti_3 color_gray'>
-            <view>{{list_data.returnInfo.describe}}</view>
-        </view>
+  <!-- <view wx:if="{{list_data.returnInfo.img_thumb}}" class='tk_photo'>
+    <view class='tk_photo_title ziti_2'>申请图片：</view>
+    <view class='tk_photo_group'>
+      <block wx:for='{{imageArr.imageArr(list_data.returnInfo.img_thumb)}}'>
+        <image mode="aspectFill" bindtap='imageInfo' data-imgs="{{list_data.returnInfo.img_thumb}}" data-image="{{item}}" class='tk_photo_img' src="{{img_path}}{{item}}"></image>
+      </block>
     </view>
-    <!-- 申请图片 -->
-    
-    <view wx:if="{{list_data.returnInfo.img_thumb}}" class='tk_photo'>
-        <view class='tk_photo_title ziti_2'>申请图片：</view>
-        <view class='tk_photo_group'>
-            <block wx:for='{{imageArr.imageArr(list_data.returnInfo.img_thumb)}}'>
-                <image mode="aspectFill" bindtap='imageInfo' data-imgs="{{list_data.returnInfo.img_thumb}}" data-image="{{item}}" class='tk_photo_img' src="{{img_path}}{{item}}"></image>
-            </block>
-        </view>
-    </view>
+  </view> -->
 
 
 
 
-    <!-- 固定客服框 -->
-    <button open-type="contact" class='fixed_kefu'>
-        <image class='fixed_kefu_img' src='../../../images/image/white_kefu.png'></image>
-        <text class='ziti_2' style='color:#ffffff;'>联系客服</text>
-    </button>
+  <!-- 固定客服框 -->
+  <!-- <button open-type="contact" class='fixed_kefu'>
+    <image class='fixed_kefu_img' src='../../../images/image/white_kefu.png'></image>
+    <text class='ziti_2' style='color:#ffffff;'>联系客服</text>
+  </button> -->
 </view>

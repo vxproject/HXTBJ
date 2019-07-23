@@ -122,7 +122,9 @@ page {
 .fs-26 {
   font-size: 26rpx;
 }
-
+.fs-28 {
+  font-size: 28rpx;
+}
 .fs-30 {
   font-size: 30rpx;
 }
@@ -341,8 +343,14 @@ button::after {
   border-top-left-radius: 10rpx;
   border-top-right-radius: 10rpx;
   z-index: 1500;
+ 
 }
-
+.none{
+   pointer-events: none;
+}
+.auto{
+  pointer-events: auto;
+}
 .mode_wind2 {
   background: #fff;
   position: fixed;

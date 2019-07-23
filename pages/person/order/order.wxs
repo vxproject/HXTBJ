@@ -18,9 +18,9 @@ var getState = function (item) {
           return '交易成功' 
         } else if (item.showGoodsInfo[0].return_status == 1) {
           if (item.showGoodsInfo[0].status == 0) return '退款申请中'
-          else if (item.showGoodsInfo[0].status == 1) return '交易关闭'
+          else if (item.showGoodsInfo[0].status == 1) return '退款已关闭'
           else if (item.showGoodsInfo[0].status == 2) return '退款申请失败'
-          else if (item.showGoodsInfo[0].status == 4) return '交易关闭'
+          else if (item.showGoodsInfo[0].status == 4) return '退款成功'
         }
         else{
           return '交易成功'

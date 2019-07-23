@@ -1,0 +1,3 @@
+/* components/tuikuanCell/tuikuanCell.wxss */
+@import "../../pages/person/order/order.wxss";
+/* @import "../../css/base.wxss"; */

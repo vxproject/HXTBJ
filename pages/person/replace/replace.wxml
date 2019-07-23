@@ -39,11 +39,11 @@
     <view class='ziti_2 color_gray no_order_txt'>暂无退款售后</view>
   </view>
 
-  <view wx:if="{{list_data.data[0]}}" wx:for="{{list_data.data}}" wx:for-index="idx" class=' order_item' bindtap='detail' data-index="{{idx}}">
+  <view wx:if="{{list_data.data[0]}}" wx:for="{{list_data.data}}" wx:for-index="idx" class=' order_item' >
     <view class='bc-white'>
       <view class='order_item_header'>
         <view class='fs-24 fc-99'>
-          <text style='margin-right:10rpx;'>订单编号</text>{{item.order_goods_sn}}</view>
+          <text style='margin-right:10rpx;'>退款编号</text>{{item.order_goods_sn}}</view>
         <view class='fs-26 fc-ff'>{{item.status == 0?"退款申请中":item.status == 1?"交易关闭":item.status == 2?"退款申请失败":"交易关闭"}}</view>
       </view>
       <view class='goods_container'>
@@ -53,29 +53,44 @@
             <view class='shouc_ls'>
               <view>
                 <view class=' fs-22 fc-33 line-2'>{{item.goods_name}}</view>
-                <view class='goods_content_info fs-20 fc-66'>
-                  <view class='spec_key_name'>{{item.spec_key_name}}</view>
+                <view class='goods_content_info fs-20 fc-66' style='margin-top:30rpx'>
+                  <view class='goods_info_btn'>
+                     <image src='{{flagt ?"https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/tuikuan/ls_tuihuokuan.png?sign=8c30718b795748d2966812c6279b01e4&t=1563863997" : "https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/tuikuan/ls_jintuikuan.png?sign=fc66ff250f7b4fa4fcb1fc0c6cd6dfce&t=1563864884 "}}' class='wh-30'/>
+                     <view>{{flagt?"退货退款":"仅退款"}}</view>
+                  </view>
                   <view></view>
                 </view>
               </view>
-              <view class='ls_shoucang' catchtap='shouchang' data-bindex="{{idx}}" data-item="{{item}}" data-flag="1" data-index="{{idx}}">
+              <view></view>
+              <!-- <view class='ls_shoucang' catchtap='shouchang' data-bindex="{{idx}}" data-item="{{item}}" data-flag="1" data-index="{{idx}}">
                 <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/huixin.png?sign=826339a8a56951905b1854b3ecaa2103&t=1563259926' class='wh-38-34' mode='widthFix' wx:if="{{item.is_collectd == 0}}" />
                 <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/hongxin.png?sign=d061395a4f8c57ebfc5808198f643aa4&t=1563259864' class='wh-38-34' mode='widthFix' wx:else />
                 <view class='fs-24 fc-66 ls_shoucang_text'>收藏</view>
-              </view>
-            </view>
-            <view class='goods_content_right'>
-              <view class='fs-22 fc-33'>￥{{item.goods_price}}</view>
-              <view class='fs-20 fc-66 jianshu'>x{{item.goods_num}}</view>
+              </view> -->
             </view>
           </view>
         </view>
       </view>
-      <view class='goods_info_sum fc-33' wx:if="{{list_data.data.length > 0}}">
+      <!-- <view class='goods_info_sum fc-33' wx:if="{{list_data.data.length > 0}}">
         <view></view>
         <view class='goods_io_sum'>
           <text class=' fs-20'>共{{item.goods_num}}件商品</text>
           <text style='padding-left:30rpx;' class='fs-20'>已支付:￥ <text class='fs-24'>{{item.goods_price}}</text></text>
+        </view>
+      </view> -->
+      <view class='goods_info_btn' style='margin-top:30rpx;'>
+        <view>
+        </view>
+        <view class='goods_info_btn fs-24 fc-33'>
+          退款金额：¥{{item.goods_price}}
+        </view>
+      </view>
+      <view class='goods_info_btn' style='margin-top:30rpx;'>
+        <view class='fs-24' style='color:#ff6413;'>
+          <text class='fs-20 fc-66'>申请时间：2012-10-01 11:22:03</text>
+        </view>
+        <view class='goods_info_btn' bindtap='detail' data-index="{{idx}}">
+          <button class='goods_item_btn  fs-24 quxian_hui'>查看详情</button>
         </view>
       </view>
     </view>

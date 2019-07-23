@@ -9,14 +9,31 @@ Page({
      */
     data: {
         pid:1,
+      
+      // arr_cancel: [
+      //   { txt: '我不想买了', flag: false },
+      //   { txt: '信息填写错误', flag: false },
+      //   { txt: '商品拍重了', flag: false },
+      //   { txt: '其他原因', flag: false },
+      // ],
+      tuikuanCell: {
+        cancleorder_flag: false,  //取消订单状态
+      arr_cancel:[],
         // 退款原因列表
-        tuikuan_list:[
-            "请选择",'口感不佳', '错拍/多拍/不想要', '包裹丢失', '商品变质', '克重不足', '成熟度过低', 
-            '收货信息填写错误','商品错发/漏发', '收到商品与描述不符', '商品破损'
+      tuikuan_list:[
+            '口感不佳', '错拍/多拍/不想要', '包裹丢失', '商品变质', '克重不足', '成熟度过低', 
+            '收货信息填写错误','商品错发/漏发', '收到商品与描述不符', '商品破损',
         ],
         sunhuai_list:[
-            '请选择','少许', '三分之一', '一半', '三分之二', '全部'
+            '少许', '三分之一', '一半', '三分之二'
         ],
+        // 选中记录
+        seleted1: -1,
+        seleted2: -1,
+        seleted: -1,
+        //预计退款金额
+        price:null
+      },
         list_data:null,
       img_path: baseurl.imgPath,
         index:0,
@@ -25,7 +42,10 @@ Page({
         file_imgs:[],
         imgurl:[],
         img_thumb:[],
-        is_add:false
+        is_add:false,
+        len:0,
+      goodsInfo:{}
+
 
     },
 
@@ -35,6 +55,10 @@ Page({
     onLoad: function (options) {
       wx.hideShareMenu()
       this.dataRequest(options.rec_id)
+      this.setData({
+        goodsInfo: JSON.parse(options.goodsInfo) 
+      })
+      
     },
     dataRequest:function(rec_id){
       let that = this
@@ -63,20 +87,20 @@ Page({
   },
   tijiao:function(e){
     let that = this
-    if(this.data.file_imgs.length == 0){
-      util.showmodel('请上传商品图片')
+    if (this.data.tuikuanCell.seleted1 == -1 || this.data.tuikuanCell.seleted2 == -1){
+      util.showmodel('请选择退款原因或损坏数量')
       return
     }
-    if (this.data.index == 0 || this.data.index1 == 0){
-      util.showmodel('请选择退款原因或损坏数量')
+    if (this.data.file_imgs.length == 0) {
+      util.showmodel('请上传商品图片')
       return
     }
     this.uploadImage(0, res => {
       let d = that.data
       let params = {
         rec_id: d.list_data.rec_id,
-        reason: d.tuikuan_list[d.index],
-        describe: d.sunhuai_list[d.index1],
+        reason: d.tuikuanCell.tuikuan_list[d.tuikuanCell.seleted1],
+        describe: d.tuikuanCell.sunhuai_list[d.tuikuanCell.seleted2],
         img: d.imgurl.join(","),
         img_thumb: d.img_thumb.join(",")
       }
@@ -160,6 +184,89 @@ Page({
     })
     // }
   },
+  input:function(e){
+    var value = e.detail.value,
+      len = parseInt(value.length);
+    let that = this;
+    this.setData({
+      len: len
+    });
+
+  },
+  btnClick:function(e){
+    console.log(e.currentTarget.dataset.flag)
+    //原因
+    if(flag == 1){
+
+    }else{
+      //商品孙环数量
+    }
+  },
+
+  changese_flag(e) {
+    // let that = this
+  
+    // if (!this.data.cancleorder_flag == true){
+     
+    //   if(flag == 1){
+    //     this.setData({
+    //       arr_cancel: that.data.tuikuan_list,
+    //       seleted:1
+    //     })
+    //   }else{
+    //     this.setData({
+    //       arr_cancel: that.data.sunhuai_list,
+    //       seleted: 2
+    //     })
+    //   }
+    // }
+    let tuikuanCell = this.data.tuikuanCell
+    var flag = e.currentTarget.dataset.flag
+    tuikuanCell.cancleorder_flag = !tuikuanCell.cancleorder_flag
+    tuikuanCell.flag = flag
+    this.setData({
+      tuikuanCell: tuikuanCell
+    })
+  },
+  /**
+    * 选择一个原因
+    */
+  chooseOne_yy(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    var seleted = that.data.seleted == 1 ? that.data.seleted1 : that.data.seleted2
+    if(seleted == index) return
+    if (that.data.seleted == 1) that.setData({
+      seleted1:index
+    })
+    else that.setData({
+      seleted2: index
+    })
+  },
+  makesure:function(e){
+    let flag = e.detail.flag
+    this.data.tuikuanCell.cancleorder_flag = !this.data.tuikuanCell.cancleorder_flag
+    let seleted = e.detail.seleted
+    console.log(seleted)
+    if(seleted != -1){
+      if (flag == 1) this.data.tuikuanCell.seleted1 = seleted
+      else{
+        this.data.tuikuanCell.seleted2 = seleted
+        let price_sale = [5, 3, 2, 1.5];
+        
+        let price = this.data.goodsInfo[0].order_amount/price_sale[seleted]
+        price = price.toFixed(2)
+        this.setData({
+          price:price
+        })
+      } 
+      this.setData({
+        tuikuanCell: this.data.tuikuanCell
+      })
+    }
+  },
+
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

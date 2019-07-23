@@ -68,8 +68,7 @@ function selectAll(list) {
 let orderData = (list_data, goods_id, is_collectd, flag) => {
   list_data.forEach((goodsInfo) => {
     if (flag == 0)
-      goodsInfo.goodsInfo.forEach(item => {
-        console.log(item)
+      goodsInfo.showGoodsInfo.forEach(item => {
         if (item.goods_id == goods_id) {
           item.is_collectd = is_collectd
         }

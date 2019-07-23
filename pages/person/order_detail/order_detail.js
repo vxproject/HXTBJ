@@ -168,7 +168,7 @@ Page({
     else if (flag == 4) this.shouhuo(goods.rec_id) //确认收货
     // else if (flag == 5) this.payAgain(goods.goods_id, goods.item_id, goods.goods_num) //再来一次
     else if (flag == 6) this.pingjia(goods.rec_id, goods.spec_img) //评价
-    else if (flag == 7) this.deletOrder(goods.rec_id)  // 删除订单
+    else if (flag == 7) this.deletOrder(list_data)  // 删除订单
     else if (flag == 8) this.tixingOrder(goods.rec_id)  // 提醒发货
   },
   /**
@@ -181,7 +181,17 @@ Page({
       confirmColor: '#2170c9',
       success: res => {
         if (res.confirm) {
-          request.postRequest(this, baseurl.order_hide, { rec_id: data }, res => {
+          let obj = {};
+          if (data.deleted == 1) {
+            obj = {
+              order_id: data.order_id
+            };
+          } else {
+            obj = {
+              rec_id: data.goodsInfo[0].rec_id
+            };
+          }
+          request.postRequest(this, baseurl.order_hide, obj, res => {
             if (res.status == 200) {
               let pages = getCurrentPages();
               let prevPage = pages[pages.length - 2];
@@ -298,7 +308,7 @@ Page({
     } else
       if (that.data.list_data.goodsInfo[0].return_status == 0)
         wx.navigateTo({
-          url: '../order_tuikuan/order_tuikuan?rec_id=' + this.data.list_data.goodsInfo[0].rec_id,
+          url: '../order_tuikuan/order_tuikuan?rec_id=' + this.data.list_data.goodsInfo[0].rec_id + "&goodsInfo=" + JSON.stringify(this.data.list_data.goodsInfo),
         })
       else {
         wx.navigateTo({

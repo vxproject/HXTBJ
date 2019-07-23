@@ -1,0 +1,18 @@
+<!--components/tuikuanCell/tuikuanCell.wxml-->
+ <view class="transition {{list_data.cancleorder_flag ?  'cancelmodel' :'cancelmodel2'}} " bindtap='makesure' data-index="1">
+  </view>
+  <view class=" transition {{list_data.cancleorder_flag ? 'mode_wind' :'mode_wind2'}}  auto">
+    <view class='fs-28 fc-33 px-20 arr_cancel_title' style='padding-top:44rpx;padding-bottom:48rpx;'>商品损坏数量</view>
+    <view class='fs-26 fc-99 px-20' style='padding-bottom:62rpx;'>请选择商品损坏数量</view>
+    <view wx:for="{{list_data.flag == 1?list_data.tuikuan_list:list_data.sunhuai_list}}" wx:key="" class='arr_cancel fs-26 fc-33 px-20 ' catchtap='chooseOne_yy' data-index="{{index}}">
+      <view class='arr_cancel_txt '>{{item}}</view>
+      <view>
+        <image src="{{(list_data.flag == 1 && list_data.seleted1 == index)||(list_data.flag == 2 && list_data.seleted2 == index) ?  'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hong.png?sign=c743c8faae146acad727f088f779f40b&t=1563335776' : 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hui.png?sign=419e3338540db98651356c94889dcc82&t=1563335805'}}"
+          class='wh-33' />
+      </view>
+    </view>
+    <view class='arr_cancel_btn fs-20'>
+      <view class='cancel_btn_ls1 btn_ls1 ' catchtap='makesure' data-index="1">取消</view>
+      <view class='cancel_btn_ls2 btn_ls2' catchtap='makesure' data-index="2">确定</view>
+    </view>
+  </view>

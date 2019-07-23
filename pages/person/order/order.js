@@ -117,15 +117,25 @@ Page({
   /**
    * 删除订单
    */
-  deleteOrder_one(e) {
+  deleteOrder(e) {
     wx.showModal({
       content: '是否确定删除订单？',
       cancelColor: '#2170c9',
       confirmColor: '#2170c9',
       success: res => {
         if (res.confirm) {
-          let rec_id = e.currentTarget.dataset.item;
-          request.postRequest(this, baseurl.order_hide, { rec_id: rec_id }, res => {
+          let item = e.currentTarget.dataset.item;
+          let data={};
+          if (item.deleted == 1){   
+             data = {
+              order_id: item.order_id
+            };
+          }else{
+             data = {
+              rec_id: item.rec_id
+            };
+          }
+          request.postRequest(this, baseurl.order_hide, data, res => {
             if (res.status == 200) {
               this.postRequest(this.data.seleted, 1, true)
             }
@@ -135,27 +145,7 @@ Page({
       }
     })
   },
-  /**
-  * 删除订单(全部)
-  */
-  deleteOrder_two(e) {
-    wx.showModal({
-      content: '是否确定删除订单？',
-      cancelColor: '#2170c9',
-      confirmColor: '#2170c9',
-      success: res => {
-        if (res.confirm) {
-          let order_id = e.currentTarget.dataset.item;
-          request.postRequest(this, baseurl.order_hide, { order_id: order_id }, res => {
-            if (res.status == 200) {
-              this.postRequest(this.data.seleted, 1, true)
-            }
-          })
-        } else if (res.cancel) {
-        }
-      }
-    })
-  },
+
   /**
    * 底部按钮 （取消订单）
    */
@@ -169,7 +159,7 @@ Page({
       })
     }
     if (index == '2') {
-      let data = { order_id: that.data.orderid, reason: order.chools_one(that.data.arr_cancel,that) ? that.data.arr_cancel[that.data.index_ls].txt : undefined }
+      let data = { order_id: that.data.orderid, reason: order.chools_one(that.data.arr_cancel, that) ? that.data.arr_cancel[that.data.index_ls].txt : undefined }
       this.cancelOrder(data);
     }
   },
@@ -218,12 +208,39 @@ Page({
     else if (flag == 5) this.payAgain(goods_id, item.item_id ? item.item_id : item.goodsInfo[0].item_id, item.goods_num ? item.goods_num : item.goodsInfo[0].goods_num)
     else if (flag == 6) this.pingjia(rec_id, spc_image)
   },
+  /**
+   * 按钮（全部）
+   */
+  orderClick_two: function (e) {
+    let flag = e.currentTarget.dataset.flag
+    let item = e.currentTarget.dataset.item
+    let orderid = item.order_id
+    let rec_id = item.rec_id
+    if (!rec_id) rec_id = item.showGoodsInfo[0].rec_id
+    let goods_id = item.goods_id
+    if (!goods_id) goods_id = item.showGoodsInfo[0].goods_id
+    let spc_image = item.spec_img
+    if (!spc_image) spc_image = item.showGoodsInfo[0].spec_img
+    if (flag == 1) {// 取消订单
+      this.setData({
+        cancleorder_flag: !this.data.cancleorder_flag,
+        orderid: orderid,//订单id
+      })
+    }
+
+    // if(flag == 1) this.cancelOrder(orderid) // 取消订单 
+    else if (flag == 2) this.payOrder(item.order_sn) //立即付款
+    else if (flag == 3) this.wuliu(rec_id)   //物流
+    else if (flag == 4) this.shouhuo(rec_id)  //确认收货
+    else if (flag == 5) this.payAgain(goods_id, item.item_id ? item.item_id : item.showGoodsInfo[0].item_id, item.goods_num ? item.goods_num : item.showGoodsInfo[0].goods_num)
+    else if (flag == 6) this.pingjia(rec_id, spc_image)
+  },
   cancelOrder: function (orderid) {
     let that = this
     order.cancelOrder(that, orderid, res => {
       util.showmodel(res.message)
       that.setData({
-        cancleorder_flag:false,
+        cancleorder_flag: false,
       })
       if (res.status == 200) {
         that.postRequest(that.data.seleted, 1, true)
@@ -287,7 +304,7 @@ Page({
               let sec = parseInt(time % (60 * 60 * 24) % 3600 % 60);
               if (time <= 0) {
                 item.deleted = 1
-                let order_id = { order_id: item.order_id}
+                let order_id = { order_id: item.order_id }
                 that.cancelOrder1(order_id)
                 item.time = null
               } else {
@@ -367,20 +384,17 @@ Page({
     let item = e.currentTarget.dataset.item
     let bindex = e.currentTarget.dataset.bindex
     let index = e.currentTarget.dataset.index
-    if (item.is_collectd == 0) {
-      //收藏
-      collect.add_collect(that, item.goods_id, res => {
-        that.changeCollectd(1, index, bindex, item, flag)
-      })
-    } else {
-      //取消
-      collect.collect_cancel(that, item.goods_id, res => {
-        that.changeCollectd(0, index, bindex, item, flag)
-      })
-    }
-
-
-
+      if (item.is_collectd == 0) {
+        //收藏
+        collect.add_collect(that, item.goods_id, res => {
+          that.changeCollectd(1, index, bindex, item, flag)
+        })
+      } else {
+        //取消
+        collect.collect_cancel(that, item.goods_id, res => {
+          that.changeCollectd(0, index, bindex, item, flag)
+        })
+      }
   },
   changeCollectd: function (is_collectd, index, bindex, item, flag) {
     let that = this
@@ -388,7 +402,7 @@ Page({
     item.is_collectd = is_collectd
     let d = that.data.list_data.data
     if (flag == 0)
-      d[bindex].goodsInfo[index] = item
+      d[bindex].showGoodsInfo[index] = item
     else d[bindex] = item
     d = collect.orderData(d, item.goods_id, is_collectd, flag)
 

@@ -8,7 +8,6 @@ function cancelOrder(that, data, cd) {
   if (data.reason) {
     param.reason = data.reason
   }
-  console.info('取消订单 参数-------', param)
   request.postRequest(that,baseurl.order_cancel, param,res=>{
     typeof cd == "function" && cd(res)
   })  
