@@ -211,7 +211,7 @@ module.exports = {
   //购物车
   select_cart, deal_cart, change_num, cart_delete, add_cart, cart, cart_number,
   // 订单管理
-  pay_order_status, order_return_pay, cart_order, add_comment, goods_confirm, order_detail, order_type_number, wx_pay, add_order, order_cancel, order_goods_list, order_return_submit, order_list, order_hide, order_remind,
+  pay_order_status, order_return_pay, cart_order, add_comment, goods_confirm, order_detail, order_type_number, wx_pay, add_order, order_cancel, order_goods_list, order_return_submit, order_list, order_hide, order_remind, order_goods_cancel,
   //会员管理
   revenue, fans_detail, wx_fans, member_info, details, member_goods, user_rebute,
   mobile_code, add_bank, bank_status, save_store, user_store, cash, pay_package, member_package,

@@ -74,8 +74,10 @@ Page({
         } else {
           that.countDown()
         }
+        let list_data = res.data;
+        list_data.youhuiprice = parseInt(res.data.disPrice).toFixed(2);
         that.setData({
-          list_data: res.data,
+          list_data: list_data,
           hidden: 1,
           allState: state
         })

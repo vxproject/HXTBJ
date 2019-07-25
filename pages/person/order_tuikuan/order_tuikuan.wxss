@@ -2,6 +2,7 @@ page {
   background-color: #f5f5f5;
 }
 @import "../../person/order/order.wxss";
+
 /*  退款导航页面*/
 
 /* 商品列表 */
@@ -13,10 +14,9 @@ page {
 
 .goods_info_title {
   padding-top: 10rpx;
-  font-size: 22rpx;
+  font-size: 24rpx;
   color: #333;
 }
-
 
 .arr_cancel_btn {
   display: flex;
@@ -24,6 +24,7 @@ page {
   justify-content: center;
   padding: 26rpx 0 20rpx 0;
 }
+
 .yichu_dot {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -44,17 +45,16 @@ page {
 
 .tuikuan_road_box {
   height: 120rpx;
-  padding: 0 35rpx;
+  padding: 0 20rpx;
   display: flex;
   align-items: center;
   background-color: #fff;
-
   position: relative;
 }
 
 .tuikuan_road_logo {
-  width: 36rpx;
-  height: 36rpx;
+  width: 45rpx;
+  height: 45rpx;
 }
 
 .tuikuan_road_info {
@@ -63,16 +63,16 @@ page {
   display: flex;
   /* flex-wrap: wrap; */
   margin-left: 34rpx;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   /* align-content: space-between; */
 }
 
 .tuikuan_road_go {
-  width: 12rpx;
-  height: 22rpx;
+  width: 35rpx;
+  height: 35rpx;
   position: absolute;
-  right:20rpx;
+  right: 20rpx;
 }
 
 .title {
@@ -87,26 +87,27 @@ page {
   color: #999;
 }
 
-.btn_container{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 130rpx;
-    background-color: #ffffff;
+.btn_container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 130rpx;
+  background-color: #fff;
 }
-.btn_container button{
-    position: absolute;
-    top: 20rpx;
-    left: 30rpx;
-    width: 690rpx;
-    height: 90rpx;
-    line-height: 90rpx;
-    margin: 0 auto;
-    background-color: #ff5000;
-    color: #ffffff;
-    font-size: 30rpx;
-    border-radius: 80rpx;
+
+.btn_container button {
+  position: absolute;
+  top: 20rpx;
+  left: 30rpx;
+  width: 690rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 0 auto;
+  background-color: #ff5000;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 80rpx;
 }
 
 /* 售后说明 */
@@ -192,7 +193,7 @@ page {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
 .check_tiaojian_right {
@@ -219,23 +220,26 @@ page {
   width: 20rpx;
   height: 20rpx;
 }
-.left_kuai{
+
+.left_kuai {
   display: flex;
   align-items: center;
   padding-left: 20rpx;
 }
-.right_kuai{
+
+.right_kuai {
   position: absolute;
-  right:20rpx;
+  right: 20rpx;
   display: flex;
   align-items: center;
 }
 
 .back_logo {
-  width: 12rpx;
-  height: 22rpx;
+  width: 35rpx;
+  height: 35rpx;
 }
-.goods_sh{
+
+.goods_sh {
   background-color: #fff;
 }
 
@@ -243,17 +247,12 @@ page {
 
 .question_ms {
   width: 100%;
-  /* margin: 0 auto; */
-  /* padding: 0rpx 20rpx; */
   background-color: #fff;
-  height: 220rpx;
-    position: relative;
-  
+  height: 240rpx;
+  position: relative;
 }
 
-.question_ms_header {
-  padding: 40rpx 0 30rpx 0;
-}
+
 
 .question_ms_ipt {
   display: block;
@@ -264,11 +263,11 @@ page {
   border-radius: 10rpx;
   background-color: #f5f5f5;
   padding: 20rpx 15rpx;
-
 }
-.ziti_length{
+
+.ziti_length {
   position: absolute;
-  right:30rpx;
+  right: 30rpx;
   bottom: 20rpx;
 }
 
@@ -288,109 +287,68 @@ page {
 /* 上传商品图片 */
 
 .upload_img {
-  width: 100%;
-  margin: 0 auto;
+  padding: 20rpx;
   background-color: #fff;
+  margin: 20rpx 0 130rpx 0;
 }
 
 /* 图片上传 */
 
+.show_img_add {
+  width: 140rpx;
+  height: 140rpx;
+  display: flex;
+  flex-shrink: 0;
+  border: 1rpx dotted #999;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+
+.show_img_item_photo {
+  width: 140rpx;
+  height: 140rpx;
+  display: flex;
+  flex-shrink: 0;
+  border-radius: 10rpx;
+}
+
 .show_img {
-  width: 710rpx;
-  margin: 0 auto;
-  padding-bottom: 25rpx;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
 
 .show_img view {
   float: left;
-  /* margin-top: 25rpx; */
+  margin-top: 10rpx;
 }
 
-.show_img view:nth-child(3n-1) {
-  /* margin: 25rpx 25rpx 0 25rpx; */
-}
-
-.clearfix::before, .clearfix::after {
-  content: "";
-  display: block;
-  height: 0;
-  line-height: 0px;
-  clear: both;
-  visibility: hidden;
-}
-
-/*图片上传之 btn */
-
-/*图片上传之 btn */
-
-.show_img_add {
-  color: #ccc;
-  width: 140rpx;
-  height: 140rpx;
-  border: 2px dashed #ccc;
-  border-radius: 10rpx;
+.show_img_item {
   position: relative;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.show_img_add image{
-  width: 79rpx;
-  height:85rpx;
+  margin-right: 20rpx;
 }
 
-/* .show_img_add::before {
-  border-top: 10rpx solid #ccc;
-  background: #ccc;
-  width: 70rpx;
-  margin: -5rpx 0 0 -35rpx;
-}
-
-.show_img_add::after {
-  border-left: 10rpx solid #ccc;
-  background: #ccc;
-  height: 70rpx;
-  margin: -35rpx 0 0 -5rpx;
-}
-
-.show_img_add::before, .show_img_add::after {
-  content: '1111';
+.jingting_logo_img {
   position: absolute;
-  top: 50%;
-  left: 50%;
-} */
-
-/*  */
-
-/* .show_img_item, .show_img_item_photo {
-    display: inline-block;
-    width: 210rpx;
-    height: 210rpx;
-    background-color: #f50;
-} */
-
-/* 客服提示 */
-
-/* .kefu_txt_box {
-  width: 670rpx;
-  margin: 20rpx auto 175rpx auto;
-  border-radius: 10rpx;
-  background-color: #fff;
-  padding: 20rpx 25rpx;
-} */
-
-.kefu_txt_box {
-  width: 670rpx;
-  margin: 20rpx auto 75rpx auto;
-  border-radius: 10rpx;
-  background-color: #fff;
-  padding: 20rpx 25rpx;
+  top: -18rpx;
+  right: -18rpx;
+  width: 30rpx;
+  height: 30rpx;
+  padding-left: 25rpx;
+  padding-bottom: 25rpx;
 }
 
-.kefu_txt_con {
-  padding-top: 20rpx;
+/*图片上传之 btn */
+
+/*图片上传之 btn */
+
+.show_img_ls {
+  width: 62rpx;
+  height: 52rpx;
 }
+
 
 /* 底部按钮 */
 
@@ -401,68 +359,22 @@ page {
   left: 0;
   right: 0;
   color: #fff;
- background: linear-gradient(to bottom, #ff8a4c 0%, #ff6413 100%);
+  background: linear-gradient(to bottom, #ff8a4c 0%, #ff6413 100%);
   text-align: center;
   height: 105rpx;
   line-height: 105rpx;
 }
 
-.clearfix::before, .clearfix::after {
-  content: "";
-  display: block;
-  height: 0;
-  line-height: 0px;
-  clear: both;
-  visibility: hidden;
-}
-.show_img_item{
-  width: 33%;
-  height: 140rpx;
-  display: flex;
-
-  align-items: center;
-  padding-bottom: 20rpx;
-}
-.carma1{
-    justify-content: left;
-}
-.carma2{
-  justify-content:center;
-}
-.carma3{
-  justify-content:flex-end;
-}
-.show_img_item_photo {
-  display: inline-block;
-  width: 140rpx;
-  height: 140rpx;
-  position: relative;
-  /* background-color: #f50; */
-}
-
 /* 删除图标 */
 
-.show_img_item {
-  position: relative;
- 
-}
-
-.jingting_logo_img {
-  position: absolute;
-  top: 0rpx;
-  right: 0rpx;
-  width: 50rpx;
-  height: 50rpx;
-  padding-left: 25rpx;
-  padding-bottom: 25rpx;
-}
 
 
-.ziti_title{
+.ziti_title {
   font-size: 26rpx;
-  color:#333;
+  color: #333;
 }
-.ziti_zhaiyao{
+
+.ziti_zhaiyao {
   font-size: 22rpx;
-  color:#333;
+  color: #333;
 }

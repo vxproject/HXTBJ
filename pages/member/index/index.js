@@ -122,7 +122,6 @@ Page({
     })
   },
   copyText: function () {
-    console.log('12222')
     wx.setClipboardData({
       data: this.data.source.userinfo.invite_code,
       success: function (res) {

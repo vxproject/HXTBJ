@@ -9,11 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list_data:{},
+    list_data: {},
     img_path: baseurl.imgPath,
-    hidden:0,
-    flag:0,
-    id:0
+    hidden: 0,
+    flag: 0,
+    id: 0
   },
 
   /**
@@ -22,14 +22,14 @@ Page({
   onLoad: function (options) {
     let that = this
 
-  wx.setNavigationBarTitle({
-    title: options.title,
-  })
+    wx.setNavigationBarTitle({
+      title: options.title,
+    })
     that.data.id = options.id
-    request.getRequest(this, baseurl.six_share + "?id=" + options.id,res=>{
+    request.getRequest(this, baseurl.six_share + "?id=" + options.id, res => {
       that.setData({
-        list_data:res.data,
-        hidden:1
+        list_data: res.data,
+        hidden: 1
       })
     })
   },
@@ -39,18 +39,18 @@ Page({
     if (wx.downloadFile) {
       var ctx = wx.createCanvasContext('firstCanvas')
       wx.downloadFile({
-        url: this.data.img_path + "" + this.data.list_data.bg_img, 
+        url: this.data.img_path + "" + this.data.list_data.bg_img,
         success(res) {
           console.log(res.tempFilePath)
           ctx.drawImage(res.tempFilePath, 0, 0, 750, 1184)
-     
+
           if (res.statusCode === 200) {
             wx.downloadFile({
-              url: that.data.img_path + "" + that.data.list_data.wx_img, 
-              success(a){
+              url: that.data.img_path + "" + that.data.list_data.wx_img,
+              success(a) {
                 console.log(a.tempFilePath)
-                if(a.statusCode == 200){
-                  ctx.drawImage(a.tempFilePath,570, 1016, 150, 150)
+                if (a.statusCode == 200) {
+                  ctx.drawImage(a.tempFilePath, 570, 1016, 150, 150)
                   ctx.draw(true, function (res) {
                     console.log('图生成中')
                     wx.showToast({
@@ -75,8 +75,8 @@ Page({
                               filePath: res.tempFilePath,
                               success(res) {
                                 wx.hideToast()
-                               // util.showmodel('保存图片成功')
-                               that.lingqu()
+                                // util.showmodel('保存图片成功')
+                                that.lingqu()
                               }
                             })
                           },
@@ -93,7 +93,7 @@ Page({
                 }
               }
             })
-         
+
           }
         }
       })
@@ -109,39 +109,39 @@ Page({
 
   },
 
-  lingqu:function(e){
- 
-    request.postRequest(this, baseurl.add_free_coupon,{id:this.data.id},res=>{
-      if(res.data.img){
+  lingqu: function (e) {
 
-     
-      let lingqu = {
-        img: this.data.img_path+res.data.img,
-        type:1
+    request.postRequest(this, baseurl.add_free_coupon, { id: this.data.id }, res => {
+      if (res.data.img) {
+
+
+        let lingqu = {
+          img: this.data.img_path + res.data.img,
+          type: 1
+        }
+        // if (res.data){
+        //   //弹钱框
+        //    lingqu = {
+        //     type:2,
+        //     money:res.data.money,
+        //   }
+        // }else{
+        //   //弹没钱框
+        //    lingqu = {
+        //     type: 1,
+        //   }
+        // }
+        this.setData({
+          lingqu: lingqu,
+          flag: 1
+        })
       }
-      // if (res.data){
-      //   //弹钱框
-      //    lingqu = {
-      //     type:2,
-      //     money:res.data.money,
-      //   }
-      // }else{
-      //   //弹没钱框
-      //    lingqu = {
-      //     type: 1,
-      //   }
-      // }
-      this.setData({
-        lingqu:lingqu,
-        flag: 1
-      })
-      }
-    },a=>{
+    }, a => {
     })
   },
-  closeTC:function(e){
+  closeTC: function (e) {
     this.setData({
-      flag:2
+      flag: 2
     })
   },
   /**
@@ -155,7 +155,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
- 
+
   },
 
   /**
@@ -185,9 +185,9 @@ Page({
   onReachBottom: function () {
 
   },
-  share:function(res){
+  share: function (res) {
     let that = this
-    if (that.data.list_data.is_share_reward == 1){
+    if (that.data.list_data.is_share_reward == 1) {
       setTimeout(res => {
         that.lingqu()
       }, 1000)

@@ -46,8 +46,8 @@
           <view class='mt-20'>创建时间：{{filters.dateFormat(list_data.add_time,'yyyy/MM/dd hh:ss:mm')}}</view>
           <view class='mt-20'>支付时间：{{filters.dateFormat(list_data.pay_time,'yyyy/MM/dd hh:ss:mm')}}</view>
           <view class='mt-20'>发货时间：{{filters.dateFormat(list_data.delivery_time,'yyyy/MM/dd hh:ss:mm')}}</view>
-          <view class='mt-20'>成交时间：{{filters.dateFormat(list_data.receive_time,'yyyy/MM/dd hh:ss:mm')}}</view>
-
+          <!-- 成交时间安卓和ios都没有 -->
+          <!-- <view class='mt-20'>成交时间：{{filters.dateFormat(list_data.receive_time,'yyyy/MM/dd hh:ss:mm')}}</view> -->
         </view>
       </view>
     </view>

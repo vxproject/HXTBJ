@@ -38,7 +38,7 @@
             <view class='goods_content_info'>
               <view class='shouc_ls'>
                 <view>
-                  <view class=' fs-22 fc-33 line-2'>{{itemName.goods_name}}</view>
+                  <view class=' fs-24 fc-33 line-2'>{{itemName.goods_name}}</view>
                   <view class='goods_content_info fs-20 fc-66'>
                     <view class='spec_key_name'>{{itemName.spec_key_name}}</view>
                     <view></view>
@@ -107,7 +107,7 @@
           <button catchtap='orderClick' data-item="{{item}}" data-flag="5" class='goods_item_btn goods_item_btn1 ziti_3 ys1'>再次购买</button>
           <button catchtap='orderClick' data-item="{{item}}" data-flag="6" wx:if="{{item.goodsInfo[0].is_comment == 0}}" class='goods_item_btn goods_item_btn2 ziti_3 ys1'>评价商品</button>
         </view> -->
-        <view wx:elif="{{item.deleted == 1}}" class='goods_info_btn' style='margin-top:30rpx;'>
+        <view wx:elif="{{item.deleted == 1 || item.showGoodsInfo[0].status == 2 || item.showGoodsInfo[0].status == 4}}" class='goods_info_btn' style='margin-top:30rpx;'>
           <view></view>
           <view class='goods_info_btn'>
             <button catchtap='deleteOrder' data-item="{{item.deleted == 1 ? item : item.showGoodsInfo[0]}}" class='goods_item_btn  fs-24 ys1'>删除订单</button>
@@ -134,7 +134,7 @@
             <view class='goods_content_info'>
               <view class='shouc_ls'>
                 <view>
-                  <view class=' fs-22 fc-33 line-2'>{{item.goods_name}}</view>
+                  <view class=' fs-24 fc-33 line-2'>{{item.goods_name}}</view>
                   <view class='goods_content_info fs-20 fc-66'>
                     <view class='spec_key_name'>{{item.spec_key_name}}</view>
                     <view></view>

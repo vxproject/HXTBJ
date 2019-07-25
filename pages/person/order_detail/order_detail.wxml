@@ -21,12 +21,12 @@
 
 
   <view class='ls_addressbig'>
-    <view class='fs-24 ls_address_mode ls_adradius' wx:if="{{state > 2 && list_data.wuliu[0]}}" catchtap='orderClick' data-flag="3">
+    <view class='fs-24 ls_address_mode ls_adradius'  wx:if="{{list_data.delivery_time}}" catchtap='orderClick' data-flag="3">
       <image class="ls_address" src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_Car.png?sign=1801e3576a44725cef41b444215d5f04&t=1563441615" />
       <view class='fc-33 address_mode2'>
-        <view class='line-2 fc-21'>{{list_data.wuliu[0].AcceptStation}}
+        <view class='line-2 fc-21'>{{list_data.wuliu.AcceptStation?list_data.wuliu.AcceptStation:'暂无物流信息'}}
         </view>
-        <view class='fc-99 ' style='margin-top:10rpx;'>{{list_data.wuliu[0].AcceptTime}}</view>
+        <view class='fc-99 ' style='margin-top:10rpx;'>{{list_data.wuliu.AcceptTime?list_data.wuliu.AcceptTime:nowtime}}</view>
       </view>
       <image src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_dizhi_back.png?sign=9c1c53e7a1aee66fe47bb68a5478dd61&t=1563446197' class='wh-30' />
     </view>
@@ -80,7 +80,7 @@
             <view class='goods_content_info'>
               <view class='shouc_ls'>
                 <view>
-                  <view class=' fs-22 fc-33 line-2'>{{item.goods_name}}</view>
+                  <view class=' fs-24 fc-33 line-2'>{{item.goods_name}}</view>
                   <view class='goods_content_info fs-20 fc-66'>
                     <view class='spec_key_name'>{{item.spec_key_name}}</view>
                     <view></view>
@@ -98,7 +98,7 @@
         </view>
       </view>
       <view class='goods_info_btn' wx:if="{{state > 1 }}">
-      <!-- && state != 5 -->
+        <!-- && state != 5 -->
         <view></view>
         <view class='goods_info_btn' bindtap='shouhou'>
           <button class='goods_item_btn  fs-24 quxian_hui'>
@@ -110,8 +110,8 @@
         <view>运费</view>
         <view>{{list_data.shipping_price == 0?"":"￥"}}{{list_data.shipping_price == 0?"包邮":list_data.shipping_price}}</view>
       </view>
-      <view class='goods_info_btn fs-24 fc-33' style='margin-top:24rpx;' >
-      <!-- wx:if="{{list_data.coupon_price > 0}}" -->
+      <view class='goods_info_btn fs-24 fc-33' style='margin-top:24rpx;'>
+        <!-- wx:if="{{list_data.coupon_price > 0}}" -->
         <view>平台优惠券</view>
         <view>-￥{{list_data.coupon_price?list_data.coupon_price : '0.00' }}</view>
       </view>
@@ -144,8 +144,9 @@
         </view>
         <view class='mt-20'>创建时间：{{filters.dateFormat(list_data.add_time)}}</view>
         <view class='mt-20' wx:if="{{state > 1}}">支付时间：{{filters.dateFormat(list_data.pay_time)}}</view>
-        <view class='mt-20' wx:if="{{state > 2}}">发货时间：{{filters.dateFormat(list_data.delivery_time)}}</view>
+        <view class='mt-20' wx:if="{{state > 2 && list_data.delivery_time}}">发货时间：{{filters.dateFormat(list_data.delivery_time)}}</view>
         <view class='mt-20' wx:if="{{state == 4}}">成交时间：{{filters.dateFormat(list_data.receive_time)}}</view>
+        <view class='mt-20' wx:if="{{list_data.returnInfo && list_data.returnInfo.status == 4}}">退款时间：{{filters.dateFormat(list_data.returnInfo.refund_time)}}</view>
 
       </view>
     </view>
@@ -160,14 +161,14 @@
       </view>
     </view>
   </view>
-  <view class='h-110' wx:if="{{state <= 5}}"></view>
-  <view class='fixed' wx:if="{{state <= 5}}">
+  <view class='h-110' wx:if="{{state <= 7}}"></view>
+  <view class='fixed' wx:if="{{state <= 7}}">
     <view></view>
     <view class='ls_shoucang btn_ls_bot'>
       <button class='goods_item_btn  fs-24  {{list_data.remind == 1 && state == 2 ? "ys1":"quxian_hui"}}' open-type="contact" wx:if="{{state == 0 || state == 2 || state == 3 }}">
         联系客服
       </button>
-      <button class='goods_item_btn  fs-24  {{state == 1 || state == 5 ? "ys1" :"quxian_hui"}}' catchtap='orderClick' data-flag="7" wx:if="{{state ==1 || state == 4 || state == 5}}">
+      <button class='goods_item_btn  fs-24  {{state == 1 || state == 5 ? "ys1" :"quxian_hui"}}' catchtap='orderClick' data-flag="7" wx:if="{{state ==1 || state == 4 || state == 5 || state == 6 || state == 7}}">
         删除订单
       </button>
       <button class='goods_item_btn  fs-24 quxian_hui' catchtap='orderClick' data-flag="1" wx:if="{{state == 0}}" style='margin-left:20rpx;'>
@@ -193,23 +194,23 @@
 
   </view>
   <view class="transition {{cancleorder_flag ?  'cancelmodel' :'cancelmodel2'}} " catchtap='changese_flag'>
-    <view class=" transition {{cancleorder_flag ? 'mode_wind' :'mode_wind2'}}">
-      <view class='fs-28 fc-33 px-20 arr_cancel_title' style='padding-top:44rpx;padding-bottom:48rpx;'>取消订单</view>
-      <view class='fs-26 fc-99 px-20' style='padding-bottom:62rpx;'>请选择取消订单的原因</view>
-      <view wx:for="{{arr_cancel}}" wx:key="" class='arr_cancel fs-26 fc-33 px-20' catchtap='chooseOne_yy' data-index="{{index}}">
-        <view class='arr_cancel_txt '>{{item.txt}}</view>
-        <view>
-          <image src="{{item.flag ?  'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hong.png?sign=c743c8faae146acad727f088f779f40b&t=1563335776' : 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hui.png?sign=419e3338540db98651356c94889dcc82&t=1563335805'}}"
-            class='wh-33' />
-        </view>
+  </view>
+  <view class=" transition {{cancleorder_flag ? 'mode_wind' :'mode_wind2'}} auto">
+    <view class='fs-28 fc-33 px-20 arr_cancel_title' style='padding-top:44rpx;padding-bottom:48rpx;'>{{commit_flag?'退款原因':'取消订单'}}</view>
+    <view class='fs-26 fc-99 px-20' style='padding-bottom:62rpx;'>{{commit_flag ?"请选择退款原因":"请选择取消订单的原因"}}</view>
+    <view wx:for="{{arr_cancel}}" wx:key="" class='arr_cancel fs-26 fc-33 px-20' catchtap='chooseOne_yy' data-index="{{index}}">
+      <view class='arr_cancel_txt '>{{item.txt}}</view>
+      <view>
+        <image src="{{item.flag ?  'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hong.png?sign=c743c8faae146acad727f088f779f40b&t=1563335776' : 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hui.png?sign=419e3338540db98651356c94889dcc82&t=1563335805'}}"
+          class='wh-33' />
       </view>
-      <view class='fs-20 fc-66 px-20'>温馨提示</view>
-      <view class='fs-20 fc-66 px-20 py-10'>1、订单一旦取消,限时特价、购买资格等购买优惠可能一并取消,不可恢复;</view>
-      <view class='fs-20 fc-66 px-20'>2、订单所用红包、优惠券支持退回,为避免过期经尽快使用。</view>
-      <view class='arr_cancel_btn fs-20'>
-        <view class='cancel_btn_ls1 btn_ls1 ' catchtap='makesure' data-index="1">暂不取消</view>
-        <view class='cancel_btn_ls2 btn_ls2' catchtap='makesure' data-index="2">确定取消</view>
-      </view>
+    </view>
+    <view class='fs-20 fc-66 px-20'>温馨提示</view>
+    <view class='fs-20 fc-66 px-20 py-10'>1、订单一旦取消,限时特价、购买资格等购买优惠可能一并取消,不可恢复;</view>
+    <view class='fs-20 fc-66 px-20'>2、订单所用红包、优惠券支持退回,为避免过期经尽快使用。</view>
+    <view class='arr_cancel_btn fs-20'>
+      <view class='cancel_btn_ls1 btn_ls1 ' catchtap='{{commit_flag ? "reason_req" : "makesure"}}' data-index="1">暂不取消</view>
+      <view class='cancel_btn_ls2 btn_ls2' data-recid="{{list_data.goodsInfo[0].rec_id}}" catchtap='{{commit_flag ? "reason_req" : "makesure"}}' data-index="2">确定取消</view>
     </view>
   </view>
 
@@ -313,12 +314,11 @@
 
 
   <!-- 底部栏之待付款 -->
-  <view wx:if="{{state == 0}}" class='bottom_btn_box ziti_2'>
-    <!-- 倒计时 -->
+  <!-- <view wx:if="{{state == 0}}" class='bottom_btn_box ziti_2'>
     <text wx:if="{{list_data.time}}" style='padding-right:20rpx;' class='ziti_3 color_price'>剩余{{list_data.time}}</text>
     <text catchtap='orderClick' data-flag="1" class='bottom_btn_item btn_active'>取消订单</text>
     <text catchtap='orderClick' data-flag="2" class='bottom_btn_item bottom_btn_item2 btn_active color_price'>立即付款</text>
-  </view>
+  </view> -->
 
   <!-- 底部栏之已发货待收货时 -->
   <!-- <view wx:if="{{state == 3}}" class='bottom_btn_box ziti_2'>

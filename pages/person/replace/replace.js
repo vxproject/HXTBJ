@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-      hidden:0,
-      list_data:null,
+    hidden: 0,
+    list_data: null,
     img_path: baseurl.imgPath,
     is_sc: false
   },
@@ -19,30 +19,34 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu()
-    this.dataRequest(1)
   },
-  dataRequest:function(page){
+  dataRequest: function (page) {
     let that = this
-    request.getRequest(that,baseurl.order_goods_list +"?type=cancel&page="+page,res=>{
-      if(res.status == 200){
-        if(page != 1){
+    request.getRequest(that, baseurl.order_goods_list + "?type=cancel&page=" + page, res => {
+      if (res.status == 200) {
+        if (page != 1) {
           res.data.data = that.data.list_data.data.concat(res.data.data)
         }
         that.setData({
-          hidden:1,
-          list_data:res.data
+          hidden: 1,
+          list_data: res.data
         })
       }
     })
   },
-  detail:function(e){
+  detail: function (e) {
     let index = e.currentTarget.dataset.index
     let data = this.data.list_data.data[index]
     wx.navigateTo({
-      url: '../order_detail/order_detail?rec_id=' + data.rec_id,
+      url: '../order_tuikuan_info/order_tuikuan_info?rec_id=' + data.rec_id,
     })
   },
-
+  godetail: function (e) {
+    let rec_id = e.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '../order_detail/order_detail?rec_id=' + rec_id,
+    })
+  },
   copy: function (e) {
     console.log(e)
     wx.setClipboardData({
@@ -66,7 +70,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.dataRequest(1)
   },
 
   /**
@@ -82,7 +86,7 @@ Page({
   onUnload: function () {
 
   },
-  shouhou:function(e){
+  shouhou: function (e) {
     console.log('---------')
     wx.navigateTo({
       url: '../../other/webview/webview?url=' + baseurl.shouhouh5 + "&title=售后说明"
@@ -96,7 +100,7 @@ Page({
   },
   shouchang: function (e) {
     let that = this
-    if(that.data.is_sc == true) return
+    if (that.data.is_sc == true) return
     that.data.is_sc = true
     let flag = e.currentTarget.dataset.flag
     let item = e.currentTarget.dataset.item
@@ -104,12 +108,12 @@ Page({
     let index = e.currentTarget.dataset.index
     if (item.is_collectd == 0) {
       //收藏
-      collect.add_collect(that,item.goods_id, res => {
+      collect.add_collect(that, item.goods_id, res => {
         that.changeCollectd(1, index, bindex, item, flag)
       })
     } else {
       //取消
-      collect.collect_cancel(that,item.goods_id, res => {
+      collect.collect_cancel(that, item.goods_id, res => {
         that.changeCollectd(0, index, bindex, item, flag)
       })
     }
@@ -119,7 +123,7 @@ Page({
   },
   changeCollectd: function (is_collectd, index, bindex, item, flag) {
     let that = this
-    
+
     item.is_collectd = is_collectd
     let d = that.data.list_data.data
     d[bindex] = item
@@ -137,12 +141,12 @@ Page({
    */
   onReachBottom: function () {
     let list_data = this.data.list_data
-    if (list_data.current_page >= list_data.last_page){
+    if (list_data.current_page >= list_data.last_page) {
       request.tixing([])
-    }else{
-      this.dataRequest(list_data.current_page*1+1)
+    } else {
+      this.dataRequest(list_data.current_page * 1 + 1)
     }
-    
+
   },
 
   /**

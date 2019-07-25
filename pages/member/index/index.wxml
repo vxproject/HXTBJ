@@ -1,4 +1,4 @@
-<!--pages/member/index/index.wxml-->
+
 <import src="../no_member/no_member.wxml" />
 <import src="../yes_member/yes_member.wxml" />
 <import src="/template/loading/loading.wxml" />

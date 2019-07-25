@@ -14,7 +14,8 @@ Page({
     hidden: 0,
     list_data: null,
     flag: false,
-    cancleorder_flag: false,  //取消订单状态
+    cancleorder_flag: false,  //弹窗状态
+    commit_flag: false,   //弹窗标题状态
     arr_cancel: [
       { txt: '我不想买了', flag: false },
       { txt: '信息填写错误', flag: false },
@@ -40,9 +41,18 @@ Page({
       txt: '交易完成',
       src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
     }, {
-      txt: '交易完成',
+        txt: '退款申请失败',
       src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
-    },],
+    }, {
+        txt: '退款成功',
+      src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
+      }, {
+        txt: '退款申请中',
+        src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
+      }, {
+        txt: '正在退款',
+        src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
+      }],
     state: 0,
     img_path: baseurl.imgPath,
     isTime: false,
@@ -53,6 +63,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      nowtime: util.formatTime2(new Date())
+    })
     wx.hideShareMenu()
     this.data.options = options
   },
@@ -88,7 +101,7 @@ Page({
           let sec = parseInt(time % (60 * 60 * 24) % 3600 % 60);
           if (time <= 0) {
             list_data.daytime = null
-            that.onLoad(that.data.options)
+            that.onShow(that.data.options)
           } else {
             if (day > 0)
               list_data.daytime = "" + that.timeFormat(day) + "天" + that.timeFormat(hou) + "时" + that.timeFormat(min) + "分" + that.timeFormat(sec) + "秒";
@@ -160,6 +173,7 @@ Page({
       this.setData({
         cancleorder_flag: !this.data.cancleorder_flag,
         orderid: orderid,//订单id
+        commit_flag: false,
       })
     }
     // if (flag == 1) this.cancelOrder(orderid) // 取消订单 
@@ -210,6 +224,22 @@ Page({
 
   },
   /**
+   * 未发货退款
+   * order_goods_cancel
+   */
+  nosend_return(e) {
+    let that = this ;
+    request.postRequest(that, baseurl.order_goods_cancel, data, res => {
+      if (res.status == 200) {
+        that.onShow(that.data.options) 
+        that.setData({
+          cancleorder_flag: false,  
+          commit_flag: false,  
+        })
+      }
+    })
+  },
+  /**
    * 提醒发货
    */
   tixingOrder(data) {
@@ -219,14 +249,14 @@ Page({
       confirmColor: '#2170c9',
       success: res => {
         if (res.confirm) {
-          request.postRequest(this,baseurl.order_remind, { rec_id: data }, res => {
+          request.postRequest(this, baseurl.order_remind, { rec_id: data }, res => {
             if (res.status == 200) {
               wx.showModal({
                 content: '已通知卖家尽快为您发货！',
-                showCancel:false,
-                confirmText:'确定',
-                confirmColor:'#2170c9',
-                success:res=>{
+                showCancel: false,
+                confirmText: '确定',
+                confirmColor: '#2170c9',
+                success: res => {
                   let options = this.data.options
                   this.orderData(options.rec_id, "2")
                 }
@@ -241,12 +271,12 @@ Page({
   cancelOrder: function (orderid) {
     let that = this
     order.cancelOrder(that, orderid, res => {
-      util.showmodel(res.message)
       that.setData({
         cancleorder_flag: false,
       })
       if (res.status == 200) {
-        that.onLoad(that.data.options)
+        util.showmodel(res.message)
+        that.onShow(that.data.options)
       }
     })
   },
@@ -303,8 +333,11 @@ Page({
   },
   shouhou: function (e) {
     let that = this
-    if (that.data.state == 2) {
-      that.tuikuan()
+    if (that.data.state == 2) {  //待发货
+      this.setData({
+        cancleorder_flag: !this.data.cancleorder_flag,  //弹窗状态
+        commit_flag: true,
+      })
     } else
       if (that.data.list_data.goodsInfo[0].return_status == 0)
         wx.navigateTo({
@@ -316,21 +349,10 @@ Page({
         })
       }
   },
-  tuikuan: function (e) {
-    let rec_id = this.data.list_data.goodsInfo[0].rec_id
-    request.postRequest(this, baseurl.order_goods_cancel, {
-      rec_id: rec_id
-    }, res => {
-      util.showmodel(res.message, res => {
-        wx.redirectTo({
-          url: '../order_detail/order_detail?rec_id=' + rec_id,
-        })
-      })
-    })
-  },
+ 
   /**
- * 选择一个原因
- */
+   * 选择一个原因
+   */
   chooseOne_yy(e) {
     let that = this;
     let index = e.currentTarget.dataset.index;
@@ -343,6 +365,33 @@ Page({
     that.setData({
       arr_cancel: arr_cancel
     })
+  },
+  /**
+   * 退款原因提交
+   */
+  reason_req(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let recid = e.currentTarget.dataset.recid;
+    if (index == '1') {
+      that.setData({
+        cancleorder_flag: false,
+      })
+      setTimeout(res => {
+        this.setData({
+          commit_flag: false
+        })
+      }, 300)
+    }
+    if (index == '2') {
+      let data = {
+        rec_id: recid,
+      };
+      if (order.chools_one(that.data.arr_cancel, that)) {
+        data.reason = that.data.arr_cancel[that.data.index_ls].txt
+      }
+      this.nosend_return(data)  //未发货退款
+    }
   },
   /**
   * 底部按钮 （取消订单）

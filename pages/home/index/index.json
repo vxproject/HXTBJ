@@ -1,10 +1,7 @@
 {
   "usingComponents": {
     "login": "/components/login/login",
-      "navigation-lsz": "/components/navigation-lsz/navigation-lsz"
+    "navigation-lsz": "/components/navigation-lsz/navigation-lsz"
   },
-"enablePullDownRefresh": true
-
-
-    
+  "enablePullDownRefresh": true
 }

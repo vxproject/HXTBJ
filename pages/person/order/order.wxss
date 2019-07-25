@@ -246,8 +246,8 @@ page {
 }
 
 .wh-38-34 {
-  width: 38rpx;
-  height: 34rpx;
+  width: 30rpx;
+  height: 24rpx;
 }
 
 .ls_shoucang {

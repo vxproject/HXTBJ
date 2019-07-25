@@ -1,5 +1,6 @@
 <template name="yes_member">
   <view class='container'>
+  <wxs module="filters" src="../../home/store/filter.wxs"></wxs>
     <view class='header'>
       <image mode='widthFix' class='huizhang' src="../../../images/image/jinsehuizhang.png" />
       <view bindtap='personStore' class='header_tubiao'>

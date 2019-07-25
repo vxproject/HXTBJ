@@ -4,90 +4,112 @@ const baseurl = require('../../../utils/baseurl.js')
 const util = require('../../../utils/util.js')
 Page({
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        pid:1,
-      
-      // arr_cancel: [
-      //   { txt: '我不想买了', flag: false },
-      //   { txt: '信息填写错误', flag: false },
-      //   { txt: '商品拍重了', flag: false },
-      //   { txt: '其他原因', flag: false },
-      // ],
-      tuikuanCell: {
-        cancleorder_flag: false,  //取消订单状态
-      arr_cancel:[],
-        // 退款原因列表
-      tuikuan_list:[
-            '口感不佳', '错拍/多拍/不想要', '包裹丢失', '商品变质', '克重不足', '成熟度过低', 
-            '收货信息填写错误','商品错发/漏发', '收到商品与描述不符', '商品破损',
-        ],
-        sunhuai_list:[
-            '少许', '三分之一', '一半', '三分之二'
-        ],
-        // 选中记录
-        seleted1: -1,
-        seleted2: -1,
-        seleted: -1,
-        //预计退款金额
-        price:null
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    pid: 1,
+
+    // arr_cancel: [
+    //   { txt: '我不想买了', flag: false },
+    //   { txt: '信息填写错误', flag: false },
+    //   { txt: '商品拍重了', flag: false },
+    //   { txt: '其他原因', flag: false },
+    // ],
+    tuikuanCell: {
+      cancleorder_flag: false,  //取消订单状态
+      arr_cancel: [],
+      // 退款原因列表
+      tuikuan_list: [
+        '我不想买了', '信息填写错误', '商品拍重了', '其他原因', 
+      ],
+      sunhuai_list: [
+        '少许', '三分之一', '一半', '三分之二'
+      ],
+      obj1: {
+        title: '退款原因',
+        txt: '请选择退款原因'
       },
-        list_data:null,
-      img_path: baseurl.imgPath,
-        index:0,
-        index1:0,
-        imgs:[],
-        file_imgs:[],
-        imgurl:[],
-        img_thumb:[],
-        is_add:false,
-        len:0,
-      goodsInfo:{}
-
-
+      obj2: {
+        title: '商品损坏数量',
+        txt: '请选择商品损坏数量'
+      },
+      // 选中记录
+      seleted1: -1,
+      seleted2: -1,
+      seleted: -1,
+      //预计退款金额
+      price: null
     },
+    list_data: null,
+    img_path: baseurl.imgPath,
+    index: 0,
+    index1: 0,
+    imgs: [],
+    file_imgs: [],
+    imgurl: [],
+    img_thumb: [],
+    is_add: false,
+    len: 0,
+    goodsInfo: {},
+    flag:false,
+    value: '选填...',
+  },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-      wx.hideShareMenu()
-      this.dataRequest(options.rec_id)
-      this.setData({
-        goodsInfo: JSON.parse(options.goodsInfo) 
-      })
-      
-    },
-    dataRequest:function(rec_id){
-      let that = this
-      request.getRequest(that,baseurl.order_return_pay + "?rec_id=" + rec_id,res=>{
-         if(res.status == 200){
-           that.setData({
-             list_data:res.data
-           })
-         }
-      })
-    },
-    tuikuan:function(e){
-        this.setData({
-          pid:0
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    wx.hideShareMenu()
+    this.dataRequest(options.rec_id)
+    this.setData({
+      goodsInfo: JSON.parse(options.goodsInfo)
+    })
+
+  },
+  bindblur(){
+    this.setData({
+      flag:false
+    })
+  },
+  bindfocus(){
+    this.setData({
+      flag: true
+    })
+  },
+  catchtap(){
+    this.setData({
+      flag: true
+    })
+  },
+  dataRequest: function (rec_id) {
+    let that = this
+    request.getRequest(that, baseurl.order_return_pay + "?rec_id=" + rec_id, res => {
+      if (res.status == 200) {
+        that.setData({
+          list_data: res.data
         })
-    },
-  bindPickerChange:function(e){
+      }
+    })
+  },
+  tuikuan: function (e) {
+    this.setData({
+      pid: 0
+    })
+  },
+  bindPickerChange: function (e) {
     this.setData({
       index: e.detail.value
     })
   },
-  bindPickerChange2:function(e){
+  bindPickerChange2: function (e) {
     this.setData({
-      index1:e.detail.value
+      index1: e.detail.value
     })
   },
-  tijiao:function(e){
+  tijiao: function (e) {
     let that = this
-    if (this.data.tuikuanCell.seleted1 == -1 || this.data.tuikuanCell.seleted2 == -1){
+    if (this.data.tuikuanCell.seleted1 == -1 || this.data.tuikuanCell.seleted2 == -1) {
       util.showmodel('请选择退款原因或损坏数量')
       return
     }
@@ -100,12 +122,13 @@ Page({
       let params = {
         rec_id: d.list_data.rec_id,
         reason: d.tuikuanCell.tuikuan_list[d.tuikuanCell.seleted1],
-        describe: d.tuikuanCell.sunhuai_list[d.tuikuanCell.seleted2],
-        img: d.imgurl.join(","),
+        describe: d.value,
+        imgs: d.imgurl.join(","),
         img_thumb: d.img_thumb.join(",")
       }
+
       console.log(params)
-      request.postRequest(that,baseurl.order_return_submit, params, res => {
+      request.postRequest(that, baseurl.order_return_submit, params, res => {
         if (res.status == 200) {
           util.showmodel(res.message, res => {
             wx.navigateBack({
@@ -116,7 +139,7 @@ Page({
       })
     })
   },
-  addImage:function(e){
+  addImage: function (e) {
     let that = this
 
     wx.chooseImage({
@@ -128,7 +151,7 @@ Page({
         let file_imgs = that.data.file_imgs.concat(res.tempFilePaths)
         that.setData({
           file_imgs: file_imgs,
-          is_add: file_imgs.length == 6?true:false
+          is_add: file_imgs.length == 6 ? true : false
         })
       }
     })
@@ -184,30 +207,31 @@ Page({
     })
     // }
   },
-  input:function(e){
+  input: function (e) {
     var value = e.detail.value,
       len = parseInt(value.length);
     let that = this;
     this.setData({
-      len: len
+      len: len,
+      value: value
     });
 
   },
-  btnClick:function(e){
+  btnClick: function (e) {
     console.log(e.currentTarget.dataset.flag)
     //原因
-    if(flag == 1){
+    if (flag == 1) {
 
-    }else{
+    } else {
       //商品孙环数量
     }
   },
 
   changese_flag(e) {
     // let that = this
-  
+
     // if (!this.data.cancleorder_flag == true){
-     
+
     //   if(flag == 1){
     //     this.setData({
     //       arr_cancel: that.data.tuikuan_list,
@@ -235,31 +259,31 @@ Page({
     let that = this;
     let index = e.currentTarget.dataset.index;
     var seleted = that.data.seleted == 1 ? that.data.seleted1 : that.data.seleted2
-    if(seleted == index) return
+    if (seleted == index) return
     if (that.data.seleted == 1) that.setData({
-      seleted1:index
+      seleted1: index
     })
     else that.setData({
       seleted2: index
     })
   },
-  makesure:function(e){
+  makesure: function (e) {
     let flag = e.detail.flag
     this.data.tuikuanCell.cancleorder_flag = !this.data.tuikuanCell.cancleorder_flag
     let seleted = e.detail.seleted
     console.log(seleted)
-    if(seleted != -1){
+    if (seleted != -1) {
       if (flag == 1) this.data.tuikuanCell.seleted1 = seleted
-      else{
+      else {
         this.data.tuikuanCell.seleted2 = seleted
         let price_sale = [5, 3, 2, 1.5];
-        
-        let price = this.data.goodsInfo[0].order_amount/price_sale[seleted]
+
+        let price = this.data.goodsInfo[0].order_amount / price_sale[seleted]
         price = price.toFixed(2)
         this.setData({
-          price:price
+          price: price
         })
-      } 
+      }
       this.setData({
         tuikuanCell: this.data.tuikuanCell
       })
@@ -267,52 +291,52 @@ Page({
   },
 
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-    },
+  },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
 
-    },
+  },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
 
-    },
+  },
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
 
-    },
+  },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
 
-    },
+  },
 
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
 
-    },
+  },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
 
-    }
+  }
 })

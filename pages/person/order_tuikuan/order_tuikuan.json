@@ -2,5 +2,5 @@
   "usingComponents": {
     "tuikuanCell": "/components/tuikuanCell/tuikuanCell"
   },
-  "navigationBarTitleText": "仅退款"
+  "navigationBarTitleText": "申请售后"
 }

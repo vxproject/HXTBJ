@@ -6,7 +6,7 @@
   <view class='top_bc'>
     <view class='top_txt fc-white'>
       <view class='fs-30 '>{{list_data.returnInfo.status == 0?"退款申请中":list_data.returnInfo.status == 1?"正在退款":list_data.returnInfo.status == 2?"退款申请失败":"退款完成"}}</view>
-      <view class='fs-22 ' style='margin-top:18rpx;'>{{imageArr.dateFormat(list_data.returnInfo,index)}}</view>
+      <view class='fs-22 ' style='margin-top:18rpx;'>{{imageArr.dateFormat(list_data.returnInfo)}}</view>
     </view>
   </view>
   <!-- 当前进度 -->
@@ -34,8 +34,8 @@
     </view>
     <view class='title_ls fs-22 fc-33 row'>
       <view class='line-1'>退款原因：{{list_data.returnInfo.reason}}</view>
-      <view class='shrink' style='margin-left:30rpx;'>退款金额：
-        <text class='fc-ff'>¥{{list_data.goodsInfo[0].goods_price}}</text>
+      <view class='shrink' style='margin-left:30rpx;' wx:if="{{list_data.returnInfo.status==4}}" >退款金额：
+        <text class='fc-ff'>¥{{list_data.returnInfo.refund_money}}</text>
       </view>
     </view>
   </view>

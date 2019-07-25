@@ -16,8 +16,8 @@ var dateFormat = function (returnInfo, index) {
  // if (!format) {
   let = format = "yyyy-MM-dd hh:mm:ss";
   //}
-  let timestamp = parseInt(returnInfo.status == 0 ? returnInfo.addtime : index == 0 ? returnInfo.refund_time : returnInfo.addtime);
-  console.log(timestamp)
+  // let timestamp = parseInt(returnInfo.status == 0 ? returnInfo.addtime : index == 0 ? returnInfo.refund_time : returnInfo.addtime);
+    let timestamp = parseInt(returnInfo.status == 0 ? returnInfo.addtime :returnInfo.refund_time );
   var realDate = getDate(timestamp * 1000);
   function timeFormat(num) {
     return num < 10 ? '0' + num : num;

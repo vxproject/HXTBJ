@@ -79,7 +79,7 @@
               <text class='ziti_2 '>合计：</text>
               <text class='ziti_2 lsz_price '>￥{{list_data.totlePrice}}</text>
             </view>
-            <view class='ziti_3 color_gray ' style='margin-top:10rpx;'>已优惠￥{{list_data.disPrice}}</view>
+            <view class='ziti_3 color_gray ' style='margin-top:10rpx;'>已优惠￥{{list_data.youhuiprice}}</view>
           </view>
           <view bindtap='jiesuan' data-id="{{guanliFlag ? 2 : 1}}" class='buy_btn ziti_1 '>{{guanliFlag ? '删除' : '去结算'}} </view>
         </view>

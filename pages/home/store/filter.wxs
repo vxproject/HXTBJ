@@ -2,6 +2,9 @@
 var toFix = function (d) {
   return d.toFixed(2);
 }
+var liangwei = function (d) {
+  return parseInt(d).toFixed(2);
+}
 var toFixNum = function (d) {
   if(d>10000){
      d=d/10000;
@@ -79,5 +82,5 @@ var getMoney = function(state,money1,money2){
   else return money2
 }
 module.exports = {
-  toFix: toFix, dateFormat: dateFormat, mstime: mstime, getImages: getImages, getStoreName: getStoreName, getMoney: getMoney, toFixNum: toFixNum,
+  toFix: toFix, dateFormat: dateFormat, mstime: mstime, getImages: getImages, getStoreName: getStoreName, getMoney: getMoney, toFixNum: toFixNum, liangwei: liangwei,
 };

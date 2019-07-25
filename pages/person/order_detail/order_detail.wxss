@@ -360,11 +360,15 @@ image {
 .fs-26 {
   font-size: 26rpx;
 }
-
+.fs-28 {
+  font-size: 28rpx;
+}
 .fs-30 {
   font-size: 30rpx;
 }
-
+.auto{
+  pointer-events: auto;
+}
 .ls_address {
   width: 60rpx;
   height: 60rpx;
