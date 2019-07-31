@@ -1,0 +1,5 @@
+<!--pages/share/detail_share/detail_share.wxml-->
+<import src="/template/loading/loading.wxml" />
+<template is="loading" data="{{loading}}"></template>
+
+<detail_share list_data="{{list_data}}"></detail_share>

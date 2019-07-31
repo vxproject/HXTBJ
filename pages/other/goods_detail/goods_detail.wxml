@@ -254,7 +254,7 @@
               </image>
             </view>
             <view class='kucun'>
-              库存{{list_data.specGoodsPrice[gg_seleted].store_count}}件
+              库存{{is_miaosha && miaoshaFlag?kucun:list_data.specGoodsPrice[gg_seleted].store_count}}件
             </view>
             <view class='guizge'>已选择{{list_data.specGoodsPrice[gg_seleted].key_name}}</view>
           </view>
@@ -275,7 +275,7 @@
             <image class='yes_goods_reduce_logo' src='../../../images/cart/{{num > 1 ? "reduce_hei":"reduce_hui"}}.png' />
           </view>
           <view class='yes_goods_add_number ziti_3'>{{num}}</view>
-          <view class='red_ls bc-F5' bindtap='changeNum' data-flag="1">
+          <view class='red_ls  {{nomoreFlag?"bc-F":"bc-F5"}}' bindtap='changeNum' data-flag="1">
             <image class='yes_goods_add_logo' src='../../../images/cart/add_logo.png' />
           </view>
         </view>

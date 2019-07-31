@@ -1,7 +1,7 @@
 {
   "pages": [
-   
     "pages/home/index/index",
+   "pages/index/index",
     "pages/cart/index/index",
     "pages/member/index/index",
     "pages/person/dizhi/dizhi",
@@ -47,6 +47,7 @@
     "pages/kanjia/index/index",
     "pages/kanjia/kj_info/kj_info",
     "pages/share/index/index",
+    "pages/share/detail_share/detail_share",
     "pages/kanjia/mykanjia/mykanjia"
   ],
   "window": {

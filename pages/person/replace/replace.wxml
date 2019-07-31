@@ -45,7 +45,7 @@
       <view class='order_item_header'>
         <view class='fs-24 fc-99'>
           <text style='margin-right:10rpx;'>退款编号</text>{{item.order_goods_sn}}</view>
-        <view class='fs-26 fc-ff'>{{item.status == 0?"退款申请中":item.status == 1?"正在退款":item.status == 2?"退款申请失败":"退款成功"}}</view>
+        <view class='fs-26 fc-ff'>{{item.status == 0?"退款申请中":item.status == 1?"正在退款":item.status == 2?"申请失败":"退款成功"}}</view>
       </view>
       <view class='goods_container'>
         <view class='goods_content ' catchtap='godetail' data-item="{{item.rec_id}}">
@@ -56,8 +56,8 @@
                 <view class=' fs-22 fc-33 line-2'>{{item.goods_name}}</view>
                 <view class='goods_content_info fs-20 fc-66' style='margin-top:30rpx'>
                   <view class='goods_info_btn'>
-                     <image src='{{flagt ?"https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/tuikuan/ls_tuihuokuan.png?sign=8c30718b795748d2966812c6279b01e4&t=1563863997" : "https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/tuikuan/ls_jintuikuan.png?sign=fc66ff250f7b4fa4fcb1fc0c6cd6dfce&t=1563864884 "}}' class='wh-30'/>
-                     <view>{{flagt?"退货退款":"仅退款"}}</view>
+                     <image src='{{item.type == 1 ?"https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/tuikuan/ls_tuihuokuan.png?sign=8c30718b795748d2966812c6279b01e4&t=1563863997" : "https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/tuikuan/ls_jintuikuan.png?sign=fc66ff250f7b4fa4fcb1fc0c6cd6dfce&t=1563864884 "}}' class='wh-30'/>
+                     <view>{{item.type == 1?"退货退款":"仅退款"}}</view>
                   </view>
                   <view></view>
                 </view>

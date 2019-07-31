@@ -1,0 +1,2 @@
+
+<view class=" rgba-6 translate {{flag ?'mask_show':'mask_hid'}}"  catchtap="show_hid"></view>

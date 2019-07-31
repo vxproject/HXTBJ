@@ -5,7 +5,7 @@
 <view wx:if="{{hidden == 2}}" class=''>
   <view class='top_bc'>
     <view class='top_txt fc-white'>
-      <view class='fs-30 '>{{list_data.returnInfo.status == 0?"退款申请中":list_data.returnInfo.status == 1?"正在退款":list_data.returnInfo.status == 2?"退款申请失败":"退款完成"}}</view>
+      <view class='fs-30 '>{{list_data.returnInfo.status == 0?"退款申请中":list_data.returnInfo.status == 1?"正在退款":list_data.returnInfo.status == 2?"申请失败":"退款完成"}}</view>
       <view class='fs-22 ' style='margin-top:18rpx;'>{{imageArr.dateFormat(list_data.returnInfo)}}</view>
     </view>
   </view>
@@ -61,7 +61,8 @@
       <view>{{list_data.returnInfo.describe}}</view>
     </view>
   </view> -->
-  <view class='good_ls fs-26 fc-33'>
+  <!-- 仅退款不显示 补充描述 -->
+  <view class='good_ls fs-26 fc-33' wx:if="{{list_data.returnInfo.type == 1}}">
     <view class='center bb' style='height:90rpx;'>补充描述</view>
     <view class='fc-66 fs-24' style='padding-top:30rpx;'>{{list_data.returnInfo.describe}}</view>
     <view class='wrap' wx:if="{{list_data.returnInfo.img_thumb}}" >

@@ -1,0 +1,31 @@
+/* components/pick-lsz/pick-lsz.wxss */
+.mask_show{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  pointer-events: auto;
+  opacity: 1;
+}
+.mask_hid{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  pointer-events: none;
+  opacity: 0;
+}
+.rgba-6{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.title{
+  display: flex;
+  flex-flow: row  nowrap;
+}
+.translate{
+  transition: all 0.3s ease-in ;
+}

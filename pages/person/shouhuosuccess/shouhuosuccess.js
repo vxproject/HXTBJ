@@ -28,6 +28,20 @@ Page({
       }
     })
   },
+  /**
+   * 复制
+   * 收货成功页复制功能2.1.4版没写，下一版恢复
+   */
+  copyText(){
+    wx.setClipboardData({
+      data: this.data.list_data.order_sn,
+      success: res=> {
+        wx.showToast({
+          title: '复制成功',
+        })
+      }
+    })
+  },
 /**
  * 返回首页
  */

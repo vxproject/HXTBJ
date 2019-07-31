@@ -1,36 +1,40 @@
-// pages/login/login/login.js
-const oauth = require('../../../utils/oauth.js')
-let app = getApp()
+// pages/share/detail_share/detail_share.js
+const request = require('../../../utils/request.js')
+const baseurl = require('../../../utils/baseurl.js')
+const util = require('../../../utils/util.js')
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    flag:0
+    list_data:{}
   },
-  // 获取个人信息
-  getuserinfo: function (e) {
-    let that = this
-    oauth.get_wxinfo(e, res => {
-      that.setData({
-        flag: 1
-      })
-    })
-  },
-  tijiao: function () {
-    wx.navigateBack({
-      delta:5
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.sx = true
-    wx.switchTab({
-      url: '../../home/index/index',
+    let that = this
+    let list_data = {
+      id:options.id,
+      img: baseurl.imgPath + options.img,
+      market_price: options.market_price,
+      name:options.name,
+      shop_price: options.shop_price,
+      nickname: app.userinfo.nickname,
+      touxiang: app.userinfo.head_pic
+    }
+    that.setData({
+      list_data: list_data
     })
+    setTimeout(()=>{
+      that.setData({
+        loading: false
+      })
+    },2000)
+   
   },
 
   /**

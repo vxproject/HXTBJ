@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "detail_share":"/components/detail_share/detail_share"
+  }
+}

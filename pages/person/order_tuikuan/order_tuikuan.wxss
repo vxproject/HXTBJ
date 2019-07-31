@@ -378,3 +378,122 @@ page {
   font-size: 22rpx;
   color: #333;
 }
+/* 弹窗 */
+.cancelmodel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  pointer-events: auto;
+}
+
+.cancelmodel2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(225, 225, 225, 0);
+  opacity: 0;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.mode_wind {
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  z-index: 2500;
+ 
+}
+.none{
+   pointer-events: none;
+}
+.auto{
+  pointer-events: auto;
+}
+.mode_wind2 {
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: -1000rpx;
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  z-index: 2500;
+}
+
+.transition {
+  transition: all 0.3s ease-in;
+}
+
+.wh-33 {
+  height: 33rpx;
+  width: 33rpx;
+}
+
+.arr_cancel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 44rpx;
+}
+
+.px-20 {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.arr_cancel_title {
+  display: flex;
+  justify-content: center;
+}
+
+.py-10 {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.arr_cancel_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 106rpx 0 20rpx 0;
+}
+
+.cancel_btn_ls1 {
+  width: 225rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-top-left-radius: 45rpx;
+  border-bottom-left-radius: 45rpx;
+}
+
+.cancel_btn_ls2 {
+  width: 225rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-top-right-radius: 45rpx;
+  border-bottom-right-radius: 45rpx;
+}
+
+.btn_ls1 {
+  background: #ff6413;
+}
+
+.btn_ls2 {
+  background: #fd4625;
+}

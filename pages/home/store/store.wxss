@@ -3,6 +3,12 @@
 /* 头部 */
 
 /*  */
+  ._lsm{
+    background: #fff;
+  }
+  ._lss{
+     background: url(../../../images/home/zhaungtailan.png ) no-repeat;
+  }
 
 .header {
   position: fixed;
@@ -12,7 +18,15 @@
   z-index: 997;
   margin-top: 0rpx;
   opacity: 1;
+   height: 145rpx;
+}
 
+.top_newset{
+  position: fixed;
+  top:82rpx;
+  left:0;
+  z-index: 997;
+  width: 100%;
 }
 .hav_img{
   background: url('https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/shouye/zhaungtailan.png?sign=b207d2ecbab077200f5fe95d4c389050&t=1561632317' ) no-repeat;

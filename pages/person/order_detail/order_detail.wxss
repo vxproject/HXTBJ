@@ -532,7 +532,16 @@ image {
   align-items: center;
   justify-content: center;
 }
-
+.goods_item_btn_sssss {
+  padding: 0 10rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #fff;
+  border-radius: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .quxian_hui {
   color: #666;
   border: solid 2rpx #666;

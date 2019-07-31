@@ -72,7 +72,6 @@ Page({
           prevPage.setData({
             address:item
           })
-        
           wx.navigateBack({
             delta:1
           })

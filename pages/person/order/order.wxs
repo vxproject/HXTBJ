@@ -19,7 +19,7 @@ var getState = function (item) {
         } else if (item.showGoodsInfo[0].return_status == 1) {
           if (item.showGoodsInfo[0].status == 0) return '退款申请中'
           else if (item.showGoodsInfo[0].status == 1) return '正在退款'
-          else if (item.showGoodsInfo[0].status == 2) return '退款申请失败'
+          else if (item.showGoodsInfo[0].status == 2) return '申请失败'
           else if (item.showGoodsInfo[0].status == 4) return '退款成功'
         }
         else{
@@ -34,7 +34,7 @@ var getState = function (item) {
   }
 }
 var getStateText = function (state) {
-  if (state == 0) return "申请中"
+  if (state == 0) return "退款申请中"    //2.1.4  是申请中
   else if (state == 1) return '正在退款'
   else if (state == 2) return '申请失败'
   else if (state == 4) return '退款成功'

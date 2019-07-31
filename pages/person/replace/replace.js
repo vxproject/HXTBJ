@@ -87,7 +87,6 @@ Page({
 
   },
   shouhou: function (e) {
-    console.log('---------')
     wx.navigateTo({
       url: '../../other/webview/webview?url=' + baseurl.shouhouh5 + "&title=售后说明"
     })

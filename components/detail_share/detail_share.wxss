@@ -1,0 +1,182 @@
+/* components/detail_share/detail_share.wxss */
+button::after{
+border:none;
+}
+.bg {
+  margin: 0 auto;
+}
+
+.bgx {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background:rgba(0, 0, 0, 0.4);
+}
+.kuai{
+  width: 510rpx;
+  height: auto;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  
+}
+.header{
+   background: linear-gradient(to right, #131313 0%, #414141 100%);
+   height: 100rpx;
+}
+
+button {
+  background-color: transparent;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 205rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+}
+
+.footer_item_img2 {
+  width: 97rpx;
+  height: 80rpx;
+  display: block;
+  margin: 0 auto;
+}
+
+.footer_item {
+  /* width: 30%; */
+  border: none;
+    border-radius: 0rpx;
+  padding: 0rpx;
+  margin: 0rpx;
+  display: inline-block;
+  line-height: 1;
+}
+
+
+.footer_item_img {
+  display: block;
+  margin: 0 auto;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.footer_item_title {
+  text-align: center;
+  padding-top: 10rpx;
+}
+
+.title{
+  padding-left: 20rpx;
+  color:#ecc881;
+
+
+}
+.title_info image{
+  width: 14rpx;
+  height: 16rpx;
+  margin-right: 5rpx;
+  
+}
+.title_info text{
+  font-size: 15rpx;
+  color: #fff;
+}
+.title_info{
+  display: flex;
+  padding:0 22rpx;
+  align-items: center;
+  margin-top: 14rpx;
+}
+
+.userinfo{
+  padding: 20rpx 54rpx 18rpx 54rpx;
+  height: 54rpx;
+  display: flex;
+}
+.touxiang{
+  background-color: rebeccapurple;
+  border-radius: 30rpx;
+  height: 60rpx;
+  width: 60rpx;
+}
+.name{
+  font-size: 18rpx;
+  color:#999;
+}
+.jieshao{
+  font-size: 22rpx;
+  color:#333;
+}
+.user{
+  padding-left: 15rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.goodsimg{
+  width: 394rpx;
+  height: 394rpx;
+  background-color: rebeccapurple;
+  
+}
+.goods_img{
+  width: 394rpx;
+  margin: 0 auto;
+}
+.goods_info{
+  display: flex;
+  padding: 25rpx 58rpx 30rpx 58rpx;
+}
+.price{
+  color:#e41e1e;
+  display: flex;
+  align-items:flex-end;
+}
+.yuanjia{
+  font-size: 22rpx;
+  color:#999;
+  margin-top: 15rpx;
+  text-decoration:line-through;
+}
+.zhaiyao{
+  font-size: 19rpx;
+  color:#666;
+  margin-top: 10rpx;
+}
+.yhq{
+  width:128rpx;
+  height: 31rpx;
+  margin-top:10rpx;
+  position: relative;
+}
+.yhq text{
+  position: absolute;
+  color:#fff;
+  font-size:18rpx;
+  top:4rpx;
+  left:8rpx;
+  
+}
+.goods_detail{
+  width: 250rpx;
+  flex-shrink: 0;
+}
+.codeImg{
+  width:130rpx;
+  height: 130rpx;
+  background-color: rebeccapurple;
+}
+.code{
+  padding-left: 10rpx;
+  padding-top: 20rpx;
+  flex-shrink: 0;
+}

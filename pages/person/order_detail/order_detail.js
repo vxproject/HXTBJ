@@ -41,17 +41,17 @@ Page({
       txt: '交易完成',
       src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
     }, {
-        txt: '退款申请失败',
-      src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
+        txt: '申请失败',
+        src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yiguanbi.png?sign=8ebb3b836083b8cf2b59ce54a8aa86c2&t=1563353903'
     }, {
         txt: '退款成功',
-      src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
+        src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yiguanbi.png?sign=8ebb3b836083b8cf2b59ce54a8aa86c2&t=1563353903'
       }, {
         txt: '退款申请中',
-        src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
+        src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yiguanbi.png?sign=8ebb3b836083b8cf2b59ce54a8aa86c2&t=1563353903'
       }, {
         txt: '正在退款',
-        src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yishouhuo.png?sign=703774db13e5e16e673588125366db8f&t=1563354658'
+        src: 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order_detail/ls_yiguanbi.png?sign=8ebb3b836083b8cf2b59ce54a8aa86c2&t=1563353903'
       }],
     state: 0,
     img_path: baseurl.imgPath,
@@ -164,7 +164,6 @@ Page({
     // that.postRequest(orderid)
   },
   orderClick: function (e) {
-    console.log()
     let flag = e.currentTarget.dataset.flag
     let list_data = this.data.list_data
     let orderid = list_data.order_id
@@ -229,12 +228,14 @@ Page({
    */
   nosend_return(e) {
     let that = this ;
-    request.postRequest(that, baseurl.order_goods_cancel, data, res => {
+    request.postRequest(that, baseurl.order_goods_cancel, e, res => {
       if (res.status == 200) {
-        that.onShow(that.data.options) 
-        that.setData({
-          cancleorder_flag: false,  
-          commit_flag: false,  
+        util.showmodel('申请退款成功，如有疑问请联系客服！',res=>{
+          that.onShow(that.data.options)
+          that.setData({
+            cancleorder_flag: false,
+            commit_flag: false,
+          })
         })
       }
     })
@@ -305,7 +306,6 @@ Page({
     })
   },
   goodsDetail: function (e) {
-    console.log(e.currentTarget.dataset.id)
     let goods_id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../../other/goods_detail/goods_detail?goods_id=' + goods_id,
@@ -341,7 +341,7 @@ Page({
     } else
       if (that.data.list_data.goodsInfo[0].return_status == 0)
         wx.navigateTo({
-          url: '../order_tuikuan/order_tuikuan?rec_id=' + this.data.list_data.goodsInfo[0].rec_id + "&goodsInfo=" + JSON.stringify(this.data.list_data.goodsInfo),
+          url: '../order_tuikuan/order_tuikuan?rec_id=' + this.data.list_data.goodsInfo[0].rec_id + "&goodsInfo=" + JSON.stringify(this.data.list_data.goodsInfo) + "&state=" + that.data.state,
         })
       else {
         wx.navigateTo({
@@ -387,6 +387,10 @@ Page({
       let data = {
         rec_id: recid,
       };
+      if (!order.chools_one(that.data.arr_cancel, that)) {
+        util.showmodel('请选择退款原因')
+        return;
+      }
       if (order.chools_one(that.data.arr_cancel, that)) {
         data.reason = that.data.arr_cancel[that.data.index_ls].txt
       }
@@ -405,6 +409,10 @@ Page({
       })
     }
     if (index == '2') {
+      if (!order.chools_one(that.data.arr_cancel, that)) {
+        util.showmodel('请选择取消订单原因')
+        return;
+      }
       let data = { order_id: that.data.orderid, reason: order.chools_one(that.data.arr_cancel, that) ? that.data.arr_cancel[that.data.index_ls].txt : undefined }
       this.cancelOrder(data);
     }

@@ -103,7 +103,6 @@ Page({
     })
   },
   buyGoods: function (e) {
-    console.log()
     let goods_id = e.currentTarget.dataset.goods_id
     wx.navigateTo({
       url: '../buy_member/buy_member?goods_id=' + goods_id,

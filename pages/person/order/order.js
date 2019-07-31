@@ -5,6 +5,7 @@ const order = require('../../../utils/order.js')
 const util = require('../../../utils/util.js')
 const collect = require('../../../utils/collect.js')
 const app = getApp()
+ //1、请选择取消订单原因2、请选择退款原因3、请选择商品损坏数量
 Page({
 
   /**
@@ -159,6 +160,10 @@ Page({
       })
     }
     if (index == '2') {
+      if (!order.chools_one(that.data.arr_cancel, that)){
+        util.showmodel('请选择取消订单原因')
+        return ;
+      }
       let data = { order_id: that.data.orderid, reason: order.chools_one(that.data.arr_cancel, that) ? that.data.arr_cancel[that.data.index_ls].txt : undefined }
       this.cancelOrder(data);
     }
@@ -238,12 +243,13 @@ Page({
   cancelOrder: function (orderid) {
     let that = this
     order.cancelOrder(that, orderid, res => {
-      util.showmodel(res.message)
-      that.setData({
-        cancleorder_flag: false,
-      })
       if (res.status == 200) {
-        that.postRequest(that.data.seleted, 1, true)
+        util.showmodel(res.message,res=>{
+          that.setData({
+            cancleorder_flag: false,
+          })
+          that.postRequest(that.data.seleted, 1, true)
+        })
       }
     })
   },

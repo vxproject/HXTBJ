@@ -1,9 +1,3 @@
-<!--index.wxml-->
-<!-- <order-item name="俄式红肠双鸡汉堡"
- number='{{number1}}'
- sum='{{sum}}' 
- index='{{index}}'    
- bindminusEvent='minusFromCart1'
- bindaddEvent='addToCart1'>
- </order-item> -->
 
+<pick-ls id="pick-ls" array="{{arr}}"></pick-ls>
+<view class='middle' catchtap='catchtap'>出来</view>

@@ -1,7 +1,9 @@
 <wxs module="filters" src="./filter.wxs"></wxs>
 <template name="store">
-  <view class="header" style="background:{{store.scrollTop || store.srcoll_check_id != 0 ? '#fff' :'url(../../../images/home/zhaungtailan.png ) no-repeat'}} ;">
-    <view class='header_search_container' wx:if="{{store.scrollTop || store.srcoll_check_id != 0}}">
+  <!-- wx:if="{{store.scrollTop || store.srcoll_check_id != 0}}" style="background:#fff;" -->
+  <view class="header" wx:if="{{store.scrollTop || store.srcoll_check_id != 0}}" style="background:#fff;">
+    <!-- wx:if="{{store.scrollTop || store.srcoll_check_id != 0}}" -->
+    <view class='header_search_container'>
       <view class='header_search_box'>
         <image class='header_search_tao_logo shrink' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/shouye/haoxiantao_logo.png?sign=eee2b6a30995e319b13e43dff0d10a71&t=1560853413'></image>
         <view class='row center w-all px-20'>
@@ -14,25 +16,23 @@
         <image bindtap='messagelist' class='shrink header_search_xin_logo' src='/images/home/haoxserach.png'></image>
       </view>
     </view>
-    <view wx:else>
-      <view class='header_search_container'>
-        <view class='header_search_box'>
-          <image class='header_search_tao_logo shrink' src='../../../images/home/hxtlogo.png'></image>
-          <view class='row center w-all px-20'>
-            <view class='ziti_2 shrink px-10  txt_dot  ' wx:if="{{store.store_name && store.user_id != store.userinfo.user_id }}" style='color:"#fff"'>{{filters.getStoreName(store.store_name)}}</view>
-            <view class="center bc-f5 pxy_10 w-all " bindtap='search'>
-              <icon type='search' size='18' color='#a3a3a3' />
-              <view class='w-all ziti_2 color_gray  px-20 shrink '>请输入商品名称</view>
+    <!-- <view wx:else>
+        <view class='header_search_container'>
+          <view class='header_search_box'>
+            <image class='header_search_tao_logo shrink' src='../../../images/home/hxtlogo.png'></image>
+            <view class='row center w-all px-20'>
+              <view class='ziti_2 shrink px-10  txt_dot  ' wx:if="{{store.store_name && store.user_id != store.userinfo.user_id }}" style='color:"#fff"'>{{filters.getStoreName(store.store_name)}}</view>
+              <view class="center bc-f5 pxy_10 w-all " bindtap='search'>
+                <icon type='search' size='18' color='#a3a3a3' />
+                <view class='w-all ziti_2 color_gray  px-20 shrink '>请输入商品名称</view>
+              </view>
             </view>
+            <image bindtap='messagelist' class='shrink header_search_xin_logo' src="/images/home/home_header_xin_logo.png"></image>
           </view>
-          <image bindtap='messagelist' class='shrink header_search_xin_logo' src="/images/home/home_header_xin_logo.png"></image>
         </view>
-      </view>
-    </view>
-    <view class="{{store.scrollTop || store.srcoll_check_id != 0 ? '' :'rgba_lsz'}}">
-      <navigation-lsz bindchooseOne="topNav" wx:if="{{store.lsz_flag }}" scrollTop="{{store.scrollTop}}" arrayList="{{store.categoryList}}"  lineWidth="60" itemindex="0" color="{{store.scrollTop || store.srcoll_check_id != 0 ? '#777777' :'#ffffff'}} "
-        border_color=" {{store.scrollTop || store.srcoll_check_id != 0? '#ff5000' : '#ffffff'}}"></navigation-lsz>
-    </view>
+      </view> -->
+
+
     <view class='goods_class_container' wx:if='{{store.flag_class==1}}' style='height:{{store.windowHeight}}px;margin-top:-80rpx;'>
       <view class='goods_class_header'>
         <text>全部分类</text>
@@ -48,9 +48,7 @@
       </view>
     </view>
   </view>
-
-
-  <!-- <view wx:else class="header" style="background:url(../../../images/home/zhaungtailan.png ) no-repeat;}}">
+  <view wx:else class="header" style="background:url(../../../images/home/zhaungtailan.png ) no-repeat;">
     <view class='header_search_container'>
       <view class='header_search_box'>
         <image class='header_search_tao_logo shrink' src='../../../images/home/hxtlogo.png'></image>
@@ -58,13 +56,13 @@
           <view class='ziti_2 shrink px-10  txt_dot  ' wx:if="{{store.store_name && store.user_id != store.userinfo.user_id }}" style='color:"#fff"'>{{filters.getStoreName(store.store_name)}}</view>
           <view class="center bc-f5 pxy_10 w-all " bindtap='search'>
             <icon type='search' size='18' color='#a3a3a3' />
-            <view class='w-all ziti_2 color_gray  px-20 shrink '>请输入商品名称{{store.srcoll_check_id}}</view>
+            <view class='w-all ziti_2 color_gray  px-20 shrink '>请输入商品名称</view>
           </view>
         </view>
         <image bindtap='messagelist' class='shrink header_search_xin_logo' src="/images/home/home_header_xin_logo.png"></image>
       </view>
     </view>
-    <navigation-lsz bindchooseOne="topNav" wx:if="{{store.lsz_flag }}" scrollTop="{{store.scrollTop}}" arrayList="{{store.categoryList}}" itemindex="{{store.srcoll_check_id}}" lineWidth="60" itemindex="0" color="#ffffff" border_color="#ffffff"></navigation-lsz>
+    <!-- <navigation-lsz bindchooseOne="topNav" wx:if="{{store.lsz_flag }}" scrollTop="{{store.scrollTop}}" arrayList="{{store.categoryList}}" itemindex="{{store.srcoll_check_id}}" lineWidth="60" itemindex="{{store.srcoll_check_id}}" color="#ffffff" border_color="#ffffff"></navigation-lsz> -->
 
     <view class='goods_class_container' wx:if='{{store.flag_class==1}}' style='height:{{store.windowHeight}}px;margin-top:-80rpx;'>
       <view class='goods_class_header'>
@@ -80,14 +78,18 @@
         </block>
       </view>
     </view>
-  </view> -->
+  </view>
+  <view class="{{store.scrollTop || store.srcoll_check_id != 0 ? '' :'rgba_lsz'}} top_newset">
+    <navigation-lsz bindchooseOne="topNav" wx:if="{{store.lsz_flag }}" scrollTop="{{store.scrollTop}}" arrayList="{{store.categoryList}}" lineWidth="60" itemindex="{{store.srcoll_check_id}}" color="{{store.scrollTop || store.srcoll_check_id != 0 ? '#777777' :'#ffffff'}} "
+      border_color=" {{store.scrollTop || store.srcoll_check_id != 0? '#ff5000' : '#ffffff'}}"></navigation-lsz>
+  </view>
 
 
 
   <view class=''>
     <view class='home_index_box' wx:if='{{store.list_data.swiper}}'>
       <image class='hudu_ui' src='cloud://hxt-cdff72.6878-hxt-cdff72/shouye/baitiao.png' />
-      <swiper circular='true' autoplay="true" interval="3000" indicator-dots  indicator-active-color='#fff' bindchange="goodsSwipter" class='home_swiper'>
+      <swiper circular='true' autoplay="true" interval="3000" indicator-dots indicator-active-color='#fff' bindchange="goodsSwipter" class='home_swiper'>
         <swiper-item bindtap='yin_animation' wx:for="{{store.list_data.swiper}}" class='home_swiper_item' wx:key="{{index}}">
           <image bindtap='navClick' data-item="{{item}}" class=' check_swiper_img' src="{{store.img_path}}{{item.img_url}}"></image>
         </swiper-item>

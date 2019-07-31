@@ -1,0 +1,65 @@
+<!--components/detail_share/detail_share.wxml margin-top:-1184px; -->
+<view wx:if="{{hidden == 1}}" style="  overflow-x: hidden;">
+  <canvas style="width: 260px; height: 428px;margin-top:-1184px; " canvas-id="firstCanvas"></canvas>
+  <view style='width:100%;height:100vh;' class='bgx'>
+    <view class='kuai'>
+      <!-- 头部 -->
+      <view class='header'>
+        <view class='title'>
+          <text style='font-size:26rpx;padding-right:20rpx;font-weight:bold;'>好享淘</text>
+          <text style='font-size:24rpx;padding-right:5rpx;'>·</text>
+          <text style='font-size:24rpx;'>{{topData[seleted][0]}}</text>
+        </view>
+        <view class='title_info'>
+          <block wx:for="{{4}}">
+            <image style='margin-left:{{index != 0 ? "18":0}}rpx;' src="../../images/other/detail_share.png"></image>
+            <text>{{topData[seleted][index+1]}}</text>
+          </block>
+        </view>
+      </view>
+      <!-- 个人信息 -->
+      <view class='userinfo'>
+        <image class='touxiang' src="{{list_data.touxiang}}"></image>
+        <view class='user'>
+          <view class='name'>{{list_data.nickname}}</view>
+          <view class='jieshao'>推荐给你一个好物</view>
+        </view>
+      </view>
+      <!-- 商品图片 -->
+      <view class='goods_img'>
+        <image class="goodsimg" src="{{list_data.img}}"></image>
+      </view>
+      <view class='goods_info'>
+        <view class='goods_detail'>
+          <view class='price'>
+            <text style='font-size:40rpx;'>秒杀价</text>
+            <text style='font-size:32rpx;'>￥{{list_data.shop_price}}</text>
+          </view>
+          <view class='yuanjia'>
+            券前价￥{{list_data.market_price}}
+          </view>
+          <image class='yhq' src="../../images/other/share_quan.png">
+            <text style=''>优惠券</text>
+          </image>
+          <view class='zhaiyao'>{{list_data.name}}</view>
+        </view>
+        <view class='code'>
+          <image class='codeImg' src="{{code}}"></image>
+          <view class='name' style='text-align:center;'>长按识别二维码</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='footer'>
+    <button bindtap='share' hover-class='none' open-type='share' class='footer_item btn_active'>
+      <image class='footer_item_img2' src='../../images/image/wechat.png'></image>
+      <view class='footer_item_title ziti_2'>发送给好友</view>
+    </button>
+    <!-- saveImage -->
+    <view bindtap='saveImage' class='footer_item btn_active'>
+      <image class='footer_item_img' src='../../images/other/saveImage.png'></image>
+      <view class='footer_item_title ziti_2'>保存图片</view>
+    </view>
+  </view>
+</view>

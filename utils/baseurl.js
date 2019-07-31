@@ -149,7 +149,7 @@ let share_info = baseURL + version + "/share_info"
 
 //微信获取分享列表
 let share_goods_list = baseURL + version + "/share_goods_list"
-
+let share_goods = baseURL + version + "/share_goods"
 
 // 预售功能
 let pre_goods = baseURL + version + "/pre_goods"
@@ -229,5 +229,5 @@ module.exports = {
   //账号管理
   change_mobile, reset_mobile,
   //砍价
-  chop_price, chop_goods, add_goods, chop_user, chop_detail, chop_share, chop_delete, six_share, add_free_coupon, flash_list, collect_filter
+  chop_price, chop_goods, add_goods, chop_user, chop_detail, chop_share, chop_delete, six_share, add_free_coupon, flash_list, collect_filter, share_goods
 }

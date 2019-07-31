@@ -135,7 +135,8 @@ Page({
           shop_price: res.data.shop_price.split('.'),
           list_data: res.data,
           hidden: 1,
-          is_loading: true
+          is_loading: true,
+          kucun: res.data.flashSale[0] ? res.data.flashSale[0].goods_num - res.data.flashSale[0].buy_num : 0
         })
         if (res.data.flashSale[0] && (res.data.flashSale[0].item_id == res.data.specGoodsPrice[that.data.gg_seleted].item_id) ) {
           that.countDown1(res.data.flashSale[0])
@@ -370,10 +371,10 @@ Page({
       is_miaosha: list_data.flashSale[0] && (list_data.flashSale[0].item_id == list_data.specGoodsPrice[index].item_id) ? true :false,
       gg_seleted: index,
       list_data: this.data.list_data,
-      shop_price: this.data.shop_price
+      shop_price: this.data.shop_price,
+      num:1,
+      nomoreFlag: false
     })
-    
-    console.info('这是售价', this.data.shop_price)
   },
   changeNum: function(e) {
     let flag = e.currentTarget.dataset.flag
@@ -383,13 +384,42 @@ Page({
     if (flag == "0" && num == 1) return
     num = flag == 0 ? num - 1 : num + 1
     if (that.data.list_data.flashSale[0] && that.data.list_data.flashSale[0].status == 1 && that.data.list_data.flashSale[0].item_id == that.data.list_data.specGoodsPrice[gg_seleted].item_id) {
-      if (that.data.list_data.flashSale[0].buy_limit < num) {
+      let list_data = that.data.list_data.flashSale[0];
+      if (list_data.buy_limit < num) {
+        that.setData({
+          nomoreFlag:true
+        })
         wx.showToast({
           icon: 'none',
-          title: '抱歉，每人限购' + that.data.list_data.flashSale[0].buy_limit + "件",
+          title: '抱歉，每人限购' + list_data.buy_limit + "件",
         })
         return
       }
+      if (list_data.goods_num - list_data.buy_num < num){
+        wx.showToast({
+          icon: 'none',
+          title: '抱歉，仓库就剩这么多了',
+        })
+        return
+      }
+      
+    } else {
+      let specGoodsPrice=that.data.list_data.specGoodsPrice[gg_seleted];
+      if (specGoodsPrice.store_count < num){
+        wx.showToast({
+          icon: 'none',
+          title: '抱歉，仓库就剩这么多了',
+        })
+        that.setData({
+          nomoreFlag: true
+        })
+        return
+      }else{
+        that.setData({
+          nomoreFlag: false
+        })
+      }
+     
     }
     this.setData({
       num: num

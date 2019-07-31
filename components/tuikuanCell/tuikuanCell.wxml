@@ -1,5 +1,5 @@
 <!--components/tuikuanCell/tuikuanCell.wxml-->
-<view class="transition {{list_data.cancleorder_flag ?  'cancelmodel' :'cancelmodel2'}} " bindtap='makesure' data-index="1">
+<view class="transition {{list_data.cancleorder_flag ?  'cancelmodel' :'cancelmodel2'}} " bindtap='makesure' data-index="3">
 </view>
 <view class=" transition {{list_data.cancleorder_flag ? 'mode_wind' :'mode_wind2'}}  auto">
   <view class='fs-28 fc-33 px-20 arr_cancel_title' style='padding-top:44rpx;padding-bottom:48rpx;'>{{list_data.flag == 1 ? list_data.obj1.title :list_data.obj2.title}}</view>

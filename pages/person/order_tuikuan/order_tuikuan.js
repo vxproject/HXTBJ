@@ -2,6 +2,8 @@
 const request = require('../../../utils/request.js')
 const baseurl = require('../../../utils/baseurl.js')
 const util = require('../../../utils/util.js')
+const order = require('../../../utils/order.js')
+
 Page({
 
   /**
@@ -10,21 +12,22 @@ Page({
   data: {
     pid: 1,
 
-    // arr_cancel: [
-    //   { txt: '我不想买了', flag: false },
-    //   { txt: '信息填写错误', flag: false },
-    //   { txt: '商品拍重了', flag: false },
-    //   { txt: '其他原因', flag: false },
-    // ],
+    cancleorder: false,  //取消订单状态
+    arr_cancel: [
+      { txt: '我不想买了', flag: false },
+      { txt: '信息填写错误', flag: false },
+      { txt: '商品拍重了', flag: false },
+      { txt: '其他原因', flag: false },
+    ],
     tuikuanCell: {
       cancleorder_flag: false,  //取消订单状态
       arr_cancel: [],
       // 退款原因列表
       tuikuan_list: [
-        '我不想买了', '信息填写错误', '商品拍重了', '其他原因', 
+        '我不想买了', '信息填写错误', '商品拍重了', '其他原因',
       ],
       sunhuai_list: [
-        '少许', '三分之一', '一半', '三分之二'
+        '三分之一', '一半', '三分之二', '全部'
       ],
       obj1: {
         title: '退款原因',
@@ -52,7 +55,7 @@ Page({
     is_add: false,
     len: 0,
     goodsInfo: {},
-    flag:false,
+    flag: false,
     value: '选填...',
   },
 
@@ -63,21 +66,88 @@ Page({
     wx.hideShareMenu()
     this.dataRequest(options.rec_id)
     this.setData({
-      goodsInfo: JSON.parse(options.goodsInfo)
+      goodsInfo: JSON.parse(options.goodsInfo),
+      state: JSON.parse(options.state),
     })
-
   },
-  bindblur(){
+  shouhou() {
+    wx.navigateTo({
+      url: '../../other/webview/webview?url=' + baseurl.shouhouh5 + "&title=售后说明"
+    })
+  },
+  /**
+   * 仅退款
+   */
+  jintuikuan(e) {
     this.setData({
-      flag:false
+      cancleorder: !this.data.cancleorder,
+      // orderid: orderid,//订单id
     })
   },
-  bindfocus(){
+  changesetuikuan() {
+    this.setData({
+      cancleorder: !this.data.cancleorder
+    })
+  },
+  /**
+  * 选择一个原因
+  */
+  chooseOne_ls(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let arr_cancel = that.data.arr_cancel;
+    let flag = arr_cancel[index].flag;
+    arr_cancel.forEach(item => {
+      item.flag = false
+    })
+    arr_cancel[index].flag = !flag;
+    that.setData({
+      arr_cancel: arr_cancel,
+    })
+  },
+  make_tuikuan(e) {
+    let index = e.currentTarget.dataset.index;
+    let recid = e.currentTarget.dataset.recid;
+    if (index == 1) {
+      this.setData({
+        cancleorder: false
+      })
+    } else {
+      let data = {
+        rec_id: recid,
+        type: 0,
+      }
+      if (!order.chools_one(this.data.arr_cancel, this)) {
+        util.showmodel('请选择退款原因')
+        return;
+      }
+      if (order.chools_one(this.data.arr_cancel, this)) {
+        data.reason = this.data.arr_cancel[this.data.index_ls].txt;
+      }
+      request.postRequest(this, baseurl.order_return_submit, data, res => {
+        if (res.status == 200) {
+          this.setData({
+            cancleorder: false
+          })
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      })
+
+    }
+  },
+  bindblur() {
+    this.setData({
+      flag: false
+    })
+  },
+  bindfocus() {
     this.setData({
       flag: true
     })
   },
-  catchtap(){
+  catchtap() {
     this.setData({
       flag: true
     })
@@ -109,8 +179,12 @@ Page({
   },
   tijiao: function (e) {
     let that = this
-    if (this.data.tuikuanCell.seleted1 == -1 || this.data.tuikuanCell.seleted2 == -1) {
-      util.showmodel('请选择退款原因或损坏数量')
+    if (this.data.tuikuanCell.seleted1 == -1) {
+      util.showmodel('请选择退款原因')
+      return
+    }
+    if (this.data.tuikuanCell.seleted2 == -1) {
+      util.showmodel('请选择商品损坏数量')
       return
     }
     if (this.data.file_imgs.length == 0) {
@@ -124,7 +198,8 @@ Page({
         reason: d.tuikuanCell.tuikuan_list[d.tuikuanCell.seleted1],
         describe: d.value,
         imgs: d.imgurl.join(","),
-        img_thumb: d.img_thumb.join(",")
+        img_thumb: d.img_thumb.join(","),
+        type: 1
       }
 
       console.log(params)
@@ -179,7 +254,7 @@ Page({
 
 
     wx.uploadFile({
-      url: baseurl.upload_image + "?type=2",
+      url: baseurl.upload_image + "?type=1",
       filePath: that.data.file_imgs[index],
       name: 'file' + index,
       header: {
@@ -276,7 +351,7 @@ Page({
       if (flag == 1) this.data.tuikuanCell.seleted1 = seleted
       else {
         this.data.tuikuanCell.seleted2 = seleted
-        let price_sale = [5, 3, 2, 1.5];
+        let price_sale = [1.5, 2, 3, 5];
 
         let price = this.data.goodsInfo[0].order_amount / price_sale[seleted]
         price = price.toFixed(2)

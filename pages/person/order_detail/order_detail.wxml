@@ -101,7 +101,7 @@
         <!-- && state != 5 -->
         <view></view>
         <view class='goods_info_btn' bindtap='shouhou'>
-          <button class='goods_item_btn  fs-24 quxian_hui'>
+          <button class='goods_item_btn_sssss  fs-24 quxian_hui'>
             {{ state == 2?"申请退款":list_data.goodsInfo[0].return_status == 0?"申请售后":orders.getStateText(list_data.returnInfo.status)}}
           </button>
         </view>
@@ -209,8 +209,8 @@
     <view class='fs-20 fc-66 px-20 py-10'>1、订单一旦取消,限时特价、购买资格等购买优惠可能一并取消,不可恢复;</view>
     <view class='fs-20 fc-66 px-20'>2、订单所用红包、优惠券支持退回,为避免过期经尽快使用。</view>
     <view class='arr_cancel_btn fs-20'>
-      <view class='cancel_btn_ls1 btn_ls1 ' catchtap='{{commit_flag ? "reason_req" : "makesure"}}' data-index="1">暂不取消</view>
-      <view class='cancel_btn_ls2 btn_ls2' data-recid="{{list_data.goodsInfo[0].rec_id}}" catchtap='{{commit_flag ? "reason_req" : "makesure"}}' data-index="2">确定取消</view>
+      <view class='cancel_btn_ls1 btn_ls1 ' catchtap='{{commit_flag ? "reason_req" : "makesure"}}' data-index="1">{{commit_flag?"取消":"暂不取消"}}</view>
+      <view class='cancel_btn_ls2 btn_ls2' data-recid="{{list_data.goodsInfo[0].rec_id}}" catchtap='{{commit_flag ? "reason_req" : "makesure"}}' data-index="2">{{commit_flag?"确定":"确定取消"}}</view>
     </view>
   </view>
 

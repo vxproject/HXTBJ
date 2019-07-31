@@ -2,6 +2,26 @@
 <import src="/template/loading/loading.wxml" />
 <template is="loading" data="{{loading}}"></template>
 <view class='tuikuan_dh' wx:if='{{pid==1}}'>
+ <view class="transition {{cancleorder ?  'cancelmodel' :'cancelmodel2'}} " catchtap='changesetuikuan'>
+  </view>
+  <view class=" transition {{cancleorder ? 'mode_wind' :'mode_wind2'}}  auto">
+    <view class='fs-28 fc-33 px-20 arr_cancel_title' style='padding-top:44rpx;padding-bottom:48rpx;'>退款原因</view>
+    <view class='fs-26 fc-99 px-20' style='padding-bottom:62rpx;'>请选择取退款原因</view>
+    <view wx:for="{{arr_cancel}}" wx:key="" class='arr_cancel fs-26 fc-33 px-20 ' catchtap='chooseOne_ls' data-index="{{index}}">
+      <view class='arr_cancel_txt '>{{item.txt}}</view>
+      <view>
+        <image src="{{item.flag ?  'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hong.png?sign=c743c8faae146acad727f088f779f40b&t=1563335776' : 'https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/order/circle_hui.png?sign=419e3338540db98651356c94889dcc82&t=1563335805'}}"
+          class='wh-33' />
+      </view>
+    </view>
+    <view class='fs-20 fc-66 px-20'>温馨提示</view>
+    <view class='fs-20 fc-66 px-20 py-10'>1、订单一旦取消,限时特价、购买资格等购买优惠可能一并取消,不可恢复;</view>
+    <view class='fs-20 fc-66 px-20'>2、订单所用红包、优惠券支持退回,为避免过期经尽快使用。</view>
+    <view class='arr_cancel_btn fs-20'>
+      <view class='cancel_btn_ls1 btn_ls1 ' catchtap='make_tuikuan' data-index="1">取消</view>
+      <view class='cancel_btn_ls2 btn_ls2' catchtap='make_tuikuan'  data-recid="{{list_data.rec_id}}" data-index="2">确定</view>
+    </view>
+  </view>
   <!-- 退款商品列表 -->
   <view class='goods_list tuikuan_dh_goods'>
     <view class='goods_item' style='border-bottom:hidden;'>
@@ -20,7 +40,7 @@
   </view>
   <!-- 退款点击通道 -->
   <view style='  margin-top: 20rpx;'>
-    <view bindtap='tuikuan' class='tuikuan_road_box'>
+    <view bindtap='jintuikuan' class='tuikuan_road_box' wx:if="{{state != 4}}">
       <image class='tuikuan_road_logo' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/tuikuan/ls_jintuikuan.png?sign=be59d2ab0e5d0ca11c63a1d5f8b3ede4&t=1563940426'></image>
       <view class='tuikuan_road_info color_gray'>
         <view class='title'>仅退款</view>
@@ -29,14 +49,14 @@
       <image class='tuikuan_road_go' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_dizhi_back.png?sign=0b4a95d1a05ccfa6c548c8f6ff665b0c&t=1563940474'></image>
     </view>
 
-    <!-- <view bindtap='tuikuan' class='tuikuan_road_box'>
+    <view bindtap='tuikuan' class='tuikuan_road_box' wx:if="{{state == 3 || state == 4}}">
       <image class='tuikuan_road_logo' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/tuikuan/ls_tuihuokuan.png?sign=d40f913263213a89e6bcd2b3dd52dca2&t=1563940444'></image>
       <view class='tuikuan_road_info color_gray'>
         <view class='title'>退货退款</view>
         <view class='zhaiyao'>已收到货，需要退换已收到的货物</view>
       </view>
       <image class='tuikuan_road_go' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/person_dizhi_back.png?sign=0b4a95d1a05ccfa6c548c8f6ff665b0c&t=1563940474'></image>
-    </view> -->
+    </view>
   </view>
   <!-- 售后说明 -->
   <view bindtap="shouhou" class='btn_container'>
@@ -179,6 +199,8 @@
 
   <!-- 底部按钮 -->
   <view bindtap='tijiao' class='footer_btn ziti_2 btn_active'>提交</view>
+
+ 
 
 </view>
 <tuikuanCell list_data="{{tuikuanCell}}" bindmakesure="makesure"></tuikuanCell>
