@@ -14,7 +14,7 @@
       <image wx:if="{{type == 1}}" class='yes_goods_img sp ' src='{{store_count == 0?"../../images/image/cart_shoupan.png":"../../images/image/sp.png"}}'></image>
       <!-- <image wx:if="{{type == 1}}" class='yes_goods_img_btn sp' src='../../images/image/xiajiaClick.png'></image> -->
       <view class='yes_goods_info_r'>
-        <view class='yes_goods_info_title ziti_3 titletxt {{type == 1?"color2":""}}'>{{goods_name}}{{store_count}}</view>
+        <view class='yes_goods_info_title ziti_3 titletxt {{type == 1?"color2":""}}'>{{goods_name}}</view>
         <text class='yes_goods_info_guige ziti_3 {{type == 1?"color2":"color1"}}'>{{spec_key_name}}</text>
         <view wx:if="{{type == 0}}" class='yes_goods_info_price'>
           <view class='ziti_3 miaoshak'>

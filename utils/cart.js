@@ -53,13 +53,13 @@ function seletedState(data){
   return state
 }
 // 改变数量
-function changeNum(that,id,num,cd){
-  request.postRequest(null,baseurl.change_num,{id:id,goods_num:num},res=>{
-      if(res.status == 200) typeof cd == "function" && cd(res)
-  },c=>{
-    setTimeout(res => {
-      that.data.isRequest = false
-    }, 1000)
+function changeNum(that, id, num, type_ls,cd){
+  request.postRequest(null, baseurl.change_num, { id: id, goods_num: num, type: type_ls},res=>{
+    that.setData({
+      isRequest:false
+    })
+      if(res.status == 200) 
+      typeof cd == "function" && cd(res)
   })
 }
 // 删除购物车里面的数据

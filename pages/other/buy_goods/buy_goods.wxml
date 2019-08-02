@@ -98,7 +98,7 @@
     <!-- 运费 -->
     <view class='yunfei_box'>
         <text class='ziti_2'>运费</text>
-        <text class='ziti_2 color_gray'>{{list_data.shipping == 0?"包邮":list_data.shipping}}</text>
+        <text class='ziti_2 color_gray'>{{list_data.shipping == 0?"包邮":'￥'+list_data.shipping}}</text>
     </view>
     <!-- 还需支付 -->
     <view class='pingtai_kou_item2 ziti_2' style='padding-top:35rpx;'>

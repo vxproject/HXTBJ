@@ -21,7 +21,7 @@ let order_coupon = baseURL + version + "/order_coupon"   //可用的平台优惠
 //购物车
 let select_cart = baseURL + version + "/select_cart"   //默认页面
 let deal_cart = baseURL + version + "/deal_cart"  //去结算
-let change_num = baseURL + version + "/change_num"   //修改购物车商品数量
+let change_num = baseURL + version + "/change_num_v2"   //修改购物车商品数量
 let cart_delete = baseURL + version + "/cart_delete"  //删除购物车
 let add_cart = baseURL + version + "/add_cart"   //添加购物车
 let cart = baseURL + version + "/cart"  //购物车列表

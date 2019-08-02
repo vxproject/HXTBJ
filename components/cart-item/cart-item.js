@@ -41,33 +41,33 @@ Component({
       type: Number,
       value: 0
     },
-    time:{
-      type:Object,
-      value:{}
+    time: {
+      type: Object,
+      value: {}
     },
-    ms_state:{
-      type:Number,
-      value:-1
+    ms_state: {
+      type: Number,
+      value: -1
     },
-    type:{
-      type:String,
-      value:'0'
+    type: {
+      type: String,
+      value: '0'
     },
     is_vip: {
       type: String,
       value: '0'
     },
-    store_count:{
-      type:Number,
-      value:0
+    store_count: {
+      type: Number,
+      value: 0
     },
-    member_first:{   
-      type:Number ,
+    member_first: {
+      type: Number,
       value: 0,
     },
-    flashSale:{
-      type:Object,
-      value:{}
+    flashSale: {
+      type: Object,
+      value: {}
     }
   },
 
@@ -80,32 +80,32 @@ Component({
     isdh: false,
     touchMoveX: 0,
     touchMoveY: 0,
-    isRequest:false,
-    miaoshaflag:false, //秒杀时间状态
+    isRequest: false,
+    miaoshaflag: false, //秒杀时间状态
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    touchstart: function(e) {
+    touchstart: function (e) {
       var that = this
       if (e.changedTouches[0] && e.changedTouches[0]) {
-      this.data.startX = e.changedTouches[0].clientX
-      this.data.startY = e.changedTouches[0].clientY
+        this.data.startX = e.changedTouches[0].clientX
+        this.data.startY = e.changedTouches[0].clientY
       }
       // items: this.data.items
 
     },
-    touchmove: function(e) {
+    touchmove: function (e) {
       var that = this
-      if (e.changedTouches[0] && e.changedTouches[0]){
+      if (e.changedTouches[0] && e.changedTouches[0]) {
         that.data.touchMoveX = e.changedTouches[0].clientX //滑动变化坐标
         that.data.touchMoveY = e.changedTouches[0].clientY //滑动变化坐标
       }
       //获取滑动角度
     },
-    touchend: function(e) {
+    touchend: function (e) {
       let that = this
       var index = e.currentTarget.dataset.index //当前索引
       let startX = that.data.startX //开始X坐标
@@ -116,9 +116,9 @@ Component({
         X: startX,
         Y: startY
       }, {
-        X: touchMoveX,
-        Y: touchMoveY
-      });
+          X: touchMoveX,
+          Y: touchMoveY
+        });
       if (Math.abs(angle) > 60) return;
       if (touchMoveX == 0) return;
       if ((startX - touchMoveX) > 60) //右滑
@@ -126,8 +126,7 @@ Component({
       else if ((touchMoveX - startX) > 60) //左滑
         this.change(false)
     },
-    change: function(state) {
-      console.log('-------------')
+    change: function (state) {
       this.setData({
         isdh: state
       })
@@ -136,28 +135,28 @@ Component({
       this.data.touchMoveX = 0
       this.data.touchMoveY = 0
     },
-    changeState:function(e){
+    changeState: function (e) {
       // if(this.data.type == 1) return     
       let index = e.currentTarget.dataset.index
-      this.triggerEvent('changeState', { index: index, type: this.data.type}, {})
+      this.triggerEvent('changeState', { index: index, type: this.data.type }, {})
     },
-    changeNum:function(e){
+    changeNum: function (e) {
       let isrequest = this.data.isRequest
-      if(isrequest == true) return
-      this.data.isRequest = true
+      isrequest = true
+      if (isrequest == false) return
       let flag = e.currentTarget.dataset.flag
       let num = this.data.num
       if (flag == "0" && num == 1) return
       let that = this
-      let xnum = flag == "0" ? num * 1 - 1 : num * 1 +1
- 
-        cart.changeNum(that,this.data.list_id, xnum,res=>{
-        this.triggerEvent('changeNum', { index: that.data.index, num: xnum, type: this.data.type}, {})
+      let xnum = flag == "0" ? num * 1 - 1 : num * 1 + 1
+      let type_ls = flag == "0" ? 'desc' : 'asc ';
+      cart.changeNum(that, this.data.list_id, xnum, type_ls, res => {
+        this.triggerEvent('changeNum', { index: that.data.index, num: xnum, type: this.data.type }, {})
       })
-      
+
     },
-   
-    delete:function(e){
+
+    delete: function (e) {
       let that = this
       let id = this.data.list_id
       // wx.showModal({
@@ -167,44 +166,44 @@ Component({
       //   confirmColor:'#595959',
       //   success(res) {
       //     if (res.confirm) {
-            cart.deletate(id, res => {
-              console.log(res)
-              that.setData({
-                isdh:-1
-              })
-              that.triggerEvent('delete', { index: that.data.index, type: that.data.type }, {})
-            })
+      cart.deletate(id, res => {
+        console.log(res)
+        that.setData({
+          isdh: -1
+        })
+        that.triggerEvent('delete', { index: that.data.index, type: that.data.type }, {})
+      })
       //     } else if (res.cancel) {
       //       // that.triggerEvent('delete', { flag: 0 }, {})
-            
+
       //       that.change(false)
       //     }
       //   }
       // })
 
     },
-    detailClick:function(){
-      if (this.data.type == 1 && this.data.store_count == 0){
+    detailClick: function () {
+      if (this.data.type == 1 && this.data.store_count == 0) {
         wx.showToast({
           icon: 'none',
           title: '该商品已售罄',
         })
         return
-      } else if (this.data.type == 1 ){
+      } else if (this.data.type == 1) {
         wx.showToast({
           icon: 'none',
           title: '该商品已经下架',
         })
         return
       }
-      this.triggerEvent('detailClick', { index: this.data.index,type:this.data.type }, {})
+      this.triggerEvent('detailClick', { index: this.data.index, type: this.data.type }, {})
     },
     /**
      * 计算滑动角度
      * @param {Object} start 起点坐标
      * @param {Object} end 终点坐标
      */
-    angle: function(start, end) {
+    angle: function (start, end) {
       var _X = end.X - start.X,
         _Y = end.Y - start.Y
       //返回角度 /Math.atan()返回数字的反正切值

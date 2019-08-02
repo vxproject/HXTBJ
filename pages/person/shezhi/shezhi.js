@@ -12,7 +12,7 @@ Page({
     person_data: datasource.person_data,
     //{ title: '隐私' },
     list: [
-       { title: '版本', txt: 'v2.1.4' }, { title: '问题反馈' }, { title: '法律免责' }, { title: '账号管理' }
+       { title: '版本', txt: 'v2.1.5' }, { title: '问题反馈' }, { title: '法律免责' }, { title: '账号管理' }
     ]
   },
 
