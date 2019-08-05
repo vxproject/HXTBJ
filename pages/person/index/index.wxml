@@ -62,35 +62,7 @@
       </view>
     </view>
   </view>
-  <view wx:if="">
-    <view class='lsz_car_dibu'>
-      <image mode='widthFix' class='lsz_car_xian1' src='../../../images/cart/lsz_car_xian.png' />
-      <view class='lsz_car_xiangyao'>
-        <image class='lsz_car_hongxin' mode='widthFix' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/kongxinlls.png?sign=12751f7a8a5ffc109639b2d285d1ce37&t=1559722263' />
-        <view class='tuijjj ziti_2'>为你推荐</view>
-      </view>
-      <image mode='widthFix' class='lsz_car_xian' src='../../../images/cart/lsz_car_xian.png' />
-    </view>
-
-    <view class='lsz_tuijain'>
-      <view class='smb_box'>
-        <view wx:for="{{5}}" wx:key="" class='lsz_tuijian_list'>
-          <image class='lsz_good_img' src='https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/yijiqietu/lsz_car_bcimg.png?sign=d8b278fd7f7bfd907ce7eea38e17a9ad&t=1559726050' />
-          <view class=' lsz_content'>
-            <view class=' sj_colortui new_text ziti_2  sjy_wid'>商品名称商品名称商品名称商品名称商品名称商品名称商品名称</view>
-            <view class=' color_gray_sj ziti_3 new_text sjy_wid'>介绍商品名称商品名称商品名称商品名称商品名称</view>
-            <view class='bq_ziti'>标签</view>
-            <view class='lsz_list_danjai ziti_2'>
-              <view class=' color_gray_sj'>
-                <text class='sj_color_price '>¥1.22</text>/盒</view>
-              <image class='lsz_good_jiahao' src="https://6878-hxt-cdff72-1258454013.tcb.qcloud.la/person/lsz_weinituijain.png?sign=d0424361e95578d939c15fc513a59aaf&t=1559725588" />
-            </view>
-
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
+  
 </view>
 
 <view class='no_data' catchtap='no_datatap' wx:if="{{failflag}}">

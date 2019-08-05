@@ -18,12 +18,7 @@
       <view bindtap='gohome' class='no_goods_btn ziti_3 color_price'>去逛逛吧</view>
     </view>
     <view class='lsz_car_dibu'>
-      <!-- <image mode='widthFix' class='lsz_car_xian1' src='../../../images/cart/lsz_car_xian.png' />
-      <view class='lsz_car_xiangyao'>
-        <image class='lsz_car_hongxin' mode='widthFix' src='../../../images/cart/lsz_car_hongxin.png' />
-        <view>这也可能是你想要的</view>
-      </view>
-      <image mode='widthFix' class='lsz_car_xian' src='../../../images/cart/lsz_car_xian.png' /> -->
+
     </view>
   </view>
   <!-- 有商品状态下 -->
@@ -100,12 +95,7 @@
 
     </view>
     <view class='lsz_car_dibu2'>
-      <!-- <image mode='widthFix' class='lsz_car_xian1' src='../../../images/cart/lsz_car_xian.png' />
-      <view class='lsz_car_xiangyao'>
-        <image class='lsz_car_hongxin' mode='widthFix' src='../../../images/cart/lsz_car_hongxin.png' />
-        <view>这也可能是你想要的</view>
-      </view>
-      <image mode='widthFix' class='lsz_car_xian' src='../../../images/cart/lsz_car_xian.png' /> -->
+
     </view>
   </view>
 </block>

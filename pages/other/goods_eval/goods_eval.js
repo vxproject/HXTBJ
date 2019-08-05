@@ -44,7 +44,7 @@ Page({
       return
     }
     wx.chooseImage({
-      count: 9 - this.data.file_imgs.length,
+      count: 6 - this.data.file_imgs.length,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
@@ -78,6 +78,7 @@ Page({
     this.uploadImage(0, res => {
       let d = that.data
       let params = {
+        anonymous: d.state ? 1 : 0,  //true 匿名  ;false 显示 
         rec_id: d.rec_id,
         goods_rank: d.xing_count+1,
         content: d.value,
