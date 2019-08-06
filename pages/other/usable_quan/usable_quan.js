@@ -64,6 +64,19 @@ Page({
       delta: 1
     })
   },
+  /**
+   * 不使用优惠券
+   */
+  no_usecou(){
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      money: 0, coupon_id: 0
+    })
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

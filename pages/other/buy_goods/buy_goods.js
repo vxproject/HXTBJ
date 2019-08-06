@@ -32,8 +32,7 @@ Page({
     if (options.flag) {
       this.jiesuan()
       that.data.isgwc = options.flag
-    }
-    else {
+    } else {
       this.getRequest(options.goods_id, options.goods_num, options.item_id)
       that.data.goods_id = options.goods_id
       that.data.goods_num = options.goods_num
@@ -47,9 +46,19 @@ Page({
     request.getRequest(that, url, res => {
       if (res.status == 200) {
         let money = 0
-        if (res.data.coupon.length > 0) money = res.data.coupon[0].money
-
-
+        if (res.data.coupon.length > 0) {
+          if (res.data.coupon.length == 1) {
+            money = res.data.coupon[0].money;
+            that.data.coupon_id = res.data.coupon[0].id
+          }
+          if (res.data.coupon.length > 1) {
+            let newcop = res.data.coupon.sort((a, b) => {
+              return b.money - a.money
+            })
+            money = newcop[0].money;
+            that.data.coupon_id = newcop[0].id
+          }
+        }
         that.setData({
           list_data: res.data,
           hidden: 1,
@@ -66,10 +75,25 @@ Page({
   jiesuan: function () {
     let that = this
     cart.jiesuan(that, res => {
+      let money = 0
+      if (res.coupon.length > 0) {
+        if (res.coupon.length == 1) {
+          money = res.coupon[0].money;
+          that.data.coupon_id = res.coupon[0].id;
+        }
+        if (res.coupon.length > 1) {
+          let newcop = res.coupon.sort((a, b) => {
+            return b.money - a.money
+          })
+          money = newcop[0].money;
+          that.data.coupon_id = newcop[0].id;
+        }
+      }
       that.setData({
         list_data: res,
         hidden: 1,
-        flag: 1
+        flag: 1,
+        money: money
       })
     })
   },
@@ -85,8 +109,6 @@ Page({
     let list_data = that.data.list_data
     params.address_id = list_data.address.address_id
     params.user_note = that.data.liuyan
-    // if (that.data.coupon_id != -1) params.coupon_id = that.data.coupon_id
-    // else params.coupon_id = 0
     params.coupon_id = that.data.coupon_id
     // 购物车结算
     if (flag == 1) {
@@ -140,7 +162,7 @@ Page({
     let that = this
     let goodsInfo = that.data.list_data.goodsInfo
     let goods_list = []
-    let coupon_list = that.data.list_data.coupon  //所属的优惠券
+    let coupon_list = that.data.list_data.coupon //所属的优惠券
     for (let i = 0; i < goodsInfo.length; i++) {
       goods_list.push(goodsInfo[i].goods_id)
     }

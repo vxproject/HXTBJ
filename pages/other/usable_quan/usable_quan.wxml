@@ -35,11 +35,11 @@
 <template is="loading" data="{{loading}}"></template>
 <view style='opacity:{{opacity}}' class='container' style=''>
   <!-- 有优惠券状态 -->
-  <view wx:if='{{coupon.length > 0}}' class='yes_quan' >
-    <view class='quan_item' >
+  <view wx:if='{{coupon.length > 0}}' class='yes_quan'>
+    <view class='quan_item'>
       <view wx:for="{{coupon}}" wx:for-index="{{index}}" class='can_quan' bindtap='usableClick' data-item="{{item}}">
-        <view class='quan_img' style='background:url({{quan[seleted].img}});background-size:100% 100%' >
-          <view class='money'  style='margin-top:30rpx;'>
+        <view class='quan_img' style='background:url({{quan[seleted].img}});background-size:100% 100%'>
+          <view class='money' style='margin-top:30rpx;'>
             <text style='font-size:36rpx;font-weight:bold;'>￥</text>
             <text style='font-size:48rpx;font-weight:bold;'>{{item.couponInfo.money}}</text>
           </view>
@@ -48,14 +48,21 @@
         <view class='quan_info'>
           <view class='quan_name'>{{item.couponInfo.name}}</view>
           <view class='quan_time'>{{filters.dateFormat(item.couponInfo.use_start_time,"yyyy.MM.dd")}}-{{filters.dateFormat(item.couponInfo.use_end_time,"yyyy.MM.dd")}}</view>
-          <image  class='{{item.couponInfo.coupon_status != 0 ?"kguoqi":""}}' src="{{quan[seleted].quan}}"></image>
+          <image class='{{item.couponInfo.coupon_status != 0 ?"kguoqi":""}}' src="{{quan[seleted].quan}}"></image>
           <view class='lijisy'>立即使用</view>
+        </view>
+      </view>
+    </view>
+    <view class='nouser_cou  ' catchtap='no_usecou'>
+      <view class='wiaic'>
+        <view class='nouser_cou_ls'>
+          不使用优惠券
         </view>
       </view>
     </view>
   </view>
   <!-- 无订单状态 -->
-  <view wx:if='{{!coupon[0]}}' class='no_order'>
+  <view wx:if='{{!coupon[0]}}' class='no_order' >
     <image class='no_order_img' src='cloud://hxt-cdff72.6878-hxt-cdff72/person/zwyhq.png' mode="widthFix"></image>
     <view class='no_order_txt' style='font-size:24rpx;color:#666;'>暂无优惠券~</view>
   </view>

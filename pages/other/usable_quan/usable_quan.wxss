@@ -1,8 +1,31 @@
 /* pages/other/usable_quan/usable_quan.wxss */
 
 /* 无订单 */
-
 @import '../../person/quan/quan.wxss';
+
 .quan_item {
-  margin-top:10rpx;
+  margin-top: 10rpx;
+}
+
+.nouser_cou {
+  position: fixed;
+  background: #fff;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nouser_cou_ls {
+  display: flex;
+  justify-content: center;
+  background: #fd4722;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  color: #fff;
+  padding: 20rpx;
+}
+
+.wiaic {
+  padding: 20rpx 30rpx;
 }
