@@ -1,3 +1,4 @@
 
 <pick-ls id="pick-ls" array="{{arr}}"></pick-ls>
 <view class='middle' catchtap='catchtap'>出来</view>
+<view>ssss</view>
